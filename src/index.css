@@ -19,12 +19,30 @@
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
 #root {
   width: 100%;
+  min-height: 100vh;
+}
+
+/* Success toast animation */
+@keyframes bounce-in {
+  0% {
+    transform: translate(-50%, 20px);
+    opacity: 0;
+  }
+  50% {
+    transform: translate(-50%, -10px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s ease-out;
 }

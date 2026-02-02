@@ -1,2 +1,2 @@
 // Custom React hooks
-export {};
+export { useStorage, storageKeys } from './useStorage';

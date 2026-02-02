@@ -1,2 +1,2 @@
 // Component exports
-export {};
+export { default as DailyLogForm } from './daily-log/DailyLogForm';
