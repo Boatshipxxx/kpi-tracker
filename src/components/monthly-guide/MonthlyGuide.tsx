@@ -41,15 +41,15 @@ export default function MonthlyGuide() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 pb-24">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-800 mb-2">12ヶ月の変容ガイド</h1>
+      <div className="mb-8">
+        <h1 className="text-2xl font-bold text-gray-800 mb-3">12ヶ月の変容ガイド</h1>
         <p className="text-sm text-gray-500">あなたの内なる旅路</p>
       </div>
 
       {/* Phase Legend */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-6">
-        <h3 className="text-sm font-semibold text-gray-700 mb-3">4つのフェーズ</h3>
-        <div className="grid grid-cols-2 gap-3">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <h3 className="text-sm font-semibold text-gray-700 mb-4">4つのフェーズ</h3>
+        <div className="grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full bg-blue-500"></div>
             <span className="text-xs text-gray-600">基礎固め (1-3月)</span>
@@ -70,7 +70,7 @@ export default function MonthlyGuide() {
       </div>
 
       {/* Monthly Cards */}
-      <div className="space-y-4">
+      <div className="space-y-5">
         {monthlyGuides.map((guide) => {
           const isExpanded = expandedMonths.has(guide.month);
           const status = getMonthStatus(guide.month);
@@ -91,7 +91,7 @@ export default function MonthlyGuide() {
               {/* Card Header */}
               <button
                 onClick={() => toggleMonth(guide.month)}
-                className="w-full px-5 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors rounded-t-lg"
+                className="w-full px-6 py-5 flex items-center justify-between hover:bg-gray-50 transition-colors rounded-t-lg"
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -128,18 +128,18 @@ export default function MonthlyGuide() {
 
               {/* Card Content */}
               {isExpanded && (
-                <div className="px-5 pb-5 space-y-5 border-t border-gray-100 pt-5">
+                <div className="px-6 pb-6 space-y-6 border-t border-gray-100 pt-6">
                   {/* KPIs Section */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <Target className="w-4 h-4 text-primary" />
+                    <div className="flex items-center gap-2 mb-4">
+                      <Target className="w-5 h-5 text-primary" />
                       <h4 className="text-sm font-semibold text-gray-700">KPI目標</h4>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {guide.kpis.map((kpi, index) => (
                         <div
                           key={index}
-                          className="flex items-start gap-3 bg-gray-50 rounded-lg p-3"
+                          className="flex items-start gap-3 bg-gray-50 rounded-lg p-4"
                         >
                           <CheckCircle className="w-4 h-4 text-success mt-0.5 flex-shrink-0" />
                           <div className="flex-1">
@@ -155,15 +155,15 @@ export default function MonthlyGuide() {
 
                   {/* Actions Section */}
                   <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <CheckCircle className="w-4 h-4 text-secondary" />
+                    <div className="flex items-center gap-2 mb-4">
+                      <CheckCircle className="w-5 h-5 text-secondary" />
                       <h4 className="text-sm font-semibold text-gray-700">推奨アクション</h4>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       {guide.actions.map((action, index) => (
                         <div
                           key={index}
-                          className="flex items-start gap-3 bg-gray-50 rounded-lg p-3"
+                          className="flex items-start gap-3 bg-gray-50 rounded-lg p-4"
                         >
                           <div className="w-6 h-6 flex items-center justify-center bg-secondary/10 text-secondary rounded-full text-xs font-bold flex-shrink-0">
                             {index + 1}
@@ -180,28 +180,28 @@ export default function MonthlyGuide() {
                   </div>
 
                   {/* Checkpoint Section */}
-                  <div className="bg-blue-50 rounded-lg p-4">
-                    <div className="flex items-start gap-2">
+                  <div className="bg-blue-50 rounded-lg p-5">
+                    <div className="flex items-start gap-3">
                       <Target className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
                       <div>
-                        <div className="text-sm font-semibold text-primary mb-1">
+                        <div className="text-sm font-semibold text-primary mb-2">
                           チェックポイント
                         </div>
-                        <div className="text-sm text-gray-700">{guide.checkpoint}</div>
+                        <div className="text-sm text-gray-700 leading-relaxed">{guide.checkpoint}</div>
                       </div>
                     </div>
                   </div>
 
                   {/* Special Note */}
                   {guide.specialNote && (
-                    <div className="bg-warning/10 border-l-4 border-warning rounded-r-lg p-4">
-                      <div className="flex items-start gap-2">
+                    <div className="bg-warning/10 border-l-4 border-warning rounded-r-lg p-5">
+                      <div className="flex items-start gap-3">
                         <AlertCircle className="w-5 h-5 text-warning mt-0.5 flex-shrink-0" />
                         <div>
-                          <div className="text-sm font-semibold text-warning mb-1">
+                          <div className="text-sm font-semibold text-warning mb-2">
                             特別なお知らせ
                           </div>
-                          <div className="text-sm text-gray-700">{guide.specialNote}</div>
+                          <div className="text-sm text-gray-700 leading-relaxed">{guide.specialNote}</div>
                         </div>
                       </div>
                     </div>

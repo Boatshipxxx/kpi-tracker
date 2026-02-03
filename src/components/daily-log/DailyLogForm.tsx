@@ -101,50 +101,50 @@ export default function DailyLogForm() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-6 pb-24">
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">今日の記録</h2>
-        <p className="text-sm text-gray-500 mb-6">{today}</p>
+        <h2 className="text-2xl font-bold text-gray-800 mb-3">今日の記録</h2>
+        <p className="text-sm text-gray-500 mb-8">{today}</p>
 
         {/* Counter Section */}
-        <div className="space-y-6 mb-8">
+        <div className="space-y-8 mb-12">
           {/* Boundary Count */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-4">
               境界線設定回数
             </label>
-            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
+            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-6">
               <button
                 type="button"
                 onClick={() => handleCounterChange('boundaryCount', -1)}
-                className="w-12 h-12 flex items-center justify-center bg-white border border-gray-300 rounded-full shadow-sm hover:bg-gray-50 active:scale-95 transition-transform"
+                className="w-14 h-14 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full shadow-sm hover:bg-gray-50 active:scale-95 transition-transform"
                 aria-label="減らす"
               >
-                <Minus className="w-5 h-5 text-gray-600" />
+                <Minus className="w-6 h-6 text-gray-600" />
               </button>
               <span className="text-3xl font-bold text-primary">{formData.boundaryCount}</span>
               <button
                 type="button"
                 onClick={() => handleCounterChange('boundaryCount', 1)}
-                className="w-12 h-12 flex items-center justify-center bg-primary text-white rounded-full shadow-sm hover:bg-blue-600 active:scale-95 transition-transform"
+                className="w-14 h-14 flex items-center justify-center bg-primary text-white rounded-full shadow-sm hover:bg-blue-600 active:scale-95 transition-transform"
                 aria-label="増やす"
               >
-                <Plus className="w-5 h-5" />
+                <Plus className="w-6 h-6" />
               </button>
             </div>
           </div>
 
           {/* Authentic Count */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-4">
               本音発言回数
             </label>
-            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-4">
+            <div className="flex items-center justify-between bg-gray-50 rounded-lg p-6">
               <button
                 type="button"
                 onClick={() => handleCounterChange('authenticCount', -1)}
-                className="w-12 h-12 flex items-center justify-center bg-white border border-gray-300 rounded-full shadow-sm hover:bg-gray-50 active:scale-95 transition-transform"
+                className="w-14 h-14 flex items-center justify-center bg-white border-2 border-gray-300 rounded-full shadow-sm hover:bg-gray-50 active:scale-95 transition-transform"
                 aria-label="減らす"
               >
-                <Minus className="w-5 h-5 text-gray-600" />
+                <Minus className="w-6 h-6 text-gray-600" />
               </button>
               <span className="text-3xl font-bold text-secondary">
                 {formData.authenticCount}
@@ -152,48 +152,48 @@ export default function DailyLogForm() {
               <button
                 type="button"
                 onClick={() => handleCounterChange('authenticCount', 1)}
-                className="w-12 h-12 flex items-center justify-center bg-secondary text-white rounded-full shadow-sm hover:bg-purple-600 active:scale-95 transition-transform"
+                className="w-14 h-14 flex items-center justify-center bg-secondary text-white rounded-full shadow-sm hover:bg-purple-600 active:scale-95 transition-transform"
                 aria-label="増やす"
               >
-                <Plus className="w-5 h-5" />
+                <Plus className="w-6 h-6" />
               </button>
             </div>
           </div>
         </div>
 
         {/* Prohibited Actions */}
-        <div className="mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+        <div className="mb-12">
+          <label className="block text-sm font-medium text-gray-700 mb-4">
             禁止行動チェック
           </label>
-          <div className="space-y-3">
+          <div className="space-y-4">
             {PROHIBITED_ACTIONS.map((action) => (
               <label
                 key={action.key}
-                className="flex items-start p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
+                className="flex items-start p-5 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
               >
                 <input
                   type="checkbox"
                   checked={formData.prohibitedActions[action.key]}
                   onChange={() => handleProhibitedActionChange(action.key)}
-                  className="w-5 h-5 mt-0.5 text-warning border-gray-300 rounded focus:ring-warning focus:ring-2"
+                  className="w-6 h-6 mt-0.5 text-warning border-gray-300 rounded focus:ring-warning focus:ring-2"
                 />
-                <span className="ml-3 text-sm text-gray-700">{action.label}</span>
+                <span className="ml-4 text-sm text-gray-700 leading-relaxed">{action.label}</span>
               </label>
             ))}
           </div>
         </div>
 
         {/* Range Sliders */}
-        <div className="space-y-6 mb-8">
+        <div className="space-y-8 mb-12">
           {/* Discomfort Level */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="bg-gray-50 rounded-lg p-5">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
               違和感レベル
             </label>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-xs text-gray-500">快適</span>
-              <span className="text-2xl">
+              <span className="text-3xl">
                 {EMOJI_INDICATORS.discomfort[formData.discomfortLevel - 1]}
               </span>
               <span className="text-xs text-gray-500">不快</span>
@@ -204,22 +204,22 @@ export default function DailyLogForm() {
               max="10"
               value={formData.discomfortLevel}
               onChange={(e) => handleSliderChange('discomfortLevel', Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-warning"
+              className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-warning"
             />
-            <div className="text-center mt-1">
+            <div className="text-center mt-2">
               <span className="text-lg font-bold text-warning">{formData.discomfortLevel}</span>
               <span className="text-xs text-gray-500"> / 10</span>
             </div>
           </div>
 
           {/* Energy State */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="bg-gray-50 rounded-lg p-5">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
               エネルギー状態
             </label>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-xs text-gray-500">低</span>
-              <span className="text-2xl">
+              <span className="text-3xl">
                 {EMOJI_INDICATORS.energy[formData.energyState - 1]}
               </span>
               <span className="text-xs text-gray-500">高</span>
@@ -230,22 +230,22 @@ export default function DailyLogForm() {
               max="10"
               value={formData.energyState}
               onChange={(e) => handleSliderChange('energyState', Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-success"
+              className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-success"
             />
-            <div className="text-center mt-1">
+            <div className="text-center mt-2">
               <span className="text-lg font-bold text-success">{formData.energyState}</span>
               <span className="text-xs text-gray-500"> / 10</span>
             </div>
           </div>
 
           {/* Self Alignment */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+          <div className="bg-gray-50 rounded-lg p-5">
+            <label className="block text-sm font-medium text-gray-700 mb-3">
               自己一致度
             </label>
-            <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-xs text-gray-500">低</span>
-              <span className="text-2xl">
+              <span className="text-3xl">
                 {EMOJI_INDICATORS.alignment[formData.selfAlignment - 1]}
               </span>
               <span className="text-xs text-gray-500">高</span>
@@ -256,9 +256,9 @@ export default function DailyLogForm() {
               max="10"
               value={formData.selfAlignment}
               onChange={(e) => handleSliderChange('selfAlignment', Number(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
+              className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-primary"
             />
-            <div className="text-center mt-1">
+            <div className="text-center mt-2">
               <span className="text-lg font-bold text-primary">{formData.selfAlignment}</span>
               <span className="text-xs text-gray-500"> / 10</span>
             </div>
@@ -266,8 +266,8 @@ export default function DailyLogForm() {
         </div>
 
         {/* Solo Time */}
-        <div className="mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+        <div className="mb-10">
+          <label className="block text-sm font-medium text-gray-700 mb-4">
             ソロタイム（時間）
           </label>
           <input
@@ -279,19 +279,19 @@ export default function DailyLogForm() {
             onChange={(e) =>
               setFormData((prev) => ({ ...prev, soloTimeHours: Number(e.target.value) }))
             }
-            className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
+            className="w-full px-5 py-4 text-lg border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
           />
         </div>
 
         {/* Notes */}
-        <div className="mb-8">
-          <label className="block text-sm font-medium text-gray-700 mb-3">メモ</label>
+        <div className="mb-10">
+          <label className="block text-sm font-medium text-gray-700 mb-4">メモ</label>
           <textarea
             value={formData.notes}
             onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
-            rows={4}
+            rows={5}
             placeholder="今日の気づきや振り返りを書いてください..."
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+            className="w-full px-5 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
           />
         </div>
 
@@ -299,9 +299,9 @@ export default function DailyLogForm() {
         <button
           type="button"
           onClick={handleSave}
-          className="w-full py-4 bg-primary text-white font-medium rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full py-5 bg-primary text-white text-lg font-medium rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
         >
-          <Check className="w-5 h-5" />
+          <Check className="w-6 h-6" />
           保存する
         </button>
       </div>

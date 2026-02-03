@@ -179,61 +179,61 @@ export default function WeeklyReviewForm() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 pb-24">
-      <h1 className="text-2xl font-bold text-gray-800 mb-2">週次振り返り</h1>
-      <p className="text-sm text-gray-500 mb-6">
+      <h1 className="text-2xl font-bold text-gray-800 mb-3">週次振り返り</h1>
+      <p className="text-sm text-gray-500 mb-8">
         {format(weekStart, 'yyyy/MM/dd')} - {format(weekEnd, 'yyyy/MM/dd')}
       </p>
 
       {/* Weekly Summary */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">今週のKPIサマリー</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <h2 className="text-lg font-semibold text-gray-800 mb-5">今週のKPIサマリー</h2>
 
         {weeklySummary ? (
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">記録日数</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-5 mb-4">
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">記録日数</div>
               <div className="text-2xl font-bold text-gray-800">
                 {weeklySummary.daysRecorded}
                 <span className="text-sm font-normal text-gray-500">/7日</span>
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">境界線設定</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">境界線設定</div>
               <div className="text-2xl font-bold text-primary">{weeklySummary.boundaryTotal}</div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">本音発言</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">本音発言</div>
               <div className="text-2xl font-bold text-secondary">
                 {weeklySummary.authenticTotal}
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">平均違和感</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">平均違和感</div>
               <div className="text-2xl font-bold text-warning">{weeklySummary.avgDiscomfort}</div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">平均エネルギー</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">平均エネルギー</div>
               <div className="text-2xl font-bold text-success">{weeklySummary.avgEnergy}</div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">平均自己一致</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">平均自己一致</div>
               <div className="text-2xl font-bold text-primary">{weeklySummary.avgAlignment}</div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4">
-              <div className="text-xs text-gray-600 mb-1">ソロタイム</div>
+            <div className="bg-gray-50 rounded-lg p-5">
+              <div className="text-xs text-gray-600 mb-2">ソロタイム</div>
               <div className="text-2xl font-bold text-gray-800">
                 {weeklySummary.totalSoloTime}h
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 col-span-2">
-              <div className="text-xs text-gray-600 mb-1">禁止事項回避率</div>
+            <div className="bg-gray-50 rounded-lg p-5 col-span-2">
+              <div className="text-xs text-gray-600 mb-2">禁止事項回避率</div>
               <div className="text-2xl font-bold text-success">
                 {weeklySummary.prohibitedAvoidanceRate}%
               </div>
@@ -250,45 +250,45 @@ export default function WeeklyReviewForm() {
       </div>
 
       {/* Reflection Form */}
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">振り返り</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-8">
+        <h2 className="text-lg font-semibold text-gray-800 mb-5">振り返り</h2>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Insights */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">今週の気づき</label>
+            <label className="block text-sm font-medium text-gray-700 mb-4">今週の気づき</label>
             <textarea
               value={formData.insights}
               onChange={(e) => setFormData((prev) => ({ ...prev, insights: e.target.value }))}
-              rows={4}
+              rows={5}
               placeholder="今週気づいたことを書いてください..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+              className="w-full px-5 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
             />
           </div>
 
           {/* Changes */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">今週の変化</label>
+            <label className="block text-sm font-medium text-gray-700 mb-4">今週の変化</label>
             <textarea
               value={formData.changes}
               onChange={(e) => setFormData((prev) => ({ ...prev, changes: e.target.value }))}
-              rows={4}
+              rows={5}
               placeholder="今週の変化を書いてください..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+              className="w-full px-5 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
             />
           </div>
 
           {/* Challenges */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-sm font-medium text-gray-700 mb-4">
               今週のチャレンジ
             </label>
             <textarea
               value={formData.challenges}
               onChange={(e) => setFormData((prev) => ({ ...prev, challenges: e.target.value }))}
-              rows={4}
+              rows={5}
               placeholder="今週直面した課題を書いてください..."
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
+              className="w-full px-5 py-4 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent resize-none"
             />
           </div>
         </div>
@@ -297,18 +297,18 @@ export default function WeeklyReviewForm() {
         <button
           type="button"
           onClick={handleSave}
-          className="w-full mt-6 py-4 bg-primary text-white font-medium rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full mt-8 py-5 bg-primary text-white text-lg font-medium rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
         >
-          <Check className="w-5 h-5" />
+          <Check className="w-6 h-6" />
           保存する
         </button>
       </div>
 
       {/* Past Reviews */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">過去の振り返り</h2>
+        <h2 className="text-lg font-semibold text-gray-800 mb-5">過去の振り返り</h2>
         {pastReviews.length > 0 ? (
-          <div className="space-y-3">
+          <div className="space-y-4">
             {pastReviews.map((review) => {
               const isExpanded = expandedReviews.has(review.weekStart);
               const isCurrentWeek = review.weekStart === weekStartStr;
@@ -322,7 +322,7 @@ export default function WeeklyReviewForm() {
                 >
                   <button
                     onClick={() => toggleReviewExpand(review.weekStart)}
-                    className="w-full px-4 py-3 flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
+                    className="w-full px-5 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors rounded-lg"
                   >
                     <div className="text-left">
                       <div className="text-sm font-medium text-gray-800">
@@ -340,7 +340,7 @@ export default function WeeklyReviewForm() {
                   </button>
 
                   {isExpanded && (
-                    <div className="px-4 pb-4 space-y-4 border-t border-gray-100 pt-4">
+                    <div className="px-5 pb-5 space-y-5 border-t border-gray-100 pt-5">
                       {/* KPI Summary */}
                       <div className="grid grid-cols-3 gap-2 text-xs">
                         <div>

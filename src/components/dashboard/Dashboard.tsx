@@ -121,28 +121,28 @@ export default function Dashboard() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-6 pb-24">
       {/* Header Section */}
-      <div className="mb-6">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="px-3 py-1 bg-primary text-white text-sm font-medium rounded-full">
+      <div className="mb-8">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-full">
             {currentGuide.month}月
           </span>
-          <span className="px-3 py-1 bg-secondary/10 text-secondary text-sm font-medium rounded-full">
+          <span className="px-4 py-2 bg-secondary/10 text-secondary text-sm font-medium rounded-full">
             {currentGuide.phase}
           </span>
         </div>
-        <h1 className="text-2xl font-bold text-gray-800 mb-1">{currentGuide.theme}</h1>
+        <h1 className="text-2xl font-bold text-gray-800 mb-2">{currentGuide.theme}</h1>
         <p className="text-sm text-gray-500">{formattedToday}</p>
       </div>
 
       {/* Stats Cards */}
-      <div className="mb-8 -mx-4 px-4">
-        <h2 className="text-lg font-semibold text-gray-800 mb-3 px-4">今週の状況</h2>
-        <div className="flex gap-4 overflow-x-auto pb-4 px-4 snap-x snap-mandatory">
+      <div className="mb-10 -mx-4 px-4">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4 px-4">今週の状況</h2>
+        <div className="flex gap-5 overflow-x-auto pb-4 px-4 snap-x snap-mandatory">
           {/* Today's Record Status */}
-          <div className="flex-shrink-0 w-[280px] bg-white rounded-lg shadow-sm border border-gray-200 p-4 snap-start">
-            <div className="flex items-center justify-between mb-2">
+          <div className="flex-shrink-0 w-[300px] bg-white rounded-lg shadow-sm border border-gray-200 p-6 snap-start">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-600">今日の記録</span>
-              <PenLine className="w-5 h-5 text-primary" />
+              <PenLine className="w-6 h-6 text-primary" />
             </div>
             <div className="text-2xl font-bold text-gray-800">
               {weeklyStats.hasRecordedToday ? (
@@ -154,44 +154,44 @@ export default function Dashboard() {
           </div>
 
           {/* Boundary Count */}
-          <div className="flex-shrink-0 w-[280px] bg-white rounded-lg shadow-sm border border-gray-200 p-4 snap-start">
-            <div className="flex items-center justify-between mb-2">
+          <div className="flex-shrink-0 w-[300px] bg-white rounded-lg shadow-sm border border-gray-200 p-6 snap-start">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-600">境界線設定回数</span>
-              <TrendingUp className="w-5 h-5 text-primary" />
+              <TrendingUp className="w-6 h-6 text-primary" />
             </div>
             <div className="text-3xl font-bold text-primary">{weeklyStats.boundaryTotal}</div>
-            <div className="text-xs text-gray-500 mt-1">今週の合計</div>
+            <div className="text-xs text-gray-500 mt-2">今週の合計</div>
           </div>
 
           {/* Authentic Count */}
-          <div className="flex-shrink-0 w-[280px] bg-white rounded-lg shadow-sm border border-gray-200 p-4 snap-start">
-            <div className="flex items-center justify-between mb-2">
+          <div className="flex-shrink-0 w-[300px] bg-white rounded-lg shadow-sm border border-gray-200 p-6 snap-start">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-600">本音発言回数</span>
-              <Heart className="w-5 h-5 text-secondary" />
+              <Heart className="w-6 h-6 text-secondary" />
             </div>
             <div className="text-3xl font-bold text-secondary">{weeklyStats.authenticTotal}</div>
-            <div className="text-xs text-gray-500 mt-1">今週の合計</div>
+            <div className="text-xs text-gray-500 mt-2">今週の合計</div>
           </div>
 
           {/* Solo Time */}
-          <div className="flex-shrink-0 w-[280px] bg-white rounded-lg shadow-sm border border-gray-200 p-4 snap-start">
-            <div className="flex items-center justify-between mb-2">
+          <div className="flex-shrink-0 w-[300px] bg-white rounded-lg shadow-sm border border-gray-200 p-6 snap-start">
+            <div className="flex items-center justify-between mb-3">
               <span className="text-sm font-medium text-gray-600">ソロタイム</span>
-              <Zap className="w-5 h-5 text-success" />
+              <Zap className="w-6 h-6 text-success" />
             </div>
             <div className="text-3xl font-bold text-success">{weeklyStats.totalSoloTime}h</div>
-            <div className="text-xs text-gray-500 mt-1">今週の合計</div>
+            <div className="text-xs text-gray-500 mt-2">今週の合計</div>
           </div>
         </div>
       </div>
 
       {/* Trend Charts */}
-      <div className="mb-8">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">過去7日間の推移</h2>
+      <div className="mb-10">
+        <h2 className="text-lg font-semibold text-gray-800 mb-5">過去7日間の推移</h2>
 
         {/* Discomfort Level Chart */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">違和感レベル</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <h3 className="text-sm font-medium text-gray-700 mb-4">違和感レベル</h3>
           <ResponsiveContainer width="100%" height={180}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -222,8 +222,8 @@ export default function Dashboard() {
         </div>
 
         {/* Energy State Chart */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 mb-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">エネルギー状態</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <h3 className="text-sm font-medium text-gray-700 mb-4">エネルギー状態</h3>
           <ResponsiveContainer width="100%" height={180}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -254,8 +254,8 @@ export default function Dashboard() {
         </div>
 
         {/* Self Alignment Chart */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
-          <h3 className="text-sm font-medium text-gray-700 mb-3">自己一致度</h3>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+          <h3 className="text-sm font-medium text-gray-700 mb-4">自己一致度</h3>
           <ResponsiveContainer width="100%" height={180}>
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -288,12 +288,12 @@ export default function Dashboard() {
 
       {/* Quick Actions */}
       <div>
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">クイックアクション</h2>
+        <h2 className="text-lg font-semibold text-gray-800 mb-5">クイックアクション</h2>
         <button
           onClick={() => navigate('/daily-log')}
-          className="w-full py-4 bg-primary text-white font-semibold rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
+          className="w-full py-5 bg-primary text-white text-lg font-semibold rounded-lg shadow-sm hover:bg-blue-600 active:scale-98 transition-all flex items-center justify-center gap-2"
         >
-          <PenLine className="w-5 h-5" />
+          <PenLine className="w-6 h-6" />
           今日の記録をする
         </button>
       </div>
