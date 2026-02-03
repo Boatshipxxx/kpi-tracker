@@ -48,84 +48,101 @@ export default function WeeklyReviewForm() {
   });
 
   useEffect(() => {
+    let isMounted = true;
+
     const loadWeekData = async () => {
-      setIsLoading(true);
+      try {
+        setIsLoading(true);
 
-      // Re-calculate weekStart from weekStartStr to avoid Date object in deps
-      const currentWeekStart = new Date(weekStartStr);
+        // Re-calculate weekStart from weekStartStr to avoid Date object in deps
+        const currentWeekStart = new Date(weekStartStr);
 
-      // Get all days in current week
-      const weekDays: string[] = [];
-      for (let i = 0; i < 7; i++) {
-        const date = new Date(currentWeekStart);
-        date.setDate(date.getDate() + i);
-        weekDays.push(storageKeys.formatDate(date));
+        // Get all days in current week
+        const weekDays: string[] = [];
+        for (let i = 0; i < 7; i++) {
+          const date = new Date(currentWeekStart);
+          date.setDate(date.getDate() + i);
+          weekDays.push(storageKeys.formatDate(date));
+        }
+
+        // Load daily logs for the week
+        const dailyLogs: (DailyLog | null)[] = await Promise.all(
+          weekDays.map((date) => get<DailyLog>(storageKeys.dailyLog(date)))
+        );
+
+        const validLogs = dailyLogs.filter((log): log is DailyLog => log !== null);
+
+        // Calculate weekly summary
+        if (validLogs.length > 0) {
+          const boundarySum = validLogs.reduce((sum, log) => sum + log.boundaryCount, 0);
+          const authenticSum = validLogs.reduce((sum, log) => sum + log.authenticCount, 0);
+          const avgDiscomfort =
+            validLogs.reduce((sum, log) => sum + log.discomfortLevel, 0) / validLogs.length;
+          const avgEnergy =
+            validLogs.reduce((sum, log) => sum + log.energyState, 0) / validLogs.length;
+          const avgAlignment =
+            validLogs.reduce((sum, log) => sum + log.selfAlignment, 0) / validLogs.length;
+          const soloTimeSum = validLogs.reduce((sum, log) => sum + log.soloTimeHours, 0);
+
+          // Calculate prohibited actions avoidance rate
+          let totalProhibitedActions = 0;
+          let totalAvoidedActions = 0;
+          validLogs.forEach((log) => {
+            const actions = Object.values(log.prohibitedActions);
+            totalProhibitedActions += actions.length;
+            totalAvoidedActions += actions.filter((action) => !action).length;
+          });
+          const avoidanceRate =
+            totalProhibitedActions > 0
+              ? (totalAvoidedActions / totalProhibitedActions) * 100
+              : 100;
+
+          if (isMounted) {
+            setWeeklySummary({
+              boundaryTotal: boundarySum,
+              authenticTotal: authenticSum,
+              avgDiscomfort: Math.round(avgDiscomfort * 10) / 10,
+              avgEnergy: Math.round(avgEnergy * 10) / 10,
+              avgAlignment: Math.round(avgAlignment * 10) / 10,
+              totalSoloTime: Math.round(soloTimeSum * 10) / 10,
+              prohibitedAvoidanceRate: Math.round(avoidanceRate),
+              daysRecorded: validLogs.length,
+            });
+          }
+        }
+
+        // Load existing weekly review if it exists
+        const existingReview = await get<WeeklyReview>(storageKeys.weeklyReview(weekId));
+        if (existingReview && isMounted) {
+          setFormData(existingReview);
+        }
+
+        // Load past reviews
+        const reviewKeys = await list('weekly-reviews:');
+        const reviews = await Promise.all(
+          reviewKeys.map((key) => get<WeeklyReview>(key))
+        );
+        const validReviews = reviews
+          .filter((review): review is WeeklyReview => review !== null)
+          .sort((a, b) => b.weekStart.localeCompare(a.weekStart));
+
+        if (isMounted) {
+          setPastReviews(validReviews.slice(0, 10)); // Show last 10 reviews
+        }
+      } catch (error) {
+        console.error('Error loading weekly review data:', error);
+      } finally {
+        if (isMounted) {
+          setIsLoading(false);
+        }
       }
-
-      // Load daily logs for the week
-      const dailyLogs: (DailyLog | null)[] = await Promise.all(
-        weekDays.map((date) => get<DailyLog>(storageKeys.dailyLog(date)))
-      );
-
-      const validLogs = dailyLogs.filter((log): log is DailyLog => log !== null);
-
-      // Calculate weekly summary
-      if (validLogs.length > 0) {
-        const boundarySum = validLogs.reduce((sum, log) => sum + log.boundaryCount, 0);
-        const authenticSum = validLogs.reduce((sum, log) => sum + log.authenticCount, 0);
-        const avgDiscomfort =
-          validLogs.reduce((sum, log) => sum + log.discomfortLevel, 0) / validLogs.length;
-        const avgEnergy =
-          validLogs.reduce((sum, log) => sum + log.energyState, 0) / validLogs.length;
-        const avgAlignment =
-          validLogs.reduce((sum, log) => sum + log.selfAlignment, 0) / validLogs.length;
-        const soloTimeSum = validLogs.reduce((sum, log) => sum + log.soloTimeHours, 0);
-
-        // Calculate prohibited actions avoidance rate
-        let totalProhibitedActions = 0;
-        let totalAvoidedActions = 0;
-        validLogs.forEach((log) => {
-          const actions = Object.values(log.prohibitedActions);
-          totalProhibitedActions += actions.length;
-          totalAvoidedActions += actions.filter((action) => !action).length;
-        });
-        const avoidanceRate =
-          totalProhibitedActions > 0
-            ? (totalAvoidedActions / totalProhibitedActions) * 100
-            : 100;
-
-        setWeeklySummary({
-          boundaryTotal: boundarySum,
-          authenticTotal: authenticSum,
-          avgDiscomfort: Math.round(avgDiscomfort * 10) / 10,
-          avgEnergy: Math.round(avgEnergy * 10) / 10,
-          avgAlignment: Math.round(avgAlignment * 10) / 10,
-          totalSoloTime: Math.round(soloTimeSum * 10) / 10,
-          prohibitedAvoidanceRate: Math.round(avoidanceRate),
-          daysRecorded: validLogs.length,
-        });
-      }
-
-      // Load existing weekly review if it exists
-      const existingReview = await get<WeeklyReview>(storageKeys.weeklyReview(weekId));
-      if (existingReview) {
-        setFormData(existingReview);
-      }
-
-      // Load past reviews
-      const reviewKeys = await list('weekly-reviews:');
-      const reviews = await Promise.all(
-        reviewKeys.map((key) => get<WeeklyReview>(key))
-      );
-      const validReviews = reviews
-        .filter((review): review is WeeklyReview => review !== null)
-        .sort((a, b) => b.weekStart.localeCompare(a.weekStart));
-      setPastReviews(validReviews.slice(0, 10)); // Show last 10 reviews
-
-      setIsLoading(false);
     };
 
     loadWeekData();
+
+    return () => {
+      isMounted = false;
+    };
     // Only run once on mount - weekId/weekStartStr/weekEndStr are stable strings
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
