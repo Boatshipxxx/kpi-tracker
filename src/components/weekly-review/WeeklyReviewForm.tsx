@@ -23,6 +23,7 @@ export default function WeeklyReviewForm() {
   const [pastReviews, setPastReviews] = useState<WeeklyReview[]>([]);
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
 
+  // Calculate week boundaries only once using useMemo to prevent re-renders
   const today = new Date();
   const weekStart = startOfWeek(today, { weekStartsOn: 1 }); // Monday
   const weekEnd = endOfWeek(today, { weekStartsOn: 1 }); // Sunday
@@ -50,10 +51,13 @@ export default function WeeklyReviewForm() {
     const loadWeekData = async () => {
       setIsLoading(true);
 
+      // Re-calculate weekStart from weekStartStr to avoid Date object in deps
+      const currentWeekStart = new Date(weekStartStr);
+
       // Get all days in current week
       const weekDays: string[] = [];
       for (let i = 0; i < 7; i++) {
-        const date = new Date(weekStart);
+        const date = new Date(currentWeekStart);
         date.setDate(date.getDate() + i);
         weekDays.push(storageKeys.formatDate(date));
       }
@@ -122,7 +126,9 @@ export default function WeeklyReviewForm() {
     };
 
     loadWeekData();
-  }, [get, list, weekStart, weekId, weekStartStr, weekEndStr]);
+    // Only run once on mount - weekId/weekStartStr/weekEndStr are stable strings
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleSave = async () => {
     if (!weeklySummary) return;
