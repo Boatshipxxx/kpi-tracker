@@ -185,10 +185,10 @@ export default function WeeklyReviewForm() {
       </p>
 
       {/* Weekly Summary */}
-      {weeklySummary && (
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">今週のKPIサマリー</h2>
+      <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">今週のKPIサマリー</h2>
 
+        {weeklySummary ? (
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
             <div className="bg-gray-50 rounded-lg p-4">
               <div className="text-xs text-gray-600 mb-1">記録日数</div>
@@ -239,8 +239,15 @@ export default function WeeklyReviewForm() {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+            <p className="text-blue-800 font-medium mb-2">📊 今週の記録がまだありません</p>
+            <p className="text-sm text-blue-600">
+              「記録」タブから日々のKPIを記録すると、ここに週次サマリーが表示されます。
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Reflection Form */}
       <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
@@ -298,9 +305,9 @@ export default function WeeklyReviewForm() {
       </div>
 
       {/* Past Reviews */}
-      {pastReviews.length > 0 && (
-        <div>
-          <h2 className="text-lg font-semibold text-gray-800 mb-4">過去の振り返り</h2>
+      <div>
+        <h2 className="text-lg font-semibold text-gray-800 mb-4">過去の振り返り</h2>
+        {pastReviews.length > 0 ? (
           <div className="space-y-3">
             {pastReviews.map((review) => {
               const isExpanded = expandedReviews.has(review.weekStart);
@@ -376,8 +383,15 @@ export default function WeeklyReviewForm() {
               );
             })}
           </div>
-        </div>
-      )}
+        ) : (
+          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 text-center">
+            <p className="text-gray-600">📝 まだ振り返りを保存していません</p>
+            <p className="text-sm text-gray-500 mt-2">
+              上の振り返りフォームを記入して保存すると、ここに履歴が表示されます。
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Success Toast */}
       {showSuccess && (
