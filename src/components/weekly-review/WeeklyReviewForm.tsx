@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Check, ChevronDown, ChevronUp } from 'lucide-react';
 import { DailyLog, WeeklyReview } from '../../types';
 import { useStorage, storageKeys } from '../../hooks/useStorage';
@@ -24,12 +24,19 @@ export default function WeeklyReviewForm() {
   const [expandedReviews, setExpandedReviews] = useState<Set<string>>(new Set());
 
   // Calculate week boundaries only once using useMemo to prevent re-renders
-  const today = new Date();
-  const weekStart = startOfWeek(today, { weekStartsOn: 1 }); // Monday
-  const weekEnd = endOfWeek(today, { weekStartsOn: 1 }); // Sunday
-  const weekId = storageKeys.getWeekId(today);
-  const weekStartStr = storageKeys.formatDate(weekStart);
-  const weekEndStr = storageKeys.formatDate(weekEnd);
+  const { weekStart, weekEnd, weekId, weekStartStr, weekEndStr } = useMemo(() => {
+    const today = new Date();
+    const start = startOfWeek(today, { weekStartsOn: 1 }); // Monday
+    const end = endOfWeek(today, { weekStartsOn: 1 }); // Sunday
+
+    return {
+      weekStart: start,
+      weekEnd: end,
+      weekId: storageKeys.getWeekId(today),
+      weekStartStr: storageKeys.formatDate(start),
+      weekEndStr: storageKeys.formatDate(end),
+    };
+  }, []); // Empty deps = calculate only once on mount
 
   const [formData, setFormData] = useState<WeeklyReview>({
     weekStart: weekStartStr,
