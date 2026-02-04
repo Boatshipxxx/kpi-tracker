@@ -65,12 +65,18 @@ export default function WeeklyReviewForm() {
           weekDays.push(storageKeys.formatDate(date));
         }
 
+        console.log('Loading weekly review data for days:', weekDays);
+
         // Load daily logs for the week
         const dailyLogs: (DailyLog | null)[] = await Promise.all(
           weekDays.map((date) => get<DailyLog>(storageKeys.dailyLog(date)))
         );
 
+        console.log('Loaded daily logs:', dailyLogs);
+
         const validLogs = dailyLogs.filter((log): log is DailyLog => log !== null);
+
+        console.log('Valid logs count:', validLogs.length);
 
         // Calculate weekly summary
         if (validLogs.length > 0) {
@@ -88,10 +94,20 @@ export default function WeeklyReviewForm() {
           let totalProhibitedActions = 0;
           let totalAvoidedActions = 0;
           validLogs.forEach((log) => {
+            if (!log.prohibitedActions) {
+              console.warn('Log missing prohibitedActions:', log);
+              return;
+            }
             const actions = Object.values(log.prohibitedActions);
             totalProhibitedActions += actions.length;
             totalAvoidedActions += actions.filter((action) => !action).length;
           });
+
+          console.log('Prohibited actions stats:', {
+            totalProhibitedActions,
+            totalAvoidedActions,
+          });
+
           const avoidanceRate =
             totalProhibitedActions > 0
               ? (totalAvoidedActions / totalProhibitedActions) * 100
