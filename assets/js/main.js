@@ -16,17 +16,16 @@ function closeMenu() {
   if (mobileMenu) mobileMenu.classList.remove('open');
   document.body.style.overflow = '';
 }
-
 window.closeMenu = closeMenu;
 
 // ==================== SCROLL REVEAL ====================
 const reveals = document.querySelectorAll('.reveal');
-const observer = new IntersectionObserver((entries) => {
+const revealOnScroll = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
+    if (entry.isIntersecting) entry.target.classList.add('active');
   });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => observer.observe(el));
+}, { threshold: 0.1 });
+reveals.forEach(el => revealOnScroll.observe(el));
 
 // ==================== SMOOTH SCROLL ====================
 document.querySelectorAll('a[href^="#"]').forEach(a => {

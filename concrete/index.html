@@ -7,190 +7,145 @@
 <meta name="description" content="考えること、感じたこと。プラントベースな暮らしの中で見えてきたエッセイ。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
 
-<!-- ===== FLOATING CAP ===== -->
-<div class="floating-cap-layer" aria-hidden="true">
-  <div class="floating-cap">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCACWAJYDASIAAhEBAxEB/8QAHQABAAEEAwEAAAAAAAAAAAAAAAYEBQcIAgMJAf/EADoQAAIBBAEDAgQEAwYGAwAAAAECAwAEBREGBxIhEzEIIkFRFDJhcRUjgRYzUoORwSQ0QlNy0UOhsf/EABoBAQADAQEBAAAAAAAAAAAAAAABAwQCBQb/xAAtEQACAQMCBQMCBwEAAAAAAAAAAQIDESEEMRJBUWHwBRMicZEUgaGxweHx0f/aAAwDAQACEQMRAD8A0ypSlAKUpQClKUApSlAKUpQCgFKUA" alt="" width="120" height="120">
-  </div>
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
 </div>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <a href="/" class="logo">
-    <div class="logo-icon">V</div>
-    VEGAN MEDIA
-  </a>
-  <nav>
+<header class="top-nav">
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>VEGAN MEDIA</span>
+  </div>
+  <nav class="nav-links">
     <a href="/magazine">Magazine</a>
-    <a href="/about">About</a>
     <a href="/concrete">Concrete</a>
     <a href="/works">Works</a>
-    <a href="/#newsletter">Subscribe</a>
+    <a href="/about">About</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- ===== MOBILE MENU ===== -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="/" onclick="closeMenu()">Home</a>
   <a href="/magazine" onclick="closeMenu()">Magazine</a>
-  <a href="/about" onclick="closeMenu()">About</a>
   <a href="/concrete" onclick="closeMenu()">Concrete</a>
   <a href="/works" onclick="closeMenu()">Works</a>
-  <a href="/#newsletter" onclick="closeMenu()">Subscribe</a>
+  <a href="/about" onclick="closeMenu()">About</a>
 </div>
 
-<!-- ===== PAGE HERO ===== -->
+<!-- Page Hero -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <p class="page-hero-eyebrow">ESSAYS & THOUGHTS</p>
-    <h1>Concrete</h1>
-    <p>考えること、感じたこと。<br>プラントベースな暮らしの中で見えてきたエッセイ。</p>
-  </div>
+  <p class="page-hero-eyebrow">Essays & Thoughts</p>
+  <h1>Concrete</h1>
+  <p>考えること、感じたこと。<br>プラントベースな暮らしの中で見えてきたエッセイ。</p>
 </section>
 
-<!-- ===== ESSAYS ===== -->
-<section class="concrete-section reveal">
-  <div class="concrete-list">
-
-    <div class="concrete-item">
-      <div class="concrete-image">
-        <!-- REPLACE: /images/concrete-1.jpg (480×360px) -->
-        🌍
-      </div>
-      <div class="concrete-body">
-        <div class="concrete-meta">
-          <span>2026.04.05</span>
-          <span>7 min read</span>
-          <span>ESSAY</span>
-        </div>
-        <h3 class="concrete-title">「ヴィーガン」という言葉が重くなった日</h3>
-        <p class="concrete-excerpt">
-          あるとき、「ヴィーガンなんですか？」と聞かれて答えに詰まった。
-          ラベルじゃなくて、生き方として続けたい。そんなことを考えた。
-        </p>
-      </div>
-    </div>
-
-    <div class="concrete-item">
-      <div class="concrete-image">
-        <!-- REPLACE: /images/concrete-2.jpg (480×360px) -->
-        🏙️
-      </div>
-      <div class="concrete-body">
-        <div class="concrete-meta">
-          <span>2026.03.20</span>
-          <span>5 min read</span>
-          <span>COLUMN</span>
-        </div>
-        <h3 class="concrete-title">都市でヴィーガンを続けることのリアル</h3>
-        <p class="concrete-excerpt">
-          コンビニ、外食、飲み会。東京でプラントベースに生きることの
-          面白さと、小さな苦労と。
-        </p>
-      </div>
-    </div>
-
-    <div class="concrete-item">
-      <div class="concrete-image">
-        <!-- REPLACE: /images/concrete-3.jpg (480×360px) -->
-        🍚
-      </div>
-      <div class="concrete-body">
-        <div class="concrete-meta">
-          <span>2026.03.08</span>
-          <span>6 min read</span>
-          <span>ESSAY</span>
-        </div>
-        <h3 class="concrete-title">ご飯と味噌汁が最強だという話</h3>
-        <p class="concrete-excerpt">
-          日本の伝統的な食卓は、すでにほとんどヴィーガンだった。
-          ただ、それを「ヴィーガン」と呼ぶ必要すらなかっただけで。
-        </p>
-      </div>
-    </div>
-
-    <div class="concrete-item">
-      <div class="concrete-image">
-        <!-- REPLACE: /images/concrete-4.jpg (480×360px) -->
-        🪴
-      </div>
-      <div class="concrete-body">
-        <div class="concrete-meta">
-          <span>2026.02.22</span>
-          <span>4 min read</span>
-          <span>COLUMN</span>
-        </div>
-        <h3 class="concrete-title">植物を育て始めたら、食べ物の見え方が変わった</h3>
-        <p class="concrete-excerpt">
-          ベランダでバジルを育て始めた。毎日水をやり、葉っぱが育っていく。
-          それだけで、野菜への感謝が生まれた。
-        </p>
-      </div>
-    </div>
-
+<!-- Marquee -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
+    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
+    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
+    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
+    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
+    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
+    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
+    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
+    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
+    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
+    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
+    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
   </div>
+</div>
+
+<!-- Essays -->
+<section class="concrete-list">
+
+  <div class="concrete-item reveal">
+    <div class="concrete-image">
+      <!-- REPLACE: <img src="/images/concrete-1.jpg"> -->
+      🌍
+    </div>
+    <div class="concrete-body">
+      <div class="concrete-meta">
+        <span>2026.04.05</span>
+        <span>7 min read</span>
+        <span>Essay</span>
+      </div>
+      <h3 class="concrete-title">「ヴィーガン」という言葉が重くなった日</h3>
+      <p class="concrete-excerpt">あるとき、「ヴィーガンなんですか？」と聞かれて答えに詰まった。ラベルじゃなくて、生き方として続けたい。そんなことを考えた。</p>
+    </div>
+  </div>
+
+  <div class="concrete-item reveal">
+    <div class="concrete-image">🏙️</div>
+    <div class="concrete-body">
+      <div class="concrete-meta">
+        <span>2026.03.20</span>
+        <span>5 min read</span>
+        <span>Column</span>
+      </div>
+      <h3 class="concrete-title">都市でヴィーガンを続けることのリアル</h3>
+      <p class="concrete-excerpt">コンビニ、外食、飲み会。東京でプラントベースに生きることの面白さと、小さな苦労と。</p>
+    </div>
+  </div>
+
+  <div class="concrete-item reveal">
+    <div class="concrete-image">🍚</div>
+    <div class="concrete-body">
+      <div class="concrete-meta">
+        <span>2026.03.08</span>
+        <span>6 min read</span>
+        <span>Essay</span>
+      </div>
+      <h3 class="concrete-title">ご飯と味噌汁が最強だという話</h3>
+      <p class="concrete-excerpt">日本の伝統的な食卓は、すでにほとんどヴィーガンだった。ただ、それを「ヴィーガン」と呼ぶ必要すらなかっただけで。</p>
+    </div>
+  </div>
+
+  <div class="concrete-item reveal">
+    <div class="concrete-image">🪴</div>
+    <div class="concrete-body">
+      <div class="concrete-meta">
+        <span>2026.02.22</span>
+        <span>4 min read</span>
+        <span>Column</span>
+      </div>
+      <h3 class="concrete-title">植物を育て始めたら、食べ物の見え方が変わった</h3>
+      <p class="concrete-excerpt">ベランダでバジルを育て始めた。毎日水をやり、葉っぱが育っていく。それだけで、野菜への感謝が生まれた。</p>
+    </div>
+  </div>
+
 </section>
 
-<!-- ===== NEWSLETTER ===== -->
-<section class="newsletter" id="newsletter">
-  <div class="container reveal">
-    <p class="section-label">NEWSLETTER</p>
-    <h2>Get Weekly<br>Plant-Based Ideas</h2>
-    <p class="newsletter-desc">毎週、レシピやコラムをメールでお届け。</p>
-    <div class="newsletter-form">
-      <input type="email" class="newsletter-input" placeholder="your@email.com">
-      <button class="newsletter-btn">SUBSCRIBE</button>
-    </div>
-    <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+<!-- Newsletter -->
+<section class="newsletter-section" id="newsletter">
+  <h2>Get Weekly<br>Plant-Based Ideas</h2>
+  <p class="sub-text">毎週、レシピやコラムをメールでお届け。</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com">
+    <button class="newsletter-btn">SUBSCRIBE</button>
   </div>
+  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
 </section>
 
-<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="logo"><div class="logo-icon">V</div>VEGAN MEDIA</a>
-        <p>プラントベースな暮らしを、もっと身近に、もっと楽しく。</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>NAVIGATE</h4>
-          <a href="/">Home</a>
-          <a href="/magazine">Magazine</a>
-          <a href="/about">About</a>
-          <a href="/concrete">Concrete</a>
-          <a href="/works">Works</a>
-        </div>
-        <div class="footer-col">
-          <h4>CATEGORY</h4>
-          <a href="/magazine">Recipe</a>
-          <a href="/magazine">Lifestyle</a>
-          <a href="/magazine">Culture</a>
-          <a href="/concrete">Essay</a>
-        </div>
-        <div class="footer-col">
-          <h4>CONNECT</h4>
-          <a href="#">Instagram</a>
-          <a href="#">X (Twitter)</a>
-          <a href="#">Email</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copyright">© 2026 VEGAN MEDIA. All rights reserved.</span>
-      <div class="footer-social">
-        <a href="#">IG</a><a href="#">X</a><a href="#">ML</a>
-      </div>
-    </div>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 VEGAN MEDIA / BOATship</span>
+  </div>
+  <div class="nav-links">
+    <a href="/magazine">Magazine</a>
+    <a href="/works">Works</a>
+    <a href="/about">About</a>
   </div>
 </footer>
 

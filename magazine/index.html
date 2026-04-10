@@ -7,223 +7,160 @@
 <meta name="description" content="レシピ、コラム、インタビューまで。ヴィーガンライフを深める記事をまとめて。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;600;700&family=Press+Start+2P&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/css/main.css">
 </head>
 <body>
 
-<!-- ===== FLOATING CAP ===== -->
-<div class="floating-cap-layer" aria-hidden="true">
-  <div class="floating-cap">
-    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCACWAJYDASIAAhEBAxEB/8QAHQABAAEEAwEAAAAAAAAAAAAAAAYEBQcIAgMJAf/EADoQAAIBBAEDAgQEAwYGAwAAAAECAwAEBREGBxIhEzEIIkFRFDJhcRUjgRYzUoORwSQ0QlNy0UOhsf/EABoBAQADAQEBAAAAAAAAAAAAAAABAwQCBQb/xAAtEQACAQMCBQMCBwEAAAAAAAAAAQIDESEEMRJBUWHwBRMicZEUgaGxweHx0f/aAAwDAQACEQMRAD8A0ypSlAKUpQClKUApSlAKUpQCgFKUA" alt="" width="120" height="120">
-  </div>
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
 </div>
 
-<!-- ===== HEADER ===== -->
-<header>
-  <a href="/" class="logo">
-    <div class="logo-icon">V</div>
-    VEGAN MEDIA
-  </a>
-  <nav>
+<header class="top-nav">
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>VEGAN MEDIA</span>
+  </div>
+  <nav class="nav-links">
     <a href="/magazine">Magazine</a>
-    <a href="/about">About</a>
     <a href="/concrete">Concrete</a>
     <a href="/works">Works</a>
-    <a href="/#newsletter">Subscribe</a>
+    <a href="/about">About</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
-<!-- ===== MOBILE MENU ===== -->
 <div class="mobile-menu" id="mobileMenu">
   <a href="/" onclick="closeMenu()">Home</a>
   <a href="/magazine" onclick="closeMenu()">Magazine</a>
-  <a href="/about" onclick="closeMenu()">About</a>
   <a href="/concrete" onclick="closeMenu()">Concrete</a>
   <a href="/works" onclick="closeMenu()">Works</a>
-  <a href="/#newsletter" onclick="closeMenu()">Subscribe</a>
+  <a href="/about" onclick="closeMenu()">About</a>
 </div>
 
-<!-- ===== PAGE HERO ===== -->
+<!-- Page Hero -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <p class="page-hero-eyebrow">PLANT-BASED STORIES</p>
-    <h1>Magazine</h1>
-    <p>レシピ、コラム、インタビューまで。<br>ヴィーガンライフを深める記事をまとめて。</p>
-  </div>
+  <p class="page-hero-eyebrow">Plant-Based Stories</p>
+  <h1>Magazine</h1>
+  <p>レシピ、コラム、インタビューまで。<br>ヴィーガンライフを深める記事をまとめて。</p>
 </section>
 
-<!-- ===== MARQUEE ===== -->
-<div class="marquee">
+<!-- Marquee -->
+<div class="marquee-strip">
   <div class="marquee-track">
-    <span class="marquee-item"><span class="dot"></span>VEGAN RECIPES</span>
-    <span class="marquee-item"><span class="dot"></span>SUSTAINABLE LIVING</span>
-    <span class="marquee-item"><span class="dot"></span>PLANT-BASED CULTURE</span>
-    <span class="marquee-item"><span class="dot"></span>EARTH FRIENDLY</span>
-    <span class="marquee-item"><span class="dot"></span>MINDFUL EATING</span>
-    <span class="marquee-item"><span class="dot"></span>ZERO WASTE</span>
-    <span class="marquee-item"><span class="dot"></span>VEGAN RECIPES</span>
-    <span class="marquee-item"><span class="dot"></span>SUSTAINABLE LIVING</span>
-    <span class="marquee-item"><span class="dot"></span>PLANT-BASED CULTURE</span>
-    <span class="marquee-item"><span class="dot"></span>EARTH FRIENDLY</span>
-    <span class="marquee-item"><span class="dot"></span>MINDFUL EATING</span>
-    <span class="marquee-item"><span class="dot"></span>ZERO WASTE</span>
+    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
+    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
+    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
+    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
+    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
+    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
+    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
+    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
+    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
+    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
+    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
+    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
   </div>
 </div>
 
-<!-- ===== ARTICLES ===== -->
-<section class="article-section">
-  <div class="container">
+<!-- Filter Tabs -->
+<div class="filter-tabs">
+  <button class="filter-tab active">ALL</button>
+  <button class="filter-tab">RECIPE</button>
+  <button class="filter-tab">LIFESTYLE</button>
+  <button class="filter-tab">CULTURE</button>
+  <button class="filter-tab">INTERVIEW</button>
+</div>
 
-    <!-- Filter Tabs -->
-    <div class="filter-tabs reveal">
-      <button class="filter-tab active">ALL</button>
-      <button class="filter-tab">RECIPE</button>
-      <button class="filter-tab">LIFESTYLE</button>
-      <button class="filter-tab">CULTURE</button>
-      <button class="filter-tab">INTERVIEW</button>
-    </div>
+<!-- Article Grid -->
+<div class="recipe-grid">
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Recipe</span><span class="card-num">#01</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🥑</div></div>
+    <div class="card-bottom">春野菜ヴィーガン<br>ボウル</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-    <!-- Article Grid -->
-    <div class="article-grid">
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Lifestyle</span><span class="card-num">#02</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🌿</div></div>
+    <div class="card-bottom">サステナブル<br>キッチン入門</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-1.jpg (400×250px) -->
-          <div class="card-image-placeholder">🥑</div>
-          <span class="card-tag">RECIPE</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.04.01</span><span>5 min read</span></div>
-          <h3 class="card-title">春野菜たっぷりのヴィーガンボウル</h3>
-          <p class="card-excerpt">旬の春野菜をたっぷり使った、カラフルで栄養満点のレシピ。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Recipe</span><span class="card-num">#03</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🍜</div></div>
+    <div class="card-bottom">ヴィーガン<br>味噌ラーメン</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal reveal-d1">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-2.jpg (400×250px) -->
-          <div class="card-image-placeholder">🌿</div>
-          <span class="card-tag">LIFESTYLE</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.03.28</span><span>3 min read</span></div>
-          <h3 class="card-title">サステナブルなキッチンの始め方</h3>
-          <p class="card-excerpt">プラスチックフリーで、地球にやさしいキッチンをつくる第一歩。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Culture</span><span class="card-num">#04</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🫙</div></div>
+    <div class="card-bottom">発酵食品と<br>ヴィーガン</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal reveal-d2">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-3.jpg (400×250px) -->
-          <div class="card-image-placeholder">🍜</div>
-          <span class="card-tag">RECIPE</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.03.22</span><span>4 min read</span></div>
-          <h3 class="card-title">味噌ラーメン、ヴィーガンでここまでうまい</h3>
-          <p class="card-excerpt">昆布と干し椎茸でとっただしのコク。動物性不使用でも本格的な味わい。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Lifestyle</span><span class="card-num">#05</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🌾</div></div>
+    <div class="card-bottom">農家直送野菜<br>使い切りレシピ</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-4.jpg (400×250px) -->
-          <div class="card-image-placeholder">🫙</div>
-          <span class="card-tag">CULTURE</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.03.18</span><span>6 min read</span></div>
-          <h3 class="card-title">発酵食品とヴィーガン — 腸活の新常識</h3>
-          <p class="card-excerpt">味噌、醤油、甘酒。日本の発酵文化はヴィーガンとの相性が抜群。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Interview</span><span class="card-num">#06</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🎤</div></div>
+    <div class="card-bottom">シェフに聞く<br>ヴィーガンの面白さ</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal reveal-d1">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-5.jpg (400×250px) -->
-          <div class="card-image-placeholder">🌾</div>
-          <span class="card-tag">LIFESTYLE</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.03.12</span><span>4 min read</span></div>
-          <h3 class="card-title">農家直送野菜、使い切るレシピ5選</h3>
-          <p class="card-excerpt">フードロスをゼロにする、週末のまとめ買いと使い切り術。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Recipe</span><span class="card-num">#07</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🥦</div></div>
+    <div class="card-bottom">カリフラワー<br>ライス</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-      <div class="article-card reveal reveal-d2">
-        <div class="card-image">
-          <!-- REPLACE: /images/mag-6.jpg (400×250px) -->
-          <div class="card-image-placeholder">🎤</div>
-          <span class="card-tag">INTERVIEW</span>
-        </div>
-        <div class="card-body">
-          <div class="card-meta"><span>2026.03.05</span><span>8 min read</span></div>
-          <h3 class="card-title">シェフに聞く「ヴィーガン料理の面白さ」</h3>
-          <p class="card-excerpt">植物だけで作る料理の可能性と創造性について、第一線のシェフが語る。</p>
-        </div>
-      </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Recipe</span><span class="card-num">#08</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🥭</div></div>
+    <div class="card-bottom">パパイヤ<br>サラダ</div>
+    <div class="card-arrow">↘</div>
+  </a>
 
-    </div>
+  <a href="#" class="recipe-card reveal">
+    <div class="card-top"><span>Recipe</span><span class="card-num">#09</span></div>
+    <div class="card-center"><div class="card-img-placeholder">🍄</div></div>
+    <div class="card-bottom">焼きエリンギの<br>ステーキ</div>
+    <div class="card-arrow">↘</div>
+  </a>
+</div>
+
+<!-- Newsletter -->
+<section class="newsletter-section" id="newsletter">
+  <h2>Get Weekly<br>Plant-Based Ideas</h2>
+  <p class="sub-text">毎週、レシピやコラムをメールでお届け。</p>
+  <div class="newsletter-form">
+    <input type="email" class="newsletter-input" placeholder="your@email.com">
+    <button class="newsletter-btn">SUBSCRIBE</button>
   </div>
+  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
 </section>
 
-<!-- ===== NEWSLETTER ===== -->
-<section class="newsletter" id="newsletter">
-  <div class="container reveal">
-    <p class="section-label">NEWSLETTER</p>
-    <h2>Get Weekly<br>Plant-Based Ideas</h2>
-    <p class="newsletter-desc">毎週、レシピやコラムをメールでお届け。</p>
-    <div class="newsletter-form">
-      <input type="email" class="newsletter-input" placeholder="your@email.com">
-      <button class="newsletter-btn">SUBSCRIBE</button>
-    </div>
-    <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="logo"><div class="logo-icon">V</div>VEGAN MEDIA</a>
-        <p>プラントベースな暮らしを、もっと身近に、もっと楽しく。</p>
-      </div>
-      <div class="footer-links">
-        <div class="footer-col">
-          <h4>NAVIGATE</h4>
-          <a href="/">Home</a>
-          <a href="/magazine">Magazine</a>
-          <a href="/about">About</a>
-          <a href="/concrete">Concrete</a>
-          <a href="/works">Works</a>
-        </div>
-        <div class="footer-col">
-          <h4>CATEGORY</h4>
-          <a href="/magazine">Recipe</a>
-          <a href="/magazine">Lifestyle</a>
-          <a href="/magazine">Culture</a>
-          <a href="/concrete">Essay</a>
-        </div>
-        <div class="footer-col">
-          <h4>CONNECT</h4>
-          <a href="#">Instagram</a>
-          <a href="#">X (Twitter)</a>
-          <a href="#">Email</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copyright">© 2026 VEGAN MEDIA. All rights reserved.</span>
-      <div class="footer-social">
-        <a href="#">IG</a><a href="#">X</a><a href="#">ML</a>
-      </div>
-    </div>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 VEGAN MEDIA / BOATship</span>
+  </div>
+  <div class="nav-links">
+    <a href="/magazine">Magazine</a>
+    <a href="/works">Works</a>
+    <a href="/about">About</a>
   </div>
 </footer>
 
