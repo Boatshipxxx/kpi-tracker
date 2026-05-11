@@ -1,0 +1,176 @@
+/* =========================================
+   モジュール2: ナビゲーション 専用CSS
+   ========================================= */
+
+.biteme-nav-module {
+  --bg-yellow: #F5E100;
+  --accent-red: #C8391D;
+  --text-black: #111111;
+  --border: 3px solid var(--text-black);
+  --font-dot: 'DotGothic16', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  background-color: var(--bg-yellow);
+  border-bottom: var(--border);
+  position: relative;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.biteme-nav-module *, .biteme-nav-module *::before, .biteme-nav-module *::after {
+  box-sizing: border-box;
+}
+
+/* ===== トップナビ ===== */
+.biteme-nav-module .top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-dot);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.biteme-nav-module .nav-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--text-black);
+}
+
+.biteme-nav-module .company-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(500%) brightness(0.8);
+  mix-blend-mode: multiply;
+  border: 1.5px solid var(--text-black);
+  padding: 2px;
+  background: #fff;
+}
+
+.biteme-nav-module .nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+.biteme-nav-module .nav-links a {
+  font-family: var(--font-dot);
+  color: var(--text-black);
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.biteme-nav-module .nav-links a:hover { color: var(--accent-red); }
+
+/* ===== スティッキーバー ===== */
+.biteme-nav-module .sticky-bar {
+  position: sticky;
+  top: 0;
+  background: var(--bg-yellow);
+  z-index: 40;
+  border-bottom: var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.biteme-nav-module .sticky-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 700;
+}
+
+.biteme-nav-module .sticky-logo {
+  height: 28px;
+  width: 28px;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(1000%);
+  mix-blend-mode: multiply;
+}
+
+.biteme-nav-module .sticky-right {
+  display: flex;
+  gap: 1.5rem;
+}
+.biteme-nav-module .sticky-right a {
+  font-family: var(--font-mono);
+  color: var(--text-black);
+  text-decoration: none;
+  font-size: 11px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.biteme-nav-module .sticky-right a:hover { color: var(--accent-red); }
+
+/* ===== モバイルメニューボタン ===== */
+.biteme-nav-module .menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.biteme-nav-module .menu-toggle span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text-black);
+  transition: all 0.3s;
+}
+
+/* ===== モバイルメニュー（オーバーレイ） ===== */
+.biteme-nav-module .mobile-menu {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100vh;
+  background: var(--bg-yellow);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.biteme-nav-module .mobile-menu.open { opacity: 1; pointer-events: all; }
+.biteme-nav-module .mobile-menu a {
+  font-family: var(--font-dot);
+  font-size: 22px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--text-black);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: all 0.4s;
+}
+.biteme-nav-module .mobile-menu.open a { opacity: 1; transform: translateY(0); }
+.biteme-nav-module .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+.biteme-nav-module .mobile-menu.open a:nth-child(2) { transition-delay: 0.10s; }
+.biteme-nav-module .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+.biteme-nav-module .mobile-menu.open a:nth-child(4) { transition-delay: 0.20s; }
+.biteme-nav-module .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+
+@media (max-width: 768px) {
+  .biteme-nav-module .nav-links { display: none; }
+  .biteme-nav-module .menu-toggle { display: flex; }
+  .biteme-nav-module .sticky-right { display: none; }
+  .biteme-nav-module .sticky-bar { padding: 0.5rem 1rem; font-size: 10px; }
+}

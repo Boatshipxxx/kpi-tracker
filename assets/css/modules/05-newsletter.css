@@ -1,0 +1,93 @@
+/* =========================================
+   モジュール5: ニュースレター 専用CSS
+   ========================================= */
+
+.biteme-newsletter-module {
+  --bg-yellow: #F5E100;
+  --accent-red: #C8391D;
+  --text-black: #111111;
+  --border: 3px solid var(--text-black);
+  --font-dot: 'DotGothic16', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  box-sizing: border-box;
+}
+
+.biteme-newsletter-module *, .biteme-newsletter-module *::before, .biteme-newsletter-module *::after {
+  box-sizing: border-box;
+}
+
+/* ===== セクション全体 ===== */
+.biteme-newsletter-module .newsletter-section {
+  background: var(--text-black);
+  padding: 5rem 1.5rem;
+  text-align: center;
+  border-bottom: var(--border);
+}
+
+.biteme-newsletter-module .newsletter-section h2 {
+  font-family: var(--font-dot);
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  color: var(--bg-yellow);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.biteme-newsletter-module .sub-text {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: rgba(245, 225, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+/* ===== フォーム ===== */
+.biteme-newsletter-module .newsletter-form {
+  display: flex;
+  max-width: 500px;
+  margin: 0 auto;
+  border: 2px solid var(--bg-yellow);
+}
+
+.biteme-newsletter-module .newsletter-input {
+  flex: 1;
+  padding: 14px 16px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(245, 225, 0, 0.08);
+  color: var(--bg-yellow);
+  border: none;
+  outline: none;
+}
+
+.biteme-newsletter-module .newsletter-input::placeholder {
+  color: rgba(245, 225, 0, 0.3);
+}
+
+.biteme-newsletter-module .newsletter-btn {
+  font-family: var(--font-dot);
+  font-size: 13px;
+  padding: 14px 24px;
+  background: var(--accent-red);
+  color: var(--bg-yellow);
+  white-space: nowrap;
+  transition: background 0.3s;
+  cursor: pointer;
+  border: none;
+}
+
+.biteme-newsletter-module .newsletter-btn:hover {
+  background: #d94020;
+}
+
+.biteme-newsletter-module .newsletter-note {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: rgba(245, 225, 0, 0.25);
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .biteme-newsletter-module .newsletter-section { padding: 3rem 1rem; }
+  .biteme-newsletter-module .newsletter-form { flex-direction: column; }
+  .biteme-newsletter-module .newsletter-input { border-bottom: 2px solid var(--bg-yellow); }
+}

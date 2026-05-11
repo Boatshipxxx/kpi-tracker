@@ -1,0 +1,86 @@
+/* =========================================
+   モジュール6: フッター 専用CSS
+   ========================================= */
+
+.biteme-footer-module {
+  --bg-yellow: #F5E100;
+  --accent-red: #C8391D;
+  --text-black: #111111;
+  --border: 3px solid var(--text-black);
+  --font-dot: 'DotGothic16', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  box-sizing: border-box;
+}
+
+.biteme-footer-module *, .biteme-footer-module *::before, .biteme-footer-module *::after {
+  box-sizing: border-box;
+}
+
+/* ===== フッター本体 ===== */
+.biteme-footer-module footer {
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background: var(--bg-yellow);
+  border-top: var(--border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ===== ロゴ + テキスト ===== */
+.biteme-footer-module .nav-logo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-dot);
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text-black);
+  text-decoration: none;
+}
+
+.biteme-footer-module .company-logo {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(500%) brightness(0.8);
+  mix-blend-mode: multiply;
+  border: 1.5px solid var(--text-black);
+  padding: 2px;
+  background: #fff;
+}
+
+/* ===== ナビリンク ===== */
+.biteme-footer-module .nav-links {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+.biteme-footer-module .nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-black);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+
+.biteme-footer-module .nav-links a:hover {
+  color: var(--accent-red);
+}
+
+@media (max-width: 768px) {
+  .biteme-footer-module footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem 1rem;
+    gap: 1.2rem;
+  }
+}
