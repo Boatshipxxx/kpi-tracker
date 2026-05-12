@@ -1,0 +1,56 @@
+/* =========================================
+   モジュール7: マーキーストリップ 専用CSS
+   ========================================= */
+
+.biteme-marquee-module {
+  --bg-yellow: #F5E100;
+  --accent-red: #C8391D;
+  --text-black: #111111;
+  --border: 3px solid var(--text-black);
+  --font-pixel: 'Silkscreen', cursive;
+
+  box-sizing: border-box;
+}
+
+.biteme-marquee-module *, .biteme-marquee-module *::before, .biteme-marquee-module *::after {
+  box-sizing: border-box;
+}
+
+/* ===== マーキー帯 ===== */
+.biteme-marquee-module .marquee-strip {
+  border-top: var(--border);
+  border-bottom: var(--border);
+  padding: 12px 0;
+  overflow: hidden;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+}
+
+.biteme-marquee-module .marquee-track {
+  display: flex;
+  gap: 48px;
+  animation: biteme-marquee 20s linear infinite;
+  width: max-content;
+}
+
+.biteme-marquee-module .marquee-item {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.biteme-marquee-module .mdot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent-red);
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes biteme-marquee {
+  to { transform: translateX(-50%); }
+}
