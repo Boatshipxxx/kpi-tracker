@@ -225,6 +225,27 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   max-width: 900px;
 }
 
+.hero-content .hero-eyebrow {
+  display: inline-block;
+  font-family: 'Silkscreen', cursive;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--bg-yellow);
+  background: var(--accent-red);
+  padding: 6px 12px;
+  border: 2px solid var(--text-black);
+  box-shadow: 4px 4px 0 var(--text-black);
+  margin-bottom: 1.5rem;
+  transform: rotate(-1deg);
+  text-transform: uppercase;
+  animation: hero-eyebrow-blink 2s steps(2, end) infinite;
+}
+
+@keyframes hero-eyebrow-blink {
+  0%, 60% { opacity: 1; }
+  61%, 100% { opacity: 0.7; }
+}
+
 .hero-content h1 {
   font-family: var(--font-dot);
   font-size: clamp(3rem, 8vw, 8rem);
