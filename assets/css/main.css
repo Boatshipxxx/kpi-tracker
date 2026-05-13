@@ -232,12 +232,15 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   letter-spacing: 0.25em;
   color: var(--bg-yellow);
   background: var(--accent-red);
-  padding: 6px 12px;
+  padding: 6px 14px;
   border: 2px solid var(--text-black);
   box-shadow: 4px 4px 0 var(--text-black);
   margin-bottom: 1.5rem;
   transform: rotate(-1deg);
   text-transform: uppercase;
+  text-shadow: none;
+  max-width: none;
+  line-height: 1.4;
   animation: hero-eyebrow-blink 2s steps(2, end) infinite;
 }
 
@@ -264,7 +267,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: inline-block;
 }
 
-.hero-content p {
+.hero-content p:not(.hero-eyebrow) {
   font-family: var(--font-mono);
   font-size: 0.9rem;
   font-weight: 700;
