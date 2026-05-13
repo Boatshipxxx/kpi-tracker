@@ -125,12 +125,12 @@
 
 <!-- Newsletter -->
 <section class="newsletter-section" id="newsletter">
-  <h2>Get Weekly<br>Plant-Based Ideas</h2>
-  <p class="sub-text">毎週、レシピやコラムをメールでお届け。</p>
-  <div class="newsletter-form">
-    <input type="email" class="newsletter-input" placeholder="your@email.com">
-    <button class="newsletter-btn">SUBSCRIBE</button>
-  </div>
+  <h2 class="editable">Get Weekly<br>Plant-Based Ideas</h2>
+  <p class="sub-text editable">毎週、レシピやコラムをメールでお届け。</p>
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
   <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
 </section>
 

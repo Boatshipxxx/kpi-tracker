@@ -43,9 +43,9 @@
 
 <!-- Page Hero -->
 <section class="page-hero">
-  <p class="page-hero-eyebrow">Who We Are</p>
-  <h1>About</h1>
-  <p>プラントベースな暮らしを、もっと身近に、もっと楽しく。</p>
+  <p class="page-hero-eyebrow editable">Who We Are</p>
+  <h1 class="editable">About</h1>
+  <p class="editable">プラントベースな暮らしを、もっと身近に、もっと楽しく。</p>
 </section>
 
 <!-- About Content -->
@@ -57,10 +57,10 @@
       </div>
     </div>
     <div class="about-page-content">
-      <h2>Plant-Based Life,<br>For Everyone.</h2>
-      <p>VEGAN MEDIAは、ヴィーガンやプラントベース食に興味を持つすべての人に向けた、オンラインメディアです。難しく考えなくていい。完璧じゃなくていい。ただ、少しだけ地球と自分の体に優しい選択を楽しんでほしい。</p>
-      <p>レシピから暮らし方のヒント、文化・哲学的なエッセイまで、幅広いコンテンツで「ヴィーガンライフって面白い」と思ってもらえるような発信を続けています。</p>
-      <p>このサイトはBOATshipによってデザイン・開発されました。デザインシステムや制作プロセスは<a href="../works" style="color:var(--accent-red);border-bottom:2px solid var(--accent-red);">Works</a>ページで公開しています。</p>
+      <h2 class="editable">Plant-Based Life,<br>For Everyone.</h2>
+      <p class="editable">VEGAN MEDIAは、ヴィーガンやプラントベース食に興味を持つすべての人に向けた、オンラインメディアです。難しく考えなくていい。完璧じゃなくていい。ただ、少しだけ地球と自分の体に優しい選択を楽しんでほしい。</p>
+      <p class="editable">レシピから暮らし方のヒント、文化・哲学的なエッセイまで、幅広いコンテンツで「ヴィーガンライフって面白い」と思ってもらえるような発信を続けています。</p>
+      <p class="editable">このサイトはBOATshipによってデザイン・開発されました。デザインシステムや制作プロセスは<a href="../works" style="color:var(--accent-red);border-bottom:2px solid var(--accent-red);">Works</a>ページで公開しています。</p>
 
       <div class="about-values">
         <div class="about-value">
@@ -86,12 +86,12 @@
 
 <!-- Newsletter -->
 <section class="newsletter-section" id="newsletter">
-  <h2>Get Weekly<br>Plant-Based Ideas</h2>
-  <p class="sub-text">毎週、レシピやコラムをメールでお届け。</p>
-  <div class="newsletter-form">
-    <input type="email" class="newsletter-input" placeholder="your@email.com">
-    <button class="newsletter-btn">SUBSCRIBE</button>
-  </div>
+  <h2 class="editable">Get Weekly<br>Plant-Based Ideas</h2>
+  <p class="sub-text editable">毎週、レシピやコラムをメールでお届け。</p>
+  <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
   <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
 </section>
 
