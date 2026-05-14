@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Article — BOATship Magazines</title>
+<meta id="page-desc" name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="../images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <div class="nav-logo-wrapper">
+    <img src="../images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </div>
+  <nav class="nav-links">
+    <a href="../works">Works</a>
+    <a href="../magazine">Magazines</a>
+    <a href="../concrete">Notes</a>
+    <a href="../about">About</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../" onclick="closeMenu()">Home</a>
+  <a href="../works" onclick="closeMenu()">Works</a>
+  <a href="../magazine" onclick="closeMenu()">Magazines</a>
+  <a href="../concrete" onclick="closeMenu()">Notes</a>
+  <a href="../about" onclick="closeMenu()">About</a>
+</div>
+
+<div id="article-root"></div>
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="../images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="../works">Works</a>
+    <a href="../magazine">Magazines</a>
+    <a href="../about">About</a>
+  </div>
+</footer>
+
+<script src="articles.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var id = params.get('id');
+  var article = ARTICLES.find(function (a) { return a.id === id; });
+
+  if (!article) {
+    window.location.href = '../magazine';
+    return;
+  }
+
+  document.title = article.title + ' — BOATship Magazines';
+  document.getElementById('page-desc').setAttribute('content', article.excerpt);
+
+  var root = document.getElementById('article-root');
+  root.innerHTML =
+    '<a href="../magazine" class="back-to-mag">← Magazines に戻る</a>' +
+    '<section class="article-page-hero">' +
+      '<span class="article-category-badge">' + article.category + '</span>' +
+      '<h1 class="article-page-title">' + article.title + '</h1>' +
+      '<div class="article-meta">' +
+        '<span>' + article.date + '</span>' +
+        '<span>' + article.readTime + ' min read</span>' +
+        '<span>' + article.num + '</span>' +
+      '</div>' +
+    '</section>' +
+    '<div class="article-hero-wrap">' +
+      '<img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img">' +
+    '</div>' +
+    '<article class="article-body">' + article.body + '</article>' +
+    '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
+})();
+</script>
+</body>
+</html>
