@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Article — BOATship Magazines</title>
+<title>Note — BOATship Notes</title>
 <meta id="page-desc" name="description" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +41,7 @@
   <a href="../about" onclick="closeMenu()">About</a>
 </div>
 
-<div id="article-root"></div>
+<div id="note-root"></div>
 
 <section class="newsletter-section" id="newsletter">
   <h2>Studio<br>Updates</h2>
@@ -65,39 +65,39 @@
   </div>
 </footer>
 
-<script src="articles.js"></script>
+<script src="notes.js"></script>
 <script src="../assets/js/main.js"></script>
 <script>
 (function () {
   var params = new URLSearchParams(window.location.search);
   var id = params.get('id');
-  var article = ARTICLES.find(function (a) { return a.id === id; });
+  var note = NOTES.find(function (n) { return n.id === id; });
 
-  if (!article) {
-    window.location.href = '../magazine';
+  if (!note) {
+    window.location.href = '../notes';
     return;
   }
 
-  document.title = article.title + ' — BOATship Magazines';
-  document.getElementById('page-desc').setAttribute('content', article.excerpt);
+  document.title = note.title + ' — BOATship Notes';
+  document.getElementById('page-desc').setAttribute('content', note.excerpt);
 
-  var root = document.getElementById('article-root');
+  var root = document.getElementById('note-root');
   root.innerHTML =
-    '<a href="../magazine" class="back-to-mag">← Magazines に戻る</a>' +
+    '<a href="../notes" class="back-to-mag">← Notes に戻る</a>' +
     '<section class="article-page-hero">' +
-      '<span class="article-category-badge">' + article.category + '</span>' +
-      '<h1 class="article-page-title">' + article.title + '</h1>' +
+      '<span class="article-category-badge">' + note.category + '</span>' +
+      '<h1 class="article-page-title">' + note.title + '</h1>' +
       '<div class="article-meta">' +
-        '<span>' + article.date + '</span>' +
-        '<span>' + article.readTime + ' min read</span>' +
-        '<span>' + article.num + '</span>' +
+        '<span>' + note.date + '</span>' +
+        '<span>' + note.readTime + ' min read</span>' +
+        '<span>' + note.num + '</span>' +
       '</div>' +
     '</section>' +
     '<div class="article-hero-wrap">' +
-      '<img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img">' +
+      '<img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img">' +
     '</div>' +
-    '<article class="article-body">' + article.body + '</article>' +
-    '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
+    '<article class="article-body">' + note.body + '</article>' +
+    '<a href="../notes" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a>';
 })();
 </script>
 </body>

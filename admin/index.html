@@ -374,8 +374,10 @@ a { color: inherit; text-decoration: none; }
       BOATship Admin <span>Magazines</span>
     </div>
     <div class="admin-header-right">
-      <a href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
-      <button class="btn btn-solid" onclick="downloadArticlesJs()">articles.js をダウンロード ↓</button>
+      <button class="btn" id="section-mag-btn" onclick="switchSection('magazine')" style="background:var(--yellow);color:var(--black);">Magazines</button>
+      <button class="btn" id="section-notes-btn" onclick="switchSection('notes')">Notes</button>
+      <a id="site-link" href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
+      <button class="btn btn-solid" onclick="downloadDataJs()">データをダウンロード ↓</button>
     </div>
   </div>
 
@@ -414,6 +416,8 @@ a { color: inherit; text-decoration: none; }
               <option value="Tech">Tech</option>
               <option value="Design">Design</option>
               <option value="Interview">Interview</option>
+              <option value="Essay">Essay</option>
+              <option value="Column">Column</option>
             </select>
           </div>
         </div>
@@ -473,7 +477,7 @@ a { color: inherit; text-decoration: none; }
 
         <div class="editor-actions">
           <button class="btn btn-solid" onclick="saveArticle()">変更を保存</button>
-          <button class="btn" onclick="downloadArticlesJs()">articles.js をダウンロード ↓</button>
+          <button class="btn" onclick="downloadDataJs()">データをダウンロード ↓</button>
           <button class="btn btn-red" onclick="deleteArticle()">この記事を削除</button>
         </div>
 
@@ -510,15 +514,19 @@ a { color: inherit; text-decoration: none; }
 <div id="toast"></div>
 
 <script src="../magazine/articles.js"></script>
+<script src="../notes/notes.js"></script>
 <script>
-// Working copy of articles (editable in memory)
-var articles = JSON.parse(JSON.stringify(ARTICLES));
+var ADMIN_PW = 'boatship2026';
+var currentSection = 'magazine'; // 'magazine' | 'notes'
+var magazineData = JSON.parse(JSON.stringify(ARTICLES));
+var notesData = JSON.parse(JSON.stringify(NOTES));
 var currentId = null;
 var isNew = false;
 
-// --- Auth ---
-var ADMIN_PW = 'boatship2026';
+function currentData() { return currentSection === 'magazine' ? magazineData : notesData; }
+function setCurrentData(d) { if (currentSection === 'magazine') magazineData = d; else notesData = d; }
 
+// --- Auth ---
 function login() {
   var pw = document.getElementById('pw-input').value;
   if (pw === ADMIN_PW) {
@@ -532,11 +540,35 @@ function login() {
   }
 }
 
+// --- Section Switch ---
+function switchSection(section) {
+  currentSection = section;
+  currentId = null;
+  isNew = false;
+  document.getElementById('editor-welcome').style.display = '';
+  document.getElementById('editor-form').style.display = 'none';
+  var magBtn = document.getElementById('section-mag-btn');
+  var notesBtn = document.getElementById('section-notes-btn');
+  var siteLink = document.getElementById('site-link');
+  if (section === 'magazine') {
+    magBtn.style.background = 'var(--yellow)'; magBtn.style.color = 'var(--black)';
+    notesBtn.style.background = ''; notesBtn.style.color = '';
+    siteLink.href = '../magazine';
+    document.querySelector('.new-article-btn').textContent = '＋ 新規記事を作成';
+  } else {
+    notesBtn.style.background = 'var(--yellow)'; notesBtn.style.color = 'var(--black)';
+    magBtn.style.background = ''; magBtn.style.color = '';
+    siteLink.href = '../notes';
+    document.querySelector('.new-article-btn').textContent = '＋ 新規Noteを作成';
+  }
+  renderList();
+}
+
 // --- List ---
 function renderList() {
   var list = document.getElementById('article-list');
   list.innerHTML = '';
-  articles.forEach(function (a) {
+  currentData().forEach(function (a) {
     var item = document.createElement('div');
     item.className = 'article-list-item' + (a.id === currentId ? ' active' : '');
     item.innerHTML =
@@ -552,23 +584,24 @@ function renderList() {
 function openArticle(id) {
   currentId = id;
   isNew = false;
-  var a = articles.find(function (x) { return x.id === id; });
+  var a = currentData().find(function (x) { return x.id === id; });
   if (!a) return;
   showForm(a);
   renderList();
-  document.getElementById('editor-form-title').textContent = '記事を編集 — ' + a.num;
+  document.getElementById('editor-form-title').textContent = (currentSection === 'magazine' ? '記事' : 'Note') + 'を編集 — ' + a.num;
   var link = document.getElementById('preview-link');
-  link.href = '../magazine/article.html?id=' + a.id;
+  link.href = (currentSection === 'magazine' ? '../magazine/article.html?id=' : '../notes/article.html?id=') + a.id;
   link.style.display = '';
 }
 
 function openNewArticle() {
   isNew = true;
   currentId = null;
-  var blank = { id: '', num: '#', category: 'News', title: '', date: today(), readTime: 5, thumb: '../images/card-01.jpg', hero: '../images/card-01.jpg', excerpt: '', body: '<p>本文テキストをここに入力。</p>' };
+  var defaultCat = currentSection === 'magazine' ? 'News' : 'Essay';
+  var blank = { id: '', num: '#', category: defaultCat, title: '', date: today(), readTime: 5, thumb: '../images/card-01.jpg', hero: '../images/card-01.jpg', excerpt: '', body: '<p>本文テキストをここに入力。</p>' };
   showForm(blank);
   document.querySelectorAll('.article-list-item').forEach(function (el) { el.classList.remove('active'); });
-  document.getElementById('editor-form-title').textContent = '新規記事を作成';
+  document.getElementById('editor-form-title').textContent = currentSection === 'magazine' ? '新規記事を作成' : '新規Noteを作成';
   document.getElementById('preview-link').style.display = 'none';
 }
 
@@ -581,13 +614,14 @@ function showForm(a) {
   document.getElementById('f-readtime').value = a.readTime;
   document.getElementById('f-title').value = a.title;
   document.getElementById('f-excerpt').value = a.excerpt;
-  document.getElementById('f-thumb').value = a.thumb;
-  document.getElementById('f-hero').value = a.hero;
+  document.getElementById('f-thumb').value = a.thumb || a.image || '';
+  document.getElementById('f-hero').value = a.hero || a.image || '';
   document.getElementById('f-body').value = a.body;
 }
 
 function readForm() {
   var id = document.getElementById('f-id').value.trim();
+  var imgPath = document.getElementById('f-thumb').value;
   return {
     id: id,
     num: '#' + id,
@@ -595,7 +629,8 @@ function readForm() {
     title: document.getElementById('f-title').value,
     date: document.getElementById('f-date').value,
     readTime: parseInt(document.getElementById('f-readtime').value) || 5,
-    thumb: document.getElementById('f-thumb').value,
+    thumb: imgPath,
+    image: imgPath,
     hero: document.getElementById('f-hero').value,
     excerpt: document.getElementById('f-excerpt').value,
     body: document.getElementById('f-body').value
@@ -605,35 +640,32 @@ function readForm() {
 function saveArticle() {
   var data = readForm();
   if (!data.id || !data.title) { showToast('IDとタイトルは必須です'); return; }
-
+  var arr = currentData();
   if (isNew) {
-    if (articles.find(function (x) { return x.id === data.id; })) {
-      showToast('ID "' + data.id + '" は既に存在します');
-      return;
+    if (arr.find(function (x) { return x.id === data.id; })) {
+      showToast('ID "' + data.id + '" は既に存在します'); return;
     }
-    articles.push(data);
-    articles.sort(function (a, b) { return a.id.localeCompare(b.id); });
+    arr.push(data);
+    arr.sort(function (a, b) { return a.id.localeCompare(b.id); });
+    setCurrentData(arr);
     currentId = data.id;
     isNew = false;
-    document.getElementById('editor-form-title').textContent = '記事を編集 — ' + data.num;
     var link = document.getElementById('preview-link');
-    link.href = '../magazine/article.html?id=' + data.id;
+    link.href = (currentSection === 'magazine' ? '../magazine/article.html?id=' : '../notes/article.html?id=') + data.id;
     link.style.display = '';
+    document.getElementById('editor-form-title').textContent = (currentSection === 'magazine' ? '記事' : 'Note') + 'を編集 — ' + data.num;
   } else {
-    var idx = articles.findIndex(function (x) { return x.id === currentId; });
-    if (idx !== -1) {
-      articles[idx] = data;
-      currentId = data.id;
-    }
+    var idx = arr.findIndex(function (x) { return x.id === currentId; });
+    if (idx !== -1) { arr[idx] = data; currentId = data.id; setCurrentData(arr); }
   }
   renderList();
-  showToast('保存しました。articles.js をダウンロードして公開してください。');
+  showToast('保存しました。データをダウンロードして公開してください。');
 }
 
 function deleteArticle() {
   if (!currentId) return;
-  if (!confirm('この記事を削除しますか？')) return;
-  articles = articles.filter(function (x) { return x.id !== currentId; });
+  if (!confirm('削除しますか？')) return;
+  setCurrentData(currentData().filter(function (x) { return x.id !== currentId; }));
   currentId = null;
   document.getElementById('editor-welcome').style.display = '';
   document.getElementById('editor-form').style.display = 'none';
@@ -642,29 +674,44 @@ function deleteArticle() {
 }
 
 // --- Export ---
-function downloadArticlesJs() {
-  var lines = ['const ARTICLES = ['];
-  articles.forEach(function (a, i) {
-    var body = a.body.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+function serializeData(arr, constName) {
+  var lines = ['const ' + constName + ' = ['];
+  arr.forEach(function (a, i) {
+    var body = (a.body || '').replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');
     lines.push('  {');
     lines.push('    id: ' + JSON.stringify(a.id) + ',');
     lines.push('    num: ' + JSON.stringify(a.num) + ',');
     lines.push('    category: ' + JSON.stringify(a.category) + ',');
     lines.push('    title: ' + JSON.stringify(a.title) + ',');
     lines.push('    date: ' + JSON.stringify(a.date) + ',');
-    lines.push('    readTime: ' + a.readTime + ',');
-    lines.push('    thumb: ' + JSON.stringify(a.thumb) + ',');
-    lines.push('    hero: ' + JSON.stringify(a.hero) + ',');
+    lines.push('    readTime: ' + (a.readTime || 5) + ',');
+    if (constName === 'ARTICLES') {
+      lines.push('    thumb: ' + JSON.stringify(a.thumb || '') + ',');
+      lines.push('    hero: ' + JSON.stringify(a.hero || '') + ',');
+    } else {
+      lines.push('    image: ' + JSON.stringify(a.image || a.thumb || '') + ',');
+    }
     lines.push('    excerpt: ' + JSON.stringify(a.excerpt) + ',');
     lines.push('    body: `' + body + '`');
-    lines.push('  }' + (i < articles.length - 1 ? ',' : ''));
+    lines.push('  }' + (i < arr.length - 1 ? ',' : ''));
   });
   lines.push('];');
-  var content = lines.join('\n');
+  return lines.join('\n');
+}
+
+function downloadDataJs() {
+  var content, filename;
+  if (currentSection === 'magazine') {
+    content = serializeData(magazineData, 'ARTICLES');
+    filename = 'articles.js';
+  } else {
+    content = serializeData(notesData, 'NOTES');
+    filename = 'notes.js';
+  }
   var blob = new Blob([content], { type: 'text/javascript' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = 'articles.js';
+  a.download = filename;
   a.click();
   showToast('ダウンロードしました！GitHubにアップロードして公開。');
 }
