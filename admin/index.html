@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — BOATship Magazines</title>
+<style>
+:root {
+  --yellow: #F5E100;
+  --black: #111111;
+  --red: #C8391D;
+  --cream: #E8E3CF;
+  --mono: 'IBM Plex Mono', monospace;
+  --dot: 'DotGothic16', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--black);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 13px;
+  min-height: 100vh;
+}
+a { color: inherit; text-decoration: none; }
+
+/* --- Auth Screen --- */
+#auth-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+#auth-screen h1 {
+  font-family: var(--dot);
+  font-size: 2rem;
+  color: var(--yellow);
+  letter-spacing: 0.05em;
+}
+#auth-screen .pw-row {
+  display: flex;
+  border: 2px solid var(--yellow);
+  max-width: 360px;
+  width: 100%;
+}
+#auth-screen input[type="password"] {
+  flex: 1;
+  padding: 12px 14px;
+  background: transparent;
+  color: var(--yellow);
+  border: none;
+  outline: none;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+#auth-screen input::placeholder { color: rgba(245,225,0,0.3); }
+#auth-screen button {
+  padding: 12px 20px;
+  background: var(--red);
+  color: var(--yellow);
+  border: none;
+  font-family: var(--mono);
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+#auth-screen button:hover { background: #d94020; }
+#auth-error {
+  color: var(--red);
+  font-size: 12px;
+  display: none;
+}
+
+/* --- Main UI --- */
+#main-ui { display: none; }
+
+.admin-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid rgba(245,225,0,0.2);
+  background: #000;
+}
+.admin-header-title {
+  font-family: var(--dot);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.admin-header-title span {
+  font-size: 0.7rem;
+  background: var(--red);
+  color: var(--yellow);
+  padding: 2px 8px;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.admin-header-right {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.btn {
+  padding: 8px 18px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border: 2px solid var(--yellow);
+  background: transparent;
+  color: var(--yellow);
+  transition: all 0.15s;
+  text-transform: uppercase;
+}
+.btn:hover { background: var(--yellow); color: var(--black); }
+.btn-red { border-color: var(--red); color: var(--red); }
+.btn-red:hover { background: var(--red); color: var(--yellow); }
+.btn-solid { background: var(--red); color: var(--yellow); border-color: var(--red); }
+.btn-solid:hover { background: #d94020; }
+
+.admin-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: calc(100vh - 57px);
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  border-right: 2px solid rgba(245,225,0,0.15);
+  overflow-y: auto;
+  background: #0a0a0a;
+}
+.sidebar-title {
+  padding: 1rem 1.5rem 0.8rem;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(245,225,0,0.4);
+  border-bottom: 1px solid rgba(245,225,0,0.1);
+}
+.article-list-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1.5rem;
+  border-bottom: 1px solid rgba(245,225,0,0.07);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.article-list-item:hover { background: rgba(245,225,0,0.05); }
+.article-list-item.active { background: rgba(245,225,0,0.1); border-left: 3px solid var(--yellow); padding-left: calc(1.5rem - 3px); }
+.article-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--red);
+  min-width: 24px;
+}
+.article-cat-badge {
+  font-size: 9px;
+  padding: 1px 6px;
+  background: rgba(245,225,0,0.1);
+  color: rgba(245,225,0,0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 2px;
+}
+.article-list-title {
+  font-size: 11px;
+  color: rgba(245,225,0,0.8);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+.new-article-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid rgba(245,225,0,0.1);
+  cursor: pointer;
+  font-size: 11px;
+  color: rgba(245,225,0,0.5);
+  transition: all 0.15s;
+  background: none;
+  border-bottom: none;
+  border-left: none;
+  border-right: none;
+  width: 100%;
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: auto;
+}
+.new-article-btn:hover { color: var(--yellow); background: rgba(245,225,0,0.05); }
+
+/* --- Editor --- */
+.editor-panel {
+  padding: 2rem;
+  overflow-y: auto;
+}
+.editor-welcome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 1rem;
+  color: rgba(245,225,0,0.3);
+  text-align: center;
+}
+.editor-welcome h2 {
+  font-family: var(--dot);
+  font-size: 2rem;
+  color: rgba(245,225,0,0.15);
+}
+.editor-form { display: none; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.form-row.single { grid-template-columns: 1fr; }
+.field-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(245,225,0,0.4);
+  margin-bottom: 6px;
+}
+.field-input, .field-select, .field-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(245,225,0,0.05);
+  border: 1px solid rgba(245,225,0,0.2);
+  color: var(--yellow);
+  font-family: var(--mono);
+  font-size: 12px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.field-input:focus, .field-select:focus, .field-textarea:focus {
+  border-color: var(--yellow);
+}
+.field-select option { background: var(--black); }
+.field-textarea { resize: vertical; line-height: 1.7; }
+.editor-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.editor-divider {
+  border: none;
+  border-top: 1px solid rgba(245,225,0,0.1);
+  margin: 1.5rem 0;
+}
+.editor-title-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(245,225,0,0.15);
+}
+.editor-title-bar h2 {
+  font-family: var(--dot);
+  font-size: 1.1rem;
+}
+.field-hint {
+  font-size: 10px;
+  color: rgba(245,225,0,0.3);
+  margin-top: 4px;
+}
+
+/* --- Publish Guide --- */
+.publish-guide {
+  margin-top: 2rem;
+  border: 1px solid rgba(245,225,0,0.15);
+  padding: 1.5rem;
+}
+.publish-guide h3 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(245,225,0,0.5);
+  margin-bottom: 1rem;
+}
+.publish-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  counter-reset: steps;
+}
+.publish-step {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  font-size: 11px;
+  color: rgba(245,225,0,0.5);
+  line-height: 1.6;
+}
+.step-num {
+  background: rgba(245,225,0,0.1);
+  color: var(--yellow);
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.publish-step a { color: var(--red); border-bottom: 1px solid transparent; }
+.publish-step a:hover { border-bottom-color: var(--red); }
+
+/* --- Toast --- */
+#toast {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: var(--red);
+  color: var(--yellow);
+  padding: 12px 20px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 9999;
+}
+#toast.show { opacity: 1; }
+
+@media (max-width: 700px) {
+  .admin-layout { grid-template-columns: 1fr; }
+  .sidebar { border-right: none; border-bottom: 2px solid rgba(245,225,0,0.15); max-height: 240px; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Auth Screen -->
+<div id="auth-screen">
+  <h1>BOATship Admin</h1>
+  <p style="color:rgba(245,225,0,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;">Magazines Management</p>
+  <div class="pw-row">
+    <input type="password" id="pw-input" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')login()">
+    <button onclick="login()">LOGIN →</button>
+  </div>
+  <p id="auth-error">パスワードが違います</p>
+  <p style="color:rgba(245,225,0,0.2);font-size:10px;margin-top:2rem;">デフォルトパスワード: boatship2026</p>
+</div>
+
+<!-- Main UI -->
+<div id="main-ui">
+  <div class="admin-header">
+    <div class="admin-header-title">
+      BOATship Admin <span>Magazines</span>
+    </div>
+    <div class="admin-header-right">
+      <a href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
+      <button class="btn btn-solid" onclick="downloadArticlesJs()">articles.js をダウンロード ↓</button>
+    </div>
+  </div>
+
+  <div class="admin-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-title">記事一覧</div>
+      <div id="article-list"></div>
+      <button class="new-article-btn" onclick="openNewArticle()">＋ 新規記事を作成</button>
+    </div>
+
+    <!-- Editor -->
+    <div class="editor-panel">
+      <div class="editor-welcome" id="editor-welcome">
+        <h2>編集する記事を選択</h2>
+        <p>左のリストから記事をクリックするか、「＋ 新規記事を作成」を押してください。</p>
+        <p style="margin-top:1rem;font-size:11px;">編集後は「articles.js をダウンロード」でファイルを保存し、GitHubにアップロードすると公開されます。</p>
+      </div>
+
+      <div class="editor-form" id="editor-form">
+        <div class="editor-title-bar">
+          <h2 id="editor-form-title">記事を編集</h2>
+          <a id="preview-link" href="#" target="_blank" class="btn" style="font-size:10px;">公開ページを開く ↗</a>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <div class="field-label">記事番号 (id)</div>
+            <input type="text" class="field-input" id="f-id" placeholder="01">
+            <div class="field-hint">例: 01, 02, 10</div>
+          </div>
+          <div>
+            <div class="field-label">カテゴリ</div>
+            <select class="field-select" id="f-category">
+              <option value="News">News</option>
+              <option value="Tech">Tech</option>
+              <option value="Design">Design</option>
+              <option value="Interview">Interview</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div>
+            <div class="field-label">日付</div>
+            <input type="text" class="field-input" id="f-date" placeholder="2026.05.14">
+          </div>
+          <div>
+            <div class="field-label">読了時間 (分)</div>
+            <input type="number" class="field-input" id="f-readtime" placeholder="5" min="1">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div>
+            <div class="field-label">タイトル</div>
+            <input type="text" class="field-input" id="f-title" placeholder="記事タイトル">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div>
+            <div class="field-label">サマリー（一覧ページに表示）</div>
+            <textarea class="field-textarea" id="f-excerpt" rows="3" placeholder="記事の概要を2〜3文で。"></textarea>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div>
+            <div class="field-label">サムネイル画像パス</div>
+            <input type="text" class="field-input" id="f-thumb" placeholder="../images/card-01.jpg">
+            <div class="field-hint">例: ../images/card-01.jpg</div>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div>
+            <div class="field-label">ヒーロー画像パス</div>
+            <input type="text" class="field-input" id="f-hero" placeholder="../images/works-shakeshack.jpg">
+            <div class="field-hint">例: ../images/works-shakeshack.jpg</div>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div>
+            <div class="field-label">本文 HTML</div>
+            <textarea class="field-textarea" id="f-body" rows="20" placeholder="&lt;p&gt;本文テキストをここに入力。HTMLタグが使えます。&lt;/p&gt;&#10;&lt;h2&gt;見出し&lt;/h2&gt;&#10;&lt;p&gt;段落テキスト。&lt;/p&gt;"></textarea>
+            <div class="field-hint">
+              使えるタグ: &lt;p&gt; &lt;h2&gt; &lt;h3&gt; &lt;code&gt; &lt;pre&gt; — 改行は &lt;p&gt; タグで区切ってください
+            </div>
+          </div>
+        </div>
+
+        <hr class="editor-divider">
+
+        <div class="editor-actions">
+          <button class="btn btn-solid" onclick="saveArticle()">変更を保存</button>
+          <button class="btn" onclick="downloadArticlesJs()">articles.js をダウンロード ↓</button>
+          <button class="btn btn-red" onclick="deleteArticle()">この記事を削除</button>
+        </div>
+
+        <div class="publish-guide">
+          <h3>変更を公開する方法</h3>
+          <div class="publish-steps">
+            <div class="publish-step">
+              <span class="step-num">1</span>
+              <span>「articles.js をダウンロード」をクリック</span>
+            </div>
+            <div class="publish-step">
+              <span class="step-num">2</span>
+              <span>
+                <a href="https://github.com/boatshipxxx/kpi-tracker/blob/main/magazine/articles.js" target="_blank">
+                  GitHub の magazine/articles.js
+                </a> を開いて鉛筆アイコン（Edit）をクリック
+              </span>
+            </div>
+            <div class="publish-step">
+              <span class="step-num">3</span>
+              <span>内容をすべて削除し、ダウンロードしたファイルの内容を貼り付け</span>
+            </div>
+            <div class="publish-step">
+              <span class="step-num">4</span>
+              <span>「Commit changes」→ 数分でサイトに反映されます</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="../magazine/articles.js"></script>
+<script>
+// Working copy of articles (editable in memory)
+var articles = JSON.parse(JSON.stringify(ARTICLES));
+var currentId = null;
+var isNew = false;
+
+// --- Auth ---
+var ADMIN_PW = 'boatship2026';
+
+function login() {
+  var pw = document.getElementById('pw-input').value;
+  if (pw === ADMIN_PW) {
+    document.getElementById('auth-screen').style.display = 'none';
+    document.getElementById('main-ui').style.display = 'block';
+    renderList();
+  } else {
+    document.getElementById('auth-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+// --- List ---
+function renderList() {
+  var list = document.getElementById('article-list');
+  list.innerHTML = '';
+  articles.forEach(function (a) {
+    var item = document.createElement('div');
+    item.className = 'article-list-item' + (a.id === currentId ? ' active' : '');
+    item.innerHTML =
+      '<span class="article-num">' + a.num + '</span>' +
+      '<span class="article-cat-badge">' + a.category + '</span>' +
+      '<span class="article-list-title">' + a.title + '</span>';
+    item.onclick = function () { openArticle(a.id); };
+    list.appendChild(item);
+  });
+}
+
+// --- Open / Edit ---
+function openArticle(id) {
+  currentId = id;
+  isNew = false;
+  var a = articles.find(function (x) { return x.id === id; });
+  if (!a) return;
+  showForm(a);
+  renderList();
+  document.getElementById('editor-form-title').textContent = '記事を編集 — ' + a.num;
+  var link = document.getElementById('preview-link');
+  link.href = '../magazine/article.html?id=' + a.id;
+  link.style.display = '';
+}
+
+function openNewArticle() {
+  isNew = true;
+  currentId = null;
+  var blank = { id: '', num: '#', category: 'News', title: '', date: today(), readTime: 5, thumb: '../images/card-01.jpg', hero: '../images/card-01.jpg', excerpt: '', body: '<p>本文テキストをここに入力。</p>' };
+  showForm(blank);
+  document.querySelectorAll('.article-list-item').forEach(function (el) { el.classList.remove('active'); });
+  document.getElementById('editor-form-title').textContent = '新規記事を作成';
+  document.getElementById('preview-link').style.display = 'none';
+}
+
+function showForm(a) {
+  document.getElementById('editor-welcome').style.display = 'none';
+  document.getElementById('editor-form').style.display = 'block';
+  document.getElementById('f-id').value = a.id;
+  document.getElementById('f-category').value = a.category;
+  document.getElementById('f-date').value = a.date;
+  document.getElementById('f-readtime').value = a.readTime;
+  document.getElementById('f-title').value = a.title;
+  document.getElementById('f-excerpt').value = a.excerpt;
+  document.getElementById('f-thumb').value = a.thumb;
+  document.getElementById('f-hero').value = a.hero;
+  document.getElementById('f-body').value = a.body;
+}
+
+function readForm() {
+  var id = document.getElementById('f-id').value.trim();
+  return {
+    id: id,
+    num: '#' + id,
+    category: document.getElementById('f-category').value,
+    title: document.getElementById('f-title').value,
+    date: document.getElementById('f-date').value,
+    readTime: parseInt(document.getElementById('f-readtime').value) || 5,
+    thumb: document.getElementById('f-thumb').value,
+    hero: document.getElementById('f-hero').value,
+    excerpt: document.getElementById('f-excerpt').value,
+    body: document.getElementById('f-body').value
+  };
+}
+
+function saveArticle() {
+  var data = readForm();
+  if (!data.id || !data.title) { showToast('IDとタイトルは必須です'); return; }
+
+  if (isNew) {
+    if (articles.find(function (x) { return x.id === data.id; })) {
+      showToast('ID "' + data.id + '" は既に存在します');
+      return;
+    }
+    articles.push(data);
+    articles.sort(function (a, b) { return a.id.localeCompare(b.id); });
+    currentId = data.id;
+    isNew = false;
+    document.getElementById('editor-form-title').textContent = '記事を編集 — ' + data.num;
+    var link = document.getElementById('preview-link');
+    link.href = '../magazine/article.html?id=' + data.id;
+    link.style.display = '';
+  } else {
+    var idx = articles.findIndex(function (x) { return x.id === currentId; });
+    if (idx !== -1) {
+      articles[idx] = data;
+      currentId = data.id;
+    }
+  }
+  renderList();
+  showToast('保存しました。articles.js をダウンロードして公開してください。');
+}
+
+function deleteArticle() {
+  if (!currentId) return;
+  if (!confirm('この記事を削除しますか？')) return;
+  articles = articles.filter(function (x) { return x.id !== currentId; });
+  currentId = null;
+  document.getElementById('editor-welcome').style.display = '';
+  document.getElementById('editor-form').style.display = 'none';
+  renderList();
+  showToast('削除しました。');
+}
+
+// --- Export ---
+function downloadArticlesJs() {
+  var lines = ['const ARTICLES = ['];
+  articles.forEach(function (a, i) {
+    var body = a.body.replace(/`/g, '\\`').replace(/\$/g, '\\$');
+    lines.push('  {');
+    lines.push('    id: ' + JSON.stringify(a.id) + ',');
+    lines.push('    num: ' + JSON.stringify(a.num) + ',');
+    lines.push('    category: ' + JSON.stringify(a.category) + ',');
+    lines.push('    title: ' + JSON.stringify(a.title) + ',');
+    lines.push('    date: ' + JSON.stringify(a.date) + ',');
+    lines.push('    readTime: ' + a.readTime + ',');
+    lines.push('    thumb: ' + JSON.stringify(a.thumb) + ',');
+    lines.push('    hero: ' + JSON.stringify(a.hero) + ',');
+    lines.push('    excerpt: ' + JSON.stringify(a.excerpt) + ',');
+    lines.push('    body: `' + body + '`');
+    lines.push('  }' + (i < articles.length - 1 ? ',' : ''));
+  });
+  lines.push('];');
+  var content = lines.join('\n');
+  var blob = new Blob([content], { type: 'text/javascript' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'articles.js';
+  a.click();
+  showToast('ダウンロードしました！GitHubにアップロードして公開。');
+}
+
+// --- Helpers ---
+function today() {
+  var d = new Date();
+  return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0');
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function () { t.classList.remove('show'); }, 3000);
+}
+</script>
+</body>
+</html>

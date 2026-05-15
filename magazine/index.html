@@ -68,72 +68,72 @@
 
 <!-- Filter Tabs -->
 <div class="filter-tabs">
-  <button class="filter-tab active">ALL</button>
-  <button class="filter-tab">NEWS</button>
-  <button class="filter-tab">TECH</button>
-  <button class="filter-tab">DESIGN</button>
-  <button class="filter-tab">INTERVIEW</button>
+  <button class="filter-tab active" data-filter="all">ALL</button>
+  <button class="filter-tab" data-filter="news">NEWS</button>
+  <button class="filter-tab" data-filter="tech">TECH</button>
+  <button class="filter-tab" data-filter="design">DESIGN</button>
+  <button class="filter-tab" data-filter="interview">INTERVIEW</button>
 </div>
 
 <!-- Article Grid -->
-<div class="recipe-grid">
-  <a href="#" class="recipe-card reveal">
+<div class="recipe-grid" id="article-grid">
+  <a href="article.html?id=01" class="recipe-card reveal" data-category="news">
     <div class="card-top"><span>News</span><span class="card-num">#01</span></div>
     <div class="card-center"><img src="../images/card-01.jpg" alt="Shake Shack Japan ローンチ" class="card-img"></div>
     <div class="card-bottom">Shake Shack Japan<br>サイトローンチ</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=02" class="recipe-card reveal" data-category="tech">
     <div class="card-top"><span>Tech</span><span class="card-num">#02</span></div>
     <div class="card-center"><img src="../images/card-02.jpg" alt="Shopify Liquid Tips" class="card-img"></div>
     <div class="card-bottom">Shopify Liquid<br>実装Tips</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=03" class="recipe-card reveal" data-category="design">
     <div class="card-top"><span>Design</span><span class="card-num">#03</span></div>
     <div class="card-center"><img src="../images/card-03.jpg" alt="ブルータリズム" class="card-img"></div>
     <div class="card-bottom">ブルータリズムを<br>Webに取り入れる</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=04" class="recipe-card reveal" data-category="news">
     <div class="card-top"><span>News</span><span class="card-num">#04</span></div>
     <div class="card-center"><img src="../images/card-04.jpg" alt="nahrin リニューアル" class="card-img"></div>
     <div class="card-bottom">nahrin<br>サイトリニューアル</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=05" class="recipe-card reveal" data-category="tech">
     <div class="card-top"><span>Tech</span><span class="card-num">#05</span></div>
     <div class="card-center"><img src="../images/card-05.jpg" alt="WordPress カスタム" class="card-img"></div>
     <div class="card-bottom">WordPressカスタム<br>テーマ開発の流儀</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=06" class="recipe-card reveal" data-category="interview">
     <div class="card-top"><span>Interview</span><span class="card-num">#06</span></div>
     <div class="card-center"><img src="../images/card-06.jpg" alt="制作者インタビュー" class="card-img"></div>
     <div class="card-bottom">制作者に聞く<br>BOATshipのこれから</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=07" class="recipe-card reveal" data-category="design">
     <div class="card-top"><span>Design</span><span class="card-num">#07</span></div>
     <div class="card-center"><img src="../images/card-01.jpg" alt="タイポグラフィ" class="card-img"></div>
     <div class="card-bottom">DotGothic16の<br>使いどころ</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=08" class="recipe-card reveal" data-category="tech">
     <div class="card-top"><span>Tech</span><span class="card-num">#08</span></div>
     <div class="card-center"><img src="../images/card-05.jpg" alt="GitHub Pages" class="card-img"></div>
     <div class="card-bottom">GitHub Pagesで<br>本番運用するコツ</div>
     <div class="card-arrow">↘</div>
   </a>
 
-  <a href="#" class="recipe-card reveal">
+  <a href="article.html?id=09" class="recipe-card reveal" data-category="news">
     <div class="card-top"><span>News</span><span class="card-num">#09</span></div>
     <div class="card-center"><img src="../images/card-06.jpg" alt="新規プロジェクト" class="card-img"></div>
     <div class="card-bottom">新規プロジェクト<br>受付開始</div>
@@ -165,5 +165,24 @@
 </footer>
 
 <script src="../assets/js/main.js"></script>
+<script>
+// Filter tabs — category filtering
+document.querySelectorAll('.filter-tab').forEach(function (tab) {
+  tab.addEventListener('click', function () {
+    document.querySelectorAll('.filter-tab').forEach(function (t) {
+      t.classList.remove('active');
+    });
+    tab.classList.add('active');
+    var filter = tab.getAttribute('data-filter');
+    document.querySelectorAll('#article-grid .recipe-card').forEach(function (card) {
+      if (filter === 'all' || card.getAttribute('data-category') === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
 </body>
 </html>
