@@ -38,6 +38,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
+// ==================== HERO PARALLAX ====================
+const heroContent = document.querySelector('.hero-content');
+if (heroContent) {
+  window.addEventListener('scroll', () => {
+    heroContent.style.transform = `translateY(${window.scrollY * 0.25}px)`;
+  }, { passive: true });
+}
+
 // ==================== FILTER TABS ====================
 document.querySelectorAll('.filter-tab').forEach(tab => {
   tab.addEventListener('click', () => {
