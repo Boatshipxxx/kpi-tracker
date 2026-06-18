@@ -4,215 +4,412 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOATship — Design, Branding, Lead Co.</title>
-<meta name="description" content="BOATship is Design, Branding, Lead Co. Producing company media, PR strategy, and brand consulting from Asia to Europe.">
-<meta property="og:title" content="BOATship — Design, Branding, Lead Co.">
-<meta property="og:description" content="BOATship is Design, Branding, Lead Co. Producing company media, PR strategy, and brand consulting from Asia to Europe.">
-<meta property="og:type" content="website">
+<meta name="description" content="BOATshipはクリエイティブでPR/広報戦略を得意とするチーム。カンパニーメディア制作・広報戦略・ブランドコンサルティング。">
+<meta property="og:title" content="BOATship — Ship to the Top">
+<meta property="og:description" content="Cross-cultural Voice — BOATship is Design, Branding, Lead Co.">
 <meta property="og:image" content="images/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/main.css">
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:#F5E100;color:#111111;font-family:'IBM Plex Mono',monospace;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  ::selection{background:#C8391D;color:#F5E100;}
+  img{display:block;}
+  @keyframes mq{to{transform:translateX(-50%);}}
+  @keyframes floatAcross{0%{left:-120px;transform:translateY(0) scale(0.8);}25%{transform:translateY(-50px) scale(1);}50%{transform:translateY(0) scale(0.8);}75%{transform:translateY(50px) scale(1);}100%{left:110vw;transform:translateY(0) scale(0.8);}}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes blink{0%,60%{opacity:1;}61%,100%{opacity:0.65;}}
+
+  .noise{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;opacity:0.12;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .float-logo{position:fixed;top:40%;left:-100px;z-index:50;pointer-events:none;width:80px;height:80px;animation:floatAcross 22s linear infinite;}
+  .float-logo img{width:100%;height:100%;object-fit:contain;animation:spin 20s linear infinite;filter:grayscale(100%) contrast(800%) drop-shadow(8px 8px 0 #111);border:2px solid #111;background:#fff;padding:5px;}
+
+  header.site{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:3px solid #111;font-family:'DotGothic16',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;background:#F5E100;position:relative;z-index:100;}
+  header.site .brand{display:flex;align-items:center;gap:10px;font-weight:bold;}
+  header.site .brand img{height:40px;width:40px;object-fit:contain;filter:grayscale(100%) contrast(500%) brightness(0.8);border:1.5px solid #111;padding:2px;background:#fff;}
+  header.site nav{display:flex;gap:2rem;}
+  header.site nav a{text-decoration:none;transition:color .2s;}
+  header.site nav a:hover{color:#C8391D;}
+
+  .hero{position:relative;min-height:88vh;display:flex;justify-content:center;align-items:center;border-bottom:3px solid #111;overflow:hidden;padding:4rem 1rem;background:#F5E100;}
+  .hero .canvas-wrap{position:absolute;inset:0;z-index:1;pointer-events:none;will-change:transform;}
+  .hero .canvas-wrap canvas{display:block;width:100%;height:100%;}
+  .hero .canvas-wrap .vig{position:absolute;inset:0;pointer-events:none;background:radial-gradient(120% 100% at 50% 45%,rgba(17,17,17,0) 40%,rgba(17,17,17,0.28) 100%);}
+  .hero .hero-text{position:relative;z-index:2;text-align:center;max-width:900px;display:flex;flex-direction:column;align-items:center;margin:0 auto;will-change:transform,opacity;}
+  .hero .badge{display:inline-block;font-family:'Silkscreen',cursive;font-size:11px;letter-spacing:0.25em;color:#F5E100;background:#C8391D;padding:6px 14px;border:2px solid #111;box-shadow:4px 4px 0 #111;margin-bottom:1.5rem;transform:rotate(-1deg);text-transform:uppercase;line-height:1.4;animation:blink 2s steps(2,end) infinite;}
+  .hero h1{font-family:'DotGothic16',sans-serif;font-size:clamp(3rem,8vw,8rem);line-height:1.05;margin-bottom:1.5rem;color:#F5E100;text-shadow:-3px -3px 0 #111,3px -3px 0 #111,-3px 3px 0 #111,3px 3px 0 #111,8px 8px 0 #C8391D,14px 14px 0 #111;letter-spacing:-0.05em;transform:rotate(-2deg);display:inline-block;}
+  .hero .lead{font-size:0.9rem;font-weight:700;line-height:1.8;color:#F5E100;max-width:500px;margin:0 auto;text-shadow:1.5px 1.5px 0 #111;background:#111;padding:1.2rem;border:3px solid #111;box-shadow:6px 6px 0 #C8391D;transform:rotate(1deg);}
+  .hero .hint{position:absolute;right:1.5rem;bottom:1.2rem;z-index:3;font-family:'Silkscreen',cursive;font-size:9px;letter-spacing:0.1em;color:#111;display:flex;align-items:center;gap:8px;}
+  .hero .hint span{display:inline-block;width:8px;height:8px;background:#C8391D;}
+
+  .subnav{position:sticky;top:0;background:#F5E100;z-index:40;border-bottom:3px solid #111;display:flex;justify-content:space-between;align-items:center;padding:0.7rem 1.5rem;font-size:11px;text-transform:uppercase;letter-spacing:0.05em;}
+  .subnav .left{display:flex;align-items:center;gap:1rem;font-weight:700;}
+  .subnav .left img{height:28px;width:28px;object-fit:contain;filter:grayscale(100%) contrast(1000%);}
+  .subnav .right{display:flex;gap:1.5rem;}
+  .subnav a{text-decoration:none;}
+  .subnav a:hover{color:#C8391D;}
+
+  .marquee{border-top:3px solid #111;border-bottom:3px solid #111;padding:16px 0;overflow:hidden;background:#111;color:#F5E100;}
+  .marquee .track{display:flex;gap:0;animation:mq 22s linear infinite;width:max-content;align-items:center;}
+  .marquee .grp{display:flex;align-items:center;flex:none;}
+  .marquee .grp .word{font-family:'Silkscreen',cursive;font-size:15px;letter-spacing:0.12em;padding:0 22px;}
+  .marquee .grp .dot{width:8px;height:8px;flex:none;}
+
+  .works{background:#F5E100;}
+  .works .head{text-align:center;padding:6rem 1rem;border-bottom:3px solid #111;}
+  .works .head h2{font-family:'DotGothic16',sans-serif;font-size:clamp(2.5rem,5vw,4.5rem);color:#F5E100;background:#111;display:inline-block;padding:0.5rem 2rem;transform:rotate(-1.5deg);box-shadow:8px 8px 0 #C8391D;border:3px solid #111;margin-bottom:1rem;}
+  .works .head p{font-size:0.85rem;color:#111;margin-top:1.5rem;opacity:0.7;}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:3px solid #111;}
+  .card{border-bottom:3px solid #111;padding:2rem;display:flex;flex-direction:column;position:relative;min-height:340px;cursor:pointer;background:#F5E100;color:#111;overflow:hidden;text-decoration:none;transition:background .3s,color .3s;}
+  .card:nth-child(3n+1),.card:nth-child(3n+2){border-right:3px solid #111;}
+  .card .meta{display:flex;justify-content:space-between;font-family:'DotGothic16',sans-serif;font-size:0.9rem;margin-bottom:1rem;}
+  .card .meta .num{font-family:'Silkscreen',cursive;color:#C8391D;transition:color .3s;}
+  .card .imgwrap{flex:1;display:flex;justify-content:center;align-items:center;}
+  .card .imgwrap img{width:170px;height:170px;object-fit:cover;-webkit-clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);filter:grayscale(100%) contrast(1.4);mix-blend-mode:multiply;transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;}
+  .card .title{text-align:center;font-family:'DotGothic16',sans-serif;font-size:1.1rem;margin-top:1.5rem;line-height:1.3;}
+  .card .cap{position:absolute;left:0;right:0;bottom:0;background:#C8391D;color:#F5E100;font-family:'Silkscreen',cursive;font-size:10px;letter-spacing:0.1em;padding:10px 14px;transform:translateY(101%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
+  .card .arrow{position:absolute;bottom:1rem;right:1.5rem;font-size:1.4rem;color:#C8391D;transition:transform .3s,color .3s;}
+  .card:hover{background:#111;color:#F5E100;}
+  .card:hover .imgwrap img{transform:scale(1.1) rotate(-8deg);filter:grayscale(100%) contrast(2) invert(100%);mix-blend-mode:screen;}
+  .card:hover .meta .num{color:#F5E100;}
+  .card:hover .arrow{color:#F5E100;transform:translate(3px,3px);}
+  .card:hover .cap{transform:translateY(0);}
+
+  .about{background:#E8E3CF;padding:8rem 1.5rem;text-align:center;position:relative;border-top:3px solid #111;border-bottom:3px solid #111;overflow:hidden;}
+  .about .deco{position:absolute;z-index:1;object-fit:cover;-webkit-clip-path:polygon(0 10%,90% 0,100% 90%,10% 100%);clip-path:polygon(0 10%,90% 0,100% 90%,10% 100%);filter:grayscale(100%) contrast(1.5) sepia(60%) hue-rotate(-30deg) saturate(300%);mix-blend-mode:multiply;opacity:0.8;}
+  .about .deco.a{bottom:-5%;left:-5%;width:250px;height:250px;transform:rotate(15deg);}
+  .about .deco.b{bottom:-2%;right:-5%;width:200px;height:200px;transform:rotate(-10deg);}
+  .about .inner{max-width:600px;margin:0 auto;position:relative;z-index:2;}
+  .about h2{font-family:'Silkscreen',cursive;font-size:clamp(3rem,10vw,7rem);color:#E8E3CF;-webkit-text-stroke:3px #111;margin-bottom:2rem;display:inline-block;transform:rotate(2deg);}
+  .about p{font-family:'DotGothic16',sans-serif;font-size:1rem;line-height:1.8;margin-bottom:1.5rem;}
+  .about .socials{display:flex;justify-content:center;gap:2rem;margin:2.5rem 0;font-family:'DotGothic16',sans-serif;font-size:1.1rem;}
+  .about .socials a{color:#C8391D;text-decoration:none;border-bottom:2px solid transparent;}
+  .about .socials a:hover{border-bottom-color:#C8391D;}
+  .about .btn{display:inline-block;background:#C8391D;color:#F5E100;padding:1rem 3rem;font-family:'DotGothic16',sans-serif;font-size:1.1rem;border:3px solid #111;box-shadow:6px 6px 0 #111;text-decoration:none;transition:transform .2s,box-shadow .2s;}
+  .about .btn:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 #111;}
+
+  .news{background:#111;padding:5rem 1.5rem;text-align:center;border-bottom:3px solid #111;}
+  .news h2{font-family:'DotGothic16',sans-serif;font-size:clamp(1.5rem,4vw,3rem);color:#F5E100;margin-bottom:0.5rem;}
+  .news p.sub{font-size:0.85rem;color:rgba(245,225,0,0.5);margin-bottom:2rem;}
+  .news form{display:flex;max-width:500px;margin:0 auto;border:2px solid #F5E100;}
+  .news input{flex:1;padding:14px 16px;font-family:'IBM Plex Mono',monospace;font-size:13px;background:rgba(245,225,0,0.08);color:#F5E100;border:none;outline:none;}
+  .news button{font-family:'DotGothic16',sans-serif;font-size:13px;padding:14px 24px;background:#C8391D;color:#F5E100;white-space:nowrap;border:none;cursor:pointer;transition:background .3s;}
+  .news button:hover{background:#d94020;}
+  .news .fine{font-size:11px;color:rgba(245,225,0,0.25);margin-top:1rem;}
+
+  footer.site{padding:2.5rem 1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:11px;background:#F5E100;border-top:3px solid #111;flex-wrap:wrap;gap:1rem;}
+  footer.site .left{display:flex;align-items:center;gap:10px;font-weight:bold;font-family:'DotGothic16',sans-serif;}
+  footer.site .left img{height:30px;width:30px;object-fit:contain;filter:grayscale(100%) contrast(500%) brightness(0.8);border:1.5px solid #111;padding:2px;background:#fff;}
+  footer.site .right{display:flex;gap:1.5rem;}
+  footer.site a{text-decoration:none;}
+  footer.site a:hover{color:#C8391D;}
+
+  [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+  [data-reveal].in{opacity:1;transform:translateY(0);}
+
+  @media(max-width:880px){
+    .grid{grid-template-columns:repeat(2,1fr);}
+    .card:nth-child(3n+1),.card:nth-child(3n+2){border-right:none;}
+    .card:nth-child(2n+1){border-right:3px solid #111;}
+    header.site nav,.subnav .right{display:none;}
+    .subnav .left span{font-size:10px;}
+  }
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .card:nth-child(2n+1){border-right:none;}
+  }
+</style>
 </head>
 <body>
 
-<!-- Noise Texture -->
-<div class="noise-overlay"></div>
+<div class="noise" aria-hidden="true"></div>
 
-<!-- Floating Logo -->
-<div class="float-wrapper" aria-hidden="true">
-  <img src="images/logo.jpg" alt="" class="float-inner-img">
-</div>
+<div class="float-logo" aria-hidden="true"><img src="images/logo.jpg" alt=""></div>
 
-<!-- Navigation -->
-<header class="top-nav">
-  <div class="nav-logo-wrapper">
-    <img src="images/logo.jpg" alt="BOATship" class="company-logo">
+<header class="site">
+  <div class="brand">
+    <img src="images/logo.jpg" alt="BOATship">
     <span>BOATship</span>
   </div>
-  <nav class="nav-links">
-    <a href="works">Works</a>
-    <a href="magazine">Magazines</a>
-    <a href="notes">Notes</a>
-    <a href="about">About</a>
+  <nav>
+    <a href="#works">Works</a>
+    <a href="#about">Magazines</a>
+    <a href="#about">Notes</a>
+    <a href="#about">About</a>
   </nav>
-  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
 </header>
 
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="./" onclick="closeMenu()">Home</a>
-  <a href="works" onclick="closeMenu()">Works</a>
-  <a href="magazine" onclick="closeMenu()">Magazines</a>
-  <a href="notes" onclick="closeMenu()">Notes</a>
-  <a href="about" onclick="closeMenu()">About</a>
-</div>
-
-<!-- Hero -->
-<section class="hero reveal">
-  <img src="images/hero.jpg" alt="" class="hero-bg-img">
-  <div class="hero-content">
-    <p class="hero-eyebrow">▶ NEW STATE ACTIVED.</p>
-    <h1 class="editable">Ship to<br>the Top</h1>
-    <p class="editable">Cross-cultural Voice —<br>BOATship is Design, Branding, Lead Co.</p>
+<section class="hero" id="hero">
+  <div class="canvas-wrap" id="canvasWrap">
+    <canvas id="heroCanvas"></canvas>
+    <div class="vig"></div>
   </div>
+  <div class="hero-text" id="heroText">
+    <p class="badge">▶ NEW STATE ACTIVATED</p>
+    <h1>Ship to<br>the Top</h1>
+    <p class="lead">Cross-cultural Voice —<br>BOATship is Design, Branding, Lead Co.</p>
+  </div>
+  <div class="hint">画像にマウスを乗せると歪む<span></span></div>
 </section>
 
-<!-- Sticky Bar -->
-<div class="sticky-bar">
-  <div class="sticky-left">
-    <img src="images/logo.jpg" alt="" class="sticky-logo">
+<div class="subnav">
+  <div class="left">
+    <img src="images/logo.jpg" alt="">
     <span>BOATship is Design, Branding, Lead Co. — Producing company media.</span>
   </div>
-  <div class="sticky-right">
-    <a href="works">Works</a>
-    <a href="magazine">Magazines</a>
-    <a href="notes">Notes</a>
-    <a href="about">About</a>
+  <div class="right">
+    <a href="#works">Works</a>
+    <a href="#about">Magazines</a>
+    <a href="#about">About</a>
   </div>
 </div>
 
-<!-- Marquee -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
-    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
-    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
-    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
-    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
-    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
-    <span class="marquee-item"><span class="mdot"></span>VEGAN RECIPES</span>
-    <span class="marquee-item"><span class="mdot"></span>SUSTAINABLE LIVING</span>
-    <span class="marquee-item"><span class="mdot"></span>PLANT-BASED CULTURE</span>
-    <span class="marquee-item"><span class="mdot"></span>EARTH FRIENDLY</span>
-    <span class="marquee-item"><span class="mdot"></span>MINDFUL EATING</span>
-    <span class="marquee-item"><span class="mdot"></span>ZERO WASTE</span>
-  </div>
+<div class="marquee">
+  <div class="track" id="mqTrack"></div>
 </div>
 
-<!-- Featured Section -->
-<section class="recipes-section" id="works-preview">
-  <div class="recipes-header reveal">
-    <h2 class="editable">Selected Voyages</h2>
-    <p class="editable"></p>
+<section class="works" id="works">
+  <div class="head" data-reveal>
+    <h2>Selected Voyages</h2>
+    <p>ブランドを前進させた航海の記録 — Cases that shipped to the top.</p>
   </div>
-
-  <div class="recipe-grid">
-    <a href="works" class="recipe-card reveal">
-      <div class="card-top">
-        <span>E-Commerce</span>
-        <span class="card-num">#01</span>
-      </div>
-      <div class="card-center">
-        <img src="images/works-eyewear.jpg" alt="EYEWEAR MEBIUS" class="card-img">
-      </div>
-      <div class="card-bottom">EYEWEAR<br>MEBIUS</div>
-      <div class="card-arrow">↘</div>
-    </a>
-
-    <a href="works" class="recipe-card reveal">
-      <div class="card-top">
-        <span>E-Commerce</span>
-        <span class="card-num">#02</span>
-      </div>
-      <div class="card-center">
-        <img src="images/works-nahrin.jpg" alt="nahrin" class="card-img">
-      </div>
-      <div class="card-bottom">nahrin —<br>ナチュラルコスメEC</div>
-      <div class="card-arrow">↘</div>
-    </a>
-
-    <a href="works" class="recipe-card reveal">
-      <div class="card-top">
-        <span>Media</span>
-        <span class="card-num">#03</span>
-      </div>
-      <div class="card-center">
-        <img src="images/works-josai.jpg" alt="TEAM JOSAI" class="card-img">
-      </div>
-      <div class="card-bottom">TEAM JOSAI! —<br>大学公式WEBマガジン</div>
-      <div class="card-arrow">↘</div>
-    </a>
-
-    <a href="works" class="recipe-card reveal">
-      <div class="card-top">
-        <span>Corporate</span>
-        <span class="card-num">#04</span>
-      </div>
-      <div class="card-center">
-        <img src="images/works-shakeshack.jpg" alt="Shake Shack Japan" class="card-img">
-      </div>
-      <div class="card-bottom">Shake Shack<br>Japan</div>
-      <div class="card-arrow">↘</div>
-    </a>
-
-    <a href="about" class="recipe-card reveal">
-      <div class="card-top">
-        <span>Service</span>
-        <span class="card-num">#05</span>
-      </div>
-      <div class="card-center">
-        <img src="images/card-02.jpg" alt="Branding" class="card-img">
-      </div>
-      <div class="card-bottom">Creative Design<br>+ Branding</div>
-      <div class="card-arrow">↘</div>
-    </a>
-
-    <a href="about" class="recipe-card reveal">
-      <div class="card-top">
-        <span>Service</span>
-        <span class="card-num">#06</span>
-      </div>
-      <div class="card-center">
-        <img src="images/card-06.jpg" alt="Equal Exchange" class="card-img">
-      </div>
-      <div class="card-bottom">等価交換<br>報酬制度</div>
-      <div class="card-arrow">↘</div>
-    </a>
-  </div>
+  <div class="grid" id="grid"></div>
 </section>
 
-<!-- About -->
-<section class="about-section" id="about">
-  <img src="images/card-05.jpg" alt="" class="deco-item deco-left">
-  <img src="images/card-06.jpg" alt="" class="deco-item deco-right">
-  <div class="about-content reveal">
-    <h2 data-text="ABOUT">ABOUT</h2>
-    <p class="editable">BOATshipはクリエイティブでPR/広報戦略を得意とするチームです。カンパニーメディア制作・広報戦略策定・ブランドコンサルティングを得意とし、社会へインパクトある発信を船頭します。広報メディアでお困りの方はすぐにお問い合わせください。</p>
-    <div class="about-links">
+<section class="about" id="about">
+  <img class="deco a" src="images/card-05.jpg" alt="" aria-hidden="true">
+  <img class="deco b" src="images/card-06.jpg" alt="" aria-hidden="true">
+  <div class="inner" data-reveal>
+    <h2>ABOUT</h2>
+    <p>BOATshipはクリエイティブでPR/広報戦略を得意とするチームです。カンパニーメディア制作・広報戦略策定・ブランドコンサルティングを得意とし、社会へインパクトある発信を船頭します。広報メディアでお困りの方はすぐにお問い合わせください。</p>
+    <div class="socials">
       <a href="#">Instagram</a>
       <a href="#">X (Twitter)</a>
     </div>
-    <a href="about" class="btn-primary">MORE ABOUT →</a>
+    <a href="#about" class="btn">MORE ABOUT →</a>
   </div>
 </section>
 
-<!-- Newsletter -->
-<section class="newsletter-section" id="newsletter">
-  <h2 class="editable">Magazines<br>Updates</h2>
-  <p class="sub-text editable">新着の制作事例やMagazinesをメールでお届け。</p>
-  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
-    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
-    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
-  </form>
-  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+<section class="news" id="newsletter">
+  <div data-reveal>
+    <h2>Magazines Updates</h2>
+    <p class="sub">新着の制作事例やMagazinesをメールでお届け。</p>
+    <form action="https://formspree.io/f/xvzlyrdk" method="POST">
+      <input type="email" name="email" placeholder="your@email.com" required>
+      <button type="submit">SUBSCRIBE</button>
+    </form>
+    <p class="fine">* スパムは送りません。いつでも解除できます。</p>
+  </div>
 </section>
 
-<!-- Footer -->
-<footer>
-  <div class="nav-logo-wrapper">
-    <img src="images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+<footer class="site">
+  <div class="left">
+    <img src="images/logo.jpg" alt="BOATship">
     <span>© 2026 BOATship — Design Studio</span>
   </div>
-  <div class="nav-links">
-    <a href="works">Works</a>
-    <a href="magazine">Magazines</a>
-    <a href="about">About</a>
+  <div class="right">
+    <a href="#works">Works</a>
+    <a href="#about">Magazines</a>
+    <a href="#about">About</a>
   </div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Marquee ---------- */
+  var WORDS = ["DESIGN","BRANDING","PR STRATEGY","COMPANY MEDIA","BRAND CONSULTING","CREATIVE DIRECTION"];
+  function buildGroup(){
+    var g = document.createElement("span");
+    g.className = "grp";
+    WORDS.forEach(function(w,i){
+      var word = document.createElement("span");
+      word.className = "word";
+      word.textContent = w;
+      word.style.color = (i % 2 === 0) ? "#F5E100" : "#C8391D";
+      g.appendChild(word);
+      var dot = document.createElement("span");
+      dot.className = "dot";
+      dot.style.background = (i % 2 === 0) ? "#C8391D" : "#F5E100";
+      g.appendChild(dot);
+    });
+    return g;
+  }
+  var track = document.getElementById("mqTrack");
+  track.appendChild(buildGroup());
+  var dup = buildGroup(); dup.setAttribute("aria-hidden","true");
+  track.appendChild(dup);
+
+  /* ---------- Works grid ---------- */
+  var WORKS = [
+    {tag:"E-Commerce", num:"#01", img:"images/works-eyewear.jpg",    title:"EYEWEAR<br>MEBIUS",            cap:"VIEW PROJECT →", href:"#works"},
+    {tag:"E-Commerce", num:"#02", img:"images/works-nahrin.jpg",     title:"nahrin —<br>ナチュラルコスメEC", cap:"VIEW PROJECT →", href:"#works"},
+    {tag:"Media",      num:"#03", img:"images/works-josai.jpg",      title:"TEAM JOSAI! —<br>大学公式WEBマガジン", cap:"VIEW PROJECT →", href:"#works"},
+    {tag:"Corporate",  num:"#04", img:"images/works-shakeshack.jpg", title:"Shake Shack<br>Japan",         cap:"VIEW PROJECT →", href:"#works"},
+    {tag:"Service",    num:"#05", img:"images/card-02.jpg",          title:"Creative Design<br>+ Branding", cap:"LEARN MORE →",  href:"#about"},
+    {tag:"Service",    num:"#06", img:"images/card-06.jpg",          title:"等価交換<br>報酬制度",          cap:"LEARN MORE →",  href:"#about"}
+  ];
+  var grid = document.getElementById("grid");
+  WORKS.forEach(function(w){
+    var a = document.createElement("a");
+    a.className = "card";
+    a.href = w.href;
+    a.setAttribute("data-reveal","");
+    a.innerHTML =
+      '<div class="meta"><span>'+w.tag+'</span><span class="num">'+w.num+'</span></div>'+
+      '<div class="imgwrap"><img src="'+w.img+'" alt="'+w.title.replace(/<br>/g," ")+'"></div>'+
+      '<div class="title">'+w.title+'</div>'+
+      '<div class="cap">'+w.cap+'</div>'+
+      '<div class="arrow">↘</div>';
+    grid.appendChild(a);
+  });
+
+  /* ---------- Scroll reveal ---------- */
+  var io = new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll("[data-reveal]").forEach(function(el,i){
+    el.style.transitionDelay = (i % 3) * 0.08 + "s";
+    io.observe(el);
+  });
+
+  /* ---------- Parallax ---------- */
+  var hero = document.getElementById("hero");
+  var canvasWrap = document.getElementById("canvasWrap");
+  var heroText = document.getElementById("heroText");
+  function onScroll(){
+    var y = window.scrollY || 0;
+    var h = hero.offsetHeight || window.innerHeight;
+    var p = Math.min(y / h, 1);
+    canvasWrap.style.transform = "translateY(" + (y * 0.18) + "px) scale(" + (1 + p * 0.05) + ")";
+    heroText.style.transform = "translateY(" + (y * 0.42) + "px)";
+    heroText.style.opacity = String(Math.max(0, 1 - p * 1.1));
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+
+  /* ---------- Three.js hero distortion ---------- */
+  var DISTORTION = 10;   // 1..10
+  var RGB_SHIFT  = true;
+
+  function initGL(){
+    if(!window.THREE){ return; }
+    var THREE = window.THREE;
+    var canvas = document.getElementById("heroCanvas");
+    var renderer = new THREE.WebGLRenderer({canvas:canvas, alpha:true, antialias:true});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    var scene = new THREE.Scene();
+    var camera = new THREE.OrthographicCamera(-1,1,1,-1,0.1,10);
+    camera.position.z = 1;
+
+    var target = {mx:0,my:0,hover:0};
+    var cur = {mx:0,my:0,hover:0};
+
+    var tex = new THREE.TextureLoader().load("images/hero.jpg", function(){ resize(); });
+    tex.minFilter = THREE.LinearFilter;
+
+    var geo = new THREE.PlaneGeometry(2,2,160,160);
+    var mat = new THREE.ShaderMaterial({
+      transparent:true,
+      uniforms:{
+        uTex:{value:tex},
+        uMouse:{value:new THREE.Vector2(0,0)},
+        uHover:{value:0},
+        uTime:{value:0},
+        uIntensity:{value:DISTORTION},
+        uRgb:{value:RGB_SHIFT?1:0},
+        uCanvasAspect:{value:1}
+      },
+      vertexShader:[
+        "uniform vec2 uMouse; uniform float uHover; uniform float uTime; uniform float uIntensity;",
+        "varying vec2 vUv; varying float vDisp;",
+        "void main(){",
+        "  vUv = uv;",
+        "  vec3 pos = position;",
+        "  vec2 dir = pos.xy - uMouse;",
+        "  float dist = length(dir);",
+        "  float fall = exp(-dist*dist*3.0);",
+        "  float k = uIntensity/10.0;",
+        "  float angle = fall * uHover * (1.7*k);",
+        "  float s = sin(angle), c = cos(angle);",
+        "  vec2 rot = vec2(dir.x*c - dir.y*s, dir.x*s + dir.y*c);",
+        "  pos.xy = uMouse + rot;",
+        "  pos.xy += normalize(dir + 0.0001) * sin(dist*9.0 - uTime*3.2) * fall * uHover * 0.12 * k;",
+        "  vDisp = fall * uHover;",
+        "  gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);",
+        "}"
+      ].join("\n"),
+      fragmentShader:[
+        "uniform sampler2D uTex; uniform float uRgb; uniform float uCanvasAspect;",
+        "varying vec2 vUv; varying float vDisp;",
+        "const vec3 BLACK = vec3(0.067,0.067,0.067);",
+        "const vec3 RED   = vec3(0.784,0.224,0.114);",
+        "const vec3 YELLOW= vec3(0.961,0.882,0.0);",
+        "void main(){",
+        "  vec2 uv = vUv;",
+        "  if(uCanvasAspect > 1.0){ uv.y = (uv.y-0.5)/uCanvasAspect + 0.5; }",
+        "  else { uv.x = (uv.x-0.5)*uCanvasAspect + 0.5; }",
+        "  float o = vDisp * 0.025 * uRgb;",
+        "  float r = texture2D(uTex, uv + vec2(o,0.0)).r;",
+        "  float g = texture2D(uTex, uv).g;",
+        "  float b = texture2D(uTex, uv - vec2(o,0.0)).b;",
+        "  float l = 0.299*r + 0.587*g + 0.114*b;",
+        "  l = clamp((l-0.28)/0.5, 0.0, 1.0);",
+        "  vec3 col = l < 0.5 ? mix(BLACK, RED, l*2.0) : mix(RED, YELLOW, (l-0.5)*2.0);",
+        "  gl_FragColor = vec4(col, 1.0);",
+        "}"
+      ].join("\n")
+    });
+    var mesh = new THREE.Mesh(geo, mat);
+    scene.add(mesh);
+
+    function resize(){
+      var w = canvasWrap.clientWidth || 1;
+      var h = canvasWrap.clientHeight || 1;
+      renderer.setSize(w, h, false);
+      mat.uniforms.uCanvasAspect.value = w / h;
+    }
+    window.addEventListener("resize", resize);
+
+    hero.addEventListener("pointermove", function(e){
+      var r = canvasWrap.getBoundingClientRect();
+      target.mx = ((e.clientX - r.left) / r.width) * 2 - 1;
+      target.my = -(((e.clientY - r.top) / r.height) * 2 - 1);
+      target.hover = 1;
+    });
+    hero.addEventListener("pointerleave", function(){ target.hover = 0; });
+
+    var clock = new THREE.Clock();
+    (function loop(){
+      requestAnimationFrame(loop);
+      cur.mx += (target.mx - cur.mx) * 0.10;
+      cur.my += (target.my - cur.my) * 0.10;
+      cur.hover += (target.hover - cur.hover) * 0.06;
+      mat.uniforms.uMouse.value.set(cur.mx, cur.my);
+      mat.uniforms.uHover.value = cur.hover;
+      mat.uniforms.uTime.value = clock.getElapsedTime();
+      renderer.render(scene, camera);
+    })();
+    resize();
+  }
+
+  function waitThree(){
+    if(window.THREE){ initGL(); return; }
+    var n = 0;
+    var t = setInterval(function(){
+      if(window.THREE){ clearInterval(t); initGL(); }
+      else if(++n > 300){ clearInterval(t); }
+    }, 50);
+  }
+  waitThree();
+})();
+</script>
 </body>
 </html>
