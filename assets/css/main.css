@@ -65,10 +65,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 100%;
   object-fit: contain;
   animation: spin 20s linear infinite;
-  filter: grayscale(100%) contrast(800%) drop-shadow(8px 8px 0 var(--text-black));
-  border: 2px solid var(--text-black);
-  background: white;
-  padding: 5px;
+  filter: drop-shadow(0 6px 10px rgba(17, 17, 17, 0.25));
 }
 
 @keyframes floatAcross {
@@ -102,7 +99,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   font-family: var(--font-dot);
   font-size: 14px;
   letter-spacing: 0.03em;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
 }
+a.nav-logo-wrapper:hover { color: var(--accent-red); }
 
 /* ==================== NAVIGATION ==================== */
 .top-nav {

@@ -26,7 +26,7 @@
   .noise{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;opacity:0.12;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
   .float-logo{position:fixed;top:40%;left:-100px;z-index:50;pointer-events:none;width:80px;height:80px;animation:floatAcross 22s linear infinite;}
-  .float-logo img{width:100%;height:100%;object-fit:contain;animation:spin 20s linear infinite;filter:grayscale(100%) contrast(800%) drop-shadow(8px 8px 0 #076baf);border:2px solid #076baf;background:#076baf;padding:5px;}
+  .float-logo img{width:100%;height:100%;object-fit:contain;animation:spin 20s linear infinite;filter:drop-shadow(0 6px 10px rgba(17,17,17,0.25));}
 
   header.site{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:3px solid #111;font-family:'DotGothic16',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;background:#F5E100;position:relative;z-index:100;}
   header.site .brand{display:flex;align-items:center;gap:10px;font-weight:bold;text-decoration:none;color:inherit;}
@@ -39,8 +39,8 @@
   .mob-menu.open{transform:translateX(0);}
   .mob-menu a{font-family:'DotGothic16',sans-serif;font-size:2rem;text-decoration:none;color:#111;transition:color .2s;}
   .mob-menu a:hover{color:#C8391D;}
-  .mob-menu .home-link{background:#111;color:#F5E100;padding:0.5rem 2.5rem;border:3px solid #111;box-shadow:5px 5px 0 #C8391D;}
-  .mob-menu .home-link:hover{background:#C8391D;color:#F5E100;}
+  .mob-menu .home-link{color:#C8391D;border-bottom:3px solid #C8391D;padding-bottom:4px;}
+  .mob-menu .home-link:hover{color:#111;border-bottom-color:#111;}
   header.site .brand img{height:40px;width:40px;object-fit:contain;filter:grayscale(100%) contrast(500%) brightness(0.8);border:1.5px solid #111;padding:2px;background:#fff;}
   header.site nav{display:flex;gap:2rem;}
   header.site nav a{text-decoration:none;transition:color .2s;}
@@ -143,7 +143,7 @@
 <div class="float-logo" aria-hidden="true"><img src="images/logo.jpg" alt=""></div>
 
 <header class="site">
-  <a href="." class="brand">
+  <a href="./" class="brand">
     <img src="images/logo.jpg" alt="BOATship">
     <span>BOATship</span>
   </a>
@@ -159,7 +159,7 @@
 </header>
 
 <div class="mob-menu" id="mobMenu" aria-hidden="true">
-  <a href="." class="home-link">HOME</a>
+  <a href="./" class="home-link">HOME</a>
   <a href="#works" class="mob-link">Works</a>
   <a href="magazine" class="mob-link">Magazines</a>
   <a href="notes" class="mob-link">Notes</a>
