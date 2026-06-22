@@ -271,10 +271,10 @@
 
   /* ---------- Works grid ---------- */
   var WORKS = [
-    {tag:"E-Commerce", num:"#01", img:"images/works-eyewear.jpg",    title:"EYEWEAR<br>MEBIUS",            cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"E-Commerce", num:"#02", img:"images/works-nahrin.jpg",     title:"nahrin —<br>ナチュラルコスメEC", cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"Media",      num:"#03", img:"images/works-josai.jpg",      title:"TEAM JOSAI! —<br>大学公式WEBマガジン", cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"Corporate",  num:"#04", img:"images/works-shakeshack.jpg", title:"Shake Shack<br>Japan",         cap:"VIEW PROJECT →", href:"#works"},
+    {tag:"E-Commerce", num:"#01", img:"images/works-eyewear.jpg",    title:"EYEWEAR<br>MEBIUS",            cap:"VIEW PROJECT →", href:"https://eyewearmebius.shop/"},
+    {tag:"E-Commerce", num:"#02", img:"images/works-nahrin.jpg",     title:"nahrin —<br>ナチュラルコスメEC", cap:"VIEW PROJECT →", href:"https://www.nahrin.jp/"},
+    {tag:"Media",      num:"#03", img:"images/works-josai.jpg",      title:"TEAM JOSAI! —<br>大学公式WEBマガジン", cap:"VIEW PROJECT →", href:"https://www.josai.ac.jp/tjp/"},
+    {tag:"Corporate",  num:"#04", img:"images/works-shakeshack.jpg", title:"Shake Shack<br>Japan",         cap:"VIEW PROJECT →", href:"https://shakeshack.jp/"},
     {tag:"Service",    num:"#05", img:"images/card-02.jpg",          title:"Creative Design<br>+ Branding", cap:"LEARN MORE →",  href:"about"},
     {tag:"Service",    num:"#06", img:"images/card-06.jpg",          title:"等価交換<br>報酬制度",          cap:"LEARN MORE →",  href:"about"}
   ];
@@ -283,6 +283,7 @@
     var a = document.createElement("a");
     a.className = "card";
     a.href = w.href;
+    if(w.href.startsWith("http")){a.target="_blank";a.rel="noopener noreferrer";}
     a.setAttribute("data-reveal","");
     a.innerHTML =
       '<div class="meta"><span>'+w.tag+'</span><span class="num">'+w.num+'</span></div>'+
