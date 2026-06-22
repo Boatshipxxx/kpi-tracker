@@ -1012,6 +1012,31 @@ footer .nav-links { font-size: 11px; gap: 1.5rem; }
   box-shadow: 2px 2px 0 var(--text-black);
 }
 
+/* TECH category — impressive page-header-style banner */
+.article-tech-banner {
+  text-align: center;
+  padding: 3.5rem 1rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.article-tech-banner .tech-word {
+  font-family: var(--font-dot);
+  font-size: clamp(3.5rem, 13vw, 8.5rem);
+  line-height: 0.9;
+  color: var(--bg-yellow);
+  text-shadow:
+    -3px -3px 0 var(--text-black),
+     3px -3px 0 var(--text-black),
+    -3px  3px 0 var(--text-black),
+     3px  3px 0 var(--text-black),
+     8px  8px 0 var(--accent-red),
+     14px 14px 0 var(--text-black);
+  transform: rotate(-2deg);
+  display: inline-block;
+  letter-spacing: 0.06em;
+}
+
 .article-page-hero {
   padding: 3rem 2rem 2rem;
   max-width: 800px;

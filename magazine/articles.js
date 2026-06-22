@@ -45,7 +45,7 @@ const ARTICLES = [
     date: '2026.04.10',
     readTime: 6,
     thumb: '../images/card-03.jpg',
-    hero: '../images/card-03.jpg',
+    hero: '../images/brutalism-hero.svg',
     excerpt: 'ブルータリストデザインの哲学とWebへの応用。BOATship自身のサイトデザインに込めた思考を解説。',
     body: `<p>ブルータリズム（Brutalism）は、建築からWebデザインに持ち込まれたデザイン哲学です。「飾らない、隠さない、素材をそのまま見せる」という思想が根底にあります。</p>
 <h2>ブルータリズムとは何か</h2>

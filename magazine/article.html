@@ -81,9 +81,14 @@
   document.title = article.title + ' — BOATship Magazines';
   document.getElementById('page-desc').setAttribute('content', article.excerpt);
 
+  var techBanner = (article.category && article.category.toLowerCase() === 'tech')
+    ? '<section class="article-tech-banner"><span class="tech-word">TECH</span></section>'
+    : '';
+
   var root = document.getElementById('article-root');
   root.innerHTML =
     '<a href="../magazine" class="back-to-mag">← Magazines に戻る</a>' +
+    techBanner +
     '<section class="article-page-hero">' +
       '<span class="article-category-badge">' + article.category + '</span>' +
       '<h1 class="article-page-title">' + article.title + '</h1>' +

@@ -81,9 +81,14 @@
   document.title = note.title + ' — BOATship Notes';
   document.getElementById('page-desc').setAttribute('content', note.excerpt);
 
+  var techBanner = (note.category && note.category.toLowerCase() === 'tech')
+    ? '<section class="article-tech-banner"><span class="tech-word">TECH</span></section>'
+    : '';
+
   var root = document.getElementById('note-root');
   root.innerHTML =
     '<a href="../notes" class="back-to-mag">← Notes に戻る</a>' +
+    techBanner +
     '<section class="article-page-hero">' +
       '<span class="article-category-badge">' + note.category + '</span>' +
       '<h1 class="article-page-title">' + note.title + '</h1>' +
