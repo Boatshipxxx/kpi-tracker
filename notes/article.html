@@ -81,14 +81,14 @@
   document.title = note.title + ' — BOATship Notes';
   document.getElementById('page-desc').setAttribute('content', note.excerpt);
 
-  var techBanner = (note.category && note.category.toLowerCase() === 'tech')
-    ? '<section class="article-tech-banner"><span class="tech-word">TECH</span></section>'
-    : '';
+  var isTech = note.category && note.category.toLowerCase() === 'tech';
+  var heroBlock = isTech
+    ? '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>'
+    : '<div class="article-hero-wrap"><img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img"></div>';
 
   var root = document.getElementById('note-root');
   root.innerHTML =
     '<a href="../notes" class="back-to-mag">← Notes に戻る</a>' +
-    techBanner +
     '<section class="article-page-hero">' +
       '<span class="article-category-badge">' + note.category + '</span>' +
       '<h1 class="article-page-title">' + note.title + '</h1>' +
@@ -98,9 +98,7 @@
         '<span>' + note.num + '</span>' +
       '</div>' +
     '</section>' +
-    '<div class="article-hero-wrap">' +
-      '<img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img">' +
-    '</div>' +
+    heroBlock +
     '<article class="article-body">' + note.body + '</article>' +
     '<a href="../notes" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a>';
 })();

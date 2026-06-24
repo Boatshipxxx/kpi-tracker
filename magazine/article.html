@@ -81,14 +81,14 @@
   document.title = article.title + ' — BOATship Magazines';
   document.getElementById('page-desc').setAttribute('content', article.excerpt);
 
-  var techBanner = (article.category && article.category.toLowerCase() === 'tech')
-    ? '<section class="article-tech-banner"><span class="tech-word">TECH</span></section>'
-    : '';
+  var isTech = article.category && article.category.toLowerCase() === 'tech';
+  var heroBlock = isTech
+    ? '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>'
+    : '<div class="article-hero-wrap"><img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img"></div>';
 
   var root = document.getElementById('article-root');
   root.innerHTML =
     '<a href="../magazine" class="back-to-mag">← Magazines に戻る</a>' +
-    techBanner +
     '<section class="article-page-hero">' +
       '<span class="article-category-badge">' + article.category + '</span>' +
       '<h1 class="article-page-title">' + article.title + '</h1>' +
@@ -98,9 +98,7 @@
         '<span>' + article.num + '</span>' +
       '</div>' +
     '</section>' +
-    '<div class="article-hero-wrap">' +
-      '<img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img">' +
-    '</div>' +
+    heroBlock +
     '<article class="article-body">' + article.body + '</article>' +
     '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
 })();
