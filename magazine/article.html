@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Article — BOATship Magazines</title>
 <meta id="page-desc" name="description" content="">
+<meta id="og-title" property="og:title" content="">
+<meta id="og-desc" property="og:description" content="">
+<meta id="og-image" property="og:image" content="">
+<meta id="og-url" property="og:url" content="">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary_large_image">
+<meta id="tw-title" name="twitter:title" content="">
+<meta id="tw-desc" name="twitter:description" content="">
+<meta id="tw-image" name="twitter:image" content="">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
@@ -144,6 +153,20 @@
 
   document.title = article.title + ' — BOATship Magazines';
   document.getElementById('page-desc').setAttribute('content', article.excerpt);
+
+  // Open Graph / Twitter card meta (resolved to absolute URLs for crawlers)
+  var ogImage = new URL(article.og || article.hero, window.location.href).href;
+  var setMeta = function (elId, value) {
+    var el = document.getElementById(elId);
+    if (el) { el.setAttribute('content', value); }
+  };
+  setMeta('og-title', article.title + ' — BOATship Magazines');
+  setMeta('og-desc', article.excerpt);
+  setMeta('og-image', ogImage);
+  setMeta('og-url', window.location.href);
+  setMeta('tw-title', article.title + ' — BOATship Magazines');
+  setMeta('tw-desc', article.excerpt);
+  setMeta('tw-image', ogImage);
 
   var isTech = article.category && article.category.toLowerCase() === 'tech';
   var isBrutalism = article.id === '03';
