@@ -43,6 +43,70 @@
 
 <div id="article-root"></div>
 
+<!-- Brutalism hero template — injected for article #03 only -->
+<template id="bru03">
+  <div class="article-brutalism-hero-outer">
+    <div class="article-brutalism-hero-frame" id="bruFrame">
+      <div class="article-brutalism-hero-scale" id="bruScale">
+        <!-- noise overlay -->
+        <div aria-hidden="true" style="position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0.16;mix-blend-mode:multiply;background-image:url(&quot;data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;);"></div>
+        <!-- grid -->
+        <div aria-hidden="true" style="position:absolute;inset:0;z-index:1;background-image:linear-gradient(#111 1px,transparent 1px),linear-gradient(90deg,#111 1px,transparent 1px);background-size:60px 60px;opacity:0.07;"></div>
+        <!-- deco: top-right red square -->
+        <div aria-hidden="true" style="position:absolute;top:-40px;right:-30px;width:300px;height:300px;background:#C8391D;border:5px solid #111;transform:rotate(14deg);z-index:2;"></div>
+        <!-- deco: bottom-left black square -->
+        <div aria-hidden="true" style="position:absolute;bottom:-90px;left:-60px;width:260px;height:260px;border:5px solid #111;background:#111;z-index:2;"></div>
+        <!-- header bar -->
+        <div style="position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 30px;border-bottom:5px solid #111;background:#F5E100;z-index:20;font-family:'DotGothic16',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:0.04em;">
+          <div style="display:flex;align-items:center;gap:12px;font-weight:bold;">
+            <span style="display:grid;place-items:center;width:34px;height:34px;background:#111;color:#F5E100;font-family:'Silkscreen',cursive;font-size:16px;">B</span>
+            <span>BOATship</span>
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#C8391D;">MAGAZINE</span>
+          </div>
+          <span style="font-family:'Silkscreen',cursive;font-size:12px;background:#111;color:#F5E100;padding:6px 12px;">DESIGN</span>
+        </div>
+        <!-- article number + date -->
+        <div style="position:absolute;left:30px;top:108px;z-index:15;display:flex;gap:10px;align-items:center;">
+          <span style="font-family:'Silkscreen',cursive;font-size:22px;color:#F5E100;background:#C8391D;border:4px solid #111;box-shadow:6px 6px 0 #111;padding:8px 14px;transform:rotate(-2deg);">#03</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13px;letter-spacing:0.1em;color:#111;">2026.04.10 · 6 MIN READ</span>
+        </div>
+        <!-- BRUTAL / ISM large type -->
+        <div style="position:absolute;left:0;right:0;top:180px;z-index:10;pointer-events:none;">
+          <div style="font-family:'Silkscreen',cursive;font-weight:700;font-size:146px;line-height:0.88;letter-spacing:0.02em;color:transparent;-webkit-text-stroke:4px #111;text-align:center;transform:rotate(-1.2deg);">BRUTAL</div>
+          <div style="font-family:'Silkscreen',cursive;font-weight:700;font-size:146px;line-height:0.8;letter-spacing:0.04em;color:#111;text-align:center;transform:translateX(6px);">ISM</div>
+        </div>
+        <!-- Japanese subtitle -->
+        <div style="position:absolute;left:50%;top:300px;transform:translateX(-50%) rotate(-1.5deg);z-index:16;">
+          <span style="display:inline-block;font-family:'DotGothic16',sans-serif;font-size:38px;line-height:1.1;color:#F5E100;background:#111;border:4px solid #111;box-shadow:9px 9px 0 #C8391D;padding:12px 22px;white-space:nowrap;">ブルータリズムをWebに取り入れる</span>
+        </div>
+        <!-- excerpt -->
+        <div style="position:absolute;left:30px;bottom:78px;z-index:16;max-width:560px;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:14px;line-height:1.6;background:#F5E100;border-left:5px solid #C8391D;padding:6px 0 6px 14px;">飾らない、隠さない、素材をそのまま見せる。<br>BOATship自身のサイトに込めたデザイン哲学。</div>
+        <!-- marquee -->
+        <div style="position:absolute;left:0;right:0;bottom:0;z-index:18;border-top:5px solid #111;background:#111;color:#F5E100;overflow:hidden;padding:9px 0;">
+          <div style="display:flex;width:max-content;animation:mq03 18s linear infinite;align-items:center;">
+            <span style="display:flex;align-items:center;flex:none;">
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">RAW</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#C8391D;">HONEST</span><span style="width:7px;height:7px;background:#F5E100;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">NO DECORATION</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#C8391D;">THICK BORDERS</span><span style="width:7px;height:7px;background:#F5E100;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">HARD SHADOWS</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+            </span>
+            <span style="display:flex;align-items:center;flex:none;" aria-hidden="true">
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">RAW</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#C8391D;">HONEST</span><span style="width:7px;height:7px;background:#F5E100;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">NO DECORATION</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#C8391D;">THICK BORDERS</span><span style="width:7px;height:7px;background:#F5E100;flex:none;display:inline-block;"></span>
+              <span style="font-family:'Silkscreen',cursive;font-size:13px;letter-spacing:0.12em;padding:0 18px;color:#F5E100;">HARD SHADOWS</span><span style="width:7px;height:7px;background:#C8391D;flex:none;display:inline-block;"></span>
+            </span>
+          </div>
+        </div>
+        <!-- outer border overlay -->
+        <div aria-hidden="true" style="position:absolute;inset:0;border:6px solid #111;z-index:19;pointer-events:none;"></div>
+      </div>
+    </div>
+  </div>
+</template>
+
 <section class="newsletter-section" id="newsletter">
   <h2>Studio<br>Updates</h2>
   <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
@@ -82,9 +146,16 @@
   document.getElementById('page-desc').setAttribute('content', article.excerpt);
 
   var isTech = article.category && article.category.toLowerCase() === 'tech';
-  var heroBlock = isTech
-    ? '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>'
-    : '<div class="article-hero-wrap"><img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img"></div>';
+  var isBrutalism = article.id === '03';
+
+  var heroBlock;
+  if (isTech) {
+    heroBlock = '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>';
+  } else if (isBrutalism) {
+    heroBlock = '<div id="bru-slot"></div>';
+  } else {
+    heroBlock = '<div class="article-hero-wrap"><img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img"></div>';
+  }
 
   var root = document.getElementById('article-root');
   root.innerHTML =
@@ -101,6 +172,23 @@
     heroBlock +
     '<article class="article-body">' + article.body + '</article>' +
     '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
+
+  if (isBrutalism) {
+    var tpl = document.getElementById('bru03');
+    var slot = document.getElementById('bru-slot');
+    if (tpl && slot) {
+      slot.appendChild(document.importNode(tpl.content, true));
+      function scaleBru() {
+        var frame = document.getElementById('bruFrame');
+        var inner = document.getElementById('bruScale');
+        if (frame && inner) {
+          inner.style.transform = 'scale(' + (frame.clientWidth / 1200) + ')';
+        }
+      }
+      scaleBru();
+      window.addEventListener('resize', scaleBru);
+    }
+  }
 })();
 </script>
 </body>
