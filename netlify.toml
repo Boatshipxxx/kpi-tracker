@@ -9,8 +9,38 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[redirects]]
+  from = "/magazine"
+  to = "/magazine/index.html"
+  status = 200
+
+[[redirects]]
   from = "/magazine/"
   to = "/magazine/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/notes"
+  to = "/notes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/notes/"
+  to = "/notes/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/works"
+  to = "/works/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/works/"
+  to = "/works/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/about/index.html"
   status = 200
 
 [[redirects]]
@@ -19,11 +49,11 @@
   status = 200
 
 [[redirects]]
-  from = "/concrete/"
-  to = "/concrete/index.html"
+  from = "/admin"
+  to = "/admin/index.html"
   status = 200
 
 [[redirects]]
-  from = "/works/"
-  to = "/works/index.html"
+  from = "/admin/"
+  to = "/admin/index.html"
   status = 200

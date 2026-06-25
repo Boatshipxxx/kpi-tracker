@@ -325,6 +325,32 @@ a { color: inherit; text-decoration: none; }
 .publish-step a { color: var(--red); border-bottom: 1px solid transparent; }
 .publish-step a:hover { border-bottom-color: var(--red); }
 
+/* --- Settings Modal --- */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: #111;
+  border: 2px solid var(--yellow);
+  padding: 2rem;
+  width: 100%;
+  max-width: 500px;
+  margin: 1rem;
+}
+.modal-box h3 {
+  font-family: var(--dot);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.modal-actions { display: flex; gap: 1rem; margin-top: 1.5rem; }
+
 /* --- Toast --- */
 #toast {
   position: fixed;
@@ -377,7 +403,8 @@ a { color: inherit; text-decoration: none; }
       <button class="btn" id="section-mag-btn" onclick="switchSection('magazine')" style="background:var(--yellow);color:var(--black);">Magazines</button>
       <button class="btn" id="section-notes-btn" onclick="switchSection('notes')">Notes</button>
       <a id="site-link" href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
-      <button class="btn btn-solid" onclick="downloadDataJs()">データをダウンロード ↓</button>
+      <button class="btn" onclick="openSettings()" title="GitHub PAT設定">⚙ 設定</button>
+      <button class="btn btn-solid" id="header-publish-btn" onclick="publishToGitHub()">GitHubに公開 ↑</button>
     </div>
   </div>
 
@@ -477,36 +504,48 @@ a { color: inherit; text-decoration: none; }
 
         <div class="editor-actions">
           <button class="btn btn-solid" onclick="saveArticle()">変更を保存</button>
-          <button class="btn" onclick="downloadDataJs()">データをダウンロード ↓</button>
+          <button class="btn" id="publish-btn" onclick="publishToGitHub()" style="background:var(--yellow);color:var(--black);border-color:var(--yellow);">GitHubに公開 ↑</button>
+          <button class="btn" onclick="downloadDataJs()">ダウンロード ↓</button>
           <button class="btn btn-red" onclick="deleteArticle()">この記事を削除</button>
         </div>
 
         <div class="publish-guide">
-          <h3>変更を公開する方法</h3>
+          <h3>公開の流れ</h3>
           <div class="publish-steps">
             <div class="publish-step">
               <span class="step-num">1</span>
-              <span>「articles.js をダウンロード」をクリック</span>
+              <span>「変更を保存」で内容を確定</span>
             </div>
             <div class="publish-step">
               <span class="step-num">2</span>
-              <span>
-                <a href="https://github.com/boatshipxxx/kpi-tracker/blob/main/magazine/articles.js" target="_blank">
-                  GitHub の magazine/articles.js
-                </a> を開いて鉛筆アイコン（Edit）をクリック
-              </span>
+              <span>「GitHubに公開」をクリック → 自動でGitHubにコミット</span>
             </div>
             <div class="publish-step">
               <span class="step-num">3</span>
-              <span>内容をすべて削除し、ダウンロードしたファイルの内容を貼り付け</span>
-            </div>
-            <div class="publish-step">
-              <span class="step-num">4</span>
-              <span>「Commit changes」→ 数分でサイトに反映されます</span>
+              <span>数分でサイトに反映されます（初回は⚙設定でGitHub PATを登録）</span>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" id="settings-modal" onclick="if(event.target===this)closeSettings()">
+  <div class="modal-box">
+    <h3>⚙ GitHub 設定</h3>
+    <div class="field-label">Personal Access Token</div>
+    <input type="password" class="field-input" id="gh-pat" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" style="width:100%;margin-bottom:0.6rem;">
+    <div class="field-hint" style="line-height:1.8;">
+      GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens<br>
+      権限: <strong style="color:var(--yellow);">Contents: Read and write</strong><br>
+      対象リポジトリ: boatshipxxx/kpi-tracker<br>
+      <span style="color:rgba(245,225,0,0.35);">※ブラウザのローカルストレージに保存されます</span>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-solid" onclick="saveSettings()">保存</button>
+      <button class="btn" onclick="closeSettings()">キャンセル</button>
     </div>
   </div>
 </div>
@@ -722,11 +761,108 @@ function today() {
   return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0');
 }
 
-function showToast(msg) {
+function showToast(msg, duration) {
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function () { t.classList.remove('show'); }, 3000);
+  setTimeout(function () { t.classList.remove('show'); }, duration || 3000);
+}
+
+// --- Settings ---
+function openSettings() {
+  var stored = localStorage.getItem('gh_pat') || '';
+  document.getElementById('gh-pat').value = stored;
+  document.getElementById('settings-modal').classList.add('open');
+  setTimeout(function () { document.getElementById('gh-pat').focus(); }, 100);
+}
+
+function closeSettings() {
+  document.getElementById('settings-modal').classList.remove('open');
+}
+
+function saveSettings() {
+  var pat = document.getElementById('gh-pat').value.trim();
+  if (pat) localStorage.setItem('gh_pat', pat);
+  else localStorage.removeItem('gh_pat');
+  closeSettings();
+  showToast('設定を保存しました');
+}
+
+// --- GitHub Publish ---
+var GITHUB_REPO = 'boatshipxxx/kpi-tracker';
+var GITHUB_BRANCH = 'main';
+
+async function publishToGitHub() {
+  var pat = localStorage.getItem('gh_pat');
+  if (!pat) {
+    openSettings();
+    showToast('まずGitHub PATを⚙設定から登録してください', 4000);
+    return;
+  }
+
+  var filePath = currentSection === 'magazine' ? 'magazine/articles.js' : 'notes/notes.js';
+  var content = currentSection === 'magazine'
+    ? serializeData(magazineData, 'ARTICLES')
+    : serializeData(notesData, 'NOTES');
+
+  var btn = document.getElementById('publish-btn');
+  var hBtn = document.getElementById('header-publish-btn');
+  btn.textContent = '公開中...';
+  btn.disabled = true;
+  hBtn.textContent = '公開中...';
+  hBtn.disabled = true;
+
+  try {
+    var headers = {
+      'Authorization': 'token ' + pat,
+      'Accept': 'application/vnd.github.v3+json',
+      'Content-Type': 'application/json'
+    };
+
+    // Get current file SHA
+    var getRes = await fetch(
+      'https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + filePath + '?ref=' + GITHUB_BRANCH,
+      { headers: headers }
+    );
+    if (!getRes.ok) {
+      if (getRes.status === 401) throw new Error('PATが無効です。⚙設定を確認してください');
+      throw new Error('ファイル取得エラー (' + getRes.status + ')');
+    }
+    var fileData = await getRes.json();
+    var sha = fileData.sha;
+
+    // Encode to base64 (UTF-8 safe)
+    var encoded = btoa(unescape(encodeURIComponent(content)));
+
+    // Commit updated file
+    var putRes = await fetch(
+      'https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + filePath,
+      {
+        method: 'PUT',
+        headers: headers,
+        body: JSON.stringify({
+          message: 'Update ' + filePath + ' via BOATship Admin',
+          content: encoded,
+          sha: sha,
+          branch: GITHUB_BRANCH
+        })
+      }
+    );
+
+    if (!putRes.ok) {
+      var errData = await putRes.json();
+      throw new Error(errData.message || '公開エラー (' + putRes.status + ')');
+    }
+
+    showToast('GitHubに公開しました！数分でサイトに反映されます。', 5000);
+  } catch (e) {
+    showToast('エラー: ' + e.message, 5000);
+  } finally {
+    btn.textContent = 'GitHubに公開 ↑';
+    btn.disabled = false;
+    hBtn.textContent = 'GitHubに公開 ↑';
+    hBtn.disabled = false;
+  }
 }
 </script>
 </body>
