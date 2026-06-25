@@ -18,15 +18,15 @@
 </div>
 
 <header class="top-nav">
-  <div class="nav-logo-wrapper">
+  <a href="../" class="nav-logo-wrapper">
     <img src="../images/logo.jpg" alt="BOATship" class="company-logo">
     <span>BOATship</span>
-  </div>
+  </a>
   <nav class="nav-links">
     <a href="../works">Works</a>
     <a href="../magazine">Magazines</a>
     <a href="../notes">Notes</a>
-    <a href="../about">About</a>
+    <a href="../about">Company</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -38,7 +38,7 @@
   <a href="../works" onclick="closeMenu()">Works</a>
   <a href="../magazine" onclick="closeMenu()">Magazines</a>
   <a href="../notes" onclick="closeMenu()">Notes</a>
-  <a href="../about" onclick="closeMenu()">About</a>
+  <a href="../about" onclick="closeMenu()">Company</a>
 </div>
 
 <div id="note-root"></div>
@@ -61,7 +61,7 @@
   <div class="nav-links">
     <a href="../works">Works</a>
     <a href="../magazine">Magazines</a>
-    <a href="../about">About</a>
+    <a href="../about">Company</a>
   </div>
 </footer>
 
@@ -81,6 +81,11 @@
   document.title = note.title + ' — BOATship Notes';
   document.getElementById('page-desc').setAttribute('content', note.excerpt);
 
+  var isTech = note.category && note.category.toLowerCase() === 'tech';
+  var heroBlock = isTech
+    ? '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>'
+    : '<div class="article-hero-wrap"><img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img"></div>';
+
   var root = document.getElementById('note-root');
   root.innerHTML =
     '<a href="../notes" class="back-to-mag">← Notes に戻る</a>' +
@@ -93,9 +98,7 @@
         '<span>' + note.num + '</span>' +
       '</div>' +
     '</section>' +
-    '<div class="article-hero-wrap">' +
-      '<img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img">' +
-    '</div>' +
+    heroBlock +
     '<article class="article-body">' + note.body + '</article>' +
     '<a href="../notes" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a>';
 })();

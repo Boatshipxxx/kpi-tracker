@@ -26,10 +26,21 @@
   .noise{position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:9999;opacity:0.12;mix-blend-mode:multiply;background-image:url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 
   .float-logo{position:fixed;top:40%;left:-100px;z-index:50;pointer-events:none;width:80px;height:80px;animation:floatAcross 22s linear infinite;}
-  .float-logo img{width:100%;height:100%;object-fit:contain;animation:spin 20s linear infinite;filter:grayscale(100%) contrast(800%) drop-shadow(8px 8px 0 #111);border:2px solid #111;background:#fff;padding:5px;}
+  .float-logo img{width:100%;height:100%;object-fit:contain;animation:spin 20s linear infinite;filter:drop-shadow(0 6px 10px rgba(17,17,17,0.25));}
 
   header.site{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.5rem;border-bottom:3px solid #111;font-family:'DotGothic16',sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;background:#F5E100;position:relative;z-index:100;}
-  header.site .brand{display:flex;align-items:center;gap:10px;font-weight:bold;}
+  header.site .brand{display:flex;align-items:center;gap:10px;font-weight:bold;text-decoration:none;color:inherit;}
+  .burger{display:none;flex-direction:column;justify-content:space-between;width:28px;height:20px;background:none;border:none;cursor:pointer;padding:0;z-index:200;}
+  .burger span{display:block;width:100%;height:2.5px;background:#111;transition:transform .3s,opacity .3s;}
+  .burger.open span:nth-child(1){transform:translateY(8.75px) rotate(45deg);}
+  .burger.open span:nth-child(2){opacity:0;}
+  .burger.open span:nth-child(3){transform:translateY(-8.75px) rotate(-45deg);}
+  .mob-menu{position:fixed;inset:0;background:#F5E100;z-index:150;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2.5rem;transform:translateX(100%);transition:transform .4s cubic-bezier(.16,1,.3,1);border-left:4px solid #111;}
+  .mob-menu.open{transform:translateX(0);}
+  .mob-menu a{font-family:'DotGothic16',sans-serif;font-size:2rem;text-decoration:none;color:#111;transition:color .2s;}
+  .mob-menu a:hover{color:#C8391D;}
+  .mob-menu .home-link{color:#C8391D;border-bottom:3px solid #C8391D;padding-bottom:4px;}
+  .mob-menu .home-link:hover{color:#111;border-bottom-color:#111;}
   header.site .brand img{height:40px;width:40px;object-fit:contain;filter:grayscale(100%) contrast(500%) brightness(0.8);border:1.5px solid #111;padding:2px;background:#fff;}
   header.site nav{display:flex;gap:2rem;}
   header.site nav a{text-decoration:none;transition:color .2s;}
@@ -84,7 +95,7 @@
   .about .deco.a{bottom:-5%;left:-5%;width:250px;height:250px;transform:rotate(15deg);}
   .about .deco.b{bottom:-2%;right:-5%;width:200px;height:200px;transform:rotate(-10deg);}
   .about .inner{max-width:600px;margin:0 auto;position:relative;z-index:2;}
-  .about h2{font-family:'Silkscreen',cursive;font-size:clamp(3rem,10vw,7rem);color:#E8E3CF;-webkit-text-stroke:3px #111;margin-bottom:2rem;display:inline-block;transform:rotate(2deg);}
+  .about h2{font-family:'DotGothic16',sans-serif;font-size:clamp(2.5rem,7vw,5.5rem);letter-spacing:-0.02em;color:#E8E3CF;-webkit-text-stroke:3px #111;margin-bottom:2rem;display:inline-block;transform:rotate(2deg);}
   .about p{font-family:'DotGothic16',sans-serif;font-size:1rem;line-height:1.8;margin-bottom:1.5rem;}
   .about .socials{display:flex;justify-content:center;gap:2rem;margin:2.5rem 0;font-family:'DotGothic16',sans-serif;font-size:1.1rem;}
   .about .socials a{color:#C8391D;text-decoration:none;border-bottom:2px solid transparent;}
@@ -117,6 +128,7 @@
     .card:nth-child(2n+1){border-right:3px solid #111;}
     header.site nav,.subnav .right{display:none;}
     .subnav .left span{font-size:10px;}
+    .burger{display:flex;}
   }
   @media(max-width:560px){
     .grid{grid-template-columns:1fr;}
@@ -131,17 +143,28 @@
 <div class="float-logo" aria-hidden="true"><img src="images/logo.jpg" alt=""></div>
 
 <header class="site">
-  <div class="brand">
+  <a href="./" class="brand">
     <img src="images/logo.jpg" alt="BOATship">
     <span>BOATship</span>
-  </div>
+  </a>
   <nav>
     <a href="#works">Works</a>
-    <a href="#about">Magazines</a>
-    <a href="#about">Notes</a>
-    <a href="#about">About</a>
+    <a href="magazine">Magazines</a>
+    <a href="notes">Notes</a>
+    <a href="about">Company</a>
   </nav>
+  <button class="burger" id="burger" aria-label="メニューを開く">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<div class="mob-menu" id="mobMenu" aria-hidden="true">
+  <a href="./" class="home-link">HOME</a>
+  <a href="#works" class="mob-link">Works</a>
+  <a href="magazine" class="mob-link">Magazines</a>
+  <a href="notes" class="mob-link">Notes</a>
+  <a href="about" class="mob-link">Company</a>
+</div>
 
 <section class="hero" id="hero">
   <div class="canvas-wrap" id="canvasWrap">
@@ -163,8 +186,8 @@
   </div>
   <div class="right">
     <a href="#works">Works</a>
-    <a href="#about">Magazines</a>
-    <a href="#about">About</a>
+    <a href="magazine">Magazines</a>
+    <a href="about">Company</a>
   </div>
 </div>
 
@@ -184,13 +207,13 @@
   <img class="deco a" src="images/card-05.jpg" alt="" aria-hidden="true">
   <img class="deco b" src="images/card-06.jpg" alt="" aria-hidden="true">
   <div class="inner" data-reveal>
-    <h2>ABOUT</h2>
+    <h2>COMPANY</h2>
     <p>BOATshipはクリエイティブでPR/広報戦略を得意とするチームです。カンパニーメディア制作・広報戦略策定・ブランドコンサルティングを得意とし、社会へインパクトある発信を船頭します。広報メディアでお困りの方はすぐにお問い合わせください。</p>
     <div class="socials">
       <a href="#">Instagram</a>
       <a href="#">X (Twitter)</a>
     </div>
-    <a href="#about" class="btn">MORE ABOUT →</a>
+    <a href="about" class="btn">VIEW COMPANY →</a>
   </div>
 </section>
 
@@ -213,8 +236,8 @@
   </div>
   <div class="right">
     <a href="#works">Works</a>
-    <a href="#about">Magazines</a>
-    <a href="#about">About</a>
+    <a href="magazine">Magazines</a>
+    <a href="about">Company</a>
   </div>
 </footer>
 
@@ -248,18 +271,19 @@
 
   /* ---------- Works grid ---------- */
   var WORKS = [
-    {tag:"E-Commerce", num:"#01", img:"images/works-eyewear.jpg",    title:"EYEWEAR<br>MEBIUS",            cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"E-Commerce", num:"#02", img:"images/works-nahrin.jpg",     title:"nahrin —<br>ナチュラルコスメEC", cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"Media",      num:"#03", img:"images/works-josai.jpg",      title:"TEAM JOSAI! —<br>大学公式WEBマガジン", cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"Corporate",  num:"#04", img:"images/works-shakeshack.jpg", title:"Shake Shack<br>Japan",         cap:"VIEW PROJECT →", href:"#works"},
-    {tag:"Service",    num:"#05", img:"images/card-02.jpg",          title:"Creative Design<br>+ Branding", cap:"LEARN MORE →",  href:"#about"},
-    {tag:"Service",    num:"#06", img:"images/card-06.jpg",          title:"等価交換<br>報酬制度",          cap:"LEARN MORE →",  href:"#about"}
+    {tag:"E-Commerce", num:"#01", img:"images/works-eyewear.jpg",    title:"EYEWEAR<br>MEBIUS",            cap:"VIEW PROJECT →", href:"https://eyewearmebius.shop/"},
+    {tag:"E-Commerce", num:"#02", img:"images/works-nahrin.jpg",     title:"nahrin —<br>ナチュラルコスメEC", cap:"VIEW PROJECT →", href:"https://www.nahrin.jp/"},
+    {tag:"Media",      num:"#03", img:"images/works-josai.jpg",      title:"TEAM JOSAI! —<br>大学公式WEBマガジン", cap:"VIEW PROJECT →", href:"https://www.josai.ac.jp/tjp/"},
+    {tag:"Corporate",  num:"#04", img:"images/works-shakeshack.jpg", title:"Shake Shack<br>Japan",         cap:"VIEW PROJECT →", href:"https://shakeshack.jp/"},
+    {tag:"Service",    num:"#05", img:"images/card-02.jpg",          title:"Creative Design<br>+ Branding", cap:"LEARN MORE →",  href:"about"},
+    {tag:"Service",    num:"#06", img:"images/card-06.jpg",          title:"等価交換<br>報酬制度",          cap:"LEARN MORE →",  href:"about"}
   ];
   var grid = document.getElementById("grid");
   WORKS.forEach(function(w){
     var a = document.createElement("a");
     a.className = "card";
     a.href = w.href;
+    if(w.href.startsWith("http")){a.target="_blank";a.rel="noopener noreferrer";}
     a.setAttribute("data-reveal","");
     a.innerHTML =
       '<div class="meta"><span>'+w.tag+'</span><span class="num">'+w.num+'</span></div>'+
@@ -409,6 +433,30 @@
     }, 50);
   }
   waitThree();
+
+  /* ---------- Burger menu ---------- */
+  var burger = document.getElementById('burger');
+  var mobMenu = document.getElementById('mobMenu');
+  function closeMob(){
+    burger.classList.remove('open');
+    mobMenu.classList.remove('open');
+    mobMenu.setAttribute('aria-hidden','true');
+    document.body.style.overflow = '';
+  }
+  burger.addEventListener('click', function(){
+    var opening = !mobMenu.classList.contains('open');
+    if(opening){
+      burger.classList.add('open');
+      mobMenu.classList.add('open');
+      mobMenu.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+    } else {
+      closeMob();
+    }
+  });
+  mobMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', closeMob);
+  });
 })();
 </script>
 </body>

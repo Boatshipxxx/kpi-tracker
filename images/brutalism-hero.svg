@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" fill="none">
+  <!-- base -->
+  <rect width="1200" height="675" fill="#F5E100"/>
+
+  <!-- raw structural grid -->
+  <g stroke="#111111" stroke-width="2" opacity="0.25">
+    <line x1="0" y1="112" x2="1200" y2="112"/>
+    <line x1="0" y1="225" x2="1200" y2="225"/>
+    <line x1="0" y1="337" x2="1200" y2="337"/>
+    <line x1="0" y1="450" x2="1200" y2="450"/>
+    <line x1="0" y1="562" x2="1200" y2="562"/>
+    <line x1="150" y1="0" x2="150" y2="675"/>
+    <line x1="300" y1="0" x2="300" y2="675"/>
+    <line x1="450" y1="0" x2="450" y2="675"/>
+    <line x1="600" y1="0" x2="600" y2="675"/>
+    <line x1="750" y1="0" x2="750" y2="675"/>
+    <line x1="900" y1="0" x2="900" y2="675"/>
+    <line x1="1050" y1="0" x2="1050" y2="675"/>
+  </g>
+
+  <!-- heavy concrete blocks -->
+  <rect x="60" y="70" width="360" height="240" fill="#111111"/>
+  <rect x="44" y="54" width="360" height="240" fill="none" stroke="#111111" stroke-width="4"/>
+
+  <rect x="820" y="380" width="320" height="230" fill="#C8391D"/>
+  <rect x="836" y="396" width="320" height="230" fill="none" stroke="#111111" stroke-width="4"/>
+
+  <!-- offset slab with red shadow -->
+  <rect x="500" y="120" width="540" height="150" fill="#C8391D"/>
+  <rect x="486" y="106" width="540" height="150" fill="#111111"/>
+  <rect x="486" y="106" width="540" height="150" fill="none" stroke="#F5E100" stroke-width="3"/>
+
+  <!-- tilted accent bar -->
+  <rect x="120" y="430" width="430" height="70" fill="#F5E100" stroke="#111111" stroke-width="5" transform="rotate(-4 335 465)"/>
+
+  <!-- BRUTAL / ISM type -->
+  <text x="500" y="200" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="110" letter-spacing="-4" fill="#F5E100">BRUTAL</text>
+  <text x="100" y="245" font-family="'Arial Black','Helvetica Neue',Arial,sans-serif" font-weight="900" font-size="120" letter-spacing="-5" fill="#F5E100">ISM</text>
+
+  <!-- tilted bar label -->
+  <text x="150" y="478" font-family="'Courier New',monospace" font-weight="700" font-size="34" letter-spacing="6" fill="#111111" transform="rotate(-4 335 465)">RAW // HONEST</text>
+
+  <!-- red block label -->
+  <text x="855" y="470" font-family="'Courier New',monospace" font-weight="700" font-size="26" letter-spacing="3" fill="#F5E100">NO DECORATION.</text>
+  <text x="855" y="505" font-family="'Courier New',monospace" font-weight="700" font-size="26" letter-spacing="3" fill="#F5E100">ONLY STRUCTURE.</text>
+
+  <!-- monospace corner meta -->
+  <text x="60" y="630" font-family="'Courier New',monospace" font-size="22" letter-spacing="2" fill="#111111">#111111 / #F5E100 / #C8391D</text>
+  <text x="1140" y="40" text-anchor="end" font-family="'Courier New',monospace" font-size="22" letter-spacing="4" fill="#111111">BOATship — DESIGN</text>
+
+  <!-- hard frame -->
+  <rect x="10" y="10" width="1180" height="655" fill="none" stroke="#111111" stroke-width="8"/>
+</svg>
