@@ -109,6 +109,18 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
   .cta .mail{margin-top:26px;font-size:13px;letter-spacing:0.1em;color:var(--mut);}
   .cta .mail a{color:var(--key);text-decoration:none;border-bottom:1px solid var(--key-line);padding-bottom:2px;}
 
+  /* ---- Newsletter ---- */
+  .about-newsletter{padding:clamp(70px,10vw,130px) 6vw;border-top:1px solid var(--key-soft);background:var(--bg2);text-align:center;}
+  .about-newsletter .label{font-family:'Silkscreen';font-size:11px;letter-spacing:0.1em;color:var(--key);margin-bottom:20px;}
+  .about-newsletter h2{font-family:'DotGothic16',sans-serif;font-size:clamp(28px,4vw,56px);font-weight:400;line-height:1;letter-spacing:-0.02em;color:#f2f5f9;margin-bottom:10px;}
+  .about-newsletter .sub{font-size:13px;color:var(--mut);margin-bottom:36px;letter-spacing:0.05em;}
+  .about-newsletter form{display:flex;max-width:480px;margin:0 auto;border:1px solid var(--key-line);}
+  .about-newsletter input{flex:1;padding:14px 18px;font-family:'IBM Plex Mono',monospace;font-size:13px;background:rgba(7,107,175,0.06);color:var(--ink);border:none;outline:none;}
+  .about-newsletter input::placeholder{color:var(--mut);}
+  .about-newsletter button{font-family:'Silkscreen';font-size:11px;letter-spacing:0.1em;padding:14px 22px;background:var(--key);color:#fff;white-space:nowrap;border:none;cursor:pointer;transition:background .25s;}
+  .about-newsletter button:hover{background:#0582d4;}
+  .about-newsletter .fine{font-size:11px;color:var(--mut2);margin-top:14px;letter-spacing:0.05em;}
+
   /* ---- Footer ---- */
   footer.site{padding:40px 6vw;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;background:var(--bg2);border-top:1px solid var(--key-soft);}
   footer.site .left{display:flex;align-items:center;gap:12px;}
@@ -263,6 +275,18 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
   <h2 class="editable">Ship to<br><span>the Top</span></h2>
   <a href="mailto:shinya@boatship.jp" class="btn">CONTACT US →</a>
   <p class="mail">or email us at <a href="mailto:shinya@boatship.jp">shinya@boatship.jp</a></p>
+</section>
+
+<!-- Newsletter -->
+<section class="about-newsletter" data-reveal>
+  <p class="label">STUDIO UPDATES</p>
+  <h2>Studio<br>Updates</h2>
+  <p class="sub">新着の制作事例やMagazinesをメールでお届け。</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST">
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <button type="submit">SUBSCRIBE</button>
+  </form>
+  <p class="fine">* スパムは送りません。いつでも解除できます。</p>
 </section>
 
 <footer class="site">
