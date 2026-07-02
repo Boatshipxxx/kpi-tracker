@@ -695,7 +695,7 @@ function saveArticle() {
     document.getElementById('editor-form-title').textContent = (currentSection === 'magazine' ? '記事' : 'Note') + 'を編集 — ' + data.num;
   } else {
     var idx = arr.findIndex(function (x) { return x.id === currentId; });
-    if (idx !== -1) { arr[idx] = data; currentId = data.id; setCurrentData(arr); }
+    if (idx !== -1) { arr[idx] = Object.assign({}, arr[idx], data); currentId = data.id; setCurrentData(arr); }
   }
   renderList();
   showToast('保存しました。データをダウンロードして公開してください。');
@@ -727,6 +727,7 @@ function serializeData(arr, constName) {
     if (constName === 'ARTICLES') {
       lines.push('    thumb: ' + JSON.stringify(a.thumb || '') + ',');
       lines.push('    hero: ' + JSON.stringify(a.hero || '') + ',');
+      if (a.og) lines.push('    og: ' + JSON.stringify(a.og) + ',');
     } else {
       lines.push('    image: ' + JSON.stringify(a.image || a.thumb || '') + ',');
     }
