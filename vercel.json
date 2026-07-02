@@ -1,0 +1,12 @@
+{
+  "trailingSlash": true,
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "boatship.jp" }],
+      "destination": "https://www.boatship.jp/$1",
+      "permanent": true
+    }
+  ]
+}
