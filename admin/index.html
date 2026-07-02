@@ -404,7 +404,7 @@ a { color: inherit; text-decoration: none; }
       <button class="btn" id="section-notes-btn" onclick="switchSection('notes')">Notes</button>
       <a id="site-link" href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
       <button class="btn" onclick="openSettings()" title="GitHub PAT設定">⚙ 設定</button>
-      <button class="btn btn-solid" id="header-publish-btn" onclick="publishToGitHub()">GitHubに公開 ↑</button>
+      <button class="btn btn-solid" id="header-publish-btn" onclick="publishToGitHub()">サイトに公開 ↑</button>
     </div>
   </div>
 
@@ -421,7 +421,7 @@ a { color: inherit; text-decoration: none; }
       <div class="editor-welcome" id="editor-welcome">
         <h2>編集する記事を選択</h2>
         <p>左のリストから記事をクリックするか、「＋ 新規記事を作成」を押してください。</p>
-        <p style="margin-top:1rem;font-size:11px;">編集後は「articles.js をダウンロード」でファイルを保存し、GitHubにアップロードすると公開されます。</p>
+        <p style="margin-top:1rem;font-size:11px;">編集後は「変更を保存」→「サイトに公開」で www.boatship.jp に自動反映されます（1〜2分）。</p>
       </div>
 
       <div class="editor-form" id="editor-form">
@@ -504,7 +504,7 @@ a { color: inherit; text-decoration: none; }
 
         <div class="editor-actions">
           <button class="btn btn-solid" onclick="saveArticle()">変更を保存</button>
-          <button class="btn" id="publish-btn" onclick="publishToGitHub()" style="background:var(--yellow);color:var(--black);border-color:var(--yellow);">GitHubに公開 ↑</button>
+          <button class="btn" id="publish-btn" onclick="publishToGitHub()" style="background:var(--yellow);color:var(--black);border-color:var(--yellow);">サイトに公開 ↑</button>
           <button class="btn" onclick="downloadDataJs()">ダウンロード ↓</button>
           <button class="btn btn-red" onclick="deleteArticle()">この記事を削除</button>
         </div>
@@ -518,11 +518,11 @@ a { color: inherit; text-decoration: none; }
             </div>
             <div class="publish-step">
               <span class="step-num">2</span>
-              <span>「GitHubに公開」をクリック → 自動でGitHubにコミット</span>
+              <span>「サイトに公開」をクリック → 変更が自動保存されます</span>
             </div>
             <div class="publish-step">
               <span class="step-num">3</span>
-              <span>数分でサイトに反映されます（初回は⚙設定でGitHub PATを登録）</span>
+              <span>1〜2分で www.boatship.jp に反映されます（初回のみ⚙設定でGitHub PATを登録）</span>
             </div>
           </div>
         </div>
@@ -698,7 +698,7 @@ function saveArticle() {
     if (idx !== -1) { arr[idx] = Object.assign({}, arr[idx], data); currentId = data.id; setCurrentData(arr); }
   }
   renderList();
-  showToast('保存しました。データをダウンロードして公開してください。');
+  showToast('保存しました。「サイトに公開」で本番に反映されます。');
 }
 
 function deleteArticle() {
@@ -753,7 +753,7 @@ function downloadDataJs() {
   a.href = URL.createObjectURL(blob);
   a.download = filename;
   a.click();
-  showToast('ダウンロードしました！GitHubにアップロードして公開。');
+  showToast('ダウンロードしました（バックアップ用）。');
 }
 
 // --- Helpers ---
@@ -855,13 +855,13 @@ async function publishToGitHub() {
       throw new Error(errData.message || '公開エラー (' + putRes.status + ')');
     }
 
-    showToast('GitHubに公開しました！数分でサイトに反映されます。', 5000);
+    showToast('公開しました！1〜2分で www.boatship.jp に反映されます。', 5000);
   } catch (e) {
     showToast('エラー: ' + e.message, 5000);
   } finally {
-    btn.textContent = 'GitHubに公開 ↑';
+    btn.textContent = 'サイトに公開 ↑';
     btn.disabled = false;
-    hBtn.textContent = 'GitHubに公開 ↑';
+    hBtn.textContent = 'サイトに公開 ↑';
     hBtn.disabled = false;
   }
 }
