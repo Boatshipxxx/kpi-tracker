@@ -25,6 +25,16 @@ BOATship のコーポレートサイト & オウンドメディア（www.boatshi
 3. 「📊 Insights」で記事ごとの KPI・エビデンス数・ルールベースのチューニング提案を確認
 4. 提案にもとづき記事を修正 → 再公開 → 再計測、のループで記事を育てる
 
+### 週次自動更新（GitHub Actions）
+
+`.github/workflows/notes-weekly.yml` により、**毎週月曜 09:03 JST に Claude が自動で**:
+
+1. インナーブランディング / 広報企画のうち本数が少ないテーマで新記事を1本執筆（実在の学術エビデンス付き）
+2. KPI記録済みの記事に下記の判定ルールを適用してチューニング
+3. ドラフトPRを作成（マージ＝本番公開は人間が判断）
+
+**初回セットアップ**: リポジトリの Settings → Secrets and variables → Actions に `ANTHROPIC_API_KEY` を登録してください（Claude Pro/Max の場合は `claude setup-token` で取得した `CLAUDE_CODE_OAUTH_TOKEN` でも可。workflow 内のコメント参照）。Actions タブから手動実行（Run workflow）も可能です。
+
 ### チューニングの判定ルール（admin 📊 Insights）
 
 - 学術エビデンス未設定 → 出典の追加を提案

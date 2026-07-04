@@ -1,0 +1,74 @@
+# BOATship Notes — 週次自動更新(記事生成 + KPIチューニング)
+#
+# 毎週月曜 09:03 JST に Claude が /notes の新記事を1本執筆し、
+# KPI記録済みの既存記事をチューニングして、ドラフトPRを作成します。
+# マージ(=本番公開)は人間が行います。
+#
+# ■ 必要なセットアップ(初回のみ)
+#   リポジトリの Settings → Secrets and variables → Actions に以下のいずれかを登録:
+#   - ANTHROPIC_API_KEY        … Anthropic API キー(console.anthropic.com で発行)
+#   - CLAUDE_CODE_OAUTH_TOKEN  … Claude Pro/Max の場合。ローカルで `claude setup-token` を実行して取得
+#     (OAuth を使う場合は下の anthropic_api_key 行を claude_code_oauth_token に差し替え)
+#
+# 手動実行: Actions タブ → "Notes Weekly Auto-Update" → Run workflow
+
+name: Notes Weekly Auto-Update
+
+on:
+  schedule:
+    - cron: "3 0 * * 1" # 毎週月曜 00:03 UTC = 09:03 JST
+  workflow_dispatch: {}
+
+jobs:
+  weekly-note:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          claude_args: |
+            --allowedTools "Bash(git:*),Bash(gh:*),Bash(node:*),Read,Write,Edit,Glob,Grep"
+          prompt: |
+            あなたは BOATship のオウンドメディア(このリポジトリの /notes)の週次自動更新を担当します。
+            このメディアはインナーブランディングと広報企画に特化しており、記事は学術エビデンスと
+            実際のアクセス実績でチューニングします。まず README.md の「Notes」セクションを読んでください。
+
+            手順:
+
+            1. 【現状把握】notes/notes.js の NOTES 配列を読み、テーマ(inner-branding / pr-planning / culture)の
+               本数バランスと、各記事の kpi(views, readRate, reactions, recordedAt)・tuningMemo を確認する。
+
+            2. 【新記事を1本執筆】inner-branding と pr-planning のうち本数が少ない方(同数なら直近と逆)のテーマで
+               新記事を1本書いて NOTES に追加する:
+               - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)
+               - 文体・構成は既存記事(特に n05, n06)を踏襲: 導入p + h2見出し4〜6個、日本語。
+                 BOATshipは「Business Art Team」を名乗るデザイン/PRスタジオで、等価交換報酬制度などの実践を持つ
+               - evidence 配列に実在する学術文献・調査を2〜4件付ける(title / source / url)。
+                 実在に確信が持てない文献は絶対に入れない
+               - category は Research / Playbook / Essay / Column から選ぶ
+               - image は images/card-01〜06.jpg から選ぶ
+               - kpi は {views:null, readRate:null, reactions:null, recordedAt:""}、tuningMemo に初稿の仮説を書く
+
+            3. 【既存記事のチューニング】kpi が記録済みの記事に README 記載の判定ルール
+               (読了率40%未満→冒頭300字と見出し再設計 / PVが中央値未満→タイトル・サマリー改善 /
+               反応率2%未満→末尾CTA見直し)を適用して該当箇所を改稿し、tuningMemo に変更内容と日付を追記する。
+               kpi 未記録の記事は本文を変更しない。
+
+            4. 【検証】node --check notes/notes.js で構文を確認する。
+
+            5. 【公開フロー】main から新ブランチ claude/notes-weekly-YYYYMMDD を作成してコミット・push し、
+               gh pr create --draft でドラフトPRを作成する。PR本文には「新記事の概要」と
+               「チューニングした記事と理由」を日本語で書く。main へ直接 push しないこと。
+
+            禁止事項: 事実の捏造(架空の顧客事例の新規追加、架空の統計値、実在しない文献)。
+            既存記事に書かれている BOATship の実践への言及は可。
