@@ -9,6 +9,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/main.css">
+<style>
+.evidence-block {
+  max-width: 720px;
+  margin: 3rem auto 4rem;
+  padding: 1.5rem;
+  border: 2px solid currentColor;
+}
+.evidence-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.evidence-list {
+  margin: 0 0 1rem 1.2rem;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.evidence-list li { margin-bottom: 0.6rem; }
+.evidence-list .ev-source { display: block; font-size: 11px; opacity: 0.65; }
+.evidence-list a { color: inherit; text-decoration: underline; }
+.evidence-footnote {
+  font-size: 11px;
+  opacity: 0.6;
+  line-height: 1.7;
+  margin: 0;
+}
+.article-theme-chip {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 2px 10px;
+  border: 1px solid currentColor;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+</style>
 </head>
 <body>
 
@@ -66,6 +107,7 @@
 </footer>
 
 <script src="notes.js"></script>
+<script src="analytics.js"></script>
 <script src="../assets/js/main.js"></script>
 <script>
 (function () {
@@ -78,6 +120,17 @@
     return;
   }
 
+  var THEME_LABEL = {
+    'inner-branding': 'Inner Branding',
+    'pr-planning': 'PR Planning',
+    'culture': 'Culture'
+  };
+
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
   document.title = note.title + ' — BOATship Notes';
   document.getElementById('page-desc').setAttribute('content', note.excerpt);
 
@@ -86,11 +139,32 @@
     ? '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>'
     : '<div class="article-hero-wrap"><img src="' + note.image + '" alt="' + note.title + '" class="article-hero-img"></div>';
 
+  var themeChip = note.theme
+    ? '<span class="article-theme-chip">' + esc(THEME_LABEL[note.theme] || note.theme) + '</span>'
+    : '';
+
+  var evidenceBlock = '';
+  if (note.evidence && note.evidence.length) {
+    var items = note.evidence.map(function (ev) {
+      var title = ev.url
+        ? '<a href="' + esc(ev.url) + '" target="_blank" rel="noopener">' + esc(ev.title) + ' ↗</a>'
+        : esc(ev.title);
+      return '<li>' + title + '<span class="ev-source">' + esc(ev.source) + '</span></li>';
+    }).join('');
+    var tuned = (note.kpi && note.kpi.recordedAt) ? note.kpi.recordedAt : note.date;
+    evidenceBlock =
+      '<section class="evidence-block">' +
+        '<div class="evidence-heading">Evidence — 参考文献・エビデンス</div>' +
+        '<ol class="evidence-list">' + items + '</ol>' +
+        '<p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: ' + esc(tuned) + '</p>' +
+      '</section>';
+  }
+
   var root = document.getElementById('note-root');
   root.innerHTML =
     '<a href="../notes" class="back-to-mag">← Notes に戻る</a>' +
     '<section class="article-page-hero">' +
-      '<span class="article-category-badge">' + note.category + '</span>' +
+      '<span class="article-category-badge">' + note.category + '</span>' + themeChip +
       '<h1 class="article-page-title">' + note.title + '</h1>' +
       '<div class="article-meta">' +
         '<span>' + note.date + '</span>' +
@@ -100,7 +174,28 @@
     '</section>' +
     heroBlock +
     '<article class="article-body">' + note.body + '</article>' +
+    evidenceBlock +
+    '<div id="article-end" style="height:1px;"></div>' +
     '<a href="../notes" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a>';
+
+  // アクセス計測: 閲覧を記録し、記事末尾まで到達したら読了として記録する
+  if (window.BSNotesAnalytics) {
+    BSNotesAnalytics.trackView(note.id);
+    var endEl = document.getElementById('article-end');
+    if (endEl && 'IntersectionObserver' in window) {
+      var completed = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !completed) {
+            completed = true;
+            BSNotesAnalytics.trackReadComplete(note.id);
+            io.disconnect();
+          }
+        });
+      }, { threshold: 0 });
+      io.observe(endEl);
+    }
+  }
 })();
 </script>
 </body>
