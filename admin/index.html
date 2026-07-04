@@ -325,6 +325,37 @@ a { color: inherit; text-decoration: none; }
 .publish-step a { color: var(--red); border-bottom: 1px solid transparent; }
 .publish-step a:hover { border-bottom-color: var(--red); }
 
+/* --- Insights --- */
+.insights-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  margin-top: 1rem;
+}
+.insights-table th, .insights-table td {
+  border: 1px solid rgba(245,225,0,0.2);
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.insights-table th {
+  background: rgba(245,225,0,0.08);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(245,225,0,0.6);
+}
+.insights-table td.num { text-align: right; font-variant-numeric: tabular-nums; }
+.insights-suggestion { color: #ff9d7a; }
+.insights-ok { color: rgba(245,225,0,0.85); }
+.insights-note {
+  font-size: 10px;
+  color: rgba(245,225,0,0.4);
+  line-height: 1.8;
+  margin-top: 1rem;
+}
+
 /* --- Settings Modal --- */
 .modal-overlay {
   display: none;
@@ -384,7 +415,7 @@ a { color: inherit; text-decoration: none; }
 <!-- Auth Screen -->
 <div id="auth-screen">
   <h1>BOATship Admin</h1>
-  <p style="color:rgba(245,225,0,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;">Magazines Management</p>
+  <p style="color:rgba(245,225,0,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;">Magazines & Notes — Owned Media Management</p>
   <div class="pw-row">
     <input type="password" id="pw-input" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')login()">
     <button onclick="login()">LOGIN →</button>
@@ -402,6 +433,7 @@ a { color: inherit; text-decoration: none; }
     <div class="admin-header-right">
       <button class="btn" id="section-mag-btn" onclick="switchSection('magazine')" style="background:var(--yellow);color:var(--black);">Magazines</button>
       <button class="btn" id="section-notes-btn" onclick="switchSection('notes')">Notes</button>
+      <button class="btn" id="insights-btn" onclick="openInsights()" style="display:none;">📊 Insights</button>
       <a id="site-link" href="../magazine" target="_blank" class="btn">サイトを開く ↗</a>
       <button class="btn" onclick="openSettings()" title="GitHub PAT設定">⚙ 設定</button>
       <button class="btn btn-solid" id="header-publish-btn" onclick="publishToGitHub()">サイトに公開 ↑</button>
@@ -445,6 +477,8 @@ a { color: inherit; text-decoration: none; }
               <option value="Interview">Interview</option>
               <option value="Essay">Essay</option>
               <option value="Column">Column</option>
+              <option value="Research">Research</option>
+              <option value="Playbook">Playbook</option>
             </select>
           </div>
         </div>
@@ -500,6 +534,59 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
 
+        <!-- Notes 専用: オウンドメディア運用フィールド -->
+        <div id="notes-extra" style="display:none;">
+          <hr class="editor-divider">
+          <div class="field-label" style="font-size:11px;color:var(--red);margin-bottom:1rem;">■ オウンドメディア設定（Notes専用）</div>
+
+          <div class="form-row">
+            <div>
+              <div class="field-label">テーマ</div>
+              <select class="field-select" id="f-theme">
+                <option value="inner-branding">Inner Branding（インナーブランディング）</option>
+                <option value="pr-planning">PR Planning（広報企画）</option>
+                <option value="culture">Culture（組織文化・制度）</option>
+              </select>
+            </div>
+            <div>
+              <div class="field-label">KPI 記録日</div>
+              <input type="text" class="field-input" id="f-kpi-date" placeholder="2026.07.04">
+              <div class="field-hint">KPIを入力すると保存時に自動設定されます</div>
+            </div>
+          </div>
+
+          <div class="form-row single">
+            <div>
+              <div class="field-label">学術エビデンス（1行に1件: タイトル | 出典 | URL）</div>
+              <textarea class="field-textarea" id="f-evidence" rows="4" placeholder="Social Identity Theory and the Organization | Ashforth & Mael (1989). AMR, 14(1) | https://doi.org/..."></textarea>
+              <div class="field-hint">記事末尾の「EVIDENCE」欄に表示されます。URLは省略可。</div>
+            </div>
+          </div>
+
+          <div class="form-row" style="grid-template-columns:1fr 1fr 1fr;">
+            <div>
+              <div class="field-label">実測PV</div>
+              <input type="number" class="field-input" id="f-kpi-views" placeholder="1200" min="0">
+            </div>
+            <div>
+              <div class="field-label">読了率 (%)</div>
+              <input type="number" class="field-input" id="f-kpi-readrate" placeholder="45" min="0" max="100">
+            </div>
+            <div>
+              <div class="field-label">スキ・反応数</div>
+              <input type="number" class="field-input" id="f-kpi-reactions" placeholder="30" min="0">
+            </div>
+          </div>
+          <div class="field-hint" style="margin-bottom:1rem;">note.com・Vercel Analytics 等で確認した実数を記録。📊 Insights のチューニング提案に使われます。</div>
+
+          <div class="form-row single">
+            <div>
+              <div class="field-label">チューニングメモ（仮説と次の打ち手）</div>
+              <textarea class="field-textarea" id="f-tuning" rows="3" placeholder="例: 読了率が40%未満 → 冒頭300字を書き直してタイトルをA/B。次回計測は月末。"></textarea>
+            </div>
+          </div>
+        </div>
+
         <hr class="editor-divider">
 
         <div class="editor-actions">
@@ -527,6 +614,9 @@ a { color: inherit; text-decoration: none; }
           </div>
         </div>
       </div>
+
+      <!-- Insights Panel (Notes専用) -->
+      <div id="insights-panel" style="display:none;"></div>
     </div>
   </div>
 </div>
@@ -554,6 +644,7 @@ a { color: inherit; text-decoration: none; }
 
 <script src="../magazine/articles.js"></script>
 <script src="../notes/notes.js"></script>
+<script src="../notes/analytics.js"></script>
 <script>
 var ADMIN_PW = 'boatship2026';
 var currentSection = 'magazine'; // 'magazine' | 'notes'
@@ -586,6 +677,8 @@ function switchSection(section) {
   isNew = false;
   document.getElementById('editor-welcome').style.display = '';
   document.getElementById('editor-form').style.display = 'none';
+  document.getElementById('insights-panel').style.display = 'none';
+  document.getElementById('insights-btn').style.display = section === 'notes' ? '' : 'none';
   var magBtn = document.getElementById('section-mag-btn');
   var notesBtn = document.getElementById('section-notes-btn');
   var siteLink = document.getElementById('site-link');
@@ -638,6 +731,12 @@ function openNewArticle() {
   currentId = null;
   var defaultCat = currentSection === 'magazine' ? 'News' : 'Essay';
   var blank = { id: '', num: '#', category: defaultCat, title: '', date: today(), readTime: 5, thumb: '../images/card-01.jpg', hero: '../images/card-01.jpg', excerpt: '', body: '<p>本文テキストをここに入力。</p>' };
+  if (currentSection === 'notes') {
+    blank.theme = 'inner-branding';
+    blank.evidence = [];
+    blank.kpi = { views: null, readRate: null, reactions: null, recordedAt: '' };
+    blank.tuningMemo = '';
+  }
   showForm(blank);
   document.querySelectorAll('.article-list-item').forEach(function (el) { el.classList.remove('active'); });
   document.getElementById('editor-form-title').textContent = currentSection === 'magazine' ? '新規記事を作成' : '新規Noteを作成';
@@ -646,7 +745,19 @@ function openNewArticle() {
 
 function showForm(a) {
   document.getElementById('editor-welcome').style.display = 'none';
+  document.getElementById('insights-panel').style.display = 'none';
   document.getElementById('editor-form').style.display = 'block';
+  document.getElementById('notes-extra').style.display = currentSection === 'notes' ? '' : 'none';
+  if (currentSection === 'notes') {
+    document.getElementById('f-theme').value = a.theme || 'culture';
+    document.getElementById('f-evidence').value = evidenceToText(a.evidence);
+    var kpi = a.kpi || {};
+    document.getElementById('f-kpi-views').value = kpi.views != null ? kpi.views : '';
+    document.getElementById('f-kpi-readrate').value = kpi.readRate != null ? kpi.readRate : '';
+    document.getElementById('f-kpi-reactions').value = kpi.reactions != null ? kpi.reactions : '';
+    document.getElementById('f-kpi-date').value = kpi.recordedAt || '';
+    document.getElementById('f-tuning').value = a.tuningMemo || '';
+  }
   document.getElementById('f-id').value = a.id;
   document.getElementById('f-category').value = a.category;
   document.getElementById('f-date').value = a.date;
@@ -661,9 +772,9 @@ function showForm(a) {
 function readForm() {
   var id = document.getElementById('f-id').value.trim();
   var imgPath = document.getElementById('f-thumb').value;
-  return {
+  var data = {
     id: id,
-    num: '#' + id,
+    num: '#' + id.replace(/^[a-z]+/i, ''),
     category: document.getElementById('f-category').value,
     title: document.getElementById('f-title').value,
     date: document.getElementById('f-date').value,
@@ -674,6 +785,39 @@ function readForm() {
     excerpt: document.getElementById('f-excerpt').value,
     body: document.getElementById('f-body').value
   };
+  if (currentSection === 'notes') {
+    data.theme = document.getElementById('f-theme').value;
+    data.evidence = parseEvidence(document.getElementById('f-evidence').value);
+    var views = document.getElementById('f-kpi-views').value;
+    var readRate = document.getElementById('f-kpi-readrate').value;
+    var reactions = document.getElementById('f-kpi-reactions').value;
+    var recordedAt = document.getElementById('f-kpi-date').value.trim();
+    var hasKpi = views !== '' || readRate !== '' || reactions !== '';
+    data.kpi = {
+      views: views !== '' ? parseInt(views) : null,
+      readRate: readRate !== '' ? parseFloat(readRate) : null,
+      reactions: reactions !== '' ? parseInt(reactions) : null,
+      recordedAt: recordedAt || (hasKpi ? today() : '')
+    };
+    data.tuningMemo = document.getElementById('f-tuning').value;
+  }
+  return data;
+}
+
+// --- 学術エビデンス: 「タイトル | 出典 | URL」形式 ⇄ 配列 ---
+function parseEvidence(text) {
+  return (text || '').split('\n')
+    .map(function (l) { return l.trim(); })
+    .filter(Boolean)
+    .map(function (l) {
+      var p = l.split('|').map(function (s) { return s.trim(); });
+      return { title: p[0] || '', source: p[1] || '', url: p[2] || '' };
+    });
+}
+function evidenceToText(list) {
+  return (list || []).map(function (e) {
+    return [e.title, e.source, e.url].filter(Boolean).join(' | ');
+  }).join('\n');
 }
 
 function saveArticle() {
@@ -729,7 +873,11 @@ function serializeData(arr, constName) {
       lines.push('    hero: ' + JSON.stringify(a.hero || '') + ',');
       if (a.og) lines.push('    og: ' + JSON.stringify(a.og) + ',');
     } else {
+      lines.push('    theme: ' + JSON.stringify(a.theme || 'culture') + ',');
       lines.push('    image: ' + JSON.stringify(a.image || a.thumb || '') + ',');
+      lines.push('    evidence: ' + JSON.stringify(a.evidence || []) + ',');
+      lines.push('    kpi: ' + JSON.stringify(a.kpi || { views: null, readRate: null, reactions: null, recordedAt: '' }) + ',');
+      lines.push('    tuningMemo: ' + JSON.stringify(a.tuningMemo || '') + ',');
     }
     lines.push('    excerpt: ' + JSON.stringify(a.excerpt) + ',');
     lines.push('    body: `' + body + '`');
@@ -754,6 +902,100 @@ function downloadDataJs() {
   a.download = filename;
   a.click();
   showToast('ダウンロードしました（バックアップ用）。');
+}
+
+// --- Insights (Notes専用チューニングダッシュボード) ---
+function openInsights() {
+  if (currentSection !== 'notes') return;
+  currentId = null;
+  document.getElementById('editor-welcome').style.display = 'none';
+  document.getElementById('editor-form').style.display = 'none';
+  document.getElementById('insights-panel').style.display = 'block';
+  renderList();
+  renderInsights();
+}
+
+function tuningSuggestions(n, medianViews) {
+  var s = [];
+  var kpi = n.kpi || {};
+  if (!n.evidence || !n.evidence.length) {
+    s.push('学術エビデンス未設定 — 出典を追加して信頼性を担保');
+  }
+  var noKpi = kpi.views == null && kpi.readRate == null && kpi.reactions == null;
+  if (noKpi) {
+    s.push('実測KPI未記録 — アクセス実績を記録するとチューニング提案が始まります');
+    return s;
+  }
+  if (kpi.views != null && medianViews != null && kpi.views < medianViews) {
+    s.push('PVが中央値未満 — タイトルとサマリーの改善（A/B）を検討');
+  }
+  if (kpi.readRate != null && kpi.readRate < 40) {
+    s.push('読了率40%未満 — 冒頭300字と見出し構成を再設計');
+  }
+  if (kpi.views != null && kpi.reactions != null && kpi.views > 0 && kpi.reactions / kpi.views < 0.02) {
+    s.push('反応率2%未満 — 記事末尾のCTA・シェア導線を見直し');
+  }
+  if (s.length === 0 || (s.length === 1 && (!n.evidence || !n.evidence.length))) {
+    s.push('好調 — 現状維持。関連Noteへの内部リンクで回遊を強化');
+  }
+  return s;
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+function renderInsights() {
+  var panel = document.getElementById('insights-panel');
+  var local = (window.BSNotesAnalytics && BSNotesAnalytics.all()) || {};
+
+  var recorded = notesData
+    .map(function (n) { return n.kpi && n.kpi.views != null ? n.kpi.views : null; })
+    .filter(function (v) { return v != null; })
+    .sort(function (a, b) { return a - b; });
+  var medianViews = null;
+  if (recorded.length) {
+    var mid = Math.floor(recorded.length / 2);
+    medianViews = recorded.length % 2 ? recorded[mid] : (recorded[mid - 1] + recorded[mid]) / 2;
+  }
+
+  var rows = notesData.map(function (n) {
+    var kpi = n.kpi || {};
+    var loc = local[n.id] || { views: 0, reads: 0 };
+    var sugg = tuningSuggestions(n, medianViews);
+    var suggHtml = sugg.map(function (t) {
+      var ok = t.indexOf('好調') === 0;
+      return '<div class="' + (ok ? 'insights-ok' : 'insights-suggestion') + '">・' + escapeHtml(t) + '</div>';
+    }).join('');
+    return '<tr>' +
+      '<td>' + escapeHtml(n.num) + '<br><strong>' + escapeHtml(n.title) + '</strong><br>' +
+        '<span style="opacity:0.5;">' + escapeHtml(n.theme || '') + ' / ' + escapeHtml(n.category) + '</span></td>' +
+      '<td class="num">' + (kpi.views != null ? kpi.views : '—') + '</td>' +
+      '<td class="num">' + (kpi.readRate != null ? kpi.readRate + '%' : '—') + '</td>' +
+      '<td class="num">' + (kpi.reactions != null ? kpi.reactions : '—') + '</td>' +
+      '<td>' + escapeHtml(kpi.recordedAt || '—') + '</td>' +
+      '<td class="num">' + loc.views + ' / ' + loc.reads + '</td>' +
+      '<td class="num">' + ((n.evidence || []).length || '—') + '</td>' +
+      '<td>' + suggHtml + (n.tuningMemo ? '<div style="opacity:0.5;margin-top:4px;">メモ: ' + escapeHtml(n.tuningMemo) + '</div>' : '') + '</td>' +
+    '</tr>';
+  }).join('');
+
+  panel.innerHTML =
+    '<div class="editor-title-bar"><h2>📊 Notes Insights — チューニングダッシュボード</h2>' +
+    '<button class="btn" style="font-size:10px;" onclick="renderInsights()">再読み込み</button></div>' +
+    '<table class="insights-table">' +
+      '<thead><tr>' +
+        '<th>記事</th><th>実測PV</th><th>読了率</th><th>反応</th><th>KPI記録日</th>' +
+        '<th>この端末<br>View / 読了</th><th>エビデンス</th><th>チューニング提案</th>' +
+      '</tr></thead>' +
+      '<tbody>' + rows + '</tbody>' +
+    '</table>' +
+    '<div class="insights-note">' +
+      '実測PV・読了率・反応は、note.com のダッシュボードや Vercel Analytics で確認した実数を各記事の編集画面（オウンドメディア設定）から記録してください。' +
+      '「この端末」の数値は、このブラウザで閲覧された localStorage 計測（notes/analytics.js）の参考値です。' +
+      '提案は記録されたKPIに応じたルールベースの自動判定です。対応したら記事を編集 →「サイトに公開」で本番へ反映されます。' +
+    '</div>';
 }
 
 // --- Helpers ---
