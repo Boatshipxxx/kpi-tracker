@@ -7,7 +7,7 @@ const NOTES = [
     title: '等価交換報酬制度を始めた理由',
     date: '2026.04.05',
     readTime: 7,
-    image: '../images/card-04.jpg',
+    image: '../pine-note-imege.png',
     excerpt: 'どんな小さな火も消さないために。お金以外の価値交換で、もっと多くのプロジェクトに伴走するための試み。',
     evidence: [{"title":"贈与論（Essai sur le don）— 互酬性がコミュニティを結びつける","source":"Mauss, M. (1925)","url":""},{"title":"影響力の武器 — 返報性の原理","source":"Cialdini, R. B. (1984). Influence: The Psychology of Persuasion","url":""}],
     kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
