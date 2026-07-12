@@ -102,6 +102,47 @@
 .breadcrumb a { color: inherit; text-decoration: underline; }
 .breadcrumb [aria-current] { opacity: 0.65; }
 
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+
 .evidence-block {
   max-width: 720px;
   margin: 3rem auto 4rem;
@@ -233,7 +274,7 @@
 <h2>BOATshipが大切にしていること</h2>
 <p>地方企業と仕事をするとき、BOATshipは「東京の感覚を持ち込まない」ことを意識します。そのブランドが生きている土地と人を理解してから、初めて<a href="/notes/design-thinking-and-business-art/">言葉とデザイン</a>が生まれます。外から来た視点と、中にある素材——その組み合わせがブランドを作ります。</p>
 <h2>「伝わる」ために必要なこと</h2>
-<p>地方企業のブランド開発で最も重要なのは、「誰に届けるか」の解像度を上げることです。全員に届けようとすると、誰にも届きません。一人の顔が浮かぶような言葉が、結果的に多くの人に届きます。</p></article><section class="evidence-block"><div class="evidence-heading">Evidence — 参考文献・エビデンス</div><ol class="evidence-list"><li>Competitive Identity — 場所のブランドは「作る」のではなく「編集する」<span class="ev-source">Anholt, S. (2007). Palgrave Macmillan</span></li></ol><p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: 2026.03.20</p></section><section class="related-notes"><div class="related-heading">Related — 関連Note</div><div class="related-grid"><a class="related-card" href="/notes/pr-planning-peso-model/"><span class="related-meta">2026.07.02 · Playbook</span><span class="related-title">広報企画を「打ち上げ花火」で終わらせない — PESOモデルと物語の科学</span></a><a class="related-card" href="/notes/design-thinking-and-business-art/"><span class="related-meta">2026.03.08 · Essay</span><span class="related-title">デザイン思考とビジネスアートの境界線</span></a></div></section><div id="article-end" style="height:1px;" data-article-id="n02" data-read-time="5"></div><a href="/notes/" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a></div>
+<p>地方企業のブランド開発で最も重要なのは、「誰に届けるか」の解像度を上げることです。全員に届けようとすると、誰にも届きません。一人の顔が浮かぶような言葉が、結果的に多くの人に届きます。</p></article><section class="evidence-block"><div class="evidence-heading">Evidence — 参考文献・エビデンス</div><ol class="evidence-list"><li>Competitive Identity — 場所のブランドは「作る」のではなく「編集する」<span class="ev-source">Anholt, S. (2007). Palgrave Macmillan</span></li></ol><p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: 2026.03.20</p></section><section class="cta-block" data-article-id="n02" data-theme="pr-planning"><h2 class="cta-heading">広報企画・PR戦略のご相談</h2><p class="cta-body">PESOモデルにもとづく広報設計を、まずは無料でご相談ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><section class="related-notes"><div class="related-heading">Related — 関連Note</div><div class="related-grid"><a class="related-card" href="/notes/pr-planning-peso-model/"><span class="related-meta">2026.07.02 · Playbook</span><span class="related-title">広報企画を「打ち上げ花火」で終わらせない — PESOモデルと物語の科学</span></a><a class="related-card" href="/notes/design-thinking-and-business-art/"><span class="related-meta">2026.03.08 · Essay</span><span class="related-title">デザイン思考とビジネスアートの境界線</span></a></div></section><div id="article-end" style="height:1px;" data-article-id="n02" data-read-time="5"></div><a href="/notes/" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a></div>
 
 
 
@@ -279,6 +320,22 @@
     }, { threshold: 0 });
     io.observe(endEl);
   }
+})();
+</script>
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
 })();
 </script>
 <script src="/assets/js/read-tracking.js"></script>

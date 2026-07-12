@@ -120,6 +120,97 @@ function evidenceBlock(note) {
   );
 }
 
+/* テーマ連動CTA（Task 3-1: コンバージョン導線） */
+const CTA_COPY = {
+  'inner-branding': {
+    heading: '理念浸透・組織づくりのご相談',
+    body: 'インナーブランディングの設計について、貴社の状況に合わせてお話しします。'
+  },
+  'pr-planning': {
+    heading: '広報企画・PR戦略のご相談',
+    body: 'PESOモデルにもとづく広報設計を、まずは無料でご相談ください。'
+  },
+  'default': {
+    heading: 'プロジェクトのご相談',
+    body: '等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。'
+  }
+};
+
+function ctaBlock(a) {
+  const theme = a.theme || 'general';
+  const copy = CTA_COPY[a.theme] || CTA_COPY['default'];
+  return (
+    `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
+      `<h2 class="cta-heading">${esc(copy.heading)}</h2>` +
+      `<p class="cta-body">${esc(copy.body)}</p>` +
+      '<a class="cta-btn" href="/contact/">相談する →</a>' +
+      '<p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p>' +
+    '</section>'
+  );
+}
+
+/* CTAクリックを GA4 cta_click(article_id, theme) で計測 */
+const CTA_TRACK_SCRIPT = `
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
+})();
+</script>`;
+
+const CTA_STYLE = `
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+`;
+
 /* 関連Note カード（Task 2-2: トピッククラスター化） */
 function relatedBlock(note, allNotes) {
   if (!note.related || !note.related.length) return '';
@@ -317,6 +408,7 @@ function writePage(kind, a, allNotes) {
     heroBlockFor(a, kind) +
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
     (kind === 'notes' ? evidenceBlock(a) : '') +
+    ctaBlock(a) +
     (kind === 'notes' ? relatedBlock(a, allNotes) : '') +
     `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime)}"></div>` +
     `<a href="${sectionUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
@@ -365,10 +457,10 @@ function writePage(kind, a, allNotes) {
     SECTION_URL: sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
-    EXTRA_STYLE: kind === 'notes' ? NOTES_EXTRA_STYLE : '',
+    EXTRA_STYLE: CTA_STYLE + (kind === 'notes' ? NOTES_EXTRA_STYLE : ''),
     ARTICLE_CONTENT: content,
     EXTRA_BODY: extraBody,
-    EXTRA_SCRIPTS: extraScripts
+    EXTRA_SCRIPTS: extraScripts + CTA_TRACK_SCRIPT
   });
 
   const dir = path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug);

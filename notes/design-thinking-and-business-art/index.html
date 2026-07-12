@@ -102,6 +102,47 @@
 .breadcrumb a { color: inherit; text-decoration: underline; }
 .breadcrumb [aria-current] { opacity: 0.65; }
 
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+
 .evidence-block {
   max-width: 720px;
   margin: 3rem auto 4rem;
@@ -233,7 +274,7 @@
 <h2>境界線を曖昧にする理由</h2>
 <p>デザインだけでは、ビジネスの文脈から切り離されたものができます。ビジネスだけでは、人の心を動かすものは生まれません。その境界線を曖昧にする人が、今最も求められている。BOATshipはその立ち位置から仕事をしています。</p>
 <h2>実践としての「Business Art」</h2>
-<p>具体的には、クライアントの事業課題をヒアリングし、<a href="/notes/pr-planning-peso-model/">デザインとPRの両面</a>からアプローチします。ロゴ一つ作るときも、それが事業においてどんな役割を果たすかを考えます。表面的な美しさではなく、機能する美しさを追いかけています。</p></article><section class="evidence-block"><div class="evidence-heading">Evidence — 参考文献・エビデンス</div><ol class="evidence-list"><li><a href="https://hbr.org/2008/06/design-thinking" target="_blank" rel="noopener">Design Thinking — デザイン思考を経営に持ち込んだ原典 ↗</a><span class="ev-source">Brown, T. (2008). Harvard Business Review, 86(6)</span></li></ol><p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: 2026.03.08</p></section><section class="related-notes"><div class="related-heading">Related — 関連Note</div><div class="related-grid"><a class="related-card" href="/notes/equivalent-exchange-compensation/"><span class="related-meta">2026.04.05 · Essay</span><span class="related-title">等価交換報酬制度を始めた理由</span></a><a class="related-card" href="/notes/regional-brand-development/"><span class="related-meta">2026.03.20 · Column</span><span class="related-title">地方企業のブランド開発で見えてきたこと</span></a></div></section><div id="article-end" style="height:1px;" data-article-id="n03" data-read-time="6"></div><a href="/notes/" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a></div>
+<p>具体的には、クライアントの事業課題をヒアリングし、<a href="/notes/pr-planning-peso-model/">デザインとPRの両面</a>からアプローチします。ロゴ一つ作るときも、それが事業においてどんな役割を果たすかを考えます。表面的な美しさではなく、機能する美しさを追いかけています。</p></article><section class="evidence-block"><div class="evidence-heading">Evidence — 参考文献・エビデンス</div><ol class="evidence-list"><li><a href="https://hbr.org/2008/06/design-thinking" target="_blank" rel="noopener">Design Thinking — デザイン思考を経営に持ち込んだ原典 ↗</a><span class="ev-source">Brown, T. (2008). Harvard Business Review, 86(6)</span></li></ol><p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: 2026.03.08</p></section><section class="cta-block" data-article-id="n03" data-theme="culture"><h2 class="cta-heading">プロジェクトのご相談</h2><p class="cta-body">等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><section class="related-notes"><div class="related-heading">Related — 関連Note</div><div class="related-grid"><a class="related-card" href="/notes/equivalent-exchange-compensation/"><span class="related-meta">2026.04.05 · Essay</span><span class="related-title">等価交換報酬制度を始めた理由</span></a><a class="related-card" href="/notes/regional-brand-development/"><span class="related-meta">2026.03.20 · Column</span><span class="related-title">地方企業のブランド開発で見えてきたこと</span></a></div></section><div id="article-end" style="height:1px;" data-article-id="n03" data-read-time="6"></div><a href="/notes/" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a></div>
 
 
 
@@ -279,6 +320,22 @@
     }, { threshold: 0 });
     io.observe(endEl);
   }
+})();
+</script>
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
 })();
 </script>
 <script src="/assets/js/read-tracking.js"></script>
