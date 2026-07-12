@@ -22,7 +22,7 @@
 - README に「読了率計測（GA4）」節を追加（イベント表・差し替え手順・デバッグ）。
 - 検証（Playwright / `file://`）: notes n07・magazine 01 の両方で scroll_depth 25/50/75/90 と read_complete が発火することを確認。
 
-**⚠️ 人間の作業**: GA4 プロパティを作成し、`notes/article.html` と `magazine/article.html` の `G-XXXXXXXXXX` を実測定IDに差し替え（各2箇所）。差し替えるまで GA4 へは送信されない（エラーは出ない）。
+**✅ GA4測定ID差し替え済み（G-P4HKHJ91Z5）**: 人間が GA4 プロパティ／ウェブデータストリーム（boatship.jp）を作成し、PR #25 ブランチ上で `notes/article.html`（commit d98078c）と `magazine/article.html`（commit 5b68924）のプレースホルダを実IDに差し替え済み。README の手順記載も「設定済み」に更新済み（da1da19）。計測開始は PR #25 の main マージ → Vercel デプロイ後。動作確認は本番記事 URL に `?debug=1` を付けて `[read-tracking]` ログで行う。
 
 ### Task 1-2 sitemap + robots — ⏳ 未着手
 - Vercel 前提のため、生成した `sitemap.xml` / `robots.txt` をコミットする方針（GitHub Actions で自動生成する場合も成果物をコミット）。
