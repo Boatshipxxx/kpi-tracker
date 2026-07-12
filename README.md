@@ -42,6 +42,30 @@ BOATship のコーポレートサイト & オウンドメディア（www.boatshi
 - 読了率 40% 未満 → 冒頭300字と見出し構成の再設計を提案
 - 反応率（反応数/PV） 2% 未満 → 記事末尾の CTA・シェア導線の見直しを提案
 
+## 読了率計測（GA4 / read-tracking.js）
+
+Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込み、Google Analytics 4 に読了データを送信します（`notes/analytics.js` の localStorage 計測とは別系統で併存。admin Insights は引き続き localStorage 版を使用）。
+
+### 送信する GA4 カスタムイベント
+
+| イベント | 発火条件 | パラメータ |
+|---|---|---|
+| `scroll_depth` | スクロール 25 / 50 / 75 / 90% 到達時 | `article_id`, `percent` |
+| `read_complete` | 本文末尾センチネル（`#article-end`）が可視 **かつ** 滞在時間 ≥ `readTime`（分）× 60 × 0.5 秒 の両条件を満たしたとき1回 | `article_id`, `read_time_sec` |
+
+- 同一セッション・同一記事での重複発火は `sessionStorage` で防止します。
+- `article_id`・`read_time` は各記事テンプレートが `#article-end` 要素の `data-article-id` / `data-read-time` 属性に埋め込みます。
+
+### GA4 測定ID（設定済み）
+
+各記事テンプレートの `<head>` にある gtag スニペットには、測定ID **`G-P4HKHJ91Z5`** を設定済みです。変更する場合は以下の2ファイル・各2箇所（gtag.js の `src` と `gtag('config', …)`）を差し替えてください:
+- `notes/article.html`
+- `magazine/article.html`
+
+### デバッグ
+
+記事URLに `?debug=1` を付けて開くと、スクロール・読了イベントが発火するたびに `[read-tracking]` プレフィックスで console にログが出ます（GA4未設定でも確認可能）。
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。
