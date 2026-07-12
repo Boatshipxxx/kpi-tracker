@@ -56,15 +56,11 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 - 同一セッション・同一記事での重複発火は `sessionStorage` で防止します。
 - `article_id`・`read_time` は各記事テンプレートが `#article-end` 要素の `data-article-id` / `data-read-time` 属性に埋め込みます。
 
-### ⚠️ 人間の作業：GA4 測定IDの差し替え（必須）
+### GA4 測定ID（設定済み）
 
-各記事テンプレートの `<head>` にある gtag スニペットは、測定IDを **プレースホルダ `G-XXXXXXXXXX`** で記載しています。GA4 プロパティを作成し、実際の測定ID（`G-` で始まる文字列）に差し替えてください。
-
-差し替え対象（2ファイル、各2箇所）:
+各記事テンプレートの `<head>` にある gtag スニペットには、測定ID **`G-P4HKHJ91Z5`** を設定済みです。変更する場合は以下の2ファイル・各2箇所（gtag.js の `src` と `gtag('config', …)`）を差し替えてください:
 - `notes/article.html`
 - `magazine/article.html`
-
-差し替えるまでは GA4 へは送信されません（スクリプトはエラーなく動作します）。
 
 ### デバッグ
 
