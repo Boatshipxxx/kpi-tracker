@@ -51,6 +51,8 @@ jobs:
             2. 【新記事を1本執筆】inner-branding と pr-planning のうち本数が少ない方(同数なら直近と逆)のテーマで
                新記事を1本書いて NOTES に追加する:
                - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)
+               - slug は記事内容を表す英数字ケバブケース(既存slugと重複しないこと)。
+                 related には内容が最も近い既存記事のidを2件設定する
                - 文体・構成は既存記事(特に n05, n06)を踏襲: 導入p + h2見出し4〜6個、日本語。
                  BOATshipは「Business Art Team」を名乗るデザイン/PRスタジオで、等価交換報酬制度などの実践を持つ
                - evidence 配列に実在する学術文献・調査を2〜4件付ける(title / source / url)。
