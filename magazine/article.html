@@ -18,6 +18,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-XXXXXXXXXX を実際の値に差し替えてください -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 </head>
 <body>
 
@@ -194,6 +202,7 @@
     '</section>' +
     heroBlock +
     '<article class="article-body">' + article.body + '</article>' +
+    '<div id="article-end" style="height:1px;" data-article-id="' + article.id + '" data-read-time="' + article.readTime + '"></div>' +
     '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
 
   if (isBrutalism) {
@@ -214,5 +223,6 @@
   }
 })();
 </script>
+<script src="../assets/js/read-tracking.js"></script>
 </body>
 </html>
