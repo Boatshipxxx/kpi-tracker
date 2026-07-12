@@ -41,3 +41,11 @@ BOATship のコーポレートサイト & オウンドメディア（www.boatshi
 - 実測PVが全記事の中央値未満 → タイトル・サマリーの A/B を提案
 - 読了率 40% 未満 → 冒頭300字と見出し構成の再設計を提案
 - 反応率（反応数/PV） 2% 未満 → 記事末尾の CTA・シェア導線の見直しを提案
+
+## サイトマップ / robots（SEO）
+
+検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。
+
+- **生成**: `node scripts/generate-sitemap.js` を実行すると、`notes/notes.js`（NOTES）と `magazine/articles.js`（ARTICLES）を読み込んで、静的ページ（`/`・`/about/`・`/works/`・`/notes/`・`/magazine/`）と全記事ページ（`/notes/article.html?id=…`・`/magazine/article.html?id=…`）の URL を含む `sitemap.xml` を出力します。`/admin/` は robots で `Disallow` にしています。
+- **自動更新**: `.github/workflows/sitemap.yml` により、`notes/notes.js`・`magazine/articles.js`・生成スクリプトが main で変更されると自動で再生成し、差分があれば main にコミットします（Actions タブから手動実行も可能）。
+- `sitemap.xml` / `robots.txt` は**自動生成物のため手で編集しない**でください（記事の増減はデータ側を変えれば追従します）。
