@@ -9,6 +9,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
 <style>
 .evidence-block {
   max-width: 720px;
@@ -175,7 +183,7 @@
     heroBlock +
     '<article class="article-body">' + note.body + '</article>' +
     evidenceBlock +
-    '<div id="article-end" style="height:1px;"></div>' +
+    '<div id="article-end" style="height:1px;" data-article-id="' + esc(note.id) + '" data-read-time="' + esc(note.readTime) + '"></div>' +
     '<a href="../notes" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a>';
 
   // アクセス計測: 閲覧を記録し、記事末尾まで到達したら読了として記録する
@@ -198,5 +206,6 @@
   }
 })();
 </script>
+<script src="../assets/js/read-tracking.js"></script>
 </body>
 </html>
