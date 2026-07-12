@@ -92,6 +92,35 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 
 フォーム未設置の間は、ページ上でメール（contact@boatship.jp）への導線を案内しています。
 
+## KPIの月次転記（GA4 CSV → notes.js）
+
+月に一度、GA4 の実測値を `notes/notes.js` の `kpi` フィールドへ半自動で転記します（目標: 人間の作業30分以内）。
+
+### 手順（毎月末）
+
+1. **GA4 からエクスポート**: [GA4](https://analytics.google.com/) →「探索」で自由形式レポートを作成
+   - ディレクション: イベントパラメータ `article_id`（カスタムディメンションとして登録しておく）
+   - 指標: イベント数（イベント名 `read_complete` でフィルタ）
+   - 表示回数（views）は「レポート」→「エンゲージメント」→「ページとスクリーン」で記事ページ（`/notes/<slug>/`）ごとの表示回数を確認
+2. **CSVを作成**: 以下のヘッダーで1ファイルにまとめる（reactions は note.com のスキ等を手動で追記・任意）
+   ```csv
+   article_id,views,read_complete,reactions
+   n05,320,150,12
+   n07,180,95,
+   ```
+3. **スクリプト実行**:
+   ```bash
+   node scripts/update-kpi.js kpi-2026-07.csv --date 2026.07.31 --dry-run   # まず確認
+   node scripts/update-kpi.js kpi-2026-07.csv --date 2026.07.31             # 反映
+   ```
+   - `readRate`（読了率%）は views と read_complete から自動計算
+   - 未知の `article_id` は警告してスキップ。更新後に構文チェックも自動実行
+4. **PRで公開**: `git diff` で確認 → ブランチを切ってコミット → PR作成（main へ直接 push しない）。マージすると記事ページの「最終チューニング」表示と admin Insights の判定に反映されます
+
+### 将来課題
+
+GA4 Data API での直接取得は認証設定が必要なため、当面は CSV 半自動運用とします（API接続は将来のフェーズで検討）。
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。
