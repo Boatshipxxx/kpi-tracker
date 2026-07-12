@@ -128,6 +128,22 @@
     return;
   }
 
+  // 旧URL(?id=)は静的生成された新URL(/notes/<slug>/)へ恒久的に誘導する。
+  // 静的HTMLのため301は返せず、canonical + meta refresh + JSリダイレクトで代替。
+  if (note.slug) {
+    var newUrl = new URL(note.slug + '/', window.location.href).href;
+    var canon = document.createElement('link');
+    canon.rel = 'canonical';
+    canon.href = newUrl;
+    document.head.appendChild(canon);
+    var refresh = document.createElement('meta');
+    refresh.httpEquiv = 'refresh';
+    refresh.content = '0;url=' + newUrl;
+    document.head.appendChild(refresh);
+    window.location.replace(newUrl);
+    return;
+  }
+
   var THEME_LABEL = {
     'inner-branding': 'Inner Branding',
     'pr-planning': 'PR Planning',

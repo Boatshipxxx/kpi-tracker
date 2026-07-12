@@ -1,6 +1,7 @@
 const ARTICLES = [
   {
     id: '01',
+    slug: 'shake-shack-japan-launch',
     num: '#01',
     category: 'News',
     title: 'Shake Shack Japan — サイトローンチ',
@@ -19,6 +20,7 @@ const ARTICLES = [
   },
   {
     id: '02',
+    slug: 'shopify-liquid-tips',
     num: '#02',
     category: 'Tech',
     title: 'Shopify Liquid 実装Tips',
@@ -39,6 +41,7 @@ const ARTICLES = [
   },
   {
     id: '03',
+    slug: 'web-brutalism',
     num: '#03',
     category: 'Design',
     title: 'ブルータリズムをWebに取り入れる',
@@ -60,6 +63,7 @@ const ARTICLES = [
   },
   {
     id: '04',
+    slug: 'nahrin-renewal',
     num: '#04',
     category: 'News',
     title: 'nahrin — サイトリニューアル',
@@ -78,6 +82,7 @@ const ARTICLES = [
   },
   {
     id: '05',
+    slug: 'wordpress-custom-theme',
     num: '#05',
     category: 'Tech',
     title: 'WordPressカスタムテーマ開発の流儀',
@@ -98,6 +103,7 @@ const ARTICLES = [
   },
   {
     id: '06',
+    slug: 'interview-boatship-future',
     num: '#06',
     category: 'Interview',
     title: '制作者に聞く — BOATshipのこれから',
@@ -118,6 +124,7 @@ const ARTICLES = [
   },
   {
     id: '07',
+    slug: 'dotgothic16-typography',
     num: '#07',
     category: 'Design',
     title: 'DotGothic16の使いどころ',
@@ -138,6 +145,7 @@ const ARTICLES = [
   },
   {
     id: '08',
+    slug: 'github-pages-production',
     num: '#08',
     category: 'Tech',
     title: 'GitHub Pagesで本番運用するコツ',
@@ -158,6 +166,7 @@ const ARTICLES = [
   },
   {
     id: '09',
+    slug: 'new-project-open',
     num: '#09',
     category: 'News',
     title: '新規プロジェクト受付開始',

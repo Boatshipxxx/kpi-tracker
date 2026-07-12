@@ -1,6 +1,7 @@
 const NOTES = [
   {
     id: "n01",
+    slug: "equivalent-exchange-compensation",
     num: "#01",
     category: "Essay",
     title: "等価交換報酬制度を始めた理由",
@@ -26,6 +27,7 @@ const NOTES = [
   },
   {
     id: "n02",
+    slug: "regional-brand-development",
     num: "#02",
     category: "Column",
     title: "地方企業のブランド開発で見えてきたこと",
@@ -49,6 +51,7 @@ const NOTES = [
   },
   {
     id: "n03",
+    slug: "design-thinking-and-business-art",
     num: "#03",
     category: "Essay",
     title: "デザイン思考とビジネスアートの境界線",
@@ -72,6 +75,7 @@ const NOTES = [
   },
   {
     id: "n04",
+    slug: "barter-and-resource-sharing",
     num: "#04",
     category: "Column",
     title: "物々交換とリソースシェアで成り立つ仕事",
@@ -95,6 +99,7 @@ const NOTES = [
   },
   {
     id: "n05",
+    slug: "inner-branding-organizational-identification",
     num: "#05",
     category: "Research",
     title: "インナーブランディングはなぜ組織を強くするのか — 組織同一化の研究から",
@@ -121,6 +126,7 @@ const NOTES = [
   },
   {
     id: "n06",
+    slug: "pr-planning-peso-model",
     num: "#06",
     category: "Playbook",
     title: "広報企画を「打ち上げ花火」で終わらせない — PESOモデルと物語の科学",
@@ -146,6 +152,7 @@ const NOTES = [
   },
   {
     id: "n07",
+    slug: "inner-branding-brand-behavior",
     num: "#07",
     category: "Playbook",
     title: "理念を「行動」に変えるインナーブランディング — ブランド行動・ジョブクラフティング・心理的安全性の研究から",

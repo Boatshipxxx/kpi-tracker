@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<!-- 自動生成テンプレート: scripts/build-articles.js が {{TOKEN}} を差し替えて
+     /notes/<slug>/index.html・/magazine/<slug>/index.html を生成する。
+     生成物は直接編集せず、このテンプレートかデータ側を変更して再ビルドすること。 -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="{{CANONICAL}}">
+<meta property="og:title" content="{{OG_TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta property="og:url" content="{{CANONICAL}}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BOATship">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{OG_TITLE}}">
+<meta name="twitter:description" content="{{DESCRIPTION}}">
+<meta name="twitter:image" content="{{OG_IMAGE}}">
+<script type="application/ld+json">
+{{JSONLD_ARTICLE}}
+</script>
+<script type="application/ld+json">
+{{JSONLD_BREADCRUMB}}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.breadcrumb {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4em; }
+.breadcrumb li + li::before { content: '/'; margin-right: 0.4em; opacity: 0.5; }
+.breadcrumb a { color: inherit; text-decoration: underline; }
+.breadcrumb [aria-current] { opacity: 0.65; }
+{{EXTRA_STYLE}}
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/about/">Company</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+</div>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="{{SECTION_URL}}">{{SECTION_LABEL}}</a></li>
+    <li><span aria-current="page">{{BREADCRUMB_TITLE}}</span></li>
+  </ol>
+</nav>
+
+{{ARTICLE_CONTENT}}
+
+{{EXTRA_BODY}}
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+{{EXTRA_SCRIPTS}}
+<script src="/assets/js/read-tracking.js"></script>
+</body>
+</html>

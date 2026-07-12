@@ -66,6 +66,16 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 
 記事URLに `?debug=1` を付けて開くと、スクロール・読了イベントが発火するたびに `[read-tracking]` プレフィックスで console にログが出ます（GA4未設定でも確認可能）。
 
+## 記事の静的HTML生成（SEO / 固有URL）
+
+記事ページはビルド時に静的HTMLとして生成され、固有URLで配信されます:
+
+- **URL形式**: `/notes/<slug>/`・`/magazine/<slug>/`（slug は各記事データの `slug` フィールド。英数字ケバブケース）
+- **生成**: `node scripts/build-articles.js` が `notes/notes.js` と `magazine/articles.js` を読み、`templates/article.html` をベースに記事ごとの `index.html` を出力します。生成物には記事固有の `<title>` / meta description / OGP / canonical / JSON-LD（`Article` + `BreadcrumbList`）/ パンくずリストを含みます
+- **旧URL互換**: `article.html?id=XX` は残置し、対応する slug があれば canonical + meta refresh + JS リダイレクトで新URLへ転送します
+- **自動ビルド**: `.github/workflows/sitemap.yml`（Build articles & sitemap）が記事データ・テンプレート変更時に再生成して main にコミットします
+- **注意**: `/notes/<slug>/index.html` などの生成物と `templates/article.html` 由来の共通部分は**手で編集せず**、テンプレートまたはデータ側を変更して再ビルドしてください。新記事は `slug` フィールドを必ず設定してください（未設定の記事は旧URL形式のまま動作します）
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。

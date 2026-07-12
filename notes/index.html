@@ -135,7 +135,8 @@
     var chips =
       '<span class="note-chip">' + esc(THEME_LABEL[theme] || theme) + '</span>' +
       (evCount ? '<span class="note-chip evidence">Evidence ×' + evCount + '</span>' : '');
-    return '<a href="article.html?id=' + esc(n.id) + '" class="concrete-item reveal" data-theme="' + esc(theme) + '">' +
+    var href = n.slug ? esc(n.slug) + '/' : 'article.html?id=' + esc(n.id);
+    return '<a href="' + href + '" class="concrete-item reveal" data-theme="' + esc(theme) + '">' +
       '<div class="concrete-image"><img src="' + esc(n.image) + '" alt="' + esc(n.title) + '"></div>' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
