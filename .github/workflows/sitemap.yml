@@ -1,0 +1,46 @@
+# BOATship — sitemap.xml / robots.txt 自動再生成
+#
+# main の記事データ(notes/notes.js・magazine/articles.js)や生成スクリプトが
+# 更新されたら、scripts/generate-sitemap.js を実行して sitemap.xml / robots.txt を
+# 再生成し、差分があれば main にコミットする。
+# ホスティングは Vercel のため、生成物をコミットすればそのまま配信される。
+#
+# 手動実行: Actions タブ → "Generate sitemap" → Run workflow
+
+name: Generate sitemap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "notes/notes.js"
+      - "magazine/articles.js"
+      - "scripts/generate-sitemap.js"
+  workflow_dispatch: {}
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Generate sitemap.xml / robots.txt
+        run: node scripts/generate-sitemap.js
+
+      - name: Commit if changed
+        run: |
+          if [ -n "$(git status --porcelain sitemap.xml robots.txt)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add sitemap.xml robots.txt
+            git commit -m "chore: regenerate sitemap.xml / robots.txt"
+            git push
+          else
+            echo "sitemap/robots は最新です。変更なし。"
+          fi

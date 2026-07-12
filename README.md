@@ -65,3 +65,11 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 ### デバッグ
 
 記事URLに `?debug=1` を付けて開くと、スクロール・読了イベントが発火するたびに `[read-tracking]` プレフィックスで console にログが出ます（GA4未設定でも確認可能）。
+
+## サイトマップ / robots（SEO）
+
+検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。
+
+- **生成**: `node scripts/generate-sitemap.js` を実行すると、`notes/notes.js`（NOTES）と `magazine/articles.js`（ARTICLES）を読み込んで、静的ページ（`/`・`/about/`・`/works/`・`/notes/`・`/magazine/`）と全記事ページ（`/notes/article.html?id=…`・`/magazine/article.html?id=…`）の URL を含む `sitemap.xml` を出力します。`/admin/` は robots で `Disallow` にしています。
+- **自動更新**: `.github/workflows/sitemap.yml` により、`notes/notes.js`・`magazine/articles.js`・生成スクリプトが main で変更されると自動で再生成し、差分があれば main にコミットします（Actions タブから手動実行も可能）。
+- `sitemap.xml` / `robots.txt` は**自動生成物のため手で編集しない**でください（記事の増減はデータ側を変えれば追従します）。
