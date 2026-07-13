@@ -96,17 +96,19 @@ function build() {
   entries.push(urlEntry('/notes/', latest(notes) || today, 'weekly', '0.9'));
   entries.push(urlEntry('/magazine/', latest(articles) || today, 'weekly', '0.8'));
 
+  // 記事URL: slug があれば静的生成ページ（/notes/<slug>/）、なければ旧クエリ形式
+  const articleLoc = (section, it) =>
+    it.slug
+      ? `/${section}/${it.slug}/`
+      : `/${section}/article.html?id=${encodeURIComponent(it.id)}`;
+
   // Notes 記事
   notes.forEach((n) => {
-    entries.push(
-      urlEntry(`/notes/article.html?id=${encodeURIComponent(n.id)}`, toLastmod(n.date), 'monthly', '0.8')
-    );
+    entries.push(urlEntry(articleLoc('notes', n), toLastmod(n.date), 'monthly', '0.8'));
   });
   // Magazine 記事
   articles.forEach((a) => {
-    entries.push(
-      urlEntry(`/magazine/article.html?id=${encodeURIComponent(a.id)}`, toLastmod(a.date), 'monthly', '0.6')
-    );
+    entries.push(urlEntry(articleLoc('magazine', a), toLastmod(a.date), 'monthly', '0.6'));
   });
 
   const sitemap =

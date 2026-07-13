@@ -27,5 +27,31 @@
 ### Task 1-2 sitemap + robots — ⏳ 未着手
 - Vercel 前提のため、生成した `sitemap.xml` / `robots.txt` をコミットする方針（GitHub Actions で自動生成する場合も成果物をコミット）。
 
-### Task 2-1 slug対応表の提案 — ⏳ 未着手（セッション①の終了条件 = 人間承認待ちで STOP）
-- Notes / Magazine 全記事の slug 対応表を提案し、**人間の承認を待って停止**する。
+### Task 2-1 slug対応表の提案 — ✅ 承認済み（2026-07-12）
+- 提案した英語ケバブケース slug（notes 7件 + magazine 9件）とパス形式URL（`/notes/<slug>/`・旧`?id=`からのリダイレクト）を人間が承認。
+
+**✅ 2026-07-13 更新: GA4実ID設定済み（G-P4HKHJ91Z5）/ #25・#26 マージ済み**
+- #25（read-tracking）・#26（sitemap/robots）は main にマージコミット方式でマージ済み。旧 `notes/article.html`・`magazine/article.html` の測定IDは実値設定済み。
+- `templates/article.html` と生成済み全16ページ（`/notes/<slug>/`・`/magazine/<slug>/`）も実ID（G-P4HKHJ91Z5）で生成済み（プレースホルダ残存なし）。
+- #27〜#32 は最新 main を取り込んでスタックを載せ直し済み。マージ順: **#27 → #28 → #29 → #30 → #31 → #32**。
+
+## セッション② — Task 2-1 実装 → 2-2 → フェーズ3 → フェーズ6
+
+### Task 2-1 記事の静的HTML生成 — ✅ 完了（PR: claude/session2-static-articles）
+- `notes/notes.js` / `magazine/articles.js` の全記事に承認済み `slug` を追加。
+- `templates/article.html`（共通テンプレート、ルート絶対パス）+ `scripts/build-articles.js` で `/notes/<slug>/index.html`・`/magazine/<slug>/index.html` を生成（16ページ）。
+  - 記事固有 title（「タイトル | BOATship」）/ description（excerpt 120字）/ OGP / canonical / JSON-LD（Article + BreadcrumbList）/ 可視パンくず / GA4 gtag（G-P4HKHJ91Z5）/ read-tracking センチネル / notes は evidence ブロック + localStorage 計測も継承。
+  - magazine #03 の Brutalism ヒーローは magazine/article.html の `<template id="bru03">` をビルド時に抽出して再利用。Tech カテゴリのヒーローも再現。
+- 旧URL互換: `notes/article.html` / `magazine/article.html` に slug があれば canonical + meta refresh + `location.replace` で新URLへ転送する処理を追加。
+- 一覧のリンクを slug URL へ変更（notes/index.html は描画コード、magazine/index.html は9件のハードコードリンク）。
+- sitemap 生成を slug URL 優先に更新し再生成。workflow を「Build articles & sitemap」に拡張（記事ビルド + sitemap を1ワークフローで実行し main にコミット）。
+- 検証: 構造チェック16ページ全パス + ローカルHTTPサーバー/Playwright で新URL描画・scroll_depth発火・旧URLリダイレクト・一覧リンクを確認。
+- **注意（ブランチ構成）**: セッション②のPRは #25・#26 の上に積んだスタックPR。**#25 → #26 → セッション②PR の順にマージ**すること。
+
+### Task 2-2 内部リンク / トピッククラスター — ⏳ 次
+### Task 3-1 テーマ連動CTA — ⏳ / Task 3-2 問い合わせページ — ⏳
+### Task 6-1 KPI転記スクリプト — ⏳ / Task 6-2 月次レビュー雛形 — ⏳
+
+### 残作業（人間）
+- Google Search Console 登録・所有権確認・sitemap 送信（Task 1-2 マージ後）
+- PR #25 / #26 / セッション②PR のレビューとマージ（上記の順）

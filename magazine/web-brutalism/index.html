@@ -1,23 +1,85 @@
 <!DOCTYPE html>
+<!-- 自動生成テンプレート: scripts/build-articles.js が  を差し替えて
+     /notes/<slug>/index.html・/magazine/<slug>/index.html を生成する。
+     生成物は直接編集せず、このテンプレートかデータ側を変更して再ビルドすること。 -->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Article — BOATship Magazines</title>
-<meta id="page-desc" name="description" content="">
-<meta id="og-title" property="og:title" content="">
-<meta id="og-desc" property="og:description" content="">
-<meta id="og-image" property="og:image" content="">
-<meta id="og-url" property="og:url" content="">
+<title>ブルータリズムをWebに取り入れる | BOATship</title>
+<meta name="description" content="ブルータリストデザインの哲学とWebへの応用。BOATship自身のサイトデザインに込めた思考を解説。">
+<link rel="canonical" href="https://www.boatship.jp/magazine/web-brutalism/">
+<meta property="og:title" content="ブルータリズムをWebに取り入れる | BOATship">
+<meta property="og:description" content="ブルータリストデザインの哲学とWebへの応用。BOATship自身のサイトデザインに込めた思考を解説。">
+<meta property="og:image" content="https://www.boatship.jpog-article-03.png">
+<meta property="og:url" content="https://www.boatship.jp/magazine/web-brutalism/">
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="BOATship">
 <meta name="twitter:card" content="summary_large_image">
-<meta id="tw-title" name="twitter:title" content="">
-<meta id="tw-desc" name="twitter:description" content="">
-<meta id="tw-image" name="twitter:image" content="">
+<meta name="twitter:title" content="ブルータリズムをWebに取り入れる | BOATship">
+<meta name="twitter:description" content="ブルータリストデザインの哲学とWebへの応用。BOATship自身のサイトデザインに込めた思考を解説。">
+<meta name="twitter:image" content="https://www.boatship.jpog-article-03.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ブルータリズムをWebに取り入れる",
+  "description": "ブルータリストデザインの哲学とWebへの応用。BOATship自身のサイトデザインに込めた思考を解説。",
+  "image": [
+    "https://www.boatship.jpog-article-03.png"
+  ],
+  "datePublished": "2026-04-10",
+  "dateModified": "2026-04-10",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.boatship.jp/magazine/web-brutalism/"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BOATship",
+    "url": "https://www.boatship.jp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BOATship",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.boatship.jp/images/logo.jpg"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.boatship.jp/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Magazines",
+      "item": "https://www.boatship.jp/magazine/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ブルータリズムをWebに取り入れる",
+      "item": "https://www.boatship.jp/magazine/web-brutalism/"
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/main.css">
+<link rel="stylesheet" href="/assets/css/main.css">
 <!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
 <script>
@@ -26,24 +88,39 @@
   gtag('js', new Date());
   gtag('config', 'G-P4HKHJ91Z5');
 </script>
+<style>
+.breadcrumb {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4em; }
+.breadcrumb li + li::before { content: '/'; margin-right: 0.4em; opacity: 0.5; }
+.breadcrumb a { color: inherit; text-decoration: underline; }
+.breadcrumb [aria-current] { opacity: 0.65; }
+
+</style>
 </head>
 <body>
 
 <div class="noise-overlay"></div>
 <div class="float-wrapper" aria-hidden="true">
-  <img src="../images/logo.jpg" alt="" class="float-inner-img">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
 </div>
 
 <header class="top-nav">
-  <a href="../" class="nav-logo-wrapper">
-    <img src="../images/logo.jpg" alt="BOATship" class="company-logo">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
     <span>BOATship</span>
   </a>
   <nav class="nav-links">
-    <a href="../works">Works</a>
-    <a href="../magazine">Magazines</a>
-    <a href="../notes">Notes</a>
-    <a href="../about">Company</a>
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/about/">Company</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -51,16 +128,31 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="../" onclick="closeMenu()">Home</a>
-  <a href="../works" onclick="closeMenu()">Works</a>
-  <a href="../magazine" onclick="closeMenu()">Magazines</a>
-  <a href="../notes" onclick="closeMenu()">Notes</a>
-  <a href="../about" onclick="closeMenu()">Company</a>
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
 </div>
 
-<div id="article-root"></div>
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/magazine/">Magazines</a></li>
+    <li><span aria-current="page">ブルータリズムをWebに取り入れる</span></li>
+  </ol>
+</nav>
 
-<!-- Brutalism hero template — injected for article #03 only -->
+<div id="note-root"><a href="/magazine/" class="back-to-mag">← Magazines に戻る</a><section class="article-page-hero"><span class="article-category-badge">Design</span><h1 class="article-page-title">ブルータリズムをWebに取り入れる</h1><div class="article-meta"><span>2026.04.10</span><span>6 min read</span><span>#03</span></div></section><div id="bru-slot"></div><article class="article-body"><p>ブルータリズム（Brutalism）は、建築からWebデザインに持ち込まれたデザイン哲学です。「飾らない、隠さない、素材をそのまま見せる」という思想が根底にあります。</p>
+<h2>ブルータリズムとは何か</h2>
+<p>Webブルータリズムの特徴は、太いボーダー、ベタのシャドウ、モノスペースフォント、そして意図的なずれやゆがみです。「美しくない」のではなく、「正直である」のです。</p>
+<h2>BOATshipのデザイン判断</h2>
+<p>このサイトで使っている黄色（#F5E100）と黒（#111111）の組み合わせ、DotGothic16のピクセルフォント、4pxのbox-shadowは、すべてブルータリズムの文脈で選択しています。「プロらしい洗練」よりも「作り手の個性」を優先しました。</p>
+<h2>実装上の注意点</h2>
+<p>ブルータリズムはやりすぎると「壊れたサイト」に見えます。ユーザビリティの基本は守りつつ、装飾的なルールを意図的に破る——そのバランスが重要です。ナビゲーション、フォーム、CTAは迷わず使えるように設計してください。</p>
+<h2>参考にしたサイト</h2>
+<p>Balenciaga、Vogue Italia、Dazed Digital。これらのサイトは、ブランドの力でブルータリズムを成立させています。デザインに「理由」があるとき、荒削りは力になります。</p></article><div id="article-end" style="height:1px;" data-article-id="03" data-read-time="6"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
+
 <template id="bru03">
   <div class="article-brutalism-hero-outer">
     <div class="article-brutalism-hero-frame" id="bruFrame">
@@ -136,109 +228,36 @@
 
 <footer>
   <div class="nav-logo-wrapper">
-    <img src="../images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
     <span>© 2026 BOATship — Design Studio</span>
   </div>
   <div class="nav-links">
-    <a href="../works">Works</a>
-    <a href="../magazine">Magazines</a>
-    <a href="../about">Company</a>
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
   </div>
 </footer>
 
-<script src="articles.js"></script>
-<script src="../assets/js/main.js"></script>
+<script src="/assets/js/main.js"></script>
+
 <script>
 (function () {
-  var params = new URLSearchParams(window.location.search);
-  var id = params.get('id');
-  var article = ARTICLES.find(function (a) { return a.id === id; });
-
-  if (!article) {
-    window.location.href = '../magazine';
-    return;
-  }
-
-  // 旧URL(?id=)は静的生成された新URL(/magazine/<slug>/)へ恒久的に誘導する。
-  // 静的HTMLのため301は返せず、canonical + meta refresh + JSリダイレクトで代替。
-  if (article.slug) {
-    var newUrl = new URL(article.slug + '/', window.location.href).href;
-    var canon = document.createElement('link');
-    canon.rel = 'canonical';
-    canon.href = newUrl;
-    document.head.appendChild(canon);
-    var refresh = document.createElement('meta');
-    refresh.httpEquiv = 'refresh';
-    refresh.content = '0;url=' + newUrl;
-    document.head.appendChild(refresh);
-    window.location.replace(newUrl);
-    return;
-  }
-
-  document.title = article.title + ' — BOATship Magazines';
-  document.getElementById('page-desc').setAttribute('content', article.excerpt);
-
-  // Open Graph / Twitter card meta (resolved to absolute URLs for crawlers)
-  var ogImage = new URL(article.og || article.hero, window.location.href).href;
-  var setMeta = function (elId, value) {
-    var el = document.getElementById(elId);
-    if (el) { el.setAttribute('content', value); }
-  };
-  setMeta('og-title', article.title + ' — BOATship Magazines');
-  setMeta('og-desc', article.excerpt);
-  setMeta('og-image', ogImage);
-  setMeta('og-url', window.location.href);
-  setMeta('tw-title', article.title + ' — BOATship Magazines');
-  setMeta('tw-desc', article.excerpt);
-  setMeta('tw-image', ogImage);
-
-  var isTech = article.category && article.category.toLowerCase() === 'tech';
-  var isBrutalism = article.id === '03';
-
-  var heroBlock;
-  if (isTech) {
-    heroBlock = '<div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div>';
-  } else if (isBrutalism) {
-    heroBlock = '<div id="bru-slot"></div>';
-  } else {
-    heroBlock = '<div class="article-hero-wrap"><img src="' + article.hero + '" alt="' + article.title + '" class="article-hero-img"></div>';
-  }
-
-  var root = document.getElementById('article-root');
-  root.innerHTML =
-    '<a href="../magazine" class="back-to-mag">← Magazines に戻る</a>' +
-    '<section class="article-page-hero">' +
-      '<span class="article-category-badge">' + article.category + '</span>' +
-      '<h1 class="article-page-title">' + article.title + '</h1>' +
-      '<div class="article-meta">' +
-        '<span>' + article.date + '</span>' +
-        '<span>' + article.readTime + ' min read</span>' +
-        '<span>' + article.num + '</span>' +
-      '</div>' +
-    '</section>' +
-    heroBlock +
-    '<article class="article-body">' + article.body + '</article>' +
-    '<div id="article-end" style="height:1px;" data-article-id="' + article.id + '" data-read-time="' + article.readTime + '"></div>' +
-    '<a href="../magazine" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a>';
-
-  if (isBrutalism) {
-    var tpl = document.getElementById('bru03');
-    var slot = document.getElementById('bru-slot');
-    if (tpl && slot) {
-      slot.appendChild(document.importNode(tpl.content, true));
-      function scaleBru() {
-        var frame = document.getElementById('bruFrame');
-        var inner = document.getElementById('bruScale');
-        if (frame && inner) {
-          inner.style.transform = 'scale(' + (frame.clientWidth / 1200) + ')';
-        }
+  var tpl = document.getElementById('bru03');
+  var slot = document.getElementById('bru-slot');
+  if (tpl && slot) {
+    slot.appendChild(document.importNode(tpl.content, true));
+    function scaleBru() {
+      var frame = document.getElementById('bruFrame');
+      var inner = document.getElementById('bruScale');
+      if (frame && inner) {
+        inner.style.transform = 'scale(' + (frame.clientWidth / 1200) + ')';
       }
-      scaleBru();
-      window.addEventListener('resize', scaleBru);
     }
+    scaleBru();
+    window.addEventListener('resize', scaleBru);
   }
 })();
 </script>
-<script src="../assets/js/read-tracking.js"></script>
+<script src="/assets/js/read-tracking.js"></script>
 </body>
 </html>

@@ -1,13 +1,13 @@
-# BOATship — sitemap.xml / robots.txt 自動再生成
+# BOATship — 記事静的HTML + sitemap.xml / robots.txt 自動再生成
 #
-# main の記事データ(notes/notes.js・magazine/articles.js)や生成スクリプトが
-# 更新されたら、scripts/generate-sitemap.js を実行して sitemap.xml / robots.txt を
-# 再生成し、差分があれば main にコミットする。
+# main の記事データ(notes/notes.js・magazine/articles.js)やテンプレート・
+# 生成スクリプトが更新されたら、記事の静的ページ(/notes/<slug>/ 等)と
+# sitemap.xml / robots.txt を再生成し、差分があれば main にコミットする。
 # ホスティングは Vercel のため、生成物をコミットすればそのまま配信される。
 #
-# 手動実行: Actions タブ → "Generate sitemap" → Run workflow
+# 手動実行: Actions タブ → "Build articles & sitemap" → Run workflow
 
-name: Generate sitemap
+name: Build articles & sitemap
 
 on:
   push:
@@ -15,11 +15,13 @@ on:
     paths:
       - "notes/notes.js"
       - "magazine/articles.js"
+      - "templates/**"
+      - "scripts/build-articles.js"
       - "scripts/generate-sitemap.js"
   workflow_dispatch: {}
 
 jobs:
-  sitemap:
+  build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -30,17 +32,20 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Build article pages
+        run: node scripts/build-articles.js
+
       - name: Generate sitemap.xml / robots.txt
         run: node scripts/generate-sitemap.js
 
       - name: Commit if changed
         run: |
-          if [ -n "$(git status --porcelain sitemap.xml robots.txt)" ]; then
+          git add -A notes magazine sitemap.xml robots.txt
+          if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add sitemap.xml robots.txt
-            git commit -m "chore: regenerate sitemap.xml / robots.txt"
+            git commit -m "chore: rebuild article pages / sitemap"
             git push
           else
-            echo "sitemap/robots は最新です。変更なし。"
+            echo "生成物は最新です。変更なし。"
           fi
