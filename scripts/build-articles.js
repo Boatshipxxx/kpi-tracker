@@ -120,6 +120,32 @@ function evidenceBlock(note) {
   );
 }
 
+/* 関連Note カード（Task 2-2: トピッククラスター化） */
+function relatedBlock(note, allNotes) {
+  if (!note.related || !note.related.length) return '';
+  const cards = note.related.slice(0, 2).map((rid) => {
+    const r = allNotes.find((n) => n.id === rid);
+    if (!r) {
+      console.warn(`warn: ${note.id} related "${rid}" not found`);
+      return '';
+    }
+    const href = r.slug ? `/notes/${r.slug}/` : `/notes/article.html?id=${encodeURIComponent(r.id)}`;
+    return (
+      `<a class="related-card" href="${esc(href)}">` +
+        `<span class="related-meta">${esc(r.date)} · ${esc(r.category)}</span>` +
+        `<span class="related-title">${esc(r.title)}</span>` +
+      '</a>'
+    );
+  }).join('');
+  if (!cards) return '';
+  return (
+    '<section class="related-notes">' +
+      '<div class="related-heading">Related — 関連Note</div>' +
+      `<div class="related-grid">${cards}</div>` +
+    '</section>'
+  );
+}
+
 const NOTES_EXTRA_STYLE = `
 .evidence-block {
   max-width: 720px;
@@ -159,6 +185,48 @@ const NOTES_EXTRA_STYLE = `
   letter-spacing: 0.08em;
   text-transform: uppercase;
   vertical-align: middle;
+}
+.related-notes {
+  max-width: 720px;
+  margin: 0 auto 4rem;
+}
+.related-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.related-card {
+  display: block;
+  padding: 1rem 1.2rem;
+  border: 2px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.related-card:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.related-card .related-meta {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  opacity: 0.65;
+  margin-bottom: 0.5rem;
+}
+.related-card .related-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
 }
 `;
 
@@ -218,7 +286,7 @@ function render(tokens) {
   return out;
 }
 
-function writePage(kind, a) {
+function writePage(kind, a, allNotes) {
   if (!a.slug) {
     console.warn(`skip: ${kind} ${a.id} has no slug`);
     return null;
@@ -249,6 +317,7 @@ function writePage(kind, a) {
     heroBlockFor(a, kind) +
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
     (kind === 'notes' ? evidenceBlock(a) : '') +
+    (kind === 'notes' ? relatedBlock(a, allNotes) : '') +
     `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime)}"></div>` +
     `<a href="${sectionUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
     `</div>`;
@@ -312,8 +381,8 @@ function build() {
   const notes = loadGlobal('notes/notes.js', 'NOTES');
   const articles = loadGlobal('magazine/articles.js', 'ARTICLES');
   const written = [];
-  notes.forEach((n) => { const u = writePage('notes', n); if (u) written.push(u); });
-  articles.forEach((a) => { const u = writePage('magazine', a); if (u) written.push(u); });
+  notes.forEach((n) => { const u = writePage('notes', n, notes); if (u) written.push(u); });
+  articles.forEach((a) => { const u = writePage('magazine', a, notes); if (u) written.push(u); });
   console.log(`generated ${written.length} article pages:`);
   written.forEach((u) => console.log('  ' + u));
 }
