@@ -107,3 +107,11 @@
 - 直訳ではなく再構成。海外読者向け補足（地方の生産者の文脈 / お互いさま）を追加。「円でも支払可」を明記。
 - sitemap に EN記事を追加（25 URLs）。workflow paths に notes-en.js 追加。
 - **人間の作業**: 英文通読 + タイトル3案からの選択（PRレビュー）。
+
+### Task 5-1 SEO特化Note 2本 — ✅ ドラフト完了（PR: claude/session3-seo-notes）
+- **n08**「インナーブランディングの施策10選 — 認知・共感・行動の3段階」（Playbook / inner-branding / slug: inner-branding-initiatives）
+  - 想定KW「インナーブランディング 施策」。認知→共感→行動 × 具体施策10選。n05/n07へ内部リンク。evidence 4件（Kahn 1990 / Meyer & Allen 1991 / Kotter 1995 / Schein 2010、全て実在）。
+- **n09**「広報企画の立て方 — 企画書テンプレート7項目」（Playbook / pr-planning / slug: pr-planning-proposal-template）
+  - 想定KW「広報企画 立て方」。n06のPESO前提で企画書7項目を順番に解説。n06/n02へ内部リンク。evidence 3件（Grunig & Hunt 1984 / Cutlip et al. 2012 / AMEC 2016、全て実在）。
+- 両記事とも n05〜n07 の品質基準（冒頭200字で読者と価値 / h2だけで要旨 / 末尾チェックリスト / tuningMemoに想定KWと差し替え案）を踏襲。related設定・ビルド・sitemap反映済み（27 URLs）。
+- **人間の作業**: 記事内容の承認（PRレビュー。マージ＝公開）。
