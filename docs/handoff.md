@@ -69,7 +69,13 @@
 - フォーム未設置の間は contact@boatship.jp への直メール導線を表示。
 - sitemap に `/contact/` を追加（22 URLs）。英語版 `/en/contact/` はフェーズ4（Task 4-1）で対応。
 - **人間の作業**: Googleフォームの作成と iframe 差し替え（README 手順参照）。
-### Task 6-1 KPI転記スクリプト — ⏳ / Task 6-2 月次レビュー雛形 — ⏳
+### Task 6-1 KPI転記スクリプト — ✅ 完了（PR: claude/session2-kpi-script）
+- `scripts/update-kpi.js`: GA4エクスポートCSV（article_id, views, read_complete[, reactions]）を読み、notes.js の kpi を更新。readRate自動計算 / recordedAt指定（--date）/ --dry-run / 未知id警告スキップ / 更新後構文チェック付き。
+- README「KPIの月次転記」にGA4エクスポート手順・CSV形式・実行手順を記載（月次30分以内を想定）。
+- GA4 Data API 直接続は将来課題としてREADMEに明記（当面CSV半自動）。
+- **人間の月次作業**: 月末にGA4からCSV作成 → スクリプト実行 → PR。
+
+### Task 6-2 月次レビュー雛形 — ⏳ 次
 
 ### 残作業（人間）
 - Google Search Console 登録・所有権確認・sitemap 送信（Task 1-2 マージ後）
