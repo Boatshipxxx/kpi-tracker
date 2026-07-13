@@ -102,6 +102,47 @@
 .breadcrumb a { color: inherit; text-decoration: underline; }
 .breadcrumb [aria-current] { opacity: 0.65; }
 
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+
 </style>
 </head>
 <body>
@@ -149,7 +190,7 @@
 <h2>等価交換報酬制度について</h2>
 <p>予算が限られているプロジェクトや、スタートアップ・地方企業のかたには「等価交換報酬制度」でのご依頼も受け付けています。お金ではなく、スキル・場所・人脈・サービスなどで対価をいただく仕組みです。まずはご相談ください。</p>
 <h2>ご連絡方法</h2>
-<p>このサイトのNewsletter登録フォームからご連絡いただくか、InstagramまたはX（Twitter）のDMまでお気軽にどうぞ。プロジェクトの規模を問わず、まずは話を聞かせてください。</p></article><div id="article-end" style="height:1px;" data-article-id="09" data-read-time="2"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
+<p>このサイトのNewsletter登録フォームからご連絡いただくか、InstagramまたはX（Twitter）のDMまでお気軽にどうぞ。プロジェクトの規模を問わず、まずは話を聞かせてください。</p></article><section class="cta-block" data-article-id="09" data-theme="general"><h2 class="cta-heading">プロジェクトのご相談</h2><p class="cta-body">等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><div id="article-end" style="height:1px;" data-article-id="09" data-read-time="2"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
 
 
 
@@ -177,6 +218,22 @@
 
 <script src="/assets/js/main.js"></script>
 
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
+})();
+</script>
 <script src="/assets/js/read-tracking.js"></script>
 </body>
 </html>

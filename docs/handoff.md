@@ -55,7 +55,14 @@
 - 本文中の関連概念に内部リンクを各2本追加（文章は無改変・リンク化のみ、機械検証済み）。
 - build-articles.js に「Related — 関連Note」カード（2件・既存トンマナ）を追加し再ビルド。
 - notes-weekly.yml のプロンプトに slug / related の設定を追記（今後の自動記事もクラスターに参加）。
-### Task 3-1 テーマ連動CTA — ⏳ / Task 3-2 問い合わせページ — ⏳
+### Task 3-1 テーマ連動CTA — ✅ 完了（PR: claude/session2-cta）
+- build-articles.js に CTA ブロック（Evidence と関連Noteカードの間）を追加。theme で文言を出し分け:
+  inner-branding「理念浸透・組織づくりのご相談」/ pr-planning「広報企画・PR戦略のご相談」/ その他・magazine「プロジェクトのご相談」
+- ボタン「相談する →」→ `/contact/`（Task 3-2 で作成）+ サブリンク contact@boatship.jp
+- クリックは GA4 `cta_click`（article_id, theme）で計測（Playwright で発火確認済み）。
+- デザインは既存トンマナ（2pxボーダー + ハードシャドウ、DotGothic16 見出し、新色なし）。
+
+### Task 3-2 問い合わせページ — ⏳ 次
 ### Task 6-1 KPI転記スクリプト — ⏳ / Task 6-2 月次レビュー雛形 — ⏳
 
 ### 残作業（人間）

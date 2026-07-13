@@ -102,6 +102,47 @@
 .breadcrumb a { color: inherit; text-decoration: underline; }
 .breadcrumb [aria-current] { opacity: 0.65; }
 
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+
 </style>
 </head>
 <body>
@@ -149,7 +190,7 @@
 <h2>実装した機能</h2>
 <p>メニューページの再設計、店舗検索機能の改善、ニュースセクションの追加。すべてのページでレスポンシブデザインを徹底し、スマートフォンでの閲覧体験を最優先にしました。</p>
 <h2>技術スタック</h2>
-<p>HTML / CSS / JavaScript のピュアな実装。フレームワークを使わずに、軽量で高速なサイトを実現しました。表示速度はリニューアル前比で40%改善。Core Web Vitalsのすべての指標でGreenを達成しています。</p></article><div id="article-end" style="height:1px;" data-article-id="01" data-read-time="3"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
+<p>HTML / CSS / JavaScript のピュアな実装。フレームワークを使わずに、軽量で高速なサイトを実現しました。表示速度はリニューアル前比で40%改善。Core Web Vitalsのすべての指標でGreenを達成しています。</p></article><section class="cta-block" data-article-id="01" data-theme="general"><h2 class="cta-heading">プロジェクトのご相談</h2><p class="cta-body">等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><div id="article-end" style="height:1px;" data-article-id="01" data-read-time="3"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
 
 
 
@@ -177,6 +218,22 @@
 
 <script src="/assets/js/main.js"></script>
 
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
+})();
+</script>
 <script src="/assets/js/read-tracking.js"></script>
 </body>
 </html>
