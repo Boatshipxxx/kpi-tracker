@@ -30,6 +30,11 @@
 ### Task 2-1 slug対応表の提案 — ✅ 承認済み（2026-07-12）
 - 提案した英語ケバブケース slug（notes 7件 + magazine 9件）とパス形式URL（`/notes/<slug>/`・旧`?id=`からのリダイレクト）を人間が承認。
 
+**✅ 2026-07-13 更新: GA4実ID設定済み（G-P4HKHJ91Z5）/ #25・#26 マージ済み**
+- #25（read-tracking）・#26（sitemap/robots）は main にマージコミット方式でマージ済み。旧 `notes/article.html`・`magazine/article.html` の測定IDは実値設定済み。
+- `templates/article.html` と生成済み全16ページ（`/notes/<slug>/`・`/magazine/<slug>/`）も実ID（G-P4HKHJ91Z5）で生成済み（プレースホルダ残存なし）。
+- #27〜#32 は最新 main を取り込んでスタックを載せ直し済み。マージ順: **#27 → #28 → #29 → #30 → #31 → #32**。
+
 ## セッション② — Task 2-1 実装 → 2-2 → フェーズ3 → フェーズ6
 
 ### Task 2-1 記事の静的HTML生成 — ✅ 完了（PR: claude/session2-static-articles）
