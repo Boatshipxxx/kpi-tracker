@@ -94,6 +94,8 @@ function build() {
   entries.push(urlEntry('/about/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/works/', today, 'monthly', '0.7'));
   entries.push(urlEntry('/contact/', today, 'monthly', '0.7'));
+  entries.push(urlEntry('/en/about/', today, 'monthly', '0.6'));
+  entries.push(urlEntry('/en/contact/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/notes/', latest(notes) || today, 'weekly', '0.9'));
   entries.push(urlEntry('/magazine/', latest(articles) || today, 'weekly', '0.8'));
 

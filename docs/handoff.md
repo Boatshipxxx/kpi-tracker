@@ -88,3 +88,13 @@
 ### 残作業（人間）
 - Google Search Console 登録・所有権確認・sitemap 送信（Task 1-2 マージ後）
 - PR #25 / #26 / セッション②PR のレビューとマージ（上記の順）
+
+## セッション③ — フェーズ4（EN）→ フェーズ5（コンテンツ）ドラフト
+
+### Task 4-1 英語版基本ページ — ✅ 完了（PR: claude/session3-en-pages）
+- `/en/about/`（会社紹介 + サービス3本柱: Brand development for the Japanese market / Company media production / PR strategy）と `/en/contact/` を新規作成。トーンは Cross-cultural Voice（直訳ではなく海外企業・エージェント向けに再構成。事実は about/notes の既存記載のみ使用）。
+- hreflang（ja / en / x-default=ja）を EN 2ページ + 対応JPページ（/about/・/contact/）に相互設定。
+- 言語切替: ENページのヘッダーに「JP」、JPの about/contact ヘッダーに「EN」リンクを追加。
+- `/en/` は `/en/about/` へリダイレクト（noindex）。sitemap に /en/about/・/en/contact/ を追加（24 URLs）。
+- 検証: Playwright で lang属性・hreflang×3・3本柱・言語切替・リダイレクトを確認。
+- **人間の作業**: 英文の通読承認（PRレビュー）。英語版Googleフォームを作る場合は /en/contact/ の iframe 差し替え。
