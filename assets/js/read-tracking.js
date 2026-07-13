@@ -10,7 +10,7 @@
  * 前提:
  *   - 記事ページに <div id="article-end" data-article-id="..." data-read-time="分数"> を置く
  *   - <head> に GA4 の gtag スニペット(測定ID)を読み込む
- *   - 測定IDは各テンプレの <head> にプレースホルダ G-XXXXXXXXXX で記載(人間が差し替え)
+ *   - 測定IDは各テンプレの <head> に設定済み(G-P4HKHJ91Z5)。変更時は各テンプレの2箇所を差し替え
  *
  * デバッグ: URL に ?debug=1 を付けると console にイベントログを出力する。
  * 重複発火は sessionStorage で防止(同一セッション・同一記事で1回ずつ)。
