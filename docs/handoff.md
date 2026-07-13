@@ -62,7 +62,13 @@
 - クリックは GA4 `cta_click`（article_id, theme）で計測（Playwright で発火確認済み）。
 - デザインは既存トンマナ（2pxボーダー + ハードシャドウ、DotGothic16 見出し、新色なし）。
 
-### Task 3-2 問い合わせページ — ⏳ 次
+### Task 3-2 問い合わせページ — ✅ 完了（PR: claude/session2-contact）
+- `/contact/index.html` を新規作成（既存トンマナ・ルート絶対パス・GA4タグ付き）。
+- Googleフォームは**埋め込みプレースホルダ**（人間がフォーム作成→iframe差し替え。手順は README「問い合わせページ / Googleフォームのセットアップ」に記載。項目案: お名前/会社名(任意)/メール/ご相談カテゴリ(ブランディング・広報PR・Web制作・等価交換・その他)/内容）。
+- 「お問い合わせ後の流れ」（2営業日以内に返信 → 30分の無料相談 → ご提案）を明記。
+- フォーム未設置の間は contact@boatship.jp への直メール導線を表示。
+- sitemap に `/contact/` を追加（22 URLs）。英語版 `/en/contact/` はフェーズ4（Task 4-1）で対応。
+- **人間の作業**: Googleフォームの作成と iframe 差し替え（README 手順参照）。
 ### Task 6-1 KPI転記スクリプト — ⏳ / Task 6-2 月次レビュー雛形 — ⏳
 
 ### 残作業（人間）

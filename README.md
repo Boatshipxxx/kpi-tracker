@@ -76,6 +76,22 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 - **自動ビルド**: `.github/workflows/sitemap.yml`（Build articles & sitemap）が記事データ・テンプレート変更時に再生成して main にコミットします
 - **注意**: `/notes/<slug>/index.html` などの生成物と `templates/article.html` 由来の共通部分は**手で編集せず**、テンプレートまたはデータ側を変更して再ビルドしてください。新記事は `slug` フィールドを必ず設定してください（未設定の記事は旧URL形式のまま動作します）
 
+## 問い合わせページ / Googleフォームのセットアップ（人間の作業）
+
+`/contact/` は問い合わせページです。フォーム本体は Google フォームを埋め込む設計で、**フォームの作成は人間の作業**です:
+
+1. [Google フォーム](https://docs.google.com/forms/)で新規フォームを作成し、以下の項目を設定:
+   - お名前（記述式・必須）
+   - 会社名（記述式・任意）
+   - メールアドレス（記述式・必須。設定で「メールアドレスを収集する」でも可）
+   - ご相談カテゴリ（ラジオボタン: ブランディング / 広報・PR / Web制作 / 等価交換でのご依頼 / その他）
+   - 内容（段落・必須）
+2. 「送信」→「<>（埋め込みHTML）」で `<iframe>` コードをコピー
+3. `contact/index.html` 内のコメント「▼ Googleフォームの埋め込み」に従い、プレースホルダの `<div class="contact-form-placeholder">…</div>` を `<iframe>` に差し替え（height はフォームに合わせて調整、`title` 属性を付与）
+4. フォームの回答通知は Google フォーム側の設定で contact@boatship.jp に届くようにする
+
+フォーム未設置の間は、ページ上でメール（contact@boatship.jp）への導線を案内しています。
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。
