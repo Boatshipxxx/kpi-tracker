@@ -77,6 +77,10 @@ function urlEntry(loc, lastmod, changefreq, priority) {
 function build() {
   const notes = loadGlobal('notes/notes.js', 'NOTES');
   const articles = loadGlobal('magazine/articles.js', 'ARTICLES');
+  let notesEn = [];
+  if (fs.existsSync(path.join(ROOT, 'notes', 'notes-en.js'))) {
+    try { notesEn = loadGlobal('notes/notes-en.js', 'NOTES_EN'); } catch (e) { notesEn = []; }
+  }
 
   // 記事一覧の最終更新日（一覧ページの lastmod に使う）
   const latest = (items) =>
@@ -112,6 +116,10 @@ function build() {
   // Magazine 記事
   articles.forEach((a) => {
     entries.push(urlEntry(articleLoc('magazine', a), toLastmod(a.date), 'monthly', '0.6'));
+  });
+  // 英語版 Notes 記事
+  notesEn.forEach((e) => {
+    if (e.slug) entries.push(urlEntry(`/en/notes/${e.slug}/`, toLastmod(e.date), 'monthly', '0.6'));
   });
 
   const sitemap =

@@ -2,13 +2,14 @@
 <!-- 自動生成テンプレート: scripts/build-articles.js が {{TOKEN}} を差し替えて
      /notes/<slug>/index.html・/magazine/<slug>/index.html を生成する。
      生成物は直接編集せず、このテンプレートかデータ側を変更して再ビルドすること。 -->
-<html lang="ja">
+<html lang="{{LANG}}">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{TITLE}}</title>
 <meta name="description" content="{{DESCRIPTION}}">
 <link rel="canonical" href="{{CANONICAL}}">
+{{ALTERNATES}}
 <meta property="og:title" content="{{OG_TITLE}}">
 <meta property="og:description" content="{{DESCRIPTION}}">
 <meta property="og:image" content="{{OG_IMAGE}}">
@@ -98,12 +99,12 @@
 
 <section class="newsletter-section" id="newsletter">
   <h2>Studio<br>Updates</h2>
-  <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
+  <p class="sub-text">{{NEWSLETTER_SUB}}</p>
   <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
     <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
     <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
   </form>
-  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+  <p class="newsletter-note">{{NEWSLETTER_NOTE}}</p>
 </section>
 
 <footer>
