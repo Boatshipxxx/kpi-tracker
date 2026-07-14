@@ -140,3 +140,11 @@
 - グローバルナビに「News」追加（テンプレート + トップ/works/notes/magazine/contact/about + 旧article.html）。トップに Latest News（最新3件、news.js から描画）。
 - sitemap に /news/ と個別ページを追加（29 URLs）。workflow paths に news/news.js 追加。
 - 検証: NewsArticle/BreadcrumbList のJSON-LDパース・フィルタ動作・トップLatest News・全navを Playwright で確認。
+
+### Task 7-2 プレスリリース原本 + 媒体別派生版 — ✅ 完了（PR: claude/session4-press-content）
+- **原本**: news.js に pr01（press-release / slug: equal-exchange-compensation-launch / 本文1,851字）。リード200字 → 制度概要 → 対象と対価 → 始めた理由（n01へ内部リンク・重複なし）→ 実例2つ → 半年の知見（n04リンク）→ 今後（EN記事・ENページ導線）→ **[[代表コメント:要記入]]** → 会社概要。`/news/equal-exchange-compensation-launch/` として静的生成済み。
+- **PR TIMES要約版**（docs/press/pr01-prtimes.md・819字）: 全文を載せず要点 + UTM付き原本リンクで誘導。
+- **LinkedIn日本語版**（docs/press/pr01-linkedin-ja.md・約1,040字）: 一人称・冒頭2行フック・末尾に問い・ハッシュタグ5個。**パターンA（本文リンク）/ B（コメントにリンク+コメント文併記）両方**。初回A→2回目Bでリーチ比較の方針を明記（断定なし）。
+- **LinkedIn英語版**（docs/press/pr01-linkedin-en.md）: 直訳でなく海外読者向け再構成（カルチャーギャップをフック / o-tagai-sama補足 / /en/ 導線）。パターンA/B両方。ネイティブ確認は人間。
+- **プレースホルダ**: [[代表コメント:要記入]]（news.js内・PR TIMES版に転記指示あり）。
+- 補足: セッション③の docs/press-release/（全文型PR TIMES版）は本タスクの「原本=自社サイト+要約版」方式で**置き換え**（note転載版はそのまま利用可）。
