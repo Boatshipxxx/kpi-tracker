@@ -109,9 +109,9 @@
 - **人間の作業**: 英文通読 + タイトル3案からの選択（PRレビュー）。
 
 ### Task 5-1 SEO特化Note 2本 — ✅ ドラフト完了（PR: claude/session3-seo-notes）
-- **n08**「インナーブランディングの施策10選 — 認知・共感・行動の3段階」（Playbook / inner-branding / slug: inner-branding-initiatives）
+- **n09**「インナーブランディングの施策10選 — 認知・共感・行動の3段階」（Playbook / inner-branding / slug: inner-branding-initiatives）
   - 想定KW「インナーブランディング 施策」。認知→共感→行動 × 具体施策10選。n05/n07へ内部リンク。evidence 4件（Kahn 1990 / Meyer & Allen 1991 / Kotter 1995 / Schein 2010、全て実在）。
-- **n09**「広報企画の立て方 — 企画書テンプレート7項目」（Playbook / pr-planning / slug: pr-planning-proposal-template）
+- **n10**「広報企画の立て方 — 企画書テンプレート7項目」（Playbook / pr-planning / slug: pr-planning-proposal-template）
   - 想定KW「広報企画 立て方」。n06のPESO前提で企画書7項目を順番に解説。n06/n02へ内部リンク。evidence 3件（Grunig & Hunt 1984 / Cutlip et al. 2012 / AMEC 2016、全て実在）。
 - 両記事とも n05〜n07 の品質基準（冒頭200字で読者と価値 / h2だけで要旨 / 末尾チェックリスト / tuningMemoに想定KWと差し替え案）を踏襲。related設定・ビルド・sitemap反映済み（27 URLs）。
 - **人間の作業**: 記事内容の承認（PRレビュー。マージ＝公開）。
@@ -170,3 +170,7 @@
 - 全5タスクのPRを作成済み（スタック構成）。**マージ順: #34 → #35 → #36 → #37 → #38（7-1 /news/）→ #39（7-2 原本+派生）→ #40（7-3 配信手順）→ #41（7-5 Clutch）→ #42（7-4 計測接続）**。
 - プレースホルダ一覧: [[代表コメント:要記入]]（news.js pr01）/ [[要確認:数値]]・[[要確認:想定案件規模]]・[[要確認:人数]]（Clutch関連）/ 配信後にURL記入（distribution / media-coverage / LinkedIn記録欄）。
 - 人間の判断・作業: 代表コメント記入 → PR TIMES条件確認・配信 → LinkedInアカウント整備・投稿（A→B比較）→ Clutch条件確認・登録・レビュー依頼 → 月次で媒体別流入とKPI転記。
+
+## 2026-07-14 スタックマージの整流化 + 採番修正
+- #35/#36/#37 が base ブランチ（前段PRのブランチ）にマージされ main 未達となったため、全チェーンのコミットを含む #42 の head（claude/session4-kpi-news）に main を取り込み、**#42 の base を main に付け替えて1本でマージする方式**に切り替え。マージ後、#38〜#41 はクローズしてよい（内容は #42 に包含）。
+- 週次自動更新（PR #33）が n08（pr-measurement-outputs-to-outcomes）を先に使用したため、Task 5-1 の2記事を **n09（inner-branding-initiatives）/ n10（pr-planning-proposal-template）に採番変更**（slug・URL は不変。data-article-id が変わるため計測は新IDで蓄積）。
