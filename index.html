@@ -119,6 +119,21 @@
   footer.site a{text-decoration:none;}
   footer.site a:hover{color:#C8391D;}
 
+
+  /* ---- Latest News ---- */
+  .latest-news{padding:5rem 6vw;border-top:3px solid #111;}
+  .latest-news .head{margin-bottom:2.2rem;}
+  .ln-list{list-style:none;margin:0;padding:0;border-top:3px solid #111;}
+  .ln-list li{border-bottom:3px solid #111;}
+  .ln-list a{display:flex;flex-wrap:wrap;align-items:baseline;gap:0.8rem 1.4rem;padding:1.1rem 0.4rem;color:inherit;text-decoration:none;transition:background .15s;}
+  .ln-list a:hover{background:#111;color:#F5E100;}
+  .ln-date{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.06em;flex:none;}
+  .ln-type{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;border:1px solid currentColor;padding:1px 8px;flex:none;}
+  .ln-title{font-family:'DotGothic16',sans-serif;font-size:15px;line-height:1.6;}
+  .ln-more{margin-top:1.6rem;}
+  .ln-more a{display:inline-block;font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:13px;letter-spacing:0.08em;color:inherit;text-decoration:none;border:3px solid #111;padding:0.7rem 1.8rem;box-shadow:5px 5px 0 #111;transition:transform .15s,box-shadow .15s;}
+  .ln-more a:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 #111;}
+
   [data-reveal]{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
   [data-reveal].in{opacity:1;transform:translateY(0);}
 
@@ -151,6 +166,7 @@
     <a href="#works">Works</a>
     <a href="magazine">Magazines</a>
     <a href="notes">Notes</a>
+    <a href="news">News</a>
     <a href="about">Company</a>
   </nav>
   <button class="burger" id="burger" aria-label="メニューを開く">
@@ -163,6 +179,7 @@
   <a href="#works" class="mob-link">Works</a>
   <a href="magazine" class="mob-link">Magazines</a>
   <a href="notes" class="mob-link">Notes</a>
+  <a href="news" class="mob-link">News</a>
   <a href="about" class="mob-link">Company</a>
 </div>
 
@@ -214,6 +231,15 @@
     </div>
     <a href="about" class="btn">VIEW COMPANY →</a>
   </div>
+</section>
+
+<section class="latest-news" id="news">
+  <div class="head" data-reveal>
+    <h2>Latest News</h2>
+    <p>プレスリリース・メディア掲載・お知らせ — 発信の原本はすべてここに。</p>
+  </div>
+  <ul class="ln-list" id="lnList"></ul>
+  <div class="ln-more"><a href="news">VIEW ALL NEWS →</a></div>
 </section>
 
 <section class="news" id="newsletter">
@@ -456,6 +482,31 @@
   mobMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', closeMob);
   });
+})();
+</script>
+
+<script src="news/news.js"></script>
+<script>
+(function () {
+  if (typeof NEWS === 'undefined') return;
+  var TYPE_LABEL = { 'press-release': 'Press Release', 'media-coverage': 'Media', 'announcement': 'Announcement' };
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  var latest = NEWS.slice().sort(function (a, b) {
+    return String(b.date || '').localeCompare(String(a.date || ''));
+  }).slice(0, 3);
+  document.getElementById('lnList').innerHTML = latest.map(function (n) {
+    var isExternal = n.type === 'media-coverage';
+    var href = isExternal ? (n.externalUrl || '#') : ('news/' + (n.slug || ''));
+    var extAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
+    return '<li><a href="' + esc(href) + '"' + extAttr + '>' +
+      '<span class="ln-date">' + esc(n.date) + '</span>' +
+      '<span class="ln-type">' + esc(TYPE_LABEL[n.type] || n.type) + '</span>' +
+      '<span class="ln-title">' + esc(n.title) + (isExternal ? ' ↗' : '') + '</span>' +
+    '</a></li>';
+  }).join('');
 })();
 </script>
 </body>

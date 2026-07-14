@@ -107,3 +107,70 @@
 - 直訳ではなく再構成。海外読者向け補足（地方の生産者の文脈 / お互いさま）を追加。「円でも支払可」を明記。
 - sitemap に EN記事を追加（25 URLs）。workflow paths に notes-en.js 追加。
 - **人間の作業**: 英文通読 + タイトル3案からの選択（PRレビュー）。
+
+### Task 5-1 SEO特化Note 2本 — ✅ ドラフト完了（PR: claude/session3-seo-notes）
+- **n09**「インナーブランディングの施策10選 — 認知・共感・行動の3段階」（Playbook / inner-branding / slug: inner-branding-initiatives）
+  - 想定KW「インナーブランディング 施策」。認知→共感→行動 × 具体施策10選。n05/n07へ内部リンク。evidence 4件（Kahn 1990 / Meyer & Allen 1991 / Kotter 1995 / Schein 2010、全て実在）。
+- **n10**「広報企画の立て方 — 企画書テンプレート7項目」（Playbook / pr-planning / slug: pr-planning-proposal-template）
+  - 想定KW「広報企画 立て方」。n06のPESO前提で企画書7項目を順番に解説。n06/n02へ内部リンク。evidence 3件（Grunig & Hunt 1984 / Cutlip et al. 2012 / AMEC 2016、全て実在）。
+- 両記事とも n05〜n07 の品質基準（冒頭200字で読者と価値 / h2だけで要旨 / 末尾チェックリスト / tuningMemoに想定KWと差し替え案）を踏襲。related設定・ビルド・sitemap反映済み（27 URLs）。
+- **人間の作業**: 記事内容の承認（PRレビュー。マージ＝公開）。
+
+### Task 5-2 プレスリリース原稿 — ✅ ドラフト完了（PR: claude/session3-press-release）
+- `docs/press-release/equal-exchange-pr-times.md`: PR TIMESフォーマット（タイトル27字 + サブタイトル / 本文約1,700字 / 画像挿入位置3箇所指定 / 制度概要・始めた理由・実例2つ（農家×野菜、シェアオフィス×利用権）・代表コメント枠）。事実は n01/n04 の既存記載のみ使用。
+- `docs/press-release/equal-exchange-note-version.md`: note.com 転載用（柔らかめの一人称）。
+- `docs/press-release/distribution-memo.md`: 配信先選定メモ（**PR TIMESスタートアップチャレンジの適用条件確認を促す一文**、配信タイミング定石、Owned/Shared併用、Earned個別アプローチ候補、配信後フォロー）。
+- **人間の作業**: 代表コメント・所在地番地・画像3点の差し替え → PR TIMES入稿・配信、note転載。
+
+## セッション③ 完了サマリー
+- 全タスクのPRを作成済み（スタック構成）。**マージ順: #34（EN基本ページ）→ #35（n01英訳）→ #36（SEO Note 2本）→ #37（プレスリリース）**。
+- 人間レビュー待ち: #34 英文通読 / #35 英文通読 + タイトル3案選択 / #36 記事2本の内容承認（マージ＝公開）/ #37 代表コメント等の差し替え。
+- これで指示書の最小3セッション計画（①②③）の Claude 作業は完遂。以降は週次自動更新 + 月次KPI運用のループ。
+
+## セッション④ — /news/ 基盤と外部配信（追加発注）
+
+### 前提確認（設計判断）
+- **build-news.js は新設せず `scripts/build-articles.js` を拡張**（テンプレート・CTA・JSON-LD・エスケープ・workflow が集約済みのため。複製＝新しい仕組みの発明を回避）。
+- 一覧は notes/index.html と同じクライアント描画方式を流用。JSON-LD のみ `NewsArticle` に切り替え。
+
+### Task 7-1 /news/ セクション新設 — ✅ 完了（PR: claude/session4-news）
+- `news/news.js`（NEWS配列: type / slug / subtitle / body / distribution / mediaOutlet / externalUrl / isBacklink / kpi）。初回エントリとして an01（サイト刷新のお知らせ・事実ベース）を収録。
+- build-articles.js 拡張: press-release / announcement を `/news/<slug>/` に静的生成（NewsArticle JSON-LD / パンくず Home>News / 読了計測センチネル / CTA=default文言 / distribution にURLがあれば「掲載先」ブロック自動表示）。
+- `news/index.html`: type別フィルタ付き一覧。media-coverage は外部リンク表示（Backlinkチップ付き）。
+- グローバルナビに「News」追加（テンプレート + トップ/works/notes/magazine/contact/about + 旧article.html）。トップに Latest News（最新3件、news.js から描画）。
+- sitemap に /news/ と個別ページを追加（29 URLs）。workflow paths に news/news.js 追加。
+- 検証: NewsArticle/BreadcrumbList のJSON-LDパース・フィルタ動作・トップLatest News・全navを Playwright で確認。
+
+### Task 7-2 プレスリリース原本 + 媒体別派生版 — ✅ 完了（PR: claude/session4-press-content）
+- **原本**: news.js に pr01（press-release / slug: equal-exchange-compensation-launch / 本文1,851字）。リード200字 → 制度概要 → 対象と対価 → 始めた理由（n01へ内部リンク・重複なし）→ 実例2つ → 半年の知見（n04リンク）→ 今後（EN記事・ENページ導線）→ **[[代表コメント:要記入]]** → 会社概要。`/news/equal-exchange-compensation-launch/` として静的生成済み。
+- **PR TIMES要約版**（docs/press/pr01-prtimes.md・819字）: 全文を載せず要点 + UTM付き原本リンクで誘導。
+- **LinkedIn日本語版**（docs/press/pr01-linkedin-ja.md・約1,040字）: 一人称・冒頭2行フック・末尾に問い・ハッシュタグ5個。**パターンA（本文リンク）/ B（コメントにリンク+コメント文併記）両方**。初回A→2回目Bでリーチ比較の方針を明記（断定なし）。
+- **LinkedIn英語版**（docs/press/pr01-linkedin-en.md）: 直訳でなく海外読者向け再構成（カルチャーギャップをフック / o-tagai-sama補足 / /en/ 導線）。パターンA/B両方。ネイティブ確認は人間。
+- **プレースホルダ**: [[代表コメント:要記入]]（news.js内・PR TIMES版に転記指示あり）。
+- 補足: セッション③の docs/press-release/（全文型PR TIMES版）は本タスクの「原本=自社サイト+要約版」方式で**置き換え**（note転載版はそのまま利用可）。
+
+### Task 7-3 配信実務マニュアル — ✅ 完了（PR: claude/session4-playbook）
+- `docs/press-distribution-playbook.md`: A配信前チェック（自社公開が先/代表コメント置換/OGP検証=LinkedIn Post Inspector/UTM準備）、B PR TIMES手順（無料枠は**条件を断定せず公式確認のチェックリスト**/代替案と判断基準/入稿は要約版のみ/二次掲載→被リンク確認→media-coverage登録のコード例）、C LinkedIn手順（代表個人プロフィール英語併記・会社ページはリポスト補助/日→数日空けて英/48時間以内返信/英語返信テンプレ/A・Bリーチ比較記録表）、D UTM規則（コピペ可能な完成形URL4本・`{news_id}_{テーマ}`命名・utm_contentで言語分離）、E 配信後チェックリスト、F GA4測定手順（参照元別/utm_content=en分離/news読了・cta_click）。
+- 注: 付録FはTask 7-4の仕様に対応（`update-kpi.js --target news` は次PRで実装）。
+
+### Task 7-5 Clutch登録準備一式 — ✅ 完了（PR: claude/session4-clutch）
+- `docs/directories/clutch-profile-en.md`: 会社概要50語/150語（/en/about/ と表現統一）、Service構成比案（Branding 35/Company media 35/PR 30）、差別化=等価交換を前面、ターゲット・会社情報。[[要確認]]: 想定案件規模・チーム人数。
+- `docs/directories/clutch-case-studies-en.md`: ①Shake Shack Japan（課題→打ち手→成果。数値はサイト掲載済みの「表示速度40%改善・CWV全指標Green」のみ使用）②等価交換の農家サイト（定性成果中心）。不明数値は [[要確認:数値]]。
+- `docs/directories/review-request-templates.md`（**最重要**）: 日本語版（Clutchとは何か/なぜ/所要時間を丁寧に説明・押し付けないトーン）+ 英語版 + 依頼タイミング（完了直後）とリマインド作法（2週間後に一度だけ）。
+- `docs/directories/clutch-playbook.md`: 登録前チェック（**条件は断定せず公式確認項目のみ**）→ 登録フロー → 完了後（UTM設定・news.jsへ被リンク記録のコード例・GA4確認）→ 運用リズム → 将来ディレクトリ（Sortlist/DesignRush/Agency Spotter）の判断チェックリスト。
+- **人間の作業**: 公式サイトでの条件確認、クライアント名公開可否の確認、[[要確認]]の記入、英文最終確認、レビュー依頼の実施。
+
+### Task 7-4 効果測定の接続 — ✅ 完了（PR: claude/session4-kpi-news）
+- `scripts/update-kpi.js` に `--target notes|news` を追加（既定 notes）。news は `news/news.js` の kpi（views/readRate/recordedAt、reactions無し）を更新。既存 notes 動作は無変更（回帰テスト済み）。
+- GA4確認手順は docs/press-distribution-playbook.md 付録F に記載済み（Task 7-3 で先行対応: 参照元別 / utm_content=en の分離=海外KPI先行指標 / newsの閲覧・read_complete・cta_click）。
+- `docs/monthly-review-template.md` と `reviews/2026-07.md` に「8. 外部発信」を追加: 当月発信件数（PR/LinkedIn日英/メディア掲載）/ 媒体別流入（PR TIMES/LinkedIn-ja/LinkedIn-en/Clutch/自然検索）/ 被リンク数（isBacklink:true件数）とClutchレビュー累計 / 発信経由の問い合わせ（国内・海外別、海外KPIカウント）。
+- README「KPIの月次転記」に --target news の実行例を追記。
+
+## セッション④ 完了サマリー
+- 全5タスクのPRを作成済み（スタック構成）。**マージ順: #34 → #35 → #36 → #37 → #38（7-1 /news/）→ #39（7-2 原本+派生）→ #40（7-3 配信手順）→ #41（7-5 Clutch）→ #42（7-4 計測接続）**。
+- プレースホルダ一覧: [[代表コメント:要記入]]（news.js pr01）/ [[要確認:数値]]・[[要確認:想定案件規模]]・[[要確認:人数]]（Clutch関連）/ 配信後にURL記入（distribution / media-coverage / LinkedIn記録欄）。
+- 人間の判断・作業: 代表コメント記入 → PR TIMES条件確認・配信 → LinkedInアカウント整備・投稿（A→B比較）→ Clutch条件確認・登録・レビュー依頼 → 月次で媒体別流入とKPI転記。
+
+## 2026-07-14 スタックマージの整流化 + 採番修正
+- #35/#36/#37 が base ブランチ（前段PRのブランチ）にマージされ main 未達となったため、全チェーンのコミットを含む #42 の head（claude/session4-kpi-news）に main を取り込み、**#42 の base を main に付け替えて1本でマージする方式**に切り替え。マージ後、#38〜#41 はクローズしてよい（内容は #42 に包含）。
+- 週次自動更新（PR #33）が n08（pr-measurement-outputs-to-outcomes）を先に使用したため、Task 5-1 の2記事を **n09（inner-branding-initiatives）/ n10（pr-planning-proposal-template）に採番変更**（slug・URL は不変。data-article-id が変わるため計測は新IDで蓄積）。

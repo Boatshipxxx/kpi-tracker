@@ -6,7 +6,11 @@
  * kpi フィールド（views / readRate / reactions / recordedAt）を更新する。
  *
  * 使い方:
- *   node scripts/update-kpi.js <csvファイル> [--date YYYY.MM.DD] [--dry-run]
+ *   node scripts/update-kpi.js <csvファイル> [--target notes|news] [--date YYYY.MM.DD] [--dry-run]
+ *
+ * --target news を指定すると news/news.js の NEWS 配列の kpi
+ * （views / readRate / recordedAt。reactions は無し）を更新する。
+ * article_id は news の id（pr01 / an01 など）。既定は notes。
  *
  * CSVフォーマット（1行目はヘッダー。列順は自由・大文字小文字不問）:
  *   article_id, views, read_complete [, reactions]
@@ -34,7 +38,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const NOTES_FILE = path.join(ROOT, 'notes', 'notes.js');
+const TARGETS = {
+  notes: { file: path.join(ROOT, 'notes', 'notes.js'), idRe: /id:\s*"(n\d+)"/g, hasReactions: true },
+  news:  { file: path.join(ROOT, 'news', 'news.js'),  idRe: /id:\s*"([a-z]+\d+)"/g, hasReactions: false }
+};
 
 function fail(msg) {
   console.error('エラー: ' + msg);
@@ -44,14 +51,21 @@ function fail(msg) {
 /* ---- 引数 ---- */
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
+let target = 'notes';
+const targetIdx = args.indexOf('--target');
+if (targetIdx !== -1) {
+  target = args[targetIdx + 1];
+  if (!TARGETS[target]) fail('--target は notes か news を指定してください');
+}
+const TARGET = TARGETS[target];
 let recordedAt = null;
 const dateIdx = args.indexOf('--date');
 if (dateIdx !== -1) {
   recordedAt = args[dateIdx + 1];
   if (!/^\d{4}\.\d{2}\.\d{2}$/.test(recordedAt || '')) fail('--date は YYYY.MM.DD 形式で指定してください');
 }
-const csvPath = args.find((a) => !a.startsWith('--') && a !== recordedAt);
-if (!csvPath) fail('CSVファイルを指定してください: node scripts/update-kpi.js <csv> [--date YYYY.MM.DD] [--dry-run]');
+const csvPath = args.find((a) => !a.startsWith('--') && a !== recordedAt && a !== target);
+if (!csvPath) fail('CSVファイルを指定してください: node scripts/update-kpi.js <csv> [--target notes|news] [--date YYYY.MM.DD] [--dry-run]');
 if (!fs.existsSync(csvPath)) fail('CSVが見つかりません: ' + csvPath);
 if (!recordedAt) {
   const d = new Date();
@@ -102,15 +116,15 @@ if (viewsCol === -1) fail('CSVヘッダーに views 列がありません');
 if (rcCol === -1) fail('CSVヘッダーに read_complete 列がありません');
 
 /* ---- notes.js 更新 ---- */
-let src = fs.readFileSync(NOTES_FILE, 'utf8');
-const knownIds = [...src.matchAll(/id:\s*"(n\d+)"/g)].map((m) => m[1]);
+let src = fs.readFileSync(TARGET.file, 'utf8');
+const knownIds = [...src.matchAll(TARGET.idRe)].map((m) => m[1]);
 
 const summary = [];
 for (const r of rows.slice(1)) {
   const id = (r[idCol] || '').trim();
   if (!id) continue;
   if (!knownIds.includes(id)) {
-    console.warn(`警告: notes.js に id "${id}" が見つかりません。スキップします。`);
+    console.warn(`警告: ${path.basename(TARGET.file)} に id "${id}" が見つかりません。スキップします。`);
     continue;
   }
   const views = parseInt(r[viewsCol], 10);
@@ -131,10 +145,12 @@ for (const r of rows.slice(1)) {
     if (Number.isFinite(rx) && rx >= 0) reactions = rx;
   }
 
-  const newKpi = JSON.stringify({ views, readRate, reactions: reactions == null ? null : reactions, recordedAt });
+  const newKpi = TARGET.hasReactions
+    ? JSON.stringify({ views, readRate, reactions: reactions == null ? null : reactions, recordedAt })
+    : JSON.stringify({ views, readRate, recordedAt });
   const abs = noteStart + kpiMatch.index;
   src = src.slice(0, abs) + `kpi: ${newKpi}` + src.slice(abs + kpiMatch[0].length);
-  summary.push({ id, views, read_complete: rc, readRate: readRate + '%', reactions: reactions == null ? '(維持)' : reactions });
+  summary.push({ id, views, read_complete: rc, readRate: readRate + '%', reactions: TARGET.hasReactions ? (reactions == null ? '(維持)' : reactions) : '(対象外)' });
 }
 
 if (!summary.length) fail('更新対象がありませんでした（CSVの内容を確認してください）');
@@ -143,15 +159,15 @@ console.log(`\n更新内容（recordedAt = ${recordedAt}）:`);
 console.table(summary);
 
 if (dryRun) {
-  console.log('--dry-run のため notes.js は変更していません。');
+  console.log(`--dry-run のため ${path.basename(TARGET.file)} は変更していません。`);
 } else {
-  fs.writeFileSync(NOTES_FILE, src);
+  fs.writeFileSync(TARGET.file, src);
   // 構文チェック
   try {
-    new (require('vm').Script)(fs.readFileSync(NOTES_FILE, 'utf8'), { filename: 'notes.js' });
+    new (require('vm').Script)(fs.readFileSync(TARGET.file, 'utf8'), { filename: path.basename(TARGET.file) });
   } catch (e) {
-    fail('更新後の notes.js が構文エラーです。git checkout notes/notes.js で戻してください: ' + e.message);
+    fail(`更新後の ${path.basename(TARGET.file)} が構文エラーです。git checkout で戻してください: ` + e.message);
   }
-  console.log(`notes/notes.js を更新しました（${summary.length}記事）。`);
+  console.log(`${path.relative(ROOT, TARGET.file)} を更新しました（${summary.length}件）。`);
   console.log('次の手順: git diff で確認 → ブランチを切ってコミット → PR作成（mainへ直接pushしない）');
 }

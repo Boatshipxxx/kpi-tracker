@@ -16,6 +16,7 @@ on:
       - "notes/notes.js"
       - "magazine/articles.js"
       - "notes/notes-en.js"
+      - "news/news.js"
       - "templates/**"
       - "scripts/build-articles.js"
       - "scripts/generate-sitemap.js"
@@ -41,7 +42,7 @@ jobs:
 
       - name: Commit if changed
         run: |
-          git add -A notes magazine en sitemap.xml robots.txt
+          git add -A notes magazine en news sitemap.xml robots.txt
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

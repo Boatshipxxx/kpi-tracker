@@ -74,12 +74,12 @@ function toDescription(excerpt) {
   return s.length <= 120 ? s : s.slice(0, 119) + '…';
 }
 
-function jsonldArticle(a, canonical, imageAbs) {
+function jsonldArticle(a, canonical, imageAbs, schemaType) {
   return JSON.stringify({
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': schemaType || 'Article',
     headline: a.title,
-    description: toDescription(a.excerpt),
+    description: toDescription(a.excerpt || a.subtitle),
     image: [imageAbs],
     datePublished: isoDate(a.date),
     dateModified: isoDate((a.kpi && a.kpi.recordedAt) || a.date) || isoDate(a.date),
@@ -228,6 +228,53 @@ const CTA_STYLE = `
   font-size: 12px;
 }
 .cta-sub a { color: inherit; text-decoration: underline; }
+`;
+
+/* 掲載先リンク（news 用）: distribution にURLが入っていれば自動表示 */
+function distributionBlock(item) {
+  const links = [];
+  const d = item.distribution || {};
+  if (d.prtimes && d.prtimes.url) links.push({ label: 'PR TIMES', url: d.prtimes.url });
+  if (d.linkedin && d.linkedin.urlJa) links.push({ label: 'LinkedIn（日本語）', url: d.linkedin.urlJa });
+  if (d.linkedin && d.linkedin.urlEn) links.push({ label: 'LinkedIn (English)', url: d.linkedin.urlEn });
+  if (item.externalUrl) links.push({ label: item.mediaOutlet || '掲載先', url: item.externalUrl });
+  if (!links.length) return '';
+  const items = links.map((l) =>
+    `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)} ↗</a></li>`
+  ).join('');
+  return (
+    '<section class="distribution-block">' +
+      '<div class="distribution-heading">掲載先 — As seen on</div>' +
+      `<ul class="distribution-list">${items}</ul>` +
+    '</section>'
+  );
+}
+
+const NEWS_EXTRA_STYLE = `
+.news-lead {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 700;
+}
+.distribution-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid currentColor;
+}
+.distribution-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.distribution-list { list-style: none; margin: 0; padding: 0; font-size: 13px; line-height: 2; }
+.distribution-list a { color: inherit; text-decoration: underline; }
 `;
 
 /* 関連Note カード（Task 2-2: トピッククラスター化） */
@@ -402,13 +449,14 @@ function writePage(kind, a, allNotes, alternates) {
     return null;
   }
   const isEn = kind === 'en-notes';
+  const isNews = kind === 'news';
   const isNotes = kind === 'notes' || isEn;
-  const sectionUrl = isEn ? '/en/notes/' : (kind === 'notes' ? '/notes/' : '/magazine/');
-  const sectionLabel = isEn ? 'Notes (EN)' : (kind === 'notes' ? 'Notes' : 'Magazines');
+  const sectionUrl = isNews ? '/news/' : (isEn ? '/en/notes/' : (kind === 'notes' ? '/notes/' : '/magazine/'));
+  const sectionLabel = isNews ? 'News' : (isEn ? 'Notes (EN)' : (kind === 'notes' ? 'Notes' : 'Magazines'));
   const backUrl = isEn ? '/en/about/' : sectionUrl;
-  const backLabel = isEn ? '← About BOATship' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る');
+  const backLabel = isNews ? '← News に戻る' : (isEn ? '← About BOATship' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る'));
   const canonical = `${BASE_URL}${sectionUrl}${a.slug}/`;
-  const imageAbs = BASE_URL + rootify(kind === 'magazine' ? (a.og || a.hero) : a.image);
+  const imageAbs = BASE_URL + rootify(isNews ? (a.ogImage || '/images/og-image.png') : (kind === 'magazine' ? (a.og || a.hero) : a.image));
   const title = `${a.title} | BOATship`;
 
   const themeChip = (isNotes && a.theme)
@@ -419,20 +467,21 @@ function writePage(kind, a, allNotes, alternates) {
     `<div id="note-root">` +
     `<a href="${backUrl}" class="back-to-mag">${backLabel}</a>` +
     '<section class="article-page-hero">' +
-      `<span class="article-category-badge">${esc(a.category)}</span>` + themeChip +
+      `<span class="article-category-badge">${esc(isNews ? ({'press-release':'Press Release','media-coverage':'Media','announcement':'Announcement'}[a.type] || a.type) : a.category)}</span>` + themeChip +
       `<h1 class="article-page-title">${esc(a.title)}</h1>` +
       '<div class="article-meta">' +
         `<span>${esc(a.date)}</span>` +
-        `<span>${esc(a.readTime)} min read</span>` +
-        `<span>${esc(a.num)}</span>` +
+        `<span>${esc(a.readTime || 3)} min read</span>` +
+        (a.num ? `<span>${esc(a.num)}</span>` : '') +
       '</div>' +
     '</section>' +
-    heroBlockFor(a, kind) +
+    (isNews ? (a.subtitle ? `<p class="news-lead">${esc(a.subtitle)}</p>` : '') : heroBlockFor(a, kind)) +
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
     (isNotes ? evidenceBlock(a) : '') +
+    (isNews ? distributionBlock(a) : '') +
     ctaBlock(a) +
     (kind === 'notes' ? relatedBlock(a, allNotes) : '') +
-    `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime)}"></div>` +
+    `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime || 3)}"></div>` +
     `<a href="${backUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
     `</div>`;
 
@@ -485,14 +534,14 @@ function writePage(kind, a, allNotes, alternates) {
     CANONICAL: canonical,
     ALTERNATES: alternatesHtml,
     OG_IMAGE: esc(imageAbs),
-    JSONLD_ARTICLE: jsonldArticle(a, canonical, imageAbs),
+    JSONLD_ARTICLE: jsonldArticle(a, canonical, imageAbs, isNews ? 'NewsArticle' : 'Article'),
     JSONLD_BREADCRUMB: jsonldBreadcrumb(sectionLabel, isEn ? '/en/about/' : sectionUrl, a.title, canonical),
     SECTION_URL: isEn ? '/en/about/' : sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
     NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
     NEWSLETTER_NOTE: isEn ? '* No spam. Unsubscribe anytime.' : '* スパムは送りません。いつでも解除できます。',
-    EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : ''),
+    EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : '') + (isNews ? NEWS_EXTRA_STYLE : ''),
     ARTICLE_CONTENT: content,
     EXTRA_BODY: extraBody,
     EXTRA_SCRIPTS: extraScripts + CTA_TRACK_SCRIPT
@@ -500,7 +549,9 @@ function writePage(kind, a, allNotes, alternates) {
 
   const dir = isEn
     ? path.join(ROOT, 'en', 'notes', a.slug)
-    : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug);
+    : (isNews
+      ? path.join(ROOT, 'news', a.slug)
+      : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug));
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   return `${sectionUrl}${a.slug}/`;
@@ -530,6 +581,10 @@ function build() {
     const u = writePage('en-notes', e, notes, src && src.slug ? altFor(src, e) : null);
     if (u) written.push(u);
   });
+  const news = loadGlobalOptional('news/news.js', 'NEWS');
+  news
+    .filter((n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug)
+    .forEach((n) => { const u = writePage('news', n, notes); if (u) written.push(u); });
   console.log(`generated ${written.length} article pages:`);
   written.forEach((u) => console.log('  ' + u));
 }
