@@ -34,6 +34,15 @@
 }
 .news-chip.backlink { opacity: 0.7; }
 .concrete-item.external .concrete-title::after { content: ' ↗'; }
+.news-type-tile span {
+  font-family: 'Silkscreen', cursive;
+  font-size: clamp(18px, 2.6vw, 30px);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.concrete-item:hover .news-type-tile { background: var(--text-black); color: var(--bg-yellow); }
 </style>
 </head>
 <body>
@@ -136,7 +145,9 @@
       '<span class="news-chip">' + esc(TYPE_LABEL[n.type] || n.type) + '</span>' +
       (isExternal && n.mediaOutlet ? '<span class="news-chip">' + esc(n.mediaOutlet) + '</span>' : '') +
       (n.isBacklink ? '<span class="news-chip backlink">Backlink</span>' : '');
+    var tileLabel = { 'press-release': 'PRESS<br>RELEASE', 'media-coverage': 'MEDIA', 'announcement': 'ANNOUNCE<br>MENT' }[n.type] || esc(n.type);
     return '<a href="' + href + '"' + extAttr + ' class="concrete-item reveal' + (isExternal ? ' external' : '') + '" data-type="' + esc(n.type) + '">' +
+      '<div class="concrete-image news-type-tile"><span>' + tileLabel + '</span></div>' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
           '<span>' + esc(n.date) + '</span>' +
