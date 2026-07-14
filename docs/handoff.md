@@ -148,3 +148,7 @@
 - **LinkedIn英語版**（docs/press/pr01-linkedin-en.md）: 直訳でなく海外読者向け再構成（カルチャーギャップをフック / o-tagai-sama補足 / /en/ 導線）。パターンA/B両方。ネイティブ確認は人間。
 - **プレースホルダ**: [[代表コメント:要記入]]（news.js内・PR TIMES版に転記指示あり）。
 - 補足: セッション③の docs/press-release/（全文型PR TIMES版）は本タスクの「原本=自社サイト+要約版」方式で**置き換え**（note転載版はそのまま利用可）。
+
+### Task 7-3 配信実務マニュアル — ✅ 完了（PR: claude/session4-playbook）
+- `docs/press-distribution-playbook.md`: A配信前チェック（自社公開が先/代表コメント置換/OGP検証=LinkedIn Post Inspector/UTM準備）、B PR TIMES手順（無料枠は**条件を断定せず公式確認のチェックリスト**/代替案と判断基準/入稿は要約版のみ/二次掲載→被リンク確認→media-coverage登録のコード例）、C LinkedIn手順（代表個人プロフィール英語併記・会社ページはリポスト補助/日→数日空けて英/48時間以内返信/英語返信テンプレ/A・Bリーチ比較記録表）、D UTM規則（コピペ可能な完成形URL4本・`{news_id}_{テーマ}`命名・utm_contentで言語分離）、E 配信後チェックリスト、F GA4測定手順（参照元別/utm_content=en分離/news読了・cta_click）。
+- 注: 付録FはTask 7-4の仕様に対応（`update-kpi.js --target news` は次PRで実装）。
