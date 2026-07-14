@@ -152,3 +152,10 @@
 ### Task 7-3 配信実務マニュアル — ✅ 完了（PR: claude/session4-playbook）
 - `docs/press-distribution-playbook.md`: A配信前チェック（自社公開が先/代表コメント置換/OGP検証=LinkedIn Post Inspector/UTM準備）、B PR TIMES手順（無料枠は**条件を断定せず公式確認のチェックリスト**/代替案と判断基準/入稿は要約版のみ/二次掲載→被リンク確認→media-coverage登録のコード例）、C LinkedIn手順（代表個人プロフィール英語併記・会社ページはリポスト補助/日→数日空けて英/48時間以内返信/英語返信テンプレ/A・Bリーチ比較記録表）、D UTM規則（コピペ可能な完成形URL4本・`{news_id}_{テーマ}`命名・utm_contentで言語分離）、E 配信後チェックリスト、F GA4測定手順（参照元別/utm_content=en分離/news読了・cta_click）。
 - 注: 付録FはTask 7-4の仕様に対応（`update-kpi.js --target news` は次PRで実装）。
+
+### Task 7-5 Clutch登録準備一式 — ✅ 完了（PR: claude/session4-clutch）
+- `docs/directories/clutch-profile-en.md`: 会社概要50語/150語（/en/about/ と表現統一）、Service構成比案（Branding 35/Company media 35/PR 30）、差別化=等価交換を前面、ターゲット・会社情報。[[要確認]]: 想定案件規模・チーム人数。
+- `docs/directories/clutch-case-studies-en.md`: ①Shake Shack Japan（課題→打ち手→成果。数値はサイト掲載済みの「表示速度40%改善・CWV全指標Green」のみ使用）②等価交換の農家サイト（定性成果中心）。不明数値は [[要確認:数値]]。
+- `docs/directories/review-request-templates.md`（**最重要**）: 日本語版（Clutchとは何か/なぜ/所要時間を丁寧に説明・押し付けないトーン）+ 英語版 + 依頼タイミング（完了直後）とリマインド作法（2週間後に一度だけ）。
+- `docs/directories/clutch-playbook.md`: 登録前チェック（**条件は断定せず公式確認項目のみ**）→ 登録フロー → 完了後（UTM設定・news.jsへ被リンク記録のコード例・GA4確認）→ 運用リズム → 将来ディレクトリ（Sortlist/DesignRush/Agency Spotter）の判断チェックリスト。
+- **人間の作業**: 公式サイトでの条件確認、クライアント名公開可否の確認、[[要確認]]の記入、英文最終確認、レビュー依頼の実施。
