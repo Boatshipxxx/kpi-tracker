@@ -69,6 +69,41 @@
 
 -
 
+## 8. 外部発信（/news/ 経由）
+
+### 当月の発信件数
+
+| 種別 | 件数 | 対象（news id） |
+|---|---|---|
+| プレスリリース（PR TIMES配信） | | |
+| LinkedIn投稿（日本語） | | |
+| LinkedIn投稿（英語） | | |
+| メディア掲載（type: media-coverage 登録数） | | |
+
+### 媒体別流入数（GA4「セッションの参照元/メディア」+ utm_campaign で確認）
+
+| 媒体 | セッション | メモ |
+|---|---|---|
+| PR TIMES（prtimes / referral） | | |
+| LinkedIn 日本語（linkedin / social, utm_content=ja） | | |
+| LinkedIn 英語（linkedin / social, utm_content=en） | | ※海外KPIの先行指標 |
+| Clutch（clutch / referral） | | |
+| 自然検索（organic） | | |
+
+### 被リンク・レビュー
+
+| 項目 | 当月 | 累計 |
+|---|---|---|
+| 獲得した被リンク数（news.js の isBacklink: true の件数） | | |
+| Clutch レビュー獲得数 | | |
+
+### 発信経由の問い合わせ件数
+
+| 区分 | 当月 | メモ（流入元・きっかけ） |
+|---|---|---|
+| 国内（発信経由） | | |
+| 海外（発信経由。LinkedIn DM・Clutch含む） | | ※海外KPI 30件にカウント |
+
 ## 7. その他メモ / 次月のアクション
 
 -

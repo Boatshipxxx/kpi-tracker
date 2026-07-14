@@ -159,3 +159,14 @@
 - `docs/directories/review-request-templates.md`（**最重要**）: 日本語版（Clutchとは何か/なぜ/所要時間を丁寧に説明・押し付けないトーン）+ 英語版 + 依頼タイミング（完了直後）とリマインド作法（2週間後に一度だけ）。
 - `docs/directories/clutch-playbook.md`: 登録前チェック（**条件は断定せず公式確認項目のみ**）→ 登録フロー → 完了後（UTM設定・news.jsへ被リンク記録のコード例・GA4確認）→ 運用リズム → 将来ディレクトリ（Sortlist/DesignRush/Agency Spotter）の判断チェックリスト。
 - **人間の作業**: 公式サイトでの条件確認、クライアント名公開可否の確認、[[要確認]]の記入、英文最終確認、レビュー依頼の実施。
+
+### Task 7-4 効果測定の接続 — ✅ 完了（PR: claude/session4-kpi-news）
+- `scripts/update-kpi.js` に `--target notes|news` を追加（既定 notes）。news は `news/news.js` の kpi（views/readRate/recordedAt、reactions無し）を更新。既存 notes 動作は無変更（回帰テスト済み）。
+- GA4確認手順は docs/press-distribution-playbook.md 付録F に記載済み（Task 7-3 で先行対応: 参照元別 / utm_content=en の分離=海外KPI先行指標 / newsの閲覧・read_complete・cta_click）。
+- `docs/monthly-review-template.md` と `reviews/2026-07.md` に「8. 外部発信」を追加: 当月発信件数（PR/LinkedIn日英/メディア掲載）/ 媒体別流入（PR TIMES/LinkedIn-ja/LinkedIn-en/Clutch/自然検索）/ 被リンク数（isBacklink:true件数）とClutchレビュー累計 / 発信経由の問い合わせ（国内・海外別、海外KPIカウント）。
+- README「KPIの月次転記」に --target news の実行例を追記。
+
+## セッション④ 完了サマリー
+- 全5タスクのPRを作成済み（スタック構成）。**マージ順: #34 → #35 → #36 → #37 → #38（7-1 /news/）→ #39（7-2 原本+派生）→ #40（7-3 配信手順）→ #41（7-5 Clutch）→ #42（7-4 計測接続）**。
+- プレースホルダ一覧: [[代表コメント:要記入]]（news.js pr01）/ [[要確認:数値]]・[[要確認:想定案件規模]]・[[要確認:人数]]（Clutch関連）/ 配信後にURL記入（distribution / media-coverage / LinkedIn記録欄）。
+- 人間の判断・作業: 代表コメント記入 → PR TIMES条件確認・配信 → LinkedInアカウント整備・投稿（A→B比較）→ Clutch条件確認・登録・レビュー依頼 → 月次で媒体別流入とKPI転記。

@@ -115,6 +115,10 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
    ```
    - `readRate`（読了率%）は views と read_complete から自動計算
    - 未知の `article_id` は警告してスキップ。更新後に構文チェックも自動実行
+   - **News の KPI 転記**は `--target news` を付けて実行（`news/news.js` の kpi を更新。article_id は pr01 / an01 など）:
+     ```bash
+     node scripts/update-kpi.js kpi-news-2026-07.csv --target news --date 2026.07.31
+     ```
 4. **PRで公開**: `git diff` で確認 → ブランチを切ってコミット → PR作成（main へ直接 push しない）。マージすると記事ページの「最終チューニング」表示と admin Insights の判定に反映されます
 
 ### 将来課題
