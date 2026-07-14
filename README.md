@@ -121,6 +121,16 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 
 GA4 Data API での直接取得は認証設定が必要なため、当面は CSV 半自動運用とします（API接続は将来のフェーズで検討）。
 
+## News セクション（プレスリリース・メディア掲載・お知らせ）
+
+`/news/` は外部発信の**原本（canonical）置き場**です。PR TIMES・LinkedIn・Clutch などの外部媒体は「入口」、自社サイトが「本体」。すべての流入を /news/ に集め、読了計測とCTAで問い合わせに転換します。
+
+- **データ**: `news/news.js` の `NEWS` 配列（notes.js と同じ設計思想）。`type` は `press-release` / `media-coverage` / `announcement`
+- **生成**: `press-release` と `announcement` は `scripts/build-articles.js` が `/news/<slug>/` を静的生成（JSON-LD は `NewsArticle`、読了計測センチネル・記事末CTA付き）。`media-coverage` は一覧に外部リンクとして表示するだけ
+- **掲載先リンク**: 配信後に `distribution` へURLを追記してコミットすると、個別ページ下部に「掲載先」リンクが自動表示されます
+- **被リンク記録**: `isBacklink` に被リンク獲得の有無を記録（LinkedInはnofollowのため対象外。PR TIMES二次掲載・Clutch等が被リンク源）
+- 一覧は `news/index.html`（type別フィルタ付き）、トップページに Latest News（最新3件）を表示。sitemap にも自動反映
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。

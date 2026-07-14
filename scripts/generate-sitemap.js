@@ -81,6 +81,10 @@ function build() {
   if (fs.existsSync(path.join(ROOT, 'notes', 'notes-en.js'))) {
     try { notesEn = loadGlobal('notes/notes-en.js', 'NOTES_EN'); } catch (e) { notesEn = []; }
   }
+  let news = [];
+  if (fs.existsSync(path.join(ROOT, 'news', 'news.js'))) {
+    try { news = loadGlobal('news/news.js', 'NEWS'); } catch (e) { news = []; }
+  }
 
   // 記事一覧の最終更新日（一覧ページの lastmod に使う）
   const latest = (items) =>
@@ -102,6 +106,7 @@ function build() {
   entries.push(urlEntry('/en/contact/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/notes/', latest(notes) || today, 'weekly', '0.9'));
   entries.push(urlEntry('/magazine/', latest(articles) || today, 'weekly', '0.8'));
+  entries.push(urlEntry('/news/', latest(news) || today, 'weekly', '0.8'));
 
   // 記事URL: slug があれば静的生成ページ（/notes/<slug>/）、なければ旧クエリ形式
   const articleLoc = (section, it) =>
@@ -121,6 +126,12 @@ function build() {
   notesEn.forEach((e) => {
     if (e.slug) entries.push(urlEntry(`/en/notes/${e.slug}/`, toLastmod(e.date), 'monthly', '0.6'));
   });
+  // News（press-release / announcement のみ。media-coverage は外部リンクのため対象外）
+  news
+    .filter((n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug)
+    .forEach((n) => {
+      entries.push(urlEntry(`/news/${n.slug}/`, toLastmod(n.date), 'monthly', '0.7'));
+    });
 
   const sitemap =
     '<?xml version="1.0" encoding="UTF-8"?>\n' +

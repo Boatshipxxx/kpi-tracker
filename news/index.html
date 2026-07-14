@@ -3,14 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notes — BOATship Owned Media</title>
-<meta name="description" content="BOATshipのNotes。インナーブランディングと広報企画に特化したオウンドメディア。学術エビデンスとアクセス実績にもとづいて記事を継続更新しています。">
+<title>News — BOATship</title>
+<meta name="description" content="BOATshipのニュース。プレスリリース・メディア掲載・お知らせを掲載しています。">
+<link rel="canonical" href="https://www.boatship.jp/news/">
+<meta property="og:title" content="News — BOATship">
+<meta property="og:description" content="BOATshipのプレスリリース・メディア掲載・お知らせ。">
+<meta property="og:url" content="https://www.boatship.jp/news/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOATship">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
 <style>
-.note-chip {
+.news-chip {
   display: inline-block;
   padding: 1px 8px;
   border: 1px solid currentColor;
@@ -18,7 +32,8 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.note-chip.evidence { opacity: 0.7; }
+.news-chip.backlink { opacity: 0.7; }
+.concrete-item.external .concrete-title::after { content: ' ↗'; }
 </style>
 </head>
 <body>
@@ -56,44 +71,26 @@
 
 <!-- Page Hero -->
 <section class="page-hero">
-  <p class="page-hero-eyebrow editable">Owned Media — Inner Branding & PR</p>
-  <h1 class="editable">Notes</h1>
-  <p class="editable">インナーブランディングと広報企画に特化した<br>BOATshipのオウンドメディア。<br>学術エビデンスとアクセス実績で、記事は育ちつづける。</p>
+  <p class="page-hero-eyebrow">Press Releases · Media · Announcements</p>
+  <h1>News</h1>
+  <p>プレスリリース、メディア掲載、お知らせ。<br>すべての発信の原本はこのサイトに集まります。</p>
 </section>
 
-<!-- Marquee -->
-<div class="marquee-strip">
-  <div class="marquee-track">
-    <span class="marquee-item"><span class="mdot"></span>INNER BRANDING</span>
-    <span class="marquee-item"><span class="mdot"></span>PR PLANNING</span>
-    <span class="marquee-item"><span class="mdot"></span>EVIDENCE-BASED</span>
-    <span class="marquee-item"><span class="mdot"></span>ORGANIZATION CULTURE</span>
-    <span class="marquee-item"><span class="mdot"></span>STORYTELLING</span>
-    <span class="marquee-item"><span class="mdot"></span>OWNED MEDIA</span>
-    <span class="marquee-item"><span class="mdot"></span>INNER BRANDING</span>
-    <span class="marquee-item"><span class="mdot"></span>PR PLANNING</span>
-    <span class="marquee-item"><span class="mdot"></span>EVIDENCE-BASED</span>
-    <span class="marquee-item"><span class="mdot"></span>ORGANIZATION CULTURE</span>
-    <span class="marquee-item"><span class="mdot"></span>STORYTELLING</span>
-    <span class="marquee-item"><span class="mdot"></span>OWNED MEDIA</span>
-  </div>
-</div>
-
-<!-- Theme Filter -->
+<!-- Type Filter -->
 <div class="filter-tabs">
   <button class="filter-tab active" data-filter="all">ALL</button>
-  <button class="filter-tab" data-filter="inner-branding">INNER BRANDING</button>
-  <button class="filter-tab" data-filter="pr-planning">PR PLANNING</button>
-  <button class="filter-tab" data-filter="culture">CULTURE</button>
+  <button class="filter-tab" data-filter="press-release">PRESS RELEASE</button>
+  <button class="filter-tab" data-filter="media-coverage">MEDIA</button>
+  <button class="filter-tab" data-filter="announcement">ANNOUNCEMENT</button>
 </div>
 
-<!-- Notes List (notes.js から自動生成 — admin で公開すると自動反映) -->
-<section class="concrete-list" id="notes-list"></section>
+<!-- News List (news.js から自動生成) -->
+<section class="concrete-list" id="news-list"></section>
 
 <!-- Newsletter -->
 <section class="newsletter-section" id="newsletter">
-  <h2 class="editable">Studio<br>Updates</h2>
-  <p class="sub-text editable">新着の制作事例やMagazinesをメールでお届け。</p>
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
   <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
     <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
     <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
@@ -113,13 +110,13 @@
   </div>
 </footer>
 
-<script src="notes.js"></script>
+<script src="news.js"></script>
 <script>
 (function () {
-  var THEME_LABEL = {
-    'inner-branding': 'Inner Branding',
-    'pr-planning': 'PR Planning',
-    'culture': 'Culture'
+  var TYPE_LABEL = {
+    'press-release': 'Press Release',
+    'media-coverage': 'Media',
+    'announcement': 'Announcement'
   };
 
   function esc(s) {
@@ -127,37 +124,37 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
 
-  var sorted = NOTES.slice().sort(function (a, b) {
+  var sorted = NEWS.slice().sort(function (a, b) {
     return String(b.date || '').localeCompare(String(a.date || ''));
   });
 
-  document.getElementById('notes-list').innerHTML = sorted.map(function (n) {
-    var theme = n.theme || 'culture';
-    var evCount = (n.evidence || []).length;
+  document.getElementById('news-list').innerHTML = sorted.map(function (n) {
+    var isExternal = n.type === 'media-coverage';
+    var href = isExternal ? (n.externalUrl || '#') : (n.slug ? esc(n.slug) + '/' : '#');
+    var extAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
     var chips =
-      '<span class="note-chip">' + esc(THEME_LABEL[theme] || theme) + '</span>' +
-      (evCount ? '<span class="note-chip evidence">Evidence ×' + evCount + '</span>' : '');
-    var href = n.slug ? esc(n.slug) + '/' : 'article.html?id=' + esc(n.id);
-    return '<a href="' + href + '" class="concrete-item reveal" data-theme="' + esc(theme) + '">' +
-      '<div class="concrete-image"><img src="' + esc(n.image) + '" alt="' + esc(n.title) + '"></div>' +
+      '<span class="news-chip">' + esc(TYPE_LABEL[n.type] || n.type) + '</span>' +
+      (isExternal && n.mediaOutlet ? '<span class="news-chip">' + esc(n.mediaOutlet) + '</span>' : '') +
+      (n.isBacklink ? '<span class="news-chip backlink">Backlink</span>' : '');
+    return '<a href="' + href + '"' + extAttr + ' class="concrete-item reveal' + (isExternal ? ' external' : '') + '" data-type="' + esc(n.type) + '">' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
           '<span>' + esc(n.date) + '</span>' +
-          '<span>' + esc(n.readTime) + ' min read</span>' +
-          '<span>' + esc(n.category) + '</span>' +
           chips +
         '</div>' +
         '<h3 class="concrete-title">' + esc(n.title) + '</h3>' +
-        '<p class="concrete-excerpt">' + esc(n.excerpt) + '</p>' +
+        (n.subtitle ? '<p class="concrete-excerpt">' + esc(n.subtitle) + '</p>' : '') +
       '</div>' +
     '</a>';
   }).join('');
 
   document.querySelectorAll('.filter-tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
       var f = tab.getAttribute('data-filter');
-      document.querySelectorAll('#notes-list .concrete-item').forEach(function (item) {
-        item.style.display = (f === 'all' || item.getAttribute('data-theme') === f) ? '' : 'none';
+      document.querySelectorAll('#news-list .concrete-item').forEach(function (item) {
+        item.style.display = (f === 'all' || item.getAttribute('data-type') === f) ? '' : 'none';
       });
     });
   });

@@ -6,35 +6,35 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WordPressカスタムテーマ開発の流儀 | BOATship</title>
-<meta name="description" content="ご依頼主EYEWEAR MEBIUS様・TEAM JOSAI!様の実装から得た、WordPressカスタムテーマ開発のベストプラクティス。">
-<link rel="canonical" href="https://www.boatship.jp/magazine/wordpress-custom-theme/">
+<title>コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました | BOATship</title>
+<meta name="description" content="">
+<link rel="canonical" href="https://www.boatship.jp/news/owned-media-launch/">
 
-<meta property="og:title" content="WordPressカスタムテーマ開発の流儀 | BOATship">
-<meta property="og:description" content="ご依頼主EYEWEAR MEBIUS様・TEAM JOSAI!様の実装から得た、WordPressカスタムテーマ開発のベストプラクティス。">
-<meta property="og:image" content="https://www.boatship.jp/images/works-eyewear.jpg">
-<meta property="og:url" content="https://www.boatship.jp/magazine/wordpress-custom-theme/">
+<meta property="og:title" content="コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました | BOATship">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.boatship.jp/images/og-image.png">
+<meta property="og:url" content="https://www.boatship.jp/news/owned-media-launch/">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="BOATship">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="WordPressカスタムテーマ開発の流儀 | BOATship">
-<meta name="twitter:description" content="ご依頼主EYEWEAR MEBIUS様・TEAM JOSAI!様の実装から得た、WordPressカスタムテーマ開発のベストプラクティス。">
-<meta name="twitter:image" content="https://www.boatship.jp/images/works-eyewear.jpg">
+<meta name="twitter:title" content="コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました | BOATship">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.boatship.jp/images/og-image.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "WordPressカスタムテーマ開発の流儀",
-  "description": "ご依頼主EYEWEAR MEBIUS様・TEAM JOSAI!様の実装から得た、WordPressカスタムテーマ開発のベストプラクティス。",
+  "@type": "NewsArticle",
+  "headline": "コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました",
+  "description": "学術エビデンスとアクセス実績で記事を育てる自動更新型オウンドメディア。英語ページ・問い合わせ窓口も開設",
   "image": [
-    "https://www.boatship.jp/images/works-eyewear.jpg"
+    "https://www.boatship.jp/images/og-image.png"
   ],
-  "datePublished": "2026-03-10",
-  "dateModified": "2026-03-10",
+  "datePublished": "2026-07-13",
+  "dateModified": "2026-07-13",
   "inLanguage": "ja",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://www.boatship.jp/magazine/wordpress-custom-theme/"
+    "@id": "https://www.boatship.jp/news/owned-media-launch/"
   },
   "author": {
     "@type": "Organization",
@@ -65,14 +65,14 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Magazines",
-      "item": "https://www.boatship.jp/magazine/"
+      "name": "News",
+      "item": "https://www.boatship.jp/news/"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "WordPressカスタムテーマ開発の流儀",
-      "item": "https://www.boatship.jp/magazine/wordpress-custom-theme/"
+      "name": "コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました",
+      "item": "https://www.boatship.jp/news/owned-media-launch/"
     }
   ]
 }
@@ -144,6 +144,31 @@
 }
 .cta-sub a { color: inherit; text-decoration: underline; }
 
+.news-lead {
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+  font-size: 15px;
+  line-height: 2;
+  font-weight: 700;
+}
+.distribution-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 1.2rem 1.5rem;
+  border: 2px solid currentColor;
+}
+.distribution-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.distribution-list { list-style: none; margin: 0; padding: 0; font-size: 13px; line-height: 2; }
+.distribution-list a { color: inherit; text-decoration: underline; }
+
 </style>
 </head>
 <body>
@@ -182,20 +207,16 @@
 <nav class="breadcrumb" aria-label="パンくずリスト">
   <ol>
     <li><a href="/">Home</a></li>
-    <li><a href="/magazine/">Magazines</a></li>
-    <li><span aria-current="page">WordPressカスタムテーマ開発の流儀</span></li>
+    <li><a href="/news/">News</a></li>
+    <li><span aria-current="page">コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました</span></li>
   </ol>
 </nav>
 
-<div id="note-root"><a href="/magazine/" class="back-to-mag">← Magazines に戻る</a><section class="article-page-hero"><span class="article-category-badge">Tech</span><h1 class="article-page-title">WordPressカスタムテーマ開発の流儀</h1><div class="article-meta"><span>2026.03.10</span><span>7 min read</span><span>#05</span></div></section><div class="article-tech-hero-block"><div class="article-tech-hero-inner"><span class="article-tech-hero-word">TECH</span></div></div><article class="article-body"><p>WordPressは「使いこなすのが難しい」と言われますが、カスタムテーマの設計を正しく行えば、クライアント様が自走できる強力なCMSになります。</p>
-<h2>ファイル構成の原則</h2>
-<p>テンプレートファイルを機能単位に分割し、<code>get_template_part()</code>で呼び出す構成にしましょう。header、footer、single、archive、page——それぞれに役割を持たせ、コードの重複を排除します。</p>
-<h2>カスタム投稿タイプの設計</h2>
-<p>ご依頼主EYEWEAR MEBIUS様では、ブランドとプロダクトカテゴリをカスタム投稿タイプで管理しています。<code>register_post_type()</code>と<code>register_taxonomy()</code>を使い、管理画面をクライアント様が直感的に操作できる構造にしました。</p>
-<h2>ACF（Advanced Custom Fields）活用</h2>
-<p>標準のWYSIWYGエディタでは表現できない複雑なレイアウトには、ACFのフレキシブルコンテンツが有効です。ご依頼主TEAM JOSAI!様では、選手インタビュー、試合レポート、ギャラリーなど、記事の種類に応じたレイアウトをフレキシブルコンテンツで管理しています。</p>
-<h2>パフォーマンス</h2>
-<p>プラグインは最小限に。代わりに<code>functions.php</code>にカスタムコードを書く習慣をつけましょう。不要なスクリプトのエンキューを外し、Critical CSSをインライン化することで、PageSpeedのスコアを大きく改善できます。</p></article><section class="cta-block" data-article-id="05" data-theme="general"><h2 class="cta-heading">プロジェクトのご相談</h2><p class="cta-body">等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><div id="article-end" style="height:1px;" data-article-id="05" data-read-time="7"></div><a href="/magazine/" class="back-to-mag" style="margin-bottom:4rem;">← Magazines に戻る</a></div>
+<div id="note-root"><a href="/news/" class="back-to-mag">← News に戻る</a><section class="article-page-hero"><span class="article-category-badge">Announcement</span><h1 class="article-page-title">コーポレートサイトを刷新し、オウンドメディア「Notes」を本格始動しました</h1><div class="article-meta"><span>2026-07-13</span><span>3 min read</span></div></section><p class="news-lead">学術エビデンスとアクセス実績で記事を育てる自動更新型オウンドメディア。英語ページ・問い合わせ窓口も開設</p><article class="article-body"><p>BOATshipは、コーポレートサイト（www.boatship.jp）を刷新し、インナーブランディングと広報企画に特化したオウンドメディア「Notes」を本格始動しました。あわせて、海外企業・エージェント向けの英語ページと、問い合わせ窓口を開設しています。</p>
+<h2>Notes — 学術エビデンスとアクセス実績で記事を育てる</h2>
+<p>「<a href="/notes/">Notes</a>」は、インナーブランディング・広報企画の実務に使える記事を、実在の学術文献にもとづいて公開するオウンドメディアです。各記事は読了率などのアクセス実績を計測し、実測値にもとづいて継続的にチューニングします。記事の一部は週次で自動生成され、人間のレビューを経て公開される運用です。</p>
+<h2>英語ページと問い合わせ窓口</h2>
+<p>日本市場への参入を検討する海外企業・エージェント向けに<a href="/en/about/">英語ページ</a>を開設しました。ブランド開発・カンパニーメディア制作・PR戦略の3領域でご相談いただけます。お問い合わせは<a href="/contact/">問い合わせページ</a>から。等価交換報酬制度（お金以外の価値での対価）でのご依頼も歓迎します。</p></article><section class="cta-block" data-article-id="an01" data-theme="general"><h2 class="cta-heading">プロジェクトのご相談</h2><p class="cta-body">等価交換報酬制度でのご依頼も歓迎です。お金以外の対価もご提案ください。</p><a class="cta-btn" href="/contact/">相談する →</a><p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><div id="article-end" style="height:1px;" data-article-id="an01" data-read-time="3"></div><a href="/news/" class="back-to-mag" style="margin-bottom:4rem;">← News に戻る</a></div>
 
 
 

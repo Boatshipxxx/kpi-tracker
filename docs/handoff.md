@@ -126,3 +126,17 @@
 - 全タスクのPRを作成済み（スタック構成）。**マージ順: #34（EN基本ページ）→ #35（n01英訳）→ #36（SEO Note 2本）→ #37（プレスリリース）**。
 - 人間レビュー待ち: #34 英文通読 / #35 英文通読 + タイトル3案選択 / #36 記事2本の内容承認（マージ＝公開）/ #37 代表コメント等の差し替え。
 - これで指示書の最小3セッション計画（①②③）の Claude 作業は完遂。以降は週次自動更新 + 月次KPI運用のループ。
+
+## セッション④ — /news/ 基盤と外部配信（追加発注）
+
+### 前提確認（設計判断）
+- **build-news.js は新設せず `scripts/build-articles.js` を拡張**（テンプレート・CTA・JSON-LD・エスケープ・workflow が集約済みのため。複製＝新しい仕組みの発明を回避）。
+- 一覧は notes/index.html と同じクライアント描画方式を流用。JSON-LD のみ `NewsArticle` に切り替え。
+
+### Task 7-1 /news/ セクション新設 — ✅ 完了（PR: claude/session4-news）
+- `news/news.js`（NEWS配列: type / slug / subtitle / body / distribution / mediaOutlet / externalUrl / isBacklink / kpi）。初回エントリとして an01（サイト刷新のお知らせ・事実ベース）を収録。
+- build-articles.js 拡張: press-release / announcement を `/news/<slug>/` に静的生成（NewsArticle JSON-LD / パンくず Home>News / 読了計測センチネル / CTA=default文言 / distribution にURLがあれば「掲載先」ブロック自動表示）。
+- `news/index.html`: type別フィルタ付き一覧。media-coverage は外部リンク表示（Backlinkチップ付き）。
+- グローバルナビに「News」追加（テンプレート + トップ/works/notes/magazine/contact/about + 旧article.html）。トップに Latest News（最新3件、news.js から描画）。
+- sitemap に /news/ と個別ページを追加（29 URLs）。workflow paths に news/news.js 追加。
+- 検証: NewsArticle/BreadcrumbList のJSON-LDパース・フィルタ動作・トップLatest News・全navを Playwright で確認。
