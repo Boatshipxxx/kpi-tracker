@@ -43,6 +43,11 @@ function loadGlobal(relFile, globalName) {
   return value;
 }
 
+function loadGlobalOptional(relFile, globalName) {
+  if (!fs.existsSync(path.join(ROOT, relFile))) return [];
+  try { return loadGlobal(relFile, globalName); } catch (e) { return []; }
+}
+
 function esc(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -78,7 +83,7 @@ function jsonldArticle(a, canonical, imageAbs) {
     image: [imageAbs],
     datePublished: isoDate(a.date),
     dateModified: isoDate((a.kpi && a.kpi.recordedAt) || a.date) || isoDate(a.date),
-    inLanguage: 'ja',
+    inLanguage: a.lang === 'en' ? 'en' : 'ja',
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
     author: { '@type': 'Organization', name: 'BOATship', url: BASE_URL + '/' },
     publisher: {
@@ -111,11 +116,15 @@ function evidenceBlock(note) {
     return `<li>${title}<span class="ev-source">${esc(ev.source)}</span></li>`;
   }).join('');
   const tuned = (note.kpi && note.kpi.recordedAt) ? note.kpi.recordedAt : note.date;
+  const heading = note.lang === 'en' ? 'Evidence — References' : 'Evidence — 参考文献・エビデンス';
+  const footnote = note.lang === 'en'
+    ? `This note is tuned continuously based on academic evidence and real access metrics. Last tuned: ${esc(tuned)}`
+    : `このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: ${esc(tuned)}`;
   return (
     '<section class="evidence-block">' +
-      '<div class="evidence-heading">Evidence — 参考文献・エビデンス</div>' +
+      `<div class="evidence-heading">${heading}</div>` +
       `<ol class="evidence-list">${items}</ol>` +
-      `<p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: ${esc(tuned)}</p>` +
+      `<p class="evidence-footnote">${footnote}</p>` +
     '</section>'
   );
 }
@@ -138,6 +147,16 @@ const CTA_COPY = {
 
 function ctaBlock(a) {
   const theme = a.theme || 'general';
+  if (a.lang === 'en') {
+    return (
+      `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
+        '<h2 class="cta-heading">Work with BOATship</h2>' +
+        '<p class="cta-body">We help international brands enter the Japanese market — brand development, company media production, and PR strategy. Equal exchange proposals are welcome.</p>' +
+        '<a class="cta-btn" href="/en/contact/">Contact us →</a>' +
+        '<p class="cta-sub"><a href="mailto:contact@boatship.jp">or email contact@boatship.jp</a></p>' +
+      '</section>'
+    );
+  }
   const copy = CTA_COPY[a.theme] || CTA_COPY['default'];
   return (
     `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
@@ -377,25 +396,28 @@ function render(tokens) {
   return out;
 }
 
-function writePage(kind, a, allNotes) {
+function writePage(kind, a, allNotes, alternates) {
   if (!a.slug) {
     console.warn(`skip: ${kind} ${a.id} has no slug`);
     return null;
   }
-  const sectionUrl = kind === 'notes' ? '/notes/' : '/magazine/';
-  const sectionLabel = kind === 'notes' ? 'Notes' : 'Magazines';
-  const backLabel = kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る';
+  const isEn = kind === 'en-notes';
+  const isNotes = kind === 'notes' || isEn;
+  const sectionUrl = isEn ? '/en/notes/' : (kind === 'notes' ? '/notes/' : '/magazine/');
+  const sectionLabel = isEn ? 'Notes (EN)' : (kind === 'notes' ? 'Notes' : 'Magazines');
+  const backUrl = isEn ? '/en/about/' : sectionUrl;
+  const backLabel = isEn ? '← About BOATship' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る');
   const canonical = `${BASE_URL}${sectionUrl}${a.slug}/`;
   const imageAbs = BASE_URL + rootify(kind === 'magazine' ? (a.og || a.hero) : a.image);
   const title = `${a.title} | BOATship`;
 
-  const themeChip = (kind === 'notes' && a.theme)
+  const themeChip = (isNotes && a.theme)
     ? `<span class="article-theme-chip">${esc(THEME_LABEL[a.theme] || a.theme)}</span>`
     : '';
 
   const content =
     `<div id="note-root">` +
-    `<a href="${sectionUrl}" class="back-to-mag">${backLabel}</a>` +
+    `<a href="${backUrl}" class="back-to-mag">${backLabel}</a>` +
     '<section class="article-page-hero">' +
       `<span class="article-category-badge">${esc(a.category)}</span>` + themeChip +
       `<h1 class="article-page-title">${esc(a.title)}</h1>` +
@@ -407,11 +429,11 @@ function writePage(kind, a, allNotes) {
     '</section>' +
     heroBlockFor(a, kind) +
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
-    (kind === 'notes' ? evidenceBlock(a) : '') +
+    (isNotes ? evidenceBlock(a) : '') +
     ctaBlock(a) +
     (kind === 'notes' ? relatedBlock(a, allNotes) : '') +
     `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime)}"></div>` +
-    `<a href="${sectionUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
+    `<a href="${backUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
     `</div>`;
 
   let extraBody = '';
@@ -446,24 +468,39 @@ function writePage(kind, a, allNotes) {
     extraScripts = BRU_SCALE_SCRIPT;
   }
 
+  // hreflang（日英対応がある記事のみ）
+  let alternatesHtml = '';
+  if (alternates) {
+    alternatesHtml =
+      `<link rel="alternate" hreflang="ja" href="${alternates.ja}">\n` +
+      `<link rel="alternate" hreflang="en" href="${alternates.en}">\n` +
+      `<link rel="alternate" hreflang="x-default" href="${alternates.ja}">`;
+  }
+
   const html = render({
+    LANG: isEn ? 'en' : 'ja',
     TITLE: esc(title),
     OG_TITLE: esc(title),
     DESCRIPTION: esc(toDescription(a.excerpt)),
     CANONICAL: canonical,
+    ALTERNATES: alternatesHtml,
     OG_IMAGE: esc(imageAbs),
     JSONLD_ARTICLE: jsonldArticle(a, canonical, imageAbs),
-    JSONLD_BREADCRUMB: jsonldBreadcrumb(sectionLabel, sectionUrl, a.title, canonical),
-    SECTION_URL: sectionUrl,
+    JSONLD_BREADCRUMB: jsonldBreadcrumb(sectionLabel, isEn ? '/en/about/' : sectionUrl, a.title, canonical),
+    SECTION_URL: isEn ? '/en/about/' : sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
-    EXTRA_STYLE: CTA_STYLE + (kind === 'notes' ? NOTES_EXTRA_STYLE : ''),
+    NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
+    NEWSLETTER_NOTE: isEn ? '* No spam. Unsubscribe anytime.' : '* スパムは送りません。いつでも解除できます。',
+    EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : ''),
     ARTICLE_CONTENT: content,
     EXTRA_BODY: extraBody,
     EXTRA_SCRIPTS: extraScripts + CTA_TRACK_SCRIPT
   });
 
-  const dir = path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug);
+  const dir = isEn
+    ? path.join(ROOT, 'en', 'notes', a.slug)
+    : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   return `${sectionUrl}${a.slug}/`;
@@ -472,9 +509,27 @@ function writePage(kind, a, allNotes) {
 function build() {
   const notes = loadGlobal('notes/notes.js', 'NOTES');
   const articles = loadGlobal('magazine/articles.js', 'ARTICLES');
+  const notesEn = loadGlobalOptional('notes/notes-en.js', 'NOTES_EN');
+
+  // 日英対応表（sourceId → EN 記事）から hreflang URL を作る
+  const altFor = (jaNote, enNote) => ({
+    ja: `${BASE_URL}/notes/${jaNote.slug}/`,
+    en: `${BASE_URL}/en/notes/${enNote.slug}/`
+  });
+  const enBySource = new Map(notesEn.filter((e) => e.sourceId).map((e) => [e.sourceId, e]));
+
   const written = [];
-  notes.forEach((n) => { const u = writePage('notes', n, notes); if (u) written.push(u); });
+  notes.forEach((n) => {
+    const en = enBySource.get(n.id);
+    const u = writePage('notes', n, notes, en && n.slug ? altFor(n, en) : null);
+    if (u) written.push(u);
+  });
   articles.forEach((a) => { const u = writePage('magazine', a, notes); if (u) written.push(u); });
+  notesEn.forEach((e) => {
+    const src = notes.find((n) => n.id === e.sourceId);
+    const u = writePage('en-notes', e, notes, src && src.slug ? altFor(src, e) : null);
+    if (u) written.push(u);
+  });
   console.log(`generated ${written.length} article pages:`);
   written.forEach((u) => console.log('  ' + u));
 }
