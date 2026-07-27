@@ -44,6 +44,17 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
   header.top nav{display:flex;gap:30px;font-size:12.5px;letter-spacing:0.18em;text-transform:uppercase;}
   header.top nav a{color:var(--sub);text-decoration:none;transition:color .25s;}
   header.top nav a:hover,header.top nav a.active{color:var(--key);}
+  /* モバイル用ハンバーガー。860px以下では header.top nav が消えるため、
+     他ページと同じくメニューから全導線に到達できるようにする。 */
+  .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:34px;height:34px;padding:0;background:none;border:1px solid var(--key-line);cursor:pointer;}
+  .nav-burger span{display:block;width:18px;height:2px;margin:0 auto;background:var(--ink);transition:transform .3s,opacity .3s;}
+  .nav-burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  .nav-burger.open span:nth-child(2){opacity:0;}
+  .nav-burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+  .nav-drawer{position:fixed;inset:0;z-index:190;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:2rem;background:var(--bg);opacity:0;pointer-events:none;transition:opacity .35s;}
+  .nav-drawer.open{opacity:1;pointer-events:auto;}
+  .nav-drawer a{color:var(--ink);text-decoration:none;font-size:20px;letter-spacing:0.18em;text-transform:uppercase;}
+  .nav-drawer a:hover,.nav-drawer a.active{color:var(--key);}
 
   /* ---- Page hero ---- */
   .hero{position:relative;padding:clamp(150px,20vh,230px) 6vw clamp(70px,10vw,120px);border-bottom:1px solid var(--key-soft);overflow:hidden;}
@@ -139,6 +150,7 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
 
   @media(max-width:860px){
     header.top nav{display:none;}
+    .nav-burger{display:flex;}
     .biz-list{grid-template-columns:1fr;}
     .profile-grid{grid-template-columns:1fr;}
     .stats{grid-template-columns:repeat(2,1fr);}
@@ -172,7 +184,21 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
     <a href="../contact">Contact</a>
     <a href="../en/about/" lang="en" title="English">EN</a>
   </nav>
+  <button class="nav-burger" id="navBurger" aria-label="メニュー" aria-expanded="false" aria-controls="navDrawer">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<div class="nav-drawer" id="navDrawer">
+  <a href="../">Home</a>
+  <a href="../works">Works</a>
+  <a href="../magazine">Magazines</a>
+  <a href="../notes">Notes</a>
+  <a href="../news">News</a>
+  <a href="../about" class="active">Company</a>
+  <a href="../contact">Contact</a>
+  <a href="../en/about/" lang="en">English</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -321,6 +347,20 @@ a.brand{text-decoration:none;color:inherit;cursor:pointer;}</style>
     el.style.transitionDelay = (i % 3) * 0.07 + "s";
     io.observe(el);
   });
+
+  var burger = document.getElementById("navBurger");
+  var drawer = document.getElementById("navDrawer");
+  if(burger && drawer){
+    var setOpen = function(open){
+      burger.classList.toggle("open", open);
+      drawer.classList.toggle("open", open);
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      document.body.style.overflow = open ? "hidden" : "";
+    };
+    burger.addEventListener("click", function(){ setOpen(!drawer.classList.contains("open")); });
+    drawer.addEventListener("click", function(e){ if(e.target.tagName === "A") setOpen(false); });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") setOpen(false); });
+  }
 })();
 </script>
 
