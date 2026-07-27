@@ -1274,3 +1274,123 @@ footer .nav-links { font-size: 11px; gap: 1.5rem; }
 
   .page-hero { padding: 4rem 1rem 3rem; }
 }
+
+/* ==================== DOC PAGES (Company / About) ====================
+   /about/ と /en/about/ が共有するレイアウト。
+   日英でデザインが食い違わないよう、CSSは必ずここ1か所に置くこと。 */
+.doc-wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1rem 4rem; }
+.doc-lead { font-size: 15px; line-height: 1.9; margin: 0 0 1rem; }
+.doc-lead em { font-style: normal; border-bottom: 2px solid var(--accent-red); }
+.doc-heading {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 3rem 0 1.2rem;
+}
+.doc-services { display: grid; gap: 1rem; }
+.doc-service { border: 2px solid currentColor; padding: 1.4rem 1.5rem; }
+.doc-service .num {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.doc-service h3 {
+  font-family: var(--font-dot);
+  font-size: 20px;
+  margin: 0 0 0.6rem;
+  line-height: 1.4;
+}
+.doc-service p { font-size: 13.5px; line-height: 1.9; margin: 0; }
+.doc-service ul { margin: 0.8rem 0 0; padding-left: 1.1rem; font-size: 13px; line-height: 1.9; }
+.doc-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.doc-table th,
+.doc-table td {
+  border-top: 1px solid currentColor;
+  padding: 0.9rem 0;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.7;
+}
+.doc-table tr:last-child th,
+.doc-table tr:last-child td { border-bottom: 1px solid currentColor; }
+.doc-table th {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  width: 32%;
+  padding-right: 1rem;
+  font-weight: 700;
+}
+.doc-table td .sub {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  opacity: 0.65;
+  margin-top: 0.2rem;
+}
+.doc-figure { margin: 0 0 2rem; border: 2px solid currentColor; }
+.doc-figure img { display: block; width: 100%; height: auto; }
+.doc-figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+  border-top: 2px solid currentColor;
+}
+.doc-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 2px solid currentColor;
+  margin-top: 1rem;
+}
+.doc-stat { padding: 1.4rem 0.8rem; text-align: center; border-right: 2px solid currentColor; }
+.doc-stat:last-child { border-right: none; }
+.doc-stat .v { font-family: var(--font-pixel); font-size: clamp(22px, 4vw, 32px); line-height: 1.1; }
+.doc-stat .v small { font-size: 0.45em; margin-left: 0.2em; }
+.doc-stat .k {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 0.5rem;
+  opacity: 0.75;
+}
+.doc-cta {
+  margin-top: 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.doc-cta h2 { font-family: var(--font-dot); font-size: 22px; margin: 0 0 0.8rem; line-height: 1.4; }
+.doc-cta p { font-size: 14px; line-height: 1.9; margin: 0 0 1.4rem; }
+.doc-cta a.btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.doc-cta a.btn:hover { box-shadow: 4px 4px 0 currentColor; transform: translate(-2px, -2px); }
+.doc-cta .sub { margin: 1rem 0 0; font-size: 12px; }
+.doc-cta .sub a { color: inherit; text-decoration: underline; }
+
+@media (max-width: 640px) {
+  .doc-stats { grid-template-columns: repeat(2, 1fr); }
+  .doc-stat:nth-child(2) { border-right: none; }
+  .doc-stat:nth-child(1), .doc-stat:nth-child(2) { border-bottom: 2px solid currentColor; }
+  .doc-table th { width: 38%; }
+}
+
+/* 言語切替リンク（各英語ページ共通） */
+.lang-switch { font-family: var(--font-mono); font-size: 12px; }

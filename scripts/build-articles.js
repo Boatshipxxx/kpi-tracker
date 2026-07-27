@@ -548,12 +548,15 @@ function writePage(kind, a, allNotes, alternates) {
     SECTION_URL: sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
-    LANG_SWITCH_URL: isEn
-      ? (alternates ? alternates.ja : (isEnNews ? '/news/' : '/notes/'))
-      : (alternates ? alternates.en
-        : (kind === 'news' ? '/en/news/' : (kind === 'notes' ? '/en/notes/' : '/en/magazine/'))),
-    LANG_SWITCH_LABEL: isEn ? 'JP' : 'EN',
-    LANG_SWITCH_TITLE: isEn ? '日本語' : 'English',
+    // 言語切替は「対応する記事が実在するときだけ」出す。
+    // 対応記事が無いのにセクション一覧へ飛ばすと、読んでいた記事から
+    // 引き剥がされるだけでユーザーの不利益になるため。
+    LANG_SWITCH_NAV: alternates
+      ? `<a href="${isEn ? alternates.ja : alternates.en}" lang="${isEn ? 'ja' : 'en'}" title="${isEn ? '日本語' : 'English'}">${isEn ? 'JP' : 'EN'}</a>`
+      : '',
+    LANG_SWITCH_MOBILE: alternates
+      ? `<a href="${isEn ? alternates.ja : alternates.en}" onclick="closeMenu()" lang="${isEn ? 'ja' : 'en'}">${isEn ? '日本語' : 'English'}</a>`
+      : '',
     NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
     NEWSLETTER_NOTE: isEn ? '* No spam. Unsubscribe anytime.' : '* スパムは送りません。いつでも解除できます。',
     EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : '') + (isNews ? NEWS_EXTRA_STYLE : ''),
