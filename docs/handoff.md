@@ -174,3 +174,15 @@
 ## 2026-07-14 スタックマージの整流化 + 採番修正
 - #35/#36/#37 が base ブランチ（前段PRのブランチ）にマージされ main 未達となったため、全チェーンのコミットを含む #42 の head（claude/session4-kpi-news）に main を取り込み、**#42 の base を main に付け替えて1本でマージする方式**に切り替え。マージ後、#38〜#41 はクローズしてよい（内容は #42 に包含）。
 - 週次自動更新（PR #33）が n08（pr-measurement-outputs-to-outcomes）を先に使用したため、Task 5-1 の2記事を **n09（inner-branding-initiatives）/ n10（pr-planning-proposal-template）に採番変更**（slug・URL は不変。data-article-id が変わるため計測は新IDで蓄積）。
+
+## 2026-07-27 英語サイトの全面整備（追加対応）
+**背景**: 指示書 Task 4-1/4-2 のスコープは「/en/ に About + Contact」「n01の英訳1本」のみだったため、他ページのEN切替が全て /en/about/ に集中していた。ユーザー要望により英語サイトを完成させた。
+
+**対応範囲（ユーザー承認済み）**: Notes 全11本 + News 2件を英訳（再構成スタイル）。Magazine は一覧のみ英語化し記事は日本語のまま。
+- `notes/notes-en.js`: 11本（n01既存 + 10本追加）。related は EN記事どうしで解決。
+- `news/news-en.js`（新規）: pr01 / an01 の英語版。pr01 の代表コメントは `[[代表コメント:要記入 — 英訳も必要]]`。
+- 新規ページ: `/en/`（英語トップ・従来はabout へのリダイレクト）/ `/en/notes/` / `/en/news/` / `/en/magazine/`（記事は日本語版へ誘導する注記付き）。
+- `scripts/build-articles.js`: `en-news` 種別を追加、EN notes の related カード出力を修正（`isNotes` 判定に変更）、言語切替フォールバックをセクション別（EN版が無い記事は同セクションのEN一覧へ）に改善。
+- sitemap 48 URLs。workflow paths に `news/news-en.js` 追加。
+- 検証: Playwright で EN一覧11件/2件/9件・EN記事の related/CTA/パンくず・NewsArticle inLanguage=en・日英双方向の言語切替を全パス。既存16ページの構造チェックも回帰なし。
+- **人間の作業**: 英文の通読承認、pr01 英語版の代表コメント記入。`/en/works/` は未作成（works ページの EN 切替は `/en/about/` へ誘導）。

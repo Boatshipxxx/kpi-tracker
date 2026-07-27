@@ -17,6 +17,7 @@ on:
       - "magazine/articles.js"
       - "notes/notes-en.js"
       - "news/news.js"
+      - "news/news-en.js"
       - "templates/**"
       - "scripts/build-articles.js"
       - "scripts/generate-sitemap.js"

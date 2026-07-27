@@ -280,13 +280,16 @@ const NEWS_EXTRA_STYLE = `
 /* 関連Note カード（Task 2-2: トピッククラスター化） */
 function relatedBlock(note, allNotes) {
   if (!note.related || !note.related.length) return '';
+  const isEn = note.lang === 'en';
   const cards = note.related.slice(0, 2).map((rid) => {
     const r = allNotes.find((n) => n.id === rid);
     if (!r) {
       console.warn(`warn: ${note.id} related "${rid}" not found`);
       return '';
     }
-    const href = r.slug ? `/notes/${r.slug}/` : `/notes/article.html?id=${encodeURIComponent(r.id)}`;
+    const href = isEn
+      ? `/en/notes/${r.slug}/`
+      : (r.slug ? `/notes/${r.slug}/` : `/notes/article.html?id=${encodeURIComponent(r.id)}`);
     return (
       `<a class="related-card" href="${esc(href)}">` +
         `<span class="related-meta">${esc(r.date)} · ${esc(r.category)}</span>` +
@@ -297,7 +300,7 @@ function relatedBlock(note, allNotes) {
   if (!cards) return '';
   return (
     '<section class="related-notes">' +
-      '<div class="related-heading">Related — 関連Note</div>' +
+      `<div class="related-heading">${isEn ? 'Related — More from Notes' : 'Related — 関連Note'}</div>` +
       `<div class="related-grid">${cards}</div>` +
     '</section>'
   );
@@ -448,13 +451,19 @@ function writePage(kind, a, allNotes, alternates) {
     console.warn(`skip: ${kind} ${a.id} has no slug`);
     return null;
   }
-  const isEn = kind === 'en-notes';
-  const isNews = kind === 'news';
-  const isNotes = kind === 'notes' || isEn;
-  const sectionUrl = isNews ? '/news/' : (isEn ? '/en/notes/' : (kind === 'notes' ? '/notes/' : '/magazine/'));
-  const sectionLabel = isNews ? 'News' : (isEn ? 'Notes (EN)' : (kind === 'notes' ? 'Notes' : 'Magazines'));
-  const backUrl = isEn ? '/en/about/' : sectionUrl;
-  const backLabel = isNews ? '← News に戻る' : (isEn ? '← About BOATship' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る'));
+  const isEnNotes = kind === 'en-notes';
+  const isEnNews = kind === 'en-news';
+  const isEn = isEnNotes || isEnNews;
+  const isNews = kind === 'news' || isEnNews;
+  const isNotes = kind === 'notes' || isEnNotes;
+  const sectionUrl = isEnNews ? '/en/news/'
+    : (isEnNotes ? '/en/notes/'
+    : (kind === 'news' ? '/news/' : (kind === 'notes' ? '/notes/' : '/magazine/')));
+  const sectionLabel = isEnNews ? 'News' : (isEnNotes ? 'Notes' : (kind === 'news' ? 'News' : (kind === 'notes' ? 'Notes' : 'Magazines')));
+  const backUrl = sectionUrl;
+  const backLabel = isEnNews ? '← Back to News'
+    : (isEnNotes ? '← Back to Notes'
+    : (kind === 'news' ? '← News に戻る' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る')));
   const canonical = `${BASE_URL}${sectionUrl}${a.slug}/`;
   const imageAbs = BASE_URL + rootify(isNews ? (a.ogImage || '/images/og-image.png') : (kind === 'magazine' ? (a.og || a.hero) : a.image));
   const title = `${a.title} | BOATship`;
@@ -480,7 +489,7 @@ function writePage(kind, a, allNotes, alternates) {
     (isNotes ? evidenceBlock(a) : '') +
     (isNews ? distributionBlock(a) : '') +
     ctaBlock(a) +
-    (kind === 'notes' ? relatedBlock(a, allNotes) : '') +
+    (isNotes ? relatedBlock(a, allNotes) : '') +
     `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime || 3)}"></div>` +
     `<a href="${backUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +
     `</div>`;
@@ -535,13 +544,14 @@ function writePage(kind, a, allNotes, alternates) {
     ALTERNATES: alternatesHtml,
     OG_IMAGE: esc(imageAbs),
     JSONLD_ARTICLE: jsonldArticle(a, canonical, imageAbs, isNews ? 'NewsArticle' : 'Article'),
-    JSONLD_BREADCRUMB: jsonldBreadcrumb(sectionLabel, isEn ? '/en/about/' : sectionUrl, a.title, canonical),
-    SECTION_URL: isEn ? '/en/about/' : sectionUrl,
+    JSONLD_BREADCRUMB: jsonldBreadcrumb(sectionLabel, sectionUrl, a.title, canonical),
+    SECTION_URL: sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
     LANG_SWITCH_URL: isEn
-      ? (alternates ? alternates.ja : '/about/')
-      : (alternates ? alternates.en : '/en/about/'),
+      ? (alternates ? alternates.ja : (isEnNews ? '/news/' : '/notes/'))
+      : (alternates ? alternates.en
+        : (kind === 'news' ? '/en/news/' : (kind === 'notes' ? '/en/notes/' : '/en/magazine/'))),
     LANG_SWITCH_LABEL: isEn ? 'JP' : 'EN',
     LANG_SWITCH_TITLE: isEn ? '日本語' : 'English',
     NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
@@ -552,11 +562,13 @@ function writePage(kind, a, allNotes, alternates) {
     EXTRA_SCRIPTS: extraScripts + CTA_TRACK_SCRIPT
   });
 
-  const dir = isEn
-    ? path.join(ROOT, 'en', 'notes', a.slug)
-    : (isNews
-      ? path.join(ROOT, 'news', a.slug)
-      : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug));
+  const dir = isEnNews
+    ? path.join(ROOT, 'en', 'news', a.slug)
+    : (isEnNotes
+      ? path.join(ROOT, 'en', 'notes', a.slug)
+      : (kind === 'news'
+        ? path.join(ROOT, 'news', a.slug)
+        : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug)));
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   return `${sectionUrl}${a.slug}/`;
@@ -574,6 +586,15 @@ function build() {
   });
   const enBySource = new Map(notesEn.filter((e) => e.sourceId).map((e) => [e.sourceId, e]));
 
+  const news = loadGlobalOptional('news/news.js', 'NEWS');
+  const newsEn = loadGlobalOptional('news/news-en.js', 'NEWS_EN');
+  const enNewsBySource = new Map(newsEn.filter((e) => e.sourceId).map((e) => [e.sourceId, e]));
+  const altForNews = (jaItem, enItem) => ({
+    ja: `${BASE_URL}/news/${jaItem.slug}/`,
+    en: `${BASE_URL}/en/news/${enItem.slug}/`
+  });
+  const publishable = (n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug;
+
   const written = [];
   notes.forEach((n) => {
     const en = enBySource.get(n.id);
@@ -581,15 +602,22 @@ function build() {
     if (u) written.push(u);
   });
   articles.forEach((a) => { const u = writePage('magazine', a, notes); if (u) written.push(u); });
+  // EN Notes の related は EN 記事どうしで解決する
   notesEn.forEach((e) => {
     const src = notes.find((n) => n.id === e.sourceId);
-    const u = writePage('en-notes', e, notes, src && src.slug ? altFor(src, e) : null);
+    const u = writePage('en-notes', e, notesEn, src && src.slug ? altFor(src, e) : null);
     if (u) written.push(u);
   });
-  const news = loadGlobalOptional('news/news.js', 'NEWS');
-  news
-    .filter((n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug)
-    .forEach((n) => { const u = writePage('news', n, notes); if (u) written.push(u); });
+  news.filter(publishable).forEach((n) => {
+    const en = enNewsBySource.get(n.id);
+    const u = writePage('news', n, notes, en ? altForNews(n, en) : null);
+    if (u) written.push(u);
+  });
+  newsEn.filter(publishable).forEach((e) => {
+    const src = news.find((n) => n.id === e.sourceId);
+    const u = writePage('en-news', e, notesEn, src && src.slug ? altForNews(src, e) : null);
+    if (u) written.push(u);
+  });
   console.log(`generated ${written.length} article pages:`);
   written.forEach((u) => console.log('  ' + u));
 }

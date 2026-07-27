@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>News — BOATship</title>
+<meta name="description" content="Press releases, media coverage, and announcements from BOATship.">
+<link rel="canonical" href="https://www.boatship.jp/en/news/">
+<meta property="og:title" content="News — BOATship">
+<meta property="og:description" content="Press releases, media coverage, and announcements from BOATship.">
+<meta property="og:url" content="https://www.boatship.jp/en/news/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOATship">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.lang-switch { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.note-chip {
+  display: inline-block; padding: 1px 8px; border: 1px solid currentColor;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.note-chip.evidence { opacity: 0.7; }
+.news-type-tile span {
+  font-family: 'Silkscreen', cursive; font-size: clamp(18px, 2.6vw, 30px);
+  line-height: 1.25; letter-spacing: 0.04em; text-align: center; text-transform: uppercase;
+}
+.concrete-item:hover .news-type-tile { background: var(--text-black); color: var(--bg-yellow); }
+.concrete-item.external .concrete-title::after { content: ' ↗'; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/en/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/magazine/">Magazines</a>
+    <a href="/en/about/">About</a>
+    <a href="/en/contact/">Contact</a>
+    <a href="/news/" class="lang-switch" lang="ja" title="日本語">JP</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/en/" onclick="closeMenu()">Home</a>
+  <a href="/en/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/en/news/" onclick="closeMenu()">News</a>
+  <a href="/en/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/en/about/" onclick="closeMenu()">About</a>
+  <a href="/en/contact/" onclick="closeMenu()">Contact</a>
+  <a href="/news/" onclick="closeMenu()" lang="ja">日本語</a>
+</div>
+
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Press Releases · Media · Announcements</p>
+  <h1>News</h1>
+  <p>Press releases, media coverage, and announcements.<br>Every piece we publish has its original home here.</p>
+</section>
+
+<div class="filter-tabs">
+  <button class="filter-tab active" data-filter="all">ALL</button>
+  <button class="filter-tab" data-filter="press-release">PRESS RELEASE</button>
+  <button class="filter-tab" data-filter="media-coverage">MEDIA</button>
+  <button class="filter-tab" data-filter="announcement">ANNOUNCEMENT</button>
+</div>
+
+<section class="concrete-list" id="news-list"></section>
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">New work and stories from the studio, by email.</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* No spam. Unsubscribe anytime.</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/about/">About</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+<script src="/news/news-en.js"></script>
+<script>
+(function () {
+  var TYPE_LABEL = { 'press-release': 'Press Release', 'media-coverage': 'Media', 'announcement': 'Announcement' };
+  var TILE = { 'press-release': 'PRESS<br>RELEASE', 'media-coverage': 'MEDIA', 'announcement': 'ANNOUNCE<br>MENT' };
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  var sorted = NEWS_EN.slice().sort(function (a, b) {
+    return String(b.date || '').localeCompare(String(a.date || ''));
+  });
+  document.getElementById('news-list').innerHTML = sorted.map(function (n) {
+    var isExternal = n.type === 'media-coverage';
+    var href = isExternal ? (n.externalUrl || '#') : ('/en/news/' + esc(n.slug) + '/');
+    var extAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
+    var chips =
+      '<span class="note-chip">' + esc(TYPE_LABEL[n.type] || n.type) + '</span>' +
+      (isExternal && n.mediaOutlet ? '<span class="note-chip">' + esc(n.mediaOutlet) + '</span>' : '') +
+      (n.isBacklink ? '<span class="note-chip evidence">Backlink</span>' : '');
+    return '<a href="' + href + '"' + extAttr + ' class="concrete-item reveal' + (isExternal ? ' external' : '') + '" data-type="' + esc(n.type) + '">' +
+      '<div class="concrete-image news-type-tile"><span>' + (TILE[n.type] || esc(n.type)) + '</span></div>' +
+      '<div class="concrete-body">' +
+        '<div class="concrete-meta"><span>' + esc(n.date) + '</span>' + chips + '</div>' +
+        '<h3 class="concrete-title">' + esc(n.title) + '</h3>' +
+        (n.subtitle ? '<p class="concrete-excerpt">' + esc(n.subtitle) + '</p>' : '') +
+      '</div>' +
+    '</a>';
+  }).join('');
+  document.querySelectorAll('.filter-tab').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
+      var f = tab.getAttribute('data-filter');
+      document.querySelectorAll('#news-list .concrete-item').forEach(function (item) {
+        item.style.display = (f === 'all' || item.getAttribute('data-type') === f) ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

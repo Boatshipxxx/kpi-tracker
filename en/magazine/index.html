@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazines — BOATship</title>
+<meta name="description" content="Project stories and production notes from BOATship. Articles are published in Japanese.">
+<link rel="canonical" href="https://www.boatship.jp/en/magazine/">
+<meta property="og:title" content="Magazines — BOATship">
+<meta property="og:description" content="Project stories and production notes from BOATship. Articles are published in Japanese.">
+<meta property="og:url" content="https://www.boatship.jp/en/magazine/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOATship">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.lang-switch { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.note-chip {
+  display: inline-block; padding: 1px 8px; border: 1px solid currentColor;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.note-chip.evidence { opacity: 0.7; }
+.jp-notice {
+  max-width: 720px; margin: 0 auto 2rem; padding: 1rem 1.2rem;
+  border: 2px dashed currentColor; font-size: 13px; line-height: 1.9;
+}
+.concrete-item .concrete-title::after { content: ' ↗'; font-size: 0.8em; opacity: 0.6; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/en/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/magazine/">Magazines</a>
+    <a href="/en/about/">About</a>
+    <a href="/en/contact/">Contact</a>
+    <a href="/magazine/" class="lang-switch" lang="ja" title="日本語">JP</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/en/" onclick="closeMenu()">Home</a>
+  <a href="/en/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/en/news/" onclick="closeMenu()">News</a>
+  <a href="/en/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/en/about/" onclick="closeMenu()">About</a>
+  <a href="/en/contact/" onclick="closeMenu()">Contact</a>
+  <a href="/magazine/" onclick="closeMenu()" lang="ja">日本語</a>
+</div>
+
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Studio Journal — Work &amp; Craft</p>
+  <h1>Magazines</h1>
+  <p>Project stories and production notes from the studio.</p>
+</section>
+
+<p class="jp-notice">These articles are published in Japanese. Titles and summaries below are in English — the linked articles open in Japanese. Our English-language writing lives in <a href="/en/notes/">Notes</a>.</p>
+
+<section class="concrete-list" id="mag-list"></section>
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">New work and stories from the studio, by email.</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* No spam. Unsubscribe anytime.</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/about/">About</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+<script src="/magazine/articles.js"></script>
+<script>
+(function () {
+  var META = {
+    '01': { title: 'Shake Shack Japan — Site Launch', excerpt: 'A new official site for Shake Shack Japan, from UI design through front-end build.' },
+    '02': { title: 'Shopify Liquid: Implementation Tips', excerpt: 'Practical Liquid techniques from e-commerce builds — metafields, custom sections, performance.' },
+    '03': { title: 'Bringing Brutalism to the Web', excerpt: 'The philosophy behind brutalist design and how it shaped this studio\'s own site.' },
+    '04': { title: 'nahrin — Site Renewal', excerpt: 'A full renewal of the nahrin website.' },
+    '05': { title: 'How We Build Custom WordPress Themes', excerpt: 'Our approach to custom theme development and client-maintainable builds.' },
+    '06': { title: 'Interview — What Comes Next for BOATship', excerpt: 'A conversation with the makers about where the studio is heading.' },
+    '07': { title: 'Where DotGothic16 Works', excerpt: 'Choosing and using a pixel typeface with intent.' },
+    '08': { title: 'Running Production on GitHub Pages', excerpt: 'Lessons from operating a production site on static hosting.' },
+    '09': { title: 'Now Accepting New Projects', excerpt: 'The studio is open for new work.' }
+  };
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  var sorted = ARTICLES.slice().sort(function (a, b) {
+    return String(b.date || '').localeCompare(String(a.date || ''));
+  });
+  document.getElementById('mag-list').innerHTML = sorted.map(function (a) {
+    var m = META[a.id] || { title: a.title, excerpt: '' };
+    return '<a href="/magazine/' + esc(a.slug) + '/" class="concrete-item reveal" hreflang="ja">' +
+      '<div class="concrete-image"><img src="' + esc(String(a.thumb).replace(/^\.\.\//, '/')) + '" alt="' + esc(m.title) + '"></div>' +
+      '<div class="concrete-body">' +
+        '<div class="concrete-meta">' +
+          '<span>' + esc(a.date) + '</span>' +
+          '<span>' + esc(a.readTime) + ' min read</span>' +
+          '<span>' + esc(a.category) + '</span>' +
+          '<span class="note-chip">Japanese</span>' +
+        '</div>' +
+        '<h3 class="concrete-title">' + esc(m.title) + '</h3>' +
+        '<p class="concrete-excerpt">' + esc(m.excerpt) + '</p>' +
+      '</div>' +
+    '</a>';
+  }).join('');
+})();
+</script>
+</body>
+</html>
