@@ -539,6 +539,11 @@ function writePage(kind, a, allNotes, alternates) {
     SECTION_URL: isEn ? '/en/about/' : sectionUrl,
     SECTION_LABEL: sectionLabel,
     BREADCRUMB_TITLE: esc(a.title),
+    LANG_SWITCH_URL: isEn
+      ? (alternates ? alternates.ja : '/about/')
+      : (alternates ? alternates.en : '/en/about/'),
+    LANG_SWITCH_LABEL: isEn ? 'JP' : 'EN',
+    LANG_SWITCH_TITLE: isEn ? '日本語' : 'English',
     NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
     NEWSLETTER_NOTE: isEn ? '* No spam. Unsubscribe anytime.' : '* スパムは送りません。いつでも解除できます。',
     EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : '') + (isNews ? NEWS_EXTRA_STYLE : ''),
