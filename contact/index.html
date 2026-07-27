@@ -112,6 +112,7 @@
     <a href="/notes/">Notes</a>
     <a href="/news/">News</a>
     <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
     <a href="/en/contact/" lang="en" title="English">EN</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Menu">
@@ -126,6 +127,7 @@
   <a href="/notes/" onclick="closeMenu()">Notes</a>
   <a href="/news/" onclick="closeMenu()">News</a>
   <a href="/about/" onclick="closeMenu()">Company</a>
+<a href="/contact/" onclick="closeMenu()">Contact</a>
 </div>
 
 <main class="contact-wrap">
@@ -134,7 +136,12 @@
 
   <h2 class="contact-section-heading">Form — ご相談フォーム</h2>
   <div class="contact-form-frame">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSef3oOtnwcCX8B9ecil-AyxVkeHbBUmGWSeud_pJi7iqHsyPg/viewform?embedded=true" width="100%" height="1100" title="お問い合わせフォーム" loading="lazy" style="border:0;">読み込んでいます…</iframe>
+    <iframe id="contactForm" src="https://docs.google.com/forms/d/e/1FAIpQLSef3oOtnwcCX8B9ecil-AyxVkeHbBUmGWSeud_pJi7iqHsyPg/viewform?embedded=true" width="100%" height="1100" title="お問い合わせフォーム" loading="lazy" style="border:0;">読み込んでいます…</iframe>
+    <!-- フォームが表示されない場合のフォールバック（読み込み失敗時のみ表示） -->
+    <div class="contact-form-placeholder" id="contactFormFallback" hidden>
+      フォームを読み込めませんでした。<br>
+      お手数ですが <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> へ直接ご連絡ください。
+    </div>
   </div>
 
   <h2 class="contact-section-heading">Flow — お問い合わせ後の流れ</h2>
@@ -162,5 +169,19 @@
 </footer>
 
 <script src="/assets/js/main.js"></script>
+<script>
+(function () {
+  // Googleフォームが読み込めない環境（ブロック・公開停止など）で
+  // 空の枠だけが残らないよう、一定時間内に load しなければ案内を表示する。
+  var f = document.getElementById('contactForm');
+  var fb = document.getElementById('contactFormFallback');
+  if (!f || !fb) return;
+  var loaded = false;
+  f.addEventListener('load', function () { loaded = true; });
+  setTimeout(function () {
+    if (!loaded) { f.hidden = true; fb.hidden = false; }
+  }, 6000);
+})();
+</script>
 </body>
 </html>
