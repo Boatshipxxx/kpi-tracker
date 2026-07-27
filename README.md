@@ -135,6 +135,25 @@ GA4 Data API での直接取得は認証設定が必要なため、当面は CSV
 - **被リンク記録**: `isBacklink` に被リンク獲得の有無を記録（LinkedInはnofollowのため対象外。PR TIMES二次掲載・Clutch等が被リンク源）
 - 一覧は `news/index.html`（type別フィルタ付き）、トップページに Latest News（最新3件）を表示。sitemap にも自動反映
 
+## 英語サイト（/en/）
+
+海外企業・エージェント向けの英語サイトです。日本語サイトとほぼ同じ構成を持ちます。
+
+| 英語ページ | 内容 | 対応する日本語ページ |
+|---|---|---|
+| `/en/` | 英語トップ（サービス導線 + Notes最新4件） | `/` |
+| `/en/about/` | 会社紹介・サービス3本柱 | `/about/` |
+| `/en/notes/` | Notes 一覧（英訳11本） | `/notes/` |
+| `/en/news/` | News 一覧（英訳2件） | `/news/` |
+| `/en/magazine/` | Magazine 一覧（**記事本体は日本語**。一覧のタイトル・要約のみ英語） | `/magazine/` |
+| `/en/contact/` | 問い合わせ | `/contact/` |
+
+- **データ**: 英語記事は `notes/notes-en.js`（`NOTES_EN`）と `news/news-en.js`（`NEWS_EN`）で管理。日本語データ（notes.js / news.js）とはライフサイクルを分離し、`sourceId` で対応付けます（admin・週次自動更新は日本語側のみを触ります）
+- **生成**: `scripts/build-articles.js` が `/en/notes/<slug>/`・`/en/news/<slug>/` を生成。`lang="en"`、英語CTA（→ `/en/contact/`）、英語の Evidence 見出し、EN記事どうしの関連カードを出力します
+- **hreflang**: 日英で対応するページを相互設定（x-default は日本語）。英語版が無いページには出力しません
+- **言語切替**: 全ページのヘッダーに EN/JP。対応する言語版があればそのページへ、無ければ同じセクションの一覧（例: `/en/notes/`）へ誘導します
+- **新しい英語記事の追加**: `notes-en.js` に1レコード追加すれば、ページ生成・一覧・sitemap・hreflang がすべて自動で追従します
+
 ## サイトマップ / robots（SEO）
 
 検索エンジン向けの `sitemap.xml` と `robots.txt` はリポジトリ直下に配置し、Vercel がそのまま配信します。

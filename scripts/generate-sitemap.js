@@ -85,6 +85,10 @@ function build() {
   if (fs.existsSync(path.join(ROOT, 'news', 'news.js'))) {
     try { news = loadGlobal('news/news.js', 'NEWS'); } catch (e) { news = []; }
   }
+  let newsEn = [];
+  if (fs.existsSync(path.join(ROOT, 'news', 'news-en.js'))) {
+    try { newsEn = loadGlobal('news/news-en.js', 'NEWS_EN'); } catch (e) { newsEn = []; }
+  }
 
   // 記事一覧の最終更新日（一覧ページの lastmod に使う）
   const latest = (items) =>
@@ -102,8 +106,12 @@ function build() {
   entries.push(urlEntry('/about/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/works/', today, 'monthly', '0.7'));
   entries.push(urlEntry('/contact/', today, 'monthly', '0.7'));
+  entries.push(urlEntry('/en/', today, 'weekly', '0.8'));
   entries.push(urlEntry('/en/about/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/en/contact/', today, 'monthly', '0.6'));
+  entries.push(urlEntry('/en/notes/', latest(notesEn) || today, 'weekly', '0.7'));
+  entries.push(urlEntry('/en/news/', latest(newsEn) || today, 'weekly', '0.6'));
+  entries.push(urlEntry('/en/magazine/', latest(articles) || today, 'monthly', '0.5'));
   entries.push(urlEntry('/notes/', latest(notes) || today, 'weekly', '0.9'));
   entries.push(urlEntry('/magazine/', latest(articles) || today, 'weekly', '0.8'));
   entries.push(urlEntry('/news/', latest(news) || today, 'weekly', '0.8'));
@@ -131,6 +139,12 @@ function build() {
     .filter((n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug)
     .forEach((n) => {
       entries.push(urlEntry(`/news/${n.slug}/`, toLastmod(n.date), 'monthly', '0.7'));
+    });
+  // 英語版 News
+  newsEn
+    .filter((n) => (n.type === 'press-release' || n.type === 'announcement') && n.slug)
+    .forEach((n) => {
+      entries.push(urlEntry(`/en/news/${n.slug}/`, toLastmod(n.date), 'monthly', '0.6'));
     });
 
   const sitemap =

@@ -2,13 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0;url=/en/about/">
-<link rel="canonical" href="https://www.boatship.jp/en/about/">
-<title>BOATship — English</title>
-<script>window.location.replace('/en/about/');</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOATship — Design &amp; PR Studio in Tokyo</title>
+<meta name="description" content="BOATship is a Tokyo-based design and PR studio helping international brands enter and grow in the Japanese market.">
+<link rel="canonical" href="https://www.boatship.jp/en/">
+<link rel="alternate" hreflang="ja" href="https://www.boatship.jp/">
+<link rel="alternate" hreflang="en" href="https://www.boatship.jp/en/">
+<link rel="alternate" hreflang="x-default" href="https://www.boatship.jp/">
+<meta property="og:title" content="BOATship — Design &amp; PR Studio in Tokyo">
+<meta property="og:description" content="A design and PR studio helping brands find their voice in Japan.">
+<meta property="og:url" content="https://www.boatship.jp/en/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOATship">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.lang-switch { font-family: 'IBM Plex Mono', monospace; font-size: 12px; }
+.note-chip {
+  display: inline-block; padding: 1px 8px; border: 1px solid currentColor;
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.note-chip.evidence { opacity: 0.7; }
+.en-home-lead {
+  max-width: 760px; margin: 0 auto 3rem; padding: 0 1rem;
+  font-size: 15px; line-height: 1.95;
+}
+.en-cards { max-width: 960px; margin: 0 auto 4rem; padding: 0 1rem; display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.en-card { display: block; border: 2px solid currentColor; padding: 1.5rem; color: inherit; text-decoration: none; transition: box-shadow .15s ease, transform .15s ease; }
+.en-card:hover { box-shadow: 5px 5px 0 currentColor; transform: translate(-2px, -2px); }
+.en-card .num { font-family: 'Silkscreen', cursive; font-size: 12px; display: block; margin-bottom: .6rem; }
+.en-card h3 { font-family: 'DotGothic16', sans-serif; font-size: 19px; margin: 0 0 .5rem; line-height: 1.4; }
+.en-card p { font-size: 13px; line-height: 1.85; margin: 0; }
+.en-latest { max-width: 760px; margin: 0 auto 4rem; padding: 0 1rem; }
+.en-latest h2 { font-family: 'IBM Plex Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; margin: 0 0 1rem; }
+.en-latest ul { list-style: none; margin: 0; padding: 0; border-top: 2px solid currentColor; }
+.en-latest li { border-bottom: 2px solid currentColor; }
+.en-latest a { display: flex; flex-wrap: wrap; gap: .5rem 1.2rem; align-items: baseline; padding: .9rem .2rem; color: inherit; text-decoration: none; }
+.en-latest a:hover { opacity: .65; }
+.en-latest .d { font-family: 'IBM Plex Mono', monospace; font-size: 11px; flex: none; }
+.en-latest .t { font-size: 14px; line-height: 1.6; }
+</style>
 </head>
 <body>
-<p><a href="/en/about/">Continue to BOATship in English →</a></p>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/en/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/magazine/">Magazines</a>
+    <a href="/en/about/">About</a>
+    <a href="/en/contact/">Contact</a>
+    <a href="/" class="lang-switch" lang="ja" title="日本語">JP</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/en/" onclick="closeMenu()">Home</a>
+  <a href="/en/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/en/news/" onclick="closeMenu()">News</a>
+  <a href="/en/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/en/about/" onclick="closeMenu()">About</a>
+  <a href="/en/contact/" onclick="closeMenu()">Contact</a>
+  <a href="/" onclick="closeMenu()" lang="ja">日本語</a>
+</div>
+
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Cross-cultural Voice — Tokyo, Japan</p>
+  <h1>BOATship</h1>
+  <p>A design and PR studio helping brands find their voice in Japan.</p>
+</section>
+
+<p class="en-home-lead">We are a small studio in Jimbocho, Tokyo that works where design, storytelling, and business strategy overlap. If you are an international company or agency exploring the Japanese market, we act as your local crew — translating not just your words, but your story, into forms Japanese audiences trust.</p>
+
+<div class="en-cards">
+  <a class="en-card" href="/en/about/">
+    <span class="num">01</span>
+    <h3>About &amp; Services</h3>
+    <p>Brand development for the Japanese market, company media production, and PR strategy — plus how our equal exchange model works.</p>
+  </a>
+  <a class="en-card" href="/en/notes/">
+    <span class="num">02</span>
+    <h3>Notes</h3>
+    <p>Our owned media on internal branding and PR planning. Every article is grounded in academic evidence and tuned against real access data.</p>
+  </a>
+  <a class="en-card" href="/en/news/">
+    <span class="num">03</span>
+    <h3>News</h3>
+    <p>Press releases and announcements from the studio.</p>
+  </a>
+  <a class="en-card" href="/en/contact/">
+    <span class="num">04</span>
+    <h3>Contact</h3>
+    <p>Tell us where you are — even if it is just an idea. We reply within two business days, and the first 30-minute consultation is free.</p>
+  </a>
+</div>
+
+<section class="en-latest">
+  <h2>Latest from Notes</h2>
+  <ul id="enLatest"></ul>
+</section>
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">New work and stories from the studio, by email.</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* No spam. Unsubscribe anytime.</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/en/notes/">Notes</a>
+    <a href="/en/news/">News</a>
+    <a href="/en/about/">About</a>
+  </div>
+</footer>
+
+<script src="/notes/notes-en.js"></script>
+<script>
+(function () {
+  if (typeof NOTES_EN === 'undefined') return;
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  var latest = NOTES_EN.slice().sort(function (a, b) {
+    return String(b.date || '').localeCompare(String(a.date || ''));
+  }).slice(0, 4);
+  document.getElementById('enLatest').innerHTML = latest.map(function (n) {
+    return '<li><a href="/en/notes/' + esc(n.slug) + '/">' +
+      '<span class="d">' + esc(n.date) + '</span>' +
+      '<span class="t">' + esc(n.title) + '</span>' +
+    '</a></li>';
+  }).join('');
+})();
+</script>
+<script src="/assets/js/main.js"></script>
 </body>
 </html>
