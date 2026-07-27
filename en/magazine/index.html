@@ -105,19 +105,9 @@
 </footer>
 
 <script src="/magazine/articles.js"></script>
+<script src="/magazine/articles-en.js"></script>
 <script>
 (function () {
-  var META = {
-    '01': { title: 'Shake Shack Japan — Site Launch', excerpt: 'A new official site for Shake Shack Japan, from UI design through front-end build.' },
-    '02': { title: 'Shopify Liquid: Implementation Tips', excerpt: 'Practical Liquid techniques from e-commerce builds — metafields, custom sections, performance.' },
-    '03': { title: 'Bringing Brutalism to the Web', excerpt: 'The philosophy behind brutalist design and how it shaped this studio\'s own site.' },
-    '04': { title: 'nahrin — Site Renewal', excerpt: 'A full renewal of the nahrin website.' },
-    '05': { title: 'How We Build Custom WordPress Themes', excerpt: 'Our approach to custom theme development and client-maintainable builds.' },
-    '06': { title: 'Interview — What Comes Next for BOATship', excerpt: 'A conversation with the makers about where the studio is heading.' },
-    '07': { title: 'Where DotGothic16 Works', excerpt: 'Choosing and using a pixel typeface with intent.' },
-    '08': { title: 'Running Production on GitHub Pages', excerpt: 'Lessons from operating a production site on static hosting.' },
-    '09': { title: 'Now Accepting New Projects', excerpt: 'The studio is open for new work.' }
-  };
   function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -126,7 +116,8 @@
     return String(b.date || '').localeCompare(String(a.date || ''));
   });
   document.getElementById('mag-list').innerHTML = sorted.map(function (a) {
-    var m = META[a.id] || { title: a.title, excerpt: '' };
+    // 英語メタが無い記事は日本語タイトルを出さず、未翻訳であることを明示する。
+    var m = ARTICLES_EN[a.id] || { title: 'Untranslated article', excerpt: 'An English summary for this piece is not available yet.' };
     return '<a href="/magazine/' + esc(a.slug) + '/" class="concrete-item reveal" hreflang="ja">' +
       '<div class="concrete-image"><img src="' + esc(String(a.thumb).replace(/^\.\.\//, '/')) + '" alt="' + esc(m.title) + '"></div>' +
       '<div class="concrete-body">' +
