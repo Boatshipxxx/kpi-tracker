@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資料をお送りしました | BOATship</title>
+<!-- フォームを迂回されないよう検索結果に出さない（仕様 4-4） -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.thanks-wrap { max-width: 720px; margin: 0 auto; padding: 3rem 1rem 4rem; }
+.thanks-done {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-red);
+  margin: 0 0 0.8rem;
+}
+.thanks-asset {
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  padding: 1.8rem 1.5rem;
+  margin: 2rem 0;
+}
+.thanks-asset h2 { font-family: var(--font-dot); font-size: 20px; line-height: 1.5; margin: 0 0 1.2rem; }
+.thanks-asset-btn {
+  display: inline-block;
+  padding: 0.9rem 2.2rem;
+  border: 2px solid currentColor;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.thanks-asset-btn:hover { box-shadow: 4px 4px 0 currentColor; transform: translate(-2px, -2px); }
+.thanks-mailnote {
+  border: 2px dashed currentColor;
+  padding: 1.2rem 1.4rem;
+  font-size: 13px;
+  line-height: 2;
+  margin: 2rem 0;
+}
+.thanks-mailnote a { color: inherit; text-decoration: underline; }
+.thanks-booking { margin-top: 3rem; }
+.thanks-booking h2 {
+  font-family: var(--font-dot);
+  font-size: clamp(20px, 4vw, 26px);
+  line-height: 1.6;
+  margin: 0 0 1.2rem;
+}
+.thanks-booking-frame { border: 2px solid currentColor; padding: 0.6rem; }
+.thanks-booking-frame iframe { display: block; width: 100%; border: 0; min-height: 640px; }
+.thanks-booking-fallback {
+  border: 2px dashed currentColor;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  font-size: 13px;
+  line-height: 2;
+}
+.thanks-booking-fallback a { color: inherit; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/news/">News</a>
+    <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/news/" onclick="closeMenu()">News</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+  <a href="/contact/" onclick="closeMenu()">Contact</a>
+</div>
+
+<main class="thanks-wrap">
+  <!-- 1. 送信完了の明示 -->
+  <p class="thanks-done">✓ 送信が完了しました</p>
+  <h1 style="font-family:var(--font-dot);font-size:clamp(24px,5vw,36px);line-height:1.4;margin:0 0 1rem;">資料をお送りしました</h1>
+  <p style="font-size:14px;line-height:2;">ご入力いただいたメールアドレス宛に資料のリンクをお送りしています。<br>このページからも、いますぐご覧いただけます。</p>
+
+  <!-- 2. 資料への即時アクセス（決定2 = A案。ここが最も重要） -->
+  <div class="thanks-asset">
+    <h2 id="assetTitle">広報企画書テンプレート7項目（BOATship版・実務ガイド付き）</h2>
+    <a class="thanks-asset-btn" id="assetLink" href="/materials/pr-planning-template/">資料を見る →</a>
+  </div>
+
+  <!-- 3. メールが届かない場合の案内（省略しない・仕様 4-4） -->
+  <div class="thanks-mailnote">
+    <strong>メールが届かない場合</strong><br>
+    数分待っても届かないときは、迷惑メールフォルダをご確認ください。<br>
+    それでも見当たらない場合は <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> までご連絡ください。資料を直接お送りします。
+  </div>
+
+  <!-- 4. 日程調整への導線（Spir 空き時間URLの埋め込み・仕様 4-5） -->
+  <section class="thanks-booking">
+    <h2>30分で、貴社の現状に合わせた進め方をご説明します</h2>
+    <p style="font-size:13.5px;line-height:2;margin:0 0 1.2rem;">資料の内容を貴社の状況にあてはめて、具体的に何から始めるかをお話しします。売り込みではなく、資料の続きとしてお使いください。ご都合の良い時間を以下からお選びいただけます。</p>
+    <div class="thanks-booking-frame" id="bookingFrame" hidden>
+      <iframe id="bookingIframe" title="日程調整" loading="lazy"></iframe>
+    </div>
+    <div class="thanks-booking-fallback" id="bookingFallback" hidden>
+      日程調整カレンダーを読み込めませんでした。<br>
+      お手数ですが <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/lead-config.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // 請求された資料を表示（?asset= と カタログの突合）
+  var assetId = new URLSearchParams(location.search).get('asset') || 'pr-planning-template';
+  fetch('/assets/data/lead-assets.json')
+    .then(function (r) { return r.json(); })
+    .then(function (catalog) {
+      var a = catalog[assetId] || catalog['pr-planning-template'];
+      if (!a) return;
+      document.getElementById('assetTitle').textContent = a.title;
+      document.getElementById('assetLink').setAttribute('href', a.url);
+    })
+    .catch(function () { /* 既定の資料リンクのまま */ });
+
+  // Spir 空き時間URLの埋め込み。未設定・読み込み失敗時は代替の連絡先を表示（仕様 6）
+  var cfg = window.BS_LEAD_CONFIG || {};
+  var frame = document.getElementById('bookingFrame');
+  var fallback = document.getElementById('bookingFallback');
+  var iframe = document.getElementById('bookingIframe');
+
+  if (!cfg.SPIR_BOOKING_URL) {
+    fallback.hidden = false;
+  } else {
+    frame.hidden = false;
+    var loaded = false;
+    iframe.addEventListener('load', function () { loaded = true; });
+    iframe.src = cfg.SPIR_BOOKING_URL;
+    setTimeout(function () {
+      if (!loaded) { frame.hidden = true; fallback.hidden = false; }
+    }, 8000);
+  }
+})();
+</script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

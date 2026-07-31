@@ -1,0 +1,32 @@
+-- リード獲得導線: leads テーブル
+-- 適用: DATABASE_URL を設定して `npm run setup:leads-db`
+-- （Neon の SQL Editor に貼り付けても可）
+
+CREATE TABLE IF NOT EXISTS leads (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  created_at    timestamptz NOT NULL DEFAULT now(),
+  company       text NOT NULL,
+  name          text NOT NULL,
+  email         text NOT NULL,
+  department    text,
+  asset_id      text NOT NULL,
+  landing_url   text NOT NULL,
+  form_url      text NOT NULL,
+  referrer      text,
+  utm_source    text,
+  utm_medium    text,
+  utm_campaign  text,
+  consent_at    timestamptz NOT NULL,
+  mail_status   text NOT NULL DEFAULT 'queued'
+                CHECK (mail_status IN ('queued', 'sent', 'failed')),
+  mail_sent_at  timestamptz,
+  booked_at     timestamptz
+);
+
+-- Spir Webhook のメールアドレス突合（最新レコード優先）用
+CREATE INDEX IF NOT EXISTS leads_email_created_idx
+  ON leads (lower(email), created_at DESC);
+
+-- 記事別リード数の集計用
+CREATE INDEX IF NOT EXISTS leads_landing_url_idx
+  ON leads (landing_url);

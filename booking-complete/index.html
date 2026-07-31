@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ご予約ありがとうございます | BOATship</title>
+<!-- Spirの「日程確定後リダイレクト」の遷移先。直接流入させないため noindex -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+  // GA4: 予約完了イベント（仕様 4-5 / 5）
+  gtag('event', 'booking_complete');
+</script>
+<style>
+.bc-wrap { max-width: 640px; margin: 0 auto; padding: 4rem 1rem; text-align: center; }
+.bc-wrap h1 { font-family: var(--font-dot); font-size: clamp(24px, 5vw, 36px); line-height: 1.5; margin: 0 0 1.2rem; }
+.bc-wrap p { font-size: 14px; line-height: 2.1; }
+.bc-note {
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  padding: 1.6rem 1.5rem;
+  margin: 2.5rem 0;
+  text-align: left;
+  font-size: 13.5px;
+  line-height: 2;
+}
+.bc-back {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.8rem 2rem;
+  border: 2px solid currentColor;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  color: inherit;
+  text-decoration: none;
+}
+.bc-back:hover { box-shadow: 4px 4px 0 currentColor; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/news/">News</a>
+    <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/news/" onclick="closeMenu()">News</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+  <a href="/contact/" onclick="closeMenu()">Contact</a>
+</div>
+
+<main class="bc-wrap">
+  <h1>ご予約ありがとうございます</h1>
+  <p>日程が確定しました。確認メールをお送りしていますのでご確認ください。</p>
+  <div class="bc-note">
+    <strong>当日まで</strong><br>
+    ・お送りした資料に目を通しておいていただくと、当日の30分をまるごと「貴社の場合どうするか」に使えます。<br>
+    ・日程の変更・キャンセルは確認メール内のリンクから、またはメールでご連絡ください。<br>
+    ・ご不明点は <a href="mailto:contact@boatship.jp" style="color:inherit;">contact@boatship.jp</a> まで。
+  </div>
+  <a class="bc-back" href="/notes/">Notes を読んで待つ →</a>
+</main>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>
