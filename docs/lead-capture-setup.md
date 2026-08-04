@@ -31,15 +31,20 @@
 | `scripts/leads-schema.sql` / `setup-leads-db.js` | leads テーブル作成（冪等） |
 | `tests/` | ユニットテスト（`npm run test:leads`） |
 
-## 🙋 人間タスク（Spir は設定済み。残りは 1 → 3 → 4 → 5）
+## 🙋 人間タスク（Resend / Spir / Slack は設定済み。残るは 3 の Neon テーブル作成）
 
-### 1. Resend のドメイン認証（SPF / DKIM / DMARC）★DNS反映待ちあり
+### 1. Resend — 設定完了済み（2026-08-04）
 
-1. Resend にサインアップ → Domains → `boatship.jp` を追加
-2. 表示される DNS レコード（SPF・DKIM）をドメインのDNSに追加
-3. DMARC レコードを追加（例: `_dmarc` TXT `v=DMARC1; p=none; rua=mailto:contact@boatship.jp`）
-4. Resend 上で3つとも Verified になることを確認
-5. API Key を発行 → Vercel の環境変数 `RESEND_API_KEY` に設定
+| 項目 | 設定値 |
+|---|---|
+| 認証ドメイン | `boatship.jp`（ルートドメイン）/ Verified / Tokyo リージョン |
+| DKIM | `resend._domainkey.boatship.jp` |
+| SPF / Return-Path | `send.boatship.jp` |
+| 送信元アドレス | `contact@boatship.jp`（コードの既定値。`LEAD_MAIL_FROM` の設定は不要） |
+| `RESEND_API_KEY` | Vercel の Production + Preview に登録済み |
+
+**ルートドメイン `boatship.jp` を認証しているため、既定の送信元 `contact@boatship.jp` で送信できる。**
+送信元アドレスを変更する場合は、下記「送信元アドレスの落とし穴」を必ず読むこと。
 
 ### 2. Spir — 設定完了済み（2026-08-04）
 
@@ -74,25 +79,72 @@
 ### 3. Neon（Vercel Marketplace）
 
 1. Vercel ダッシュボード → Storage → Neon を接続（`DATABASE_URL` が自動設定される）
-2. ローカルまたは Vercel CLI で `DATABASE_URL=... npm run setup:leads-db` を実行（冪等）
+2. **テーブル作成**（冪等。何度実行してもよい）。次のどちらかで行う:
+   - `DATABASE_URL='postgres://...' npm run setup:leads-db`（ローカル or Vercel CLI）
+   - Neon コンソールの SQL Editor に `scripts/leads-schema.sql` の内容を貼り付けて実行
 
-### 4. Slack
+作成されるのは **`leads` と `webhook_events` の2テーブル**（＋インデックス2本）。
+`webhook_events` は Spir Webhook の重複排除用で、`leads` より後から追加されたため、
+**`leads` だけが存在する環境では再実行が必要**。両方できているかは次で確認する:
 
-1. 通知先チャンネルに Incoming Webhook を作成
-2. URL を環境変数 `SLACK_WEBHOOK_URL` に設定
+```sql
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public' ORDER BY 1;
+-- leads / webhook_events の2行が返れば完了
+```
+
+`webhook_events` が無いまま Spir の予約が入ると、Webhook 処理が例外になり
+（応答は 200 のまま）Slack に「⚠️ Spir Webhook の処理に失敗しました」が届く。
+
+### 4. Slack — 設定完了済み（2026-08-04）
+
+Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + Preview に登録済み。
 
 ### 5. Vercel 環境変数まとめ
 
-| 変数 | 必須 | 内容 |
+コード上の `process.env` は以下の**9個がすべて**（`api/` `lib/` `scripts/` を grep して確認）。
+既定値のある6個は未設定でも動作する。
+
+**必須（未設定だと実害が出る3個）**
+
+| 変数 | 未設定時に起きること |
+|---|---|
+| `DATABASE_URL` | `lib/db.js` が throw。フォーム送信が **500** になり「保存できませんでした」を表示。サンクスページには進まない（リードを消さないため） |
+| `RESEND_API_KEY` | `lib/mailer.js` が throw。**応答後の非同期処理で落ちるため、ユーザーには正常にサンクスページが見える**。メールは届かず `mail_status='failed'`、Slackに警告 |
+| `SLACK_WEBHOOK_URL` | throw せず `console.error` を出して**黙ってスキップ**。新規リード通知もメール失敗警告も届かない。エラーが表に出ないぶん最も気づきにくい |
+
+**任意（すべてコードに既定値あり）**
+
+| 変数 | 既定値 | 用途 |
 |---|---|---|
-| `DATABASE_URL` | ✓ | Neon 接続文字列（Marketplace統合で自動） |
-| `RESEND_API_KEY` | ✓ | Resend API Key |
-| `LEAD_MAIL_FROM` | | 差出人。既定 `BOATship <contact@boatship.jp>`（no-reply不可・実在アドレス） |
-| `SLACK_WEBHOOK_URL` | ✓ | Slack Incoming Webhook |
-| `SPIR_LEAD_URL_IDS` | | 空き時間リンク識別子の上書き（カンマ区切り）。既定 `qKLPfOuw3wj6welMiVqd5` |
-| `SPIR_WEBHOOK_TOKEN` | | 設定する場合は Spir の Webhook URL 再登録（`?token=` 付与）とセット |
-| `SPIR_BOOKING_URL` | | メール本文の日程調整リンクの上書き。既定は実運用の空き時間リンク（`lead-config.js` と同一） |
-| `SITE_ORIGIN` | | 既定 `https://www.boatship.jp` |
+| `LEAD_MAIL_FROM` | `BOATship <contact@boatship.jp>` | 自動返信メールの差出人。`no-reply@` は使わない（返信を受け取る） |
+| `LEAD_MAIL_REPLY_TO` | `contact@boatship.jp` | 自動返信メールの Reply-To |
+| `SPIR_BOOKING_URL` | 実運用の空き時間リンク | メール本文の日程調整リンク（`assets/js/lead-config.js` と同一に保つ） |
+| `SPIR_LEAD_URL_IDS` | `qKLPfOuw3wj6welMiVqd5` | 空き時間リンク識別子の上書き（カンマ区切り） |
+| `SPIR_WEBHOOK_TOKEN` | なし（未設定なら検証しない） | 設定する場合は Spir の Webhook URL 再登録（`?token=` 付与）とセット |
+| `SITE_ORIGIN` | `https://www.boatship.jp` | メール本文の資料URLの生成元 |
+
+#### ⚠️ 送信元アドレスの落とし穴（`LEAD_MAIL_FROM`）
+
+**「既定値があるから設定不要」とは限らない。** Resend は通常、アカウントで**認証済みのドメイン**
+からの送信しか許可しない。既定の送信元は `contact@boatship.jp` なので:
+
+| Resend で認証したドメイン | 既定値のままで送れるか |
+|---|---|
+| `boatship.jp`（ルート）| ✅ 送れる — **現在の構成はこれ**。設定不要 |
+| `mail.boatship.jp` などサブドメインのみ | ❌ 送信時に拒否される → `LEAD_MAIL_FROM` を認証済みドメインのアドレスに設定する必要がある |
+
+**不一致の場合の症状は `RESEND_API_KEY` 未設定時とまったく同じ**で、
+デプロイもフォーム送信も成功し、ユーザーにはサンクスページが表示される。
+メールだけが届かず `mail_status='failed'` になる。**将来ドメイン構成を変えるときは必ずここを確認すること。**
+
+#### 送信失敗の切り分け
+
+1. **Slack** — 「⚠️ 自動返信メールの送信に失敗」に**原因の文字列がそのまま入る**
+   （`RESEND_API_KEY is not set` なのか Resend のドメイン拒否なのかが判別できる）
+2. **DB** — `SELECT mail_status, count(*) FROM leads GROUP BY 1;`
+
+そのため**設定順は `SLACK_WEBHOOK_URL` → `RESEND_API_KEY`** を推奨する。
 
 ## 受け入れテスト（指示書セクション8）対応表
 
@@ -105,7 +157,7 @@
 | 必須項目が空だとフィールド単位でエラー | 済（クライアント/サーバー両方） |
 | 送信するとサンクスページに遷移する（3秒以内） | 済（116ms・メール送信を待たない実装） |
 | サンクスページから資料にアクセスできる | 済 |
-| 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | **要・実環境**（ドメイン認証後に3宛先へ実送信） |
+| 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | **要・実環境**（Resend認証済み。3宛先へ実送信して確認） |
 | メール内の資料リンク・日程調整リンクが両方開く | **要・実環境** |
 | サンクスページにSpirの空き時間URLが埋め込み表示される | 済（実URL設定済み・読込失敗時の代替表示も検証済み）／表示は**要・実環境** |
 | 予約でWebhookが届きメール突合で booked_at 更新 | 済（公式スキーマ準拠・startDateTime使用をテスト）／**要・実環境** |
