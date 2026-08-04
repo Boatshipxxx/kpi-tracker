@@ -31,7 +31,7 @@
 | `scripts/leads-schema.sql` / `setup-leads-db.js` | leads テーブル作成（冪等） |
 | `tests/` | ユニットテスト（`npm run test:leads`） |
 
-## 🙋 人間タスク（この順で。1と2は待ち時間が発生するため初日に）
+## 🙋 人間タスク（Spir は設定済み。残りは 1 → 3 → 4 → 5）
 
 ### 1. Resend のドメイン認証（SPF / DKIM / DMARC）★DNS反映待ちあり
 
@@ -41,18 +41,35 @@
 4. Resend 上で3つとも Verified になることを確認
 5. API Key を発行 → Vercel の環境変数 `RESEND_API_KEY` に設定
 
-### 2. Spir の設定 ★Webhook利用申込に承認待ちあり
+### 2. Spir — 設定完了済み（2026-08-04）
 
-1. **Webhook の利用申込を初日に出す**（チームプラン契約だけでは有効にならない）
-2. リード用の**空き時間URL**を作成（確定型は不可。iframe/Webhook/リダイレクト/質問フォームは空き時間URL限定）
-3. 質問フォームに「会社・団体名」を**必須**で追加（氏名・メールは標準取得）
-4. 日程確定後のリダイレクト先を `https://www.boatship.jp/booking-complete/` に設定
-5. Webhook 送信先を `https://www.boatship.jp/api/spir-webhook?token=<ランダム文字列>` に設定
-   （`<ランダム文字列>` は環境変数 `SPIR_WEBHOOK_TOKEN` と同じ値にする）
-6. 空き時間URLのURL識別子（URL中の一意な部分）を環境変数 `SPIR_LEAD_URL_IDS` に設定
-7. 空き時間URLを `assets/js/lead-config.js` の `SPIR_BOOKING_URL` に貼ってコミット
-8. **最初のWebhook受信時にペイロードを確認し、`lib/spir-payload.js` の防御的パースが
-   正しく メール/開始時刻/会社名 を拾えているか検証する**（現状はスキーマ非依存の走査で実装）
+公式ヘルプ「Webhookサービス連携」でスキーマを確認済み。`lib/spir-payload.js` は正式キー参照
+（`payload.invitee.email` / `payload.startDateTime` / `payload.formAnswers[]` 等）で実装されている。
+
+| 項目 | 設定値 |
+|---|---|
+| チーム | BOAT部 (`PzCSnkJVDW6MKMid8j7Im`) / Team プラン |
+| 空き時間リンク | `https://app.spirinc.com/t/PzCSnkJVDW6MKMid8j7Im/as/qKLPfOuw3wj6welMiVqd5/confirm` |
+| 振り分け識別子 | `qKLPfOuw3wj6welMiVqd5`（コードに既定値として設定済み） |
+| privateTitle | 資料請求フォロー個別相談（Webサイト経由） |
+| 質問フォーム | お名前* / メールアドレス* / 会社・団体名* |
+| リダイレクト先 | `https://www.boatship.jp/booking-complete/` |
+| Webhook URL | `https://www.boatship.jp/api/spir-webhook`（登録済み・**PR #52 マージ前から有効**） |
+| 登録イベント | 日程確定（`event.confirmed`）のみ |
+
+**実装が依存している運用上の注意:**
+
+- Webhook は全空き時間リンク共通で届く。既存3リンク（ご面談ミーティング / オンラインミーティング B / Josai）の
+  予約も届くが、`originalUrl` の識別子で振り分けて 200 で黙って無視する（実装・テスト済み）
+- 非200応答は 10秒×4回リトライ → 最終失敗でチーム管理者全員にエラーメール。
+  そのため業務例外（対象外リンク・突合失敗・JSON不正）はすべて 200 を返す
+- リトライ対策として `webhookEventId` で重複排除（`webhook_events` テーブル）
+- **質問フォームのラベル「会社・団体名」を変更したら `lib/spir-payload.js` の `COMPANY_QUESTION` も更新すること**
+- **「日程確定のキャンセル」イベントを追加登録しないこと**（ハンドラは 200 で無視するが、
+  `booked_at` のクリアは未実装。必要になったら実装とセットで登録する）
+- トークン検証を有効にする場合は `SPIR_WEBHOOK_TOKEN` 設定 + Spir 側のURL再登録をセットで行う
+- ⚠️ 参加者（高坂慎也）に「Zoom未連携」の警告が出ている。受け入れテストで実予約を1件通し、
+  Web会議URLが発行されるか確認する。問題があれば Spir 側で Zoom をオフにするか Zoom を連携する
 
 ### 3. Neon（Vercel Marketplace）
 
@@ -72,9 +89,9 @@
 | `RESEND_API_KEY` | ✓ | Resend API Key |
 | `LEAD_MAIL_FROM` | | 差出人。既定 `BOATship <contact@boatship.jp>`（no-reply不可・実在アドレス） |
 | `SLACK_WEBHOOK_URL` | ✓ | Slack Incoming Webhook |
-| `SPIR_LEAD_URL_IDS` | ✓ | リード用空き時間URLの識別子（カンマ区切り可）。未設定時は処理せずSlack警告 |
-| `SPIR_WEBHOOK_TOKEN` | 推奨 | Webhook URL の `?token=` と一致させる |
-| `SPIR_BOOKING_URL` | | メール本文の日程調整リンク（`lead-config.js` と同じURL） |
+| `SPIR_LEAD_URL_IDS` | | 空き時間リンク識別子の上書き（カンマ区切り）。既定 `qKLPfOuw3wj6welMiVqd5` |
+| `SPIR_WEBHOOK_TOKEN` | | 設定する場合は Spir の Webhook URL 再登録（`?token=` 付与）とセット |
+| `SPIR_BOOKING_URL` | | メール本文の日程調整リンクの上書き。既定は実運用の空き時間リンク（`lead-config.js` と同一） |
 | `SITE_ORIGIN` | | 既定 `https://www.boatship.jp` |
 
 ## 受け入れテスト（指示書セクション8）対応表
@@ -90,8 +107,8 @@
 | サンクスページから資料にアクセスできる | 済 |
 | 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | **要・実環境**（ドメイン認証後に3宛先へ実送信） |
 | メール内の資料リンク・日程調整リンクが両方開く | **要・実環境** |
-| サンクスページにSpirの空き時間URLが埋め込み表示される | **要・実環境**（未設定時の代替表示は検証済み） |
-| 予約でWebhookが届きメール突合で booked_at 更新 | ロジック済（ユニットテスト）／**要・実環境** |
+| サンクスページにSpirの空き時間URLが埋め込み表示される | 済（実URL設定済み・読込失敗時の代替表示も検証済み）／表示は**要・実環境** |
+| 予約でWebhookが届きメール突合で booked_at 更新 | 済（公式スキーマ準拠・startDateTime使用をテスト）／**要・実環境** |
 | 直接予約は asset_id='direct_booking' で新規レコード | ロジック済（ユニットテスト）／**要・実環境** |
 | リード導線以外の空き時間URLは leads に混入しない | ロジック済（ユニットテスト）／**要・実環境** |
 | 日程確定後、自社の予約完了ページにリダイレクト | **要・実環境**（Spir側設定） |

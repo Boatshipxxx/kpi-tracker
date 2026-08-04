@@ -30,3 +30,10 @@ CREATE INDEX IF NOT EXISTS leads_email_created_idx
 -- 記事別リード数の集計用
 CREATE INDEX IF NOT EXISTS leads_landing_url_idx
   ON leads (landing_url);
+
+-- Spir Webhook の重複排除（失敗時10秒×4回のリトライがあるため）。
+-- webhookEventId を主キーで記録し、二重に届いたイベントを一度だけ処理する。
+CREATE TABLE IF NOT EXISTS webhook_events (
+  id          text PRIMARY KEY,
+  received_at timestamptz NOT NULL DEFAULT now()
+);

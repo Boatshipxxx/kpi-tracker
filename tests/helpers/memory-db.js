@@ -6,11 +6,21 @@ const crypto = require('crypto');
 
 function createMemoryDb() {
   const rows = [];
+  const webhookEvents = new Set();
 
   return {
     rows,
+    webhookEvents,
     async query(text, params) {
       const sql = text.replace(/\s+/g, ' ').trim();
+
+      if (sql.startsWith('INSERT INTO webhook_events')) {
+        // claimWebhookEvent: ON CONFLICT DO NOTHING 相当
+        const [id] = params;
+        if (webhookEvents.has(id)) return [];
+        webhookEvents.add(id);
+        return [{ id }];
+      }
 
       if (sql.includes("'direct_booking'")) {
         // insertDirectBooking（insertLead と前方一致するため先に判定する）
