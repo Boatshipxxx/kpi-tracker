@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<!-- 自動生成テンプレート: scripts/build-articles.js が  を差し替えて
+     /notes/<slug>/index.html・/magazine/<slug>/index.html を生成する。
+     生成物は直接編集せず、このテンプレートかデータ側を変更して再ビルドすること。 -->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計 | BOATship</title>
+<meta name="description" content="「なんとなく浸透してきた」で報告を終わらせないために。組織同一化とワーク・エンゲージメントの尺度、サーベイの偏りへの対処、行動指標の組み合わせで、インナーブランディングの浸透度を可視化する設計をまとめる。">
+<link rel="canonical" href="https://www.boatship.jp/notes/inner-branding-measurement/">
+
+<meta property="og:title" content="インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計 | BOATship">
+<meta property="og:description" content="「なんとなく浸透してきた」で報告を終わらせないために。組織同一化とワーク・エンゲージメントの尺度、サーベイの偏りへの対処、行動指標の組み合わせで、インナーブランディングの浸透度を可視化する設計をまとめる。">
+<meta property="og:image" content="https://www.boatship.jp/images/card-05.jpg">
+<meta property="og:url" content="https://www.boatship.jp/notes/inner-branding-measurement/">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="BOATship">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計 | BOATship">
+<meta name="twitter:description" content="「なんとなく浸透してきた」で報告を終わらせないために。組織同一化とワーク・エンゲージメントの尺度、サーベイの偏りへの対処、行動指標の組み合わせで、インナーブランディングの浸透度を可視化する設計をまとめる。">
+<meta name="twitter:image" content="https://www.boatship.jp/images/card-05.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計",
+  "description": "「なんとなく浸透してきた」で報告を終わらせないために。組織同一化とワーク・エンゲージメントの尺度、サーベイの偏りへの対処、行動指標の組み合わせで、インナーブランディングの浸透度を可視化する設計をまとめる。",
+  "image": [
+    "https://www.boatship.jp/images/card-05.jpg"
+  ],
+  "datePublished": "2026-08-03",
+  "dateModified": "2026-08-03",
+  "inLanguage": "ja",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.boatship.jp/notes/inner-branding-measurement/"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "BOATship",
+    "url": "https://www.boatship.jp/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BOATship",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.boatship.jp/images/logo.jpg"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.boatship.jp/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Notes",
+      "item": "https://www.boatship.jp/notes/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計",
+      "item": "https://www.boatship.jp/notes/inner-branding-measurement/"
+    }
+  ]
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.breadcrumb {
+  max-width: 720px;
+  margin: 1.5rem auto 0;
+  padding: 0 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.breadcrumb ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4em; }
+.breadcrumb li + li::before { content: '/'; margin-right: 0.4em; opacity: 0.5; }
+.breadcrumb a { color: inherit; text-decoration: underline; }
+.breadcrumb [aria-current] { opacity: 0.65; }
+
+.cta-block {
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  padding: 2rem 1.5rem;
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  text-align: center;
+}
+.cta-heading {
+  font-family: 'DotGothic16', sans-serif;
+  font-size: 22px;
+  margin: 0 0 0.8rem;
+  line-height: 1.4;
+}
+.cta-body {
+  font-size: 14px;
+  line-height: 1.9;
+  margin: 0 0 1.4rem;
+}
+.cta-btn {
+  display: inline-block;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid currentColor;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.cta-btn:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.cta-sub {
+  margin: 1rem 0 0;
+  font-size: 12px;
+}
+.cta-sub a { color: inherit; text-decoration: underline; }
+
+.evidence-block {
+  max-width: 720px;
+  margin: 3rem auto 4rem;
+  padding: 1.5rem;
+  border: 2px solid currentColor;
+}
+.evidence-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.evidence-list {
+  margin: 0 0 1rem 1.2rem;
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.evidence-list li { margin-bottom: 0.6rem; }
+.evidence-list .ev-source { display: block; font-size: 11px; opacity: 0.65; }
+.evidence-list a { color: inherit; text-decoration: underline; }
+.evidence-footnote {
+  font-size: 11px;
+  opacity: 0.6;
+  line-height: 1.7;
+  margin: 0;
+}
+.article-theme-chip {
+  display: inline-block;
+  margin-left: 0.6rem;
+  padding: 2px 10px;
+  border: 1px solid currentColor;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+.related-notes {
+  max-width: 720px;
+  margin: 0 auto 4rem;
+}
+.related-heading {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+.related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.related-card {
+  display: block;
+  padding: 1rem 1.2rem;
+  border: 2px solid currentColor;
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.related-card:hover {
+  box-shadow: 4px 4px 0 currentColor;
+  transform: translate(-2px, -2px);
+}
+.related-card .related-meta {
+  display: block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  opacity: 0.65;
+  margin-bottom: 0.5rem;
+}
+.related-card .related-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/news/">News</a>
+    <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
+    
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/news/" onclick="closeMenu()">News</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+  <a href="/contact/" onclick="closeMenu()">Contact</a>
+  
+</div>
+
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <ol>
+    <li><a href="/">Home</a></li>
+    <li><a href="/notes/">Notes</a></li>
+    <li><span aria-current="page">インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計</span></li>
+  </ol>
+</nav>
+
+<div id="note-root"><a href="/notes/" class="back-to-mag">← Notes に戻る</a><section class="article-page-hero"><span class="article-category-badge">Research</span><span class="article-theme-chip">Inner Branding</span><h1 class="article-page-title">インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計</h1><div class="article-meta"><span>2026.08.03</span><span>8 min read</span><span>#13</span></div></section><div class="article-hero-wrap"><img src="/images/card-05.jpg" alt="インナーブランディングの効果はどう測るのか — 浸透度を可視化する指標設計" class="article-hero-img"></div><article class="article-body"><p>インナーブランディングの相談でいちばん多く聞かれるのが「これ、効果はどう説明すればいいんですか」という問いです。施策は回っている。現場の空気も悪くない。けれど経営会議で成果を問われると「なんとなく浸透してきました」以上のことが言えない。BOATshipは<a href="/notes/pr-measurement-outputs-to-outcomes/">広報の効果測定</a>と同じように、インナーブランディングにも測定設計が必要だと考えています。幸いこの領域には、組織行動論の蓄積された尺度があります。手づくりのアンケートを増やす前に、まず何を測るのかを決めるところから始めましょう。</p>
+<h2>「なんとなく浸透してきた」は、測っていないだけ</h2>
+<p>浸透度が語れない原因は、施策の不足ではなく指標の不在です。研修の実施回数、社内報の発行本数、イベントの参加人数——手元にあるのはたいてい「やった量」の記録で、これは広報でいうアウトプットに相当します。知りたいのは「メンバーの中で何が変わったか」なのに、測っているのは自分たちの活動量。この食い違いに気づくと、次に用意すべき指標がはっきりします。<a href="/notes/inner-branding-initiatives/">施策を並べる</a>前に、その施策で何がどこからどこへ動くはずなのかを言葉にしておくことが、測定設計の実質的な出発点です。</p>
+<h2>測ると何が変わるのか — エンゲージメントと事業成果をつなぐ研究</h2>
+<p>測定に労力をかける価値があるのは、内側の状態が事業成果と結びついていることが実証されているからです。Harter、Schmidt、Hayes による2002年のメタ分析は、事業単位ごとの従業員満足・エンゲージメントの水準が、顧客満足、生産性、離職、安全性といった成果指標と関連することを、多数の事業単位のデータをまとめて示しました。重要なのは、この分析が個人の感想ではなく「事業単位」という経営の意思決定単位で関連を見ていることです。部署ごとに測れば、どこに手を入れるべきかが経営の言葉で語れるようになります。理念浸透が情緒の話から資源配分の話に変わる瞬間です。</p>
+<h2>何を測るか — 組織同一化とワーク・エンゲージメント</h2>
+<p>では具体的に何を聞くのか。BOATshipは二つの軸を勧めています。ひとつは<a href="/notes/inner-branding-organizational-identification/">組織同一化</a>です。Mael と Ashforth は1992年の研究で、「この組織の一員であることを自分のことのように感じるか」「他人がこの組織を批判すると自分が批判されたように感じるか」といった問いから成る尺度を提示しました。理念が自己定義に取り込まれているかを直接たずねる軸です。もうひとつはワーク・エンゲージメントで、Schaufeli、Bakker、Salanova が2006年に短縮版（UWES-9）を発表し、活力・熱意・没入の3側面を9問で測れるようにしています。前者は「所属への意味づけ」、後者は「仕事への向き合い方」。狙いの違う二つを分けて持つと、施策のどこが効いたかを切り分けられます。既存の妥当性が検証された尺度を使えば、自社の数値を他社や過去の自分たちと比べられるという実務的な利点もあります。</p>
+<h2>サーベイの落とし穴 — 聞き方が結果をつくる</h2>
+<p>ただし、サーベイは万能ではありません。Podsakoff らが2003年に整理したのは、同じ人・同じ時点・同じ形式でまとめて聞くと、測定方法そのものが変数間の見かけの関連を膨らませてしまうという問題（コモンメソッドバイアス）です。彼らが挙げた対処には、測定のタイミングや情報源を分ける、質問の順序と表現に注意する、回答の匿名性を確保して社会的に望ましい答えへの誘引を減らす、といった設計上の工夫が含まれます。実務に翻訳すると、こうなります。理念浸透の質問と満足度の質問を並べて同じ画面で聞かない。上司が回答状況を見られる状態で「理念に共感しているか」を聞かない。そして年に一度の大型サーベイだけに頼らない。<a href="/notes/inner-branding-leadership/">リーダーの振る舞い</a>が問われる領域だからこそ、答える側が安全に本音を出せる設計が数字の質を決めます。</p>
+<h2>BOATshipの実践 — 行動指標で数字の裏を取る</h2>
+<p>意識の数値は、行動の記録と突き合わせて初めて信頼できます。自己申告の「共感しています」が本当なら、どこかに行動の痕跡が出るはずです。たとえば社内報や理念関連コンテンツの閲覧率と読了率、バリュー表彰の推薦がどれだけ自発的に出てくるか、リファラル採用の比率、タウンホールでの質問数、そして離職率とその理由。eNPS のように推奨度を1問で聞く指標も、行動に近い問いとして補助的に使えます。BOATshipはこのオウンドメディアで実際に、記事ごとの閲覧数・読了率・反応率を計測し、読了率が40%を下回れば冒頭と見出しを組み直すという判定ルールで運用しています。社内メディアにも同じ発想が使えます。意識指標で仮説を立て、行動指標で裏を取り、外れていたら施策ではなく測り方を疑う。この往復が測定を生きたものにします。</p>
+<p>そしてBOATshipは「Business Art Team」として、価値観を掲示物ではなく制度に埋め込みます。<a href="/notes/equivalent-exchange-compensation/">等価交換報酬制度</a>のように、お金以外の価値で対価を交換する仕組みは、案件ごとに「この取引に自分は納得しているか」を全員に問いかけます。だから測定の対象も、まず制度の運用実態に向けます。納得できずに見送った案件はあったか。その判断は誰が、どんな理由で下したか。制度が形骸化していれば、意識サーベイの数字だけが良いという奇妙なねじれが起こります。逆に制度が生きていれば、数字は後からついてきます。測るべきは標語の認知度ではなく、価値観が実際の判断に使われた回数だと考えています。</p>
+<h2>測定設計のチェックリスト</h2>
+<p>最後に、BOATshipがインナーブランディングの測定を設計するときの問いを共有します。(1) 活動量（研修回数・発行本数）と変化（意識・行動）の指標を分けて持っているか。(2) 事業単位・部署ごとに測って、資源配分の判断に使える粒度になっているか。(3) 組織同一化とエンゲージメントのように、狙いの違う軸を分けているか。(4) 妥当性が検証された既存の尺度を使い、経年で比較できる形にしているか。(5) 匿名性・質問順序・測定タイミングを設計して、聞き方が結果を歪めないようにしているか。(6) 意識の数値を行動指標で裏取りしているか。(7) 結果を次の施策と次の測り方の両方に反映しているか。——この記事も、アクセス実績と読了率を見ながら継続的に更新します。引用した研究は末尾のエビデンス欄にまとめています。エンゲージメントサーベイの設計や、理念浸透の報告フォーマットづくりにそのまま使ってください。</p></article><section class="evidence-block"><div class="evidence-heading">Evidence — 参考文献・エビデンス</div><ol class="evidence-list"><li><a href="https://doi.org/10.1037/0021-9010.87.2.268" target="_blank" rel="noopener">Business-unit-level relationship between employee satisfaction, employee engagement, and business outcomes — エンゲージメントと事業成果を結ぶメタ分析 ↗</a><span class="ev-source">Harter, J. K., Schmidt, F. L., &amp; Hayes, T. L. (2002). Journal of Applied Psychology, 87(2)</span></li><li><a href="https://doi.org/10.1177/0013164405282471" target="_blank" rel="noopener">The measurement of work engagement with a short questionnaire — ワーク・エンゲージメント尺度（UWES-9） ↗</a><span class="ev-source">Schaufeli, W. B., Bakker, A. B., &amp; Salanova, M. (2006). Educational and Psychological Measurement, 66(4)</span></li><li><a href="https://doi.org/10.1002/job.4030130202" target="_blank" rel="noopener">Alumni and their alma mater — 組織同一化を測る尺度の提示 ↗</a><span class="ev-source">Mael, F., &amp; Ashforth, B. E. (1992). Journal of Organizational Behavior, 13(2)</span></li><li><a href="https://doi.org/10.1037/0021-9010.88.5.879" target="_blank" rel="noopener">Common method biases in behavioral research — 測り方そのものが生む偏りと対処法 ↗</a><span class="ev-source">Podsakoff, P. M., MacKenzie, S. B., Lee, J.-Y., &amp; Podsakoff, N. P. (2003). Journal of Applied Psychology, 88(5)</span></li></ol><p class="evidence-footnote">このNoteは学術エビデンスとアクセス実績にもとづき継続的にチューニングされます。最終チューニング: 2026.08.03</p></section><section class="cta-block" data-article-id="n13" data-theme="inner-branding"><h2 class="cta-heading">理念浸透・組織づくりのご相談</h2><p class="cta-body">インナーブランディングの設計について、貴社の状況に合わせてお話しします。</p><a class="cta-btn" href="/request/?asset=pr-planning-template&amp;from=%2Fnotes%2Finner-branding-measurement%2F">広報企画書テンプレートを無料ダウンロード →</a><p class="cta-sub"><a href="/contact/">相談フォームはこちら</a> ／ <a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p></section><section class="related-notes"><div class="related-heading">Related — 関連Note</div><div class="related-grid"><a class="related-card" href="/notes/inner-branding-organizational-identification/"><span class="related-meta">2026.06.18 · Research</span><span class="related-title">インナーブランディングはなぜ組織を強くするのか — 組織同一化の研究から</span></a><a class="related-card" href="/notes/inner-branding-initiatives/"><span class="related-meta">2026.07.13 · Playbook</span><span class="related-title">インナーブランディングの施策10選 — 「認知・共感・行動」の3段階で空回りを防ぐ</span></a></div></section><div id="article-end" style="height:1px;" data-article-id="n13" data-read-time="8"></div><a href="/notes/" class="back-to-mag" style="margin-bottom:4rem;">← Notes に戻る</a></div>
+
+
+
+<section class="newsletter-section" id="newsletter">
+  <h2>Studio<br>Updates</h2>
+  <p class="sub-text">新着の制作事例やMagazinesをメールでお届け。</p>
+  <form action="https://formspree.io/f/xvzlyrdk" method="POST" class="newsletter-form">
+    <input type="email" name="email" class="newsletter-input" placeholder="your@email.com" required>
+    <button type="submit" class="newsletter-btn">SUBSCRIBE</button>
+  </form>
+  <p class="newsletter-note">* スパムは送りません。いつでも解除できます。</p>
+</section>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+<script src="/notes/analytics.js"></script>
+<script>
+(function () {
+  if (!window.BSNotesAnalytics) return;
+  BSNotesAnalytics.trackView("n13");
+  var endEl = document.getElementById('article-end');
+  if (endEl && 'IntersectionObserver' in window) {
+    var completed = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting && !completed) {
+          completed = true;
+          BSNotesAnalytics.trackReadComplete("n13");
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0 });
+    io.observe(endEl);
+  }
+})();
+</script>
+<script>
+(function () {
+  var block = document.querySelector('.cta-block');
+  if (!block) return;
+  block.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'cta_click', {
+          article_id: block.getAttribute('data-article-id'),
+          theme: block.getAttribute('data-theme')
+        });
+      }
+    });
+  });
+})();
+</script>
+<script src="/assets/js/read-tracking.js"></script>
+</body>
+</html>
