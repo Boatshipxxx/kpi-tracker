@@ -1,0 +1,19 @@
+{
+  "name": "boatship-site",
+  "private": true,
+  "description": "BOATship corporate site. 静的HTML + Vercel Functions (/api)。依存はリード獲得導線のサーバー処理でのみ使用する。",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build:articles": "node scripts/build-articles.js",
+    "build:sitemap": "node scripts/generate-sitemap.js",
+    "setup:leads-db": "node scripts/setup-leads-db.js",
+    "test:leads": "node --test \"tests/**/*.test.js\""
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@vercel/functions": "^2.0.0",
+    "resend": "^4.0.1"
+  }
+}

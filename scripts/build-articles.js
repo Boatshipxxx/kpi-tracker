@@ -145,7 +145,7 @@ const CTA_COPY = {
   }
 };
 
-function ctaBlock(a) {
+function ctaBlock(a, articleUrl) {
   const theme = a.theme || 'general';
   if (a.lang === 'en') {
     return (
@@ -158,12 +158,15 @@ function ctaBlock(a) {
     );
   }
   const copy = CTA_COPY[a.theme] || CTA_COPY['default'];
+  // リード獲得導線: 資料ダウンロードを主導線にする。
+  // ?from= に記事URLを渡し、フォーム側が form_url として記録する（仕様 3）。
+  const requestHref = `/request/?asset=pr-planning-template&from=${encodeURIComponent(articleUrl || '')}`;
   return (
     `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
       `<h2 class="cta-heading">${esc(copy.heading)}</h2>` +
       `<p class="cta-body">${esc(copy.body)}</p>` +
-      '<a class="cta-btn" href="/contact/">相談する →</a>' +
-      '<p class="cta-sub"><a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p>' +
+      `<a class="cta-btn" href="${esc(requestHref)}">広報企画書テンプレートを無料ダウンロード →</a>` +
+      '<p class="cta-sub"><a href="/contact/">相談フォームはこちら</a> ／ <a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p>' +
     '</section>'
   );
 }
@@ -488,7 +491,7 @@ function writePage(kind, a, allNotes, alternates) {
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
     (isNotes ? evidenceBlock(a) : '') +
     (isNews ? distributionBlock(a) : '') +
-    ctaBlock(a) +
+    ctaBlock(a, `${sectionUrl}${a.slug}/`) +
     (isNotes ? relatedBlock(a, allNotes) : '') +
     `<div id="article-end" style="height:1px;" data-article-id="${esc(a.id)}" data-read-time="${esc(a.readTime || 3)}"></div>` +
     `<a href="${backUrl}" class="back-to-mag" style="margin-bottom:4rem;">${backLabel}</a>` +

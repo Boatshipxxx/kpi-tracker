@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資料請求 | BOATship</title>
+<meta name="description" content="広報企画書テンプレートなど、BOATshipの実務資料を無料でダウンロードいただけます。">
+<link rel="canonical" href="https://www.boatship.jp/request/">
+<meta property="og:title" content="資料請求 | BOATship">
+<meta property="og:description" content="広報企画書テンプレートなど、BOATshipの実務資料を無料でダウンロードいただけます。">
+<meta property="og:url" content="https://www.boatship.jp/request/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BOATship">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.lead-form-wrap { max-width: 640px; margin: 0 auto; padding: 3rem 1rem 4rem; }
+.lead-asset-box {
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  padding: 1.4rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.lead-asset-box .kicker {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+}
+.lead-asset-box h2 { font-family: var(--font-dot); font-size: 20px; line-height: 1.5; margin: 0 0 0.6rem; }
+.lead-asset-box p { font-size: 13px; line-height: 1.9; margin: 0; }
+.lead-form .field { margin-bottom: 1.4rem; }
+.lead-form label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.4rem;
+}
+.lead-form label .req { color: var(--accent-red); margin-left: 0.3em; }
+.lead-form label .opt { opacity: 0.6; font-weight: 400; margin-left: 0.3em; }
+.lead-form input[type="text"],
+.lead-form input[type="email"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid currentColor;
+  background: transparent;
+  font: inherit;
+  font-size: 15px;
+}
+.lead-form input:focus { outline: 3px solid var(--accent-red); outline-offset: 1px; }
+.lead-form .field-error {
+  display: none;
+  margin-top: 0.4rem;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--accent-red);
+  font-weight: 700;
+}
+.lead-form .field.invalid .field-error { display: block; }
+.lead-form .field.invalid input { border-color: var(--accent-red); }
+.lead-consent { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 13px; line-height: 1.8; }
+.lead-consent input { width: 18px; height: 18px; margin-top: 3px; flex: none; }
+.lead-consent a { color: inherit; text-decoration: underline; }
+.lead-submit {
+  display: block;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 2px solid currentColor;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.lead-submit:hover:not(:disabled) { box-shadow: 4px 4px 0 currentColor; transform: translate(-2px, -2px); }
+.lead-submit:disabled { opacity: 0.6; cursor: wait; }
+.lead-form-error {
+  display: none;
+  margin-top: 1.2rem;
+  border: 2px solid var(--accent-red);
+  color: var(--accent-red);
+  padding: 1rem 1.2rem;
+  font-size: 13px;
+  line-height: 1.9;
+  font-weight: 700;
+}
+.lead-form-error.show { display: block; }
+/* honeypot: 人間には見えない。display:none にすると埋めない bot がいるため画面外に置く */
+.lead-hp { position: absolute; left: -9999px; top: -9999px; width: 1px; height: 1px; overflow: hidden; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+<div class="float-wrapper" aria-hidden="true">
+  <img src="/images/logo.jpg" alt="" class="float-inner-img">
+</div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/news/">News</a>
+    <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/news/" onclick="closeMenu()">News</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+  <a href="/contact/" onclick="closeMenu()">Contact</a>
+</div>
+
+<section class="page-hero">
+  <p class="page-hero-eyebrow">Free Download</p>
+  <h1>資料請求</h1>
+  <p>実務でそのまま使える資料を無料でお送りします。</p>
+</section>
+
+<main class="lead-form-wrap">
+  <div class="lead-asset-box">
+    <p class="kicker">お送りする資料</p>
+    <h2 id="assetTitle">広報企画書テンプレート7項目（BOATship版・実務ガイド付き）</h2>
+    <p id="assetDesc">調査→計画→実行→評価の広報プロセスを、順番に埋めれば企画書になる7項目に落とし込んだテンプレート。各項目の書き方と記入例つき。</p>
+  </div>
+
+  <form class="lead-form" id="leadForm" novalidate>
+    <div class="field" data-field="company">
+      <label for="f-company">会社・団体名<span class="req">必須</span></label>
+      <input type="text" id="f-company" name="company" autocomplete="organization" maxlength="200">
+      <p class="field-error" role="alert"></p>
+    </div>
+
+    <div class="field" data-field="name">
+      <label for="f-name">氏名<span class="req">必須</span></label>
+      <input type="text" id="f-name" name="name" autocomplete="name" maxlength="200">
+      <p class="field-error" role="alert"></p>
+    </div>
+
+    <div class="field" data-field="email">
+      <label for="f-email">メールアドレス<span class="req">必須</span></label>
+      <input type="email" id="f-email" name="email" autocomplete="email" inputmode="email" maxlength="200">
+      <p class="field-error" role="alert"></p>
+    </div>
+
+    <div class="field" data-field="department">
+      <label for="f-department">部署・役職<span class="opt">任意</span></label>
+      <input type="text" id="f-department" name="department" autocomplete="organization-title" maxlength="200">
+      <p class="field-error" role="alert"></p>
+    </div>
+
+    <div class="field" data-field="consent">
+      <label class="lead-consent">
+        <input type="checkbox" id="f-consent" name="consent">
+        <span><a href="/privacy/">個人情報の取扱い</a>に同意する<span class="req">必須</span><br>
+        <small>資料の送付、サービスのご案内のためにご入力内容を利用します。</small></span>
+      </label>
+      <p class="field-error" role="alert"></p>
+    </div>
+
+    <!-- スパム対策: honeypot（人間には見えない） -->
+    <div class="lead-hp" aria-hidden="true">
+      <label for="f-website">Website</label>
+      <input type="text" id="f-website" name="website" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button type="submit" class="lead-submit" id="leadSubmit">資料をダウンロード</button>
+    <p class="lead-form-error" id="leadFormError" role="alert"></p>
+  </form>
+</main>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/lead-form.js"></script>
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

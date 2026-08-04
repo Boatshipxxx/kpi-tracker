@@ -186,3 +186,14 @@
 - sitemap 48 URLs。workflow paths に `news/news-en.js` 追加。
 - 検証: Playwright で EN一覧11件/2件/9件・EN記事の related/CTA/パンくず・NewsArticle inLanguage=en・日英双方向の言語切替を全パス。既存16ページの構造チェックも回帰なし。
 - **人間の作業**: 英文の通読承認、pr01 英語版の代表コメント記入。`/en/works/` は未作成（works ページの EN 切替は `/en/about/` へ誘導）。
+
+---
+
+## 2026-07-31 リード獲得導線（フォーム→自動返信→サンクス→日程調整）
+
+- 実装指示書 v1.2 に基づき、静的サイト + Vercel Functions で実装（Next.js非導入。指示書「実装形式を縛らない」に基づく判断）
+- 新規: /request/ /thanks/ /booking-complete/ /privacy/ /materials/pr-planning-template/、api/lead.js、api/spir-webhook.js、lib/*、leadsスキーマ
+- 全JP記事のCTAを資料ダウンロード導線に変更（?from=で記事URLを記録）
+- 初回訪問Cookie bs_first_touch で landing_url / referrer / UTM を30日保持
+- オフライン検証31項目パス + ユニットテスト10件パス
+- 【人間タスク】docs/lead-capture-setup.md 参照。Resendドメイン認証（SPF/DKIM/DMARC）と Spir Webhook利用申込は待ち時間があるため初日に着手のこと

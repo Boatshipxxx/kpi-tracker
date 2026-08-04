@@ -106,6 +106,9 @@ function build() {
   entries.push(urlEntry('/about/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/works/', today, 'monthly', '0.7'));
   entries.push(urlEntry('/contact/', today, 'monthly', '0.7'));
+  // リード獲得導線（/thanks/ /booking-complete/ /materials/ は noindex のため載せない）
+  entries.push(urlEntry('/request/', today, 'monthly', '0.7'));
+  entries.push(urlEntry('/privacy/', today, 'yearly', '0.3'));
   entries.push(urlEntry('/en/', today, 'weekly', '0.8'));
   entries.push(urlEntry('/en/about/', today, 'monthly', '0.6'));
   entries.push(urlEntry('/en/contact/', today, 'monthly', '0.6'));
