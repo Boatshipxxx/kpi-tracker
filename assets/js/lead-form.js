@@ -118,6 +118,8 @@
           if (typeof window.gtag === 'function') {
             window.gtag('event', 'form_submit', { asset_id: assetId });
           }
+          // サンクスページがDLリンクに引き継ぐ（ダウンロード率の突合用）
+          try { if (r.data.leadId) sessionStorage.setItem('bs_lead_id', r.data.leadId); } catch (e) {}
           location.href = r.data.redirect || '/thanks/?asset=' + encodeURIComponent(assetId);
           return;
         }

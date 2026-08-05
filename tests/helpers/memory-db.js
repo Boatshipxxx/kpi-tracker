@@ -7,12 +7,20 @@ const crypto = require('crypto');
 function createMemoryDb() {
   const rows = [];
   const webhookEvents = new Set();
+  const downloads = [];
 
   return {
     rows,
     webhookEvents,
+    downloads,
     async query(text, params) {
       const sql = text.replace(/\s+/g, ' ').trim();
+
+      if (sql.startsWith('INSERT INTO asset_downloads')) {
+        const [asset_id, lead_id, source] = params;
+        downloads.push({ asset_id, lead_id, source, downloaded_at: new Date().toISOString() });
+        return [];
+      }
 
       if (sql.startsWith('INSERT INTO webhook_events')) {
         // claimWebhookEvent: ON CONFLICT DO NOTHING 相当
