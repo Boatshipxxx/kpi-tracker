@@ -37,3 +37,17 @@ CREATE TABLE IF NOT EXISTS webhook_events (
   id          text PRIMARY KEY,
   received_at timestamptz NOT NULL DEFAULT now()
 );
+
+-- 資料ダウンロードの記録（ダウンロード率の計測用）。
+-- /api/download 経由のダウンロードを1行ずつ記録する。
+-- source: mail（自動返信メール）/ thanks（サンクスページ）/ material（資料ページ）
+CREATE TABLE IF NOT EXISTS asset_downloads (
+  id            uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+  asset_id      text NOT NULL,
+  lead_id       uuid,
+  source        text,
+  downloaded_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX IF NOT EXISTS asset_downloads_asset_idx
+  ON asset_downloads (asset_id, downloaded_at DESC);

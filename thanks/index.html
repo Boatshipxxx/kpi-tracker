@@ -133,12 +133,20 @@
   <section class="thanks-booking">
     <h2>30分で、貴社の現状に合わせた進め方をご説明します</h2>
     <p style="font-size:13.5px;line-height:2;margin:0 0 1.2rem;">資料の内容を貴社の状況にあてはめて、具体的に何から始めるかをお話しします。売り込みではなく、資料の続きとしてお使いください。ご都合の良い時間を以下からお選びいただけます。</p>
+    <!-- 埋め込みがブロック・不調でも予約に到達できるよう、別タブへの導線は常に表示する -->
+    <p style="margin:0 0 1rem;">
+      <a class="thanks-asset-btn" id="bookingOpenBtn" href="#" target="_blank" rel="noopener">日程調整ページを開く ↗</a>
+    </p>
     <div class="thanks-booking-frame" id="bookingFrame" hidden>
       <iframe id="bookingIframe" title="日程調整" loading="lazy"></iframe>
     </div>
+    <p style="margin:0.8rem 0 0;font-size:12px;opacity:0.8;" id="bookingFrameNote" hidden>
+      上のカレンダーが表示されない場合は「日程調整ページを開く ↗」からどうぞ。
+    </p>
     <div class="thanks-booking-fallback" id="bookingFallback" hidden>
-      日程調整カレンダーを読み込めませんでした。<br>
-      お手数ですが <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。
+      このページ内にカレンダーを表示できませんでした。<br>
+      <a id="bookingFallbackLink" href="#" target="_blank" rel="noopener"><strong>日程調整ページを別タブで開く ↗</strong></a><br>
+      うまくいかない場合は <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。
     </div>
   </section>
 </main>
@@ -160,37 +168,70 @@
 (function () {
   'use strict';
 
-  // 請求された資料を表示（?asset= と カタログの突合）
   var assetId = new URLSearchParams(location.search).get('asset') || 'pr-planning-template';
+
+  // DLリンクは /api/download 経由（ダウンロード率の計測）。
+  // lid はフォーム送信時に sessionStorage へ保存された leadId（無ければ省略）。
+  function trackedDownloadHref(id) {
+    var href = '/api/download?asset=' + encodeURIComponent(id) + '&src=thanks';
+    try {
+      var lid = sessionStorage.getItem('bs_lead_id');
+      if (lid) href += '&lid=' + encodeURIComponent(lid);
+    } catch (e) {}
+    return href;
+  }
+
+  var assetLink = document.getElementById('assetLink');
+  assetLink.setAttribute('href', trackedDownloadHref(assetId));
+  assetLink.addEventListener('click', function () {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'asset_download', { asset_id: assetId, source: 'thanks' });
+    }
+  });
+
+  // 請求された資料を表示（?asset= と カタログの突合）
   fetch('/assets/data/lead-assets.json')
     .then(function (r) { return r.json(); })
     .then(function (catalog) {
-      var a = catalog[assetId] || catalog['pr-planning-template'];
+      var a = catalog[assetId];
+      if (!a) { assetId = 'pr-planning-template'; a = catalog[assetId]; assetLink.setAttribute('href', trackedDownloadHref(assetId)); }
       if (!a) return;
       document.getElementById('assetTitle').textContent = a.title;
-      // PDF実体（download）があれば直接ダウンロード、無ければページへ
-      document.getElementById('assetLink').setAttribute('href', a.download || a.url);
       document.getElementById('assetWebLink').setAttribute('href', a.url);
     })
     .catch(function () { /* 既定の資料リンクのまま */ });
 
-  // Spir 空き時間URLの埋め込み。未設定・読み込み失敗時は代替の連絡先を表示（仕様 6）
+  // Spir 空き時間URLの導線（仕様 4-5 / 6）。
+  // 埋め込みは SPIR_EMBED_URL（未設定なら SPIR_BOOKING_URL）を使い、
+  // 埋め込みがブロックされても「別タブで開く」から必ず予約に到達できるようにする。
   var cfg = window.BS_LEAD_CONFIG || {};
+  var bookingUrl = cfg.SPIR_BOOKING_URL || '';
+  var embedUrl = cfg.SPIR_EMBED_URL || bookingUrl;
   var frame = document.getElementById('bookingFrame');
   var fallback = document.getElementById('bookingFallback');
   var iframe = document.getElementById('bookingIframe');
+  var openBtn = document.getElementById('bookingOpenBtn');
+  var frameNote = document.getElementById('bookingFrameNote');
+  var fallbackLink = document.getElementById('bookingFallbackLink');
 
-  if (!cfg.SPIR_BOOKING_URL) {
+  if (!bookingUrl) {
+    openBtn.parentElement.hidden = true;
     fallback.hidden = false;
-  } else {
-    frame.hidden = false;
-    var loaded = false;
-    iframe.addEventListener('load', function () { loaded = true; });
-    iframe.src = cfg.SPIR_BOOKING_URL;
-    setTimeout(function () {
-      if (!loaded) { frame.hidden = true; fallback.hidden = false; }
-    }, 8000);
+    fallbackLink.parentElement && (fallbackLink.style.display = 'none');
+    return;
   }
+
+  openBtn.setAttribute('href', bookingUrl);
+  fallbackLink.setAttribute('href', bookingUrl);
+
+  frame.hidden = false;
+  frameNote.hidden = false;
+  var loaded = false;
+  iframe.addEventListener('load', function () { loaded = true; });
+  iframe.src = embedUrl;
+  setTimeout(function () {
+    if (!loaded) { frame.hidden = true; frameNote.hidden = true; fallback.hidden = false; }
+  }, 8000);
 })();
 </script>
 <script src="/assets/js/main.js"></script>

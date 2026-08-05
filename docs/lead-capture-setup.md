@@ -73,6 +73,11 @@
 - **「日程確定のキャンセル」イベントを追加登録しないこと**（ハンドラは 200 で無視するが、
   `booked_at` のクリアは未実装。必要になったら実装とセットで登録する）
 - トークン検証を有効にする場合は `SPIR_WEBHOOK_TOKEN` 設定 + Spir 側のURL再登録をセットで行う
+- ⚠️ **サンクスページで空き時間リンクの iframe が表示されない事象が報告されている。**
+  埋め込みが表示されなくても「日程調整ページを開く ↗」ボタン（常時表示）から予約に到達できる。
+  Spir の管理画面に**埋め込み専用のURL/コード**が提供されている場合は
+  `assets/js/lead-config.js` の `SPIR_EMBED_URL` に貼ると iframe がそのURLを使う
+  （通常ページが X-Frame-Options 等でフレーム表示を拒否している場合の差し替え口）
 - ⚠️ 参加者（高坂慎也）に「Zoom未連携」の警告が出ている。受け入れテストで実予約を1件通し、
   Web会議URLが発行されるか確認する。問題があれば Spir 側で Zoom をオフにするか Zoom を連携する
 
@@ -173,9 +178,17 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
 ## 計測（指示書セクション5）
 
 - 記事別リード数: `SELECT landing_url, count(*) FROM leads GROUP BY 1 ORDER BY 2 DESC;`
+- 資料DL数（経路別）: `SELECT asset_id, source, count(*) FROM asset_downloads GROUP BY 1,2 ORDER BY 1,2;`
+- **資料ダウンロード率**（リードのうち実際にDLした人の割合。thanks/mail のDLリンクは lead_id 付きで記録される）:
+  ```sql
+  SELECT round(100.0 * count(DISTINCT d.lead_id)
+       / NULLIF((SELECT count(*) FROM leads WHERE asset_id <> 'direct_booking'), 0), 1) AS dl_rate_pct
+  FROM asset_downloads d WHERE d.lead_id IS NOT NULL;
+  ```
+  ※ DLはすべて `/api/download` リダイレクト経由で `asset_downloads` に記録される（mail=メール内リンク / thanks=サンクスページ / material=資料ページ）。計測がDLを妨げない設計（DB障害でもリダイレクトは成立）
 - メール到達率: `SELECT mail_status, count(*) FROM leads GROUP BY 1;`
 - 日程調整率: `SELECT count(booked_at)::float / count(*) FROM leads WHERE asset_id <> 'direct_booking';`
-- GA4イベント: `form_view` / `form_submit` / `booking_complete`（既存の `scroll_depth` 等と同様にGA4管理画面でカスタムイベント登録）
+- GA4イベント: `form_view` / `form_submit` / `booking_complete` / `asset_download`（既存の `scroll_depth` 等と同様にGA4管理画面でカスタムイベント登録）
 
 ## 運用メモ
 

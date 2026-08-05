@@ -13,7 +13,7 @@ const { waitUntil } = require('@vercel/functions');
 const { getDb } = require('../lib/db');
 const { insertLead, setMailStatus } = require('../lib/leads-db');
 const { validateLeadInput, isSpam } = require('../lib/lead-validation');
-const { getAsset } = require('../lib/lead-assets');
+const { getAsset, SITE_ORIGIN } = require('../lib/lead-assets');
 const { sendLeadMail } = require('../lib/mailer');
 const { notifyNewLead, notifyMailFailure } = require('../lib/notify-slack');
 
@@ -99,7 +99,8 @@ module.exports = async (req, res) => {
   }
 
   // --- 3. 応答（メール送信を待たない） ---
-  res.status(200).json({ ok: true, redirect: thanksUrl(body) });
+  // leadId はサンクスページがDLリンクに引き継ぎ、ダウンロード率の突合に使う
+  res.status(200).json({ ok: true, redirect: thanksUrl(body), leadId: saved.id });
 
   // --- 4・5. 応答後にメール送信とSlack通知 ---
   waitUntil(afterResponse({ saved, lead, asset }));
@@ -129,7 +130,8 @@ async function afterResponse({ saved, lead, asset }) {
       name: lead.name,
       assetTitle: asset.title,
       assetUrl: asset.url,
-      assetDownloadUrl: asset.downloadUrl,
+      // メールのDLは /api/download 経由で記録する（lid でリードと突合）
+      assetDownloadUrl: `${SITE_ORIGIN}/api/download?asset=${encodeURIComponent(asset.id)}&src=mail&lid=${saved.id}`,
     });
     await setMailStatus(db, saved.id, 'sent');
   } catch (err) {
