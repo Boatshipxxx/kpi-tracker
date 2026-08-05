@@ -65,8 +65,12 @@ async function main() {
       printBackground: true,
       margin: { top: '14mm', bottom: '16mm', left: '12mm', right: '12mm' },
     });
-    const kb = Math.round(fs.statSync(outPath).size / 1024);
-    console.log(`generated: materials/${t.id}/${t.out} (${kb} KB)`);
+    const buf = fs.readFileSync(outPath);
+    const kb = Math.round(buf.length / 1024);
+    // ページ数は改ページ制御（印刷CSSの break-inside: avoid）の効き具合の目安。
+    // 大きく増えたら項目がページを跨いでいないか目視で確認すること。
+    const pages = (buf.toString('latin1').match(/\/Type\s*\/Page[^s]/g) || []).length;
+    console.log(`generated: materials/${t.id}/${t.out} (${kb} KB / ${pages} pages)`);
   }
 
   await browser.close();

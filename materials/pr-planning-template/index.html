@@ -70,9 +70,23 @@
     --font-dot: 'DotGothic16', 'Noto Sans JP', sans-serif;
     --font-pixel: 'Silkscreen', 'Noto Sans JP', cursive;
   }
-  body { font-family: var(--font-mono); }
-  .mat-wrap { padding: 0; }
-  body { background: #fff; }
+  body { font-family: var(--font-mono); background: #fff; }
+  .mat-wrap { padding: 0; max-width: none; }
+
+  /* --- 改ページ制御 ---
+     PDFはページの途中で項目が分断されると記入用テンプレートとして使えないため、
+     枠の単位で必ず1ページに収める。 */
+  .mat-head,
+  .mat-item,
+  .mat-item .fill { break-inside: avoid; page-break-inside: avoid; }
+
+  /* 見出しだけがページ末尾に取り残されないようにする */
+  h2, h3 { break-after: avoid; page-break-after: avoid; }
+  /* 見出しの直前で改ページさせない（直前の本文と離れすぎないように） */
+  h2 { margin-top: 2rem; }
+
+  /* 段落の1行だけが次ページへ送られるのを防ぐ */
+  p { orphans: 3; widows: 3; }
 }
 </style>
 </head>
