@@ -37,6 +37,20 @@
   opacity: 0.85;
 }
 .mat-item .example { font-size: 12.5px; opacity: 0.8; margin-top: 0.5rem; }
+.mat-dl-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid currentColor;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.mat-dl-btn:hover { box-shadow: 4px 4px 0 currentColor; }
 .mat-print {
   font-family: var(--font-mono);
   font-size: 12px;
@@ -49,7 +63,14 @@
 .mat-cta a.btn { display: inline-block; padding: 0.8rem 2.2rem; border: 2px solid currentColor; font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: inherit; text-decoration: none; }
 .mat-cta a.btn:hover { box-shadow: 4px 4px 0 currentColor; }
 @media print {
-  .top-nav, .mobile-menu, footer, .mat-cta, .noise-overlay { display: none !important; }
+  .top-nav, .mobile-menu, footer, .mat-cta, .noise-overlay, .mat-print, .mat-dl-btn { display: none !important; }
+  /* 日本語グリフが中華フォントに落ちないよう、全書体に Noto Sans JP を挟む */
+  :root {
+    --font-mono: 'IBM Plex Mono', 'Noto Sans JP', monospace;
+    --font-dot: 'DotGothic16', 'Noto Sans JP', sans-serif;
+    --font-pixel: 'Silkscreen', 'Noto Sans JP', cursive;
+  }
+  body { font-family: var(--font-mono); }
   .mat-wrap { padding: 0; }
   body { background: #fff; }
 }
@@ -92,9 +113,10 @@
     <p class="kicker">BOATship — Download Material</p>
     <h1>広報企画書テンプレート7項目<br>（実務ガイド付き）</h1>
     <p>広報の計画プロセス（調査→計画→実行→評価）を、順番に埋めれば企画書になる7項目に落とし込んだテンプレートです。はじめて広報企画書を書く方と、「施策の羅列」から抜け出したい実務者向け。</p>
+    <a class="mat-dl-btn" href="/materials/pr-planning-template/boatship-pr-planning-template.pdf" download>PDFをダウンロード ↓</a>
   </div>
 
-  <p class="mat-print">💡 このページはそのまま印刷・PDF保存できます（Ctrl/Cmd + P）。ナビゲーション等は印刷時に自動で除外されます。</p>
+  <p class="mat-print">💡 上のボタンからPDFをダウンロードできます。このページ自体を印刷（Ctrl/Cmd + P）しても同じ内容になります。</p>
 
   <h2>使い方 — 「まずプレスリリースを書く」から始めない</h2>
   <p>広報企画がうまくいかない典型は、手段（リリース・SNS・イベント）から企画を始めることです。手段の前に「誰の、どんな認識や関係を変えたいのか」から書き始めます。以下の7項目はその順番に並んでいます。上から順に埋めてください。</p>

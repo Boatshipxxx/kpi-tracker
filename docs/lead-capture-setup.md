@@ -179,6 +179,7 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
 
 ## 運用メモ
 
-- 資料の追加: `assets/data/lead-assets.json` に1件追加 → `materials/<id>/index.html` を作成（noindex）→ 記事CTAの `asset=` を変えたい場合は `scripts/build-articles.js` の `requestHref`
+- 資料の追加: `assets/data/lead-assets.json` に1件追加（`download` にPDFパスを指定）→ `materials/<id>/index.html` を作成（noindex）→ `scripts/build-material-pdf.js` の `TARGETS` に追記して `npm run build:material-pdf` でPDF生成 → 記事CTAの `asset=` を変えたい場合は `scripts/build-articles.js` の `requestHref`
+- 資料ページを編集したら `npm run build:material-pdf` でPDFを再生成してコミット（PDFは静的配信。メール・サンクスページの主リンクはPDF直接ダウンロードで、`/materials/*.pdf` は vercel.json で Content-Disposition: attachment + noindex）
 - 自動返信メールの文面: `lib/mailer.js`（HTML/テキスト両方を更新すること）
 - プライバシーポリシー（/privacy/）は雛形。**公開前に法務観点の確認を推奨**
