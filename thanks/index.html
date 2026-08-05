@@ -118,7 +118,8 @@
   <!-- 2. 資料への即時アクセス（決定2 = A案。ここが最も重要） -->
   <div class="thanks-asset">
     <h2 id="assetTitle">広報企画書テンプレート7項目（BOATship版・実務ガイド付き）</h2>
-    <a class="thanks-asset-btn" id="assetLink" href="/materials/pr-planning-template/">資料を見る →</a>
+    <a class="thanks-asset-btn" id="assetLink" href="/materials/pr-planning-template/boatship-pr-planning-template.pdf" download>PDFをダウンロード ↓</a>
+    <p style="margin:0.9rem 0 0;font-size:12.5px;"><a id="assetWebLink" href="/materials/pr-planning-template/" style="color:inherit;text-decoration:underline;">ブラウザで読む場合はこちら</a></p>
   </div>
 
   <!-- 3. メールが届かない場合の案内（省略しない・仕様 4-4） -->
@@ -167,7 +168,9 @@
       var a = catalog[assetId] || catalog['pr-planning-template'];
       if (!a) return;
       document.getElementById('assetTitle').textContent = a.title;
-      document.getElementById('assetLink').setAttribute('href', a.url);
+      // PDF実体（download）があれば直接ダウンロード、無ければページへ
+      document.getElementById('assetLink').setAttribute('href', a.download || a.url);
+      document.getElementById('assetWebLink').setAttribute('href', a.url);
     })
     .catch(function () { /* 既定の資料リンクのまま */ });
 

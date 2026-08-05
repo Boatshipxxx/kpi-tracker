@@ -129,6 +129,7 @@ async function afterResponse({ saved, lead, asset }) {
       name: lead.name,
       assetTitle: asset.title,
       assetUrl: asset.url,
+      assetDownloadUrl: asset.downloadUrl,
     });
     await setMailStatus(db, saved.id, 'sent');
   } catch (err) {
