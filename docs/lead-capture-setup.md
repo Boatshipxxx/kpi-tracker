@@ -16,7 +16,7 @@
   → /thanks/?asset=<資料ID>                   資料DL + 日程調整ボタン（別タブ）
   → /api/download                             DL記録（asset_downloads）→ PDFへリダイレクト
   → Spir で予約
-  → POST /api/spir-webhook                    メール突合で booked_at 更新 / direct_booking
+  → POST /api/spir-webhook                    booked_at 更新 + 予約確定メールを自社から送信
   → /booking-complete/                        GA4 booking_complete 発火
 ```
 
@@ -82,8 +82,15 @@
   現在は「日程を調整する ↗」ボタンが別タブで空き時間リンクを開く形。
   空の枠が出る事故が構造的に起きない。クリックは GA4 `booking_open` で計測する。
   将来 Spir が埋め込みに対応したら、`thanks/index.html` の予約カードを差し替える
-- ⚠️ 参加者（高坂慎也）に「Zoom未連携」の警告が出ている。受け入れテストで実予約を1件通し、
-  Web会議URLが発行されるか確認する。問題があれば Spir 側で Zoom をオフにするか Zoom を連携する
+- **予約確定メールは自社（Resend）から送る（2026-08-06 決定）。**
+  Spir の標準通知だけでは**予約者にミーティング案内が届かない**事象が本番で発生したため、
+  `api/spir-webhook.js` が確定 Webhook を受けた時点で確定メールを送る実装に変更した。
+  日時（JST変換）・Web会議URL・パスコードを `payload` から取り出して本文に載せる。
+  冪等性は `webhookEventId` で担保済みなので、Spirのリトライで二重送信されない。
+  - **Web会議URLが未発行のまま届いた場合**は、その旨をSlackに警告する
+    （メール自体は「当日までに別途ご案内します」と書いて送る）。
+    この警告が出たら Spir のカレンダー/会議ツール連携を確認すること
+  - 送信失敗時もSlackに警告。Webhook応答は200のまま（リトライを誘発しない）
 
 ### 3. Neon（Vercel Marketplace）— 設定完了済み（2026-08-05）
 
