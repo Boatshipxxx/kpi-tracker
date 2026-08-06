@@ -197,3 +197,27 @@
 - 初回訪問Cookie bs_first_touch で landing_url / referrer / UTM を30日保持
 - オフライン検証31項目パス + ユニットテスト10件パス
 - 【人間タスク】docs/lead-capture-setup.md 参照。Resendドメイン認証（SPF/DKIM/DMARC）と Spir Webhook利用申込は待ち時間があるため初日に着手のこと
+
+---
+
+## 2026-08-05 リード獲得導線 — 本番稼働開始
+
+実装・外部サービス設定・受け入れテストがすべて完了し、本番稼働を開始。
+
+**構成**: 記事CTA → /request/ → /api/lead（Neon保存→即応答→Resend/Slack）
+→ /thanks/（PDF DL + 日程調整ボタン）→ Spir予約 → /api/spir-webhook → /booking-complete/
+
+**当初仕様からの変更点（実運用で判明した事情による）**
+- Next.js は導入せず、静的サイト + Vercel Functions で実装（既存構成を維持）
+- 資料はHTMLページではなくPDF実体を配布（メールのリンクが直接DLになる）
+- Spir の iframe 埋め込みは撤去。Spirが埋め込み用URL/コードを提供していないため、
+  別タブで開くボタン方式に統一（空の枠が出る事故を構造的に排除）
+
+**仕様に無かった追加実装**
+- 資料DL率の計測（/api/download → asset_downloads）
+- PDF生成スクリプト（npm run build:material-pdf・改ページ制御つき）
+
+**運用時の注意**
+- スキーマ変更時は scripts/leads-schema.sql の再適用が必須（テーブル別の症状は docs 参照）
+- 資料ページを編集したら npm run build:material-pdf でPDF再生成してコミット
+- 詳細は docs/lead-capture-setup.md
