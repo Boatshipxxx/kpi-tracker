@@ -22,6 +22,7 @@ const { getDb } = require('../lib/db');
 const { markBookedByEmail, insertDirectBooking, claimWebhookEvent } = require('../lib/leads-db');
 const { parseWebhookBody, isLeadBooking } = require('../lib/spir-payload');
 const { notifyBooking, post: slackPost } = require('../lib/notify-slack');
+const { sendBookingConfirmation } = require('../lib/mailer');
 
 // 資料請求フォロー個別相談（Webサイト経由）の空き時間リンク識別子。
 // 環境変数 SPIR_LEAD_URL_IDS（カンマ区切り）で上書き・追加できる。
@@ -71,7 +72,7 @@ async function processBookingEvent(db, body, { leadUrlIds }) {
 
   const matched = await markBookedByEmail(db, parsed.inviteeEmail, bookedAt);
   if (matched) {
-    return { handled: true, matched: true, email: parsed.inviteeEmail };
+    return { handled: true, matched: true, email: parsed.inviteeEmail, parsed };
   }
   const created = await insertDirectBooking(db, {
     email: parsed.inviteeEmail,
@@ -80,7 +81,7 @@ async function processBookingEvent(db, body, { leadUrlIds }) {
     bookedAt,
     sourceUrl: `spir:${urlId}`,
   });
-  return { handled: true, matched: false, email: parsed.inviteeEmail, leadId: created.id };
+  return { handled: true, matched: false, email: parsed.inviteeEmail, leadId: created.id, parsed };
 }
 
 module.exports = async (req, res) => {
@@ -125,8 +126,38 @@ module.exports = async (req, res) => {
 
   if (result.handled) {
     waitUntil(notifyBooking({ email: result.email, matched: result.matched, leadId: result.leadId || '(既存レコード)' }));
+    // 予約確定メールを自社から送る。
+    // Spir の標準通知だけでは予約者に案内が届かない事象があったため
+    // （2026-08-06）、Webhook 受信時にこちらから確実に送る。
+    // 冪等性は webhookEventId で担保済みなので、リトライで二重送信されない。
+    waitUntil(sendBookingConfirmationSafely(result));
   }
-  res.status(200).json({ ok: true, ...result });
+  // parsed は内部用なので応答には含めない
+  const { parsed: _omit, ...publicResult } = result;
+  res.status(200).json({ ok: true, ...publicResult });
 };
+
+// 予約確定メールの送信。失敗しても Webhook 応答には影響させず、Slackで気づけるようにする。
+async function sendBookingConfirmationSafely(result) {
+  const p = result.parsed || {};
+  try {
+    await sendBookingConfirmation({
+      to: result.email,
+      name: p.inviteeName,
+      company: p.company,
+      startDateTime: p.startDateTime,
+      endDateTime: p.endDateTime,
+      timeZone: p.timeZone,
+      meetingUrl: p.onlineMeeting && p.onlineMeeting.url,
+      meetingPassword: p.onlineMeeting && p.onlineMeeting.password,
+    });
+    if (!(p.onlineMeeting && p.onlineMeeting.url)) {
+      await slackPost(`⚠️ 予約確定メールを送信しましたが、**Web会議URLが未発行**でした\n宛先：${result.email}\nSpirのカレンダー/会議ツール連携を確認し、当日までにURLを個別にご案内してください。`);
+    }
+  } catch (err) {
+    console.error('[spir] 予約確定メール送信失敗:', err.message);
+    await slackPost(`⚠️ 予約確定メールの送信に失敗しました\n宛先：${result.email}\n原因：${err.message}\n→ 予約自体は成立しています。手動で日程をご連絡ください。`);
+  }
+}
 
 module.exports.processBookingEvent = processBookingEvent;
