@@ -65,16 +65,29 @@
   line-height: 1.6;
   margin: 0 0 1.2rem;
 }
-.thanks-booking-frame { border: 2px solid currentColor; padding: 0.6rem; }
-.thanks-booking-frame iframe { display: block; width: 100%; border: 0; min-height: 640px; }
-.thanks-booking-fallback {
-  border: 2px dashed currentColor;
-  padding: 2rem 1.5rem;
+.thanks-booking-card {
+  border: 2px solid currentColor;
+  box-shadow: 6px 6px 0 currentColor;
+  padding: 2rem 1.6rem;
   text-align: center;
-  font-size: 13px;
-  line-height: 2;
 }
-.thanks-booking-fallback a { color: inherit; text-decoration: underline; }
+.thanks-booking-card .lead { font-size: 13.5px; line-height: 2; margin: 0 0 1.4rem; }
+.thanks-booking-btn {
+  display: inline-block;
+  padding: 1rem 2.4rem;
+  border: 2px solid currentColor;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+.thanks-booking-btn:hover { box-shadow: 4px 4px 0 currentColor; transform: translate(-2px, -2px); }
+.thanks-booking-note { margin: 1.2rem 0 0; font-size: 12px; line-height: 1.9; opacity: 0.8; }
+.thanks-booking-note a { color: inherit; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -132,21 +145,16 @@
   <!-- 4. 日程調整への導線（Spir 空き時間URLの埋め込み・仕様 4-5） -->
   <section class="thanks-booking">
     <h2>30分で、貴社の現状に合わせた進め方をご説明します</h2>
-    <p style="font-size:13.5px;line-height:2;margin:0 0 1.2rem;">資料の内容を貴社の状況にあてはめて、具体的に何から始めるかをお話しします。売り込みではなく、資料の続きとしてお使いください。ご都合の良い時間を以下からお選びいただけます。</p>
-    <!-- 埋め込みがブロック・不調でも予約に到達できるよう、別タブへの導線は常に表示する -->
-    <p style="margin:0 0 1rem;">
-      <a class="thanks-asset-btn" id="bookingOpenBtn" href="#" target="_blank" rel="noopener">日程調整ページを開く ↗</a>
-    </p>
-    <div class="thanks-booking-frame" id="bookingFrame" hidden>
-      <iframe id="bookingIframe" title="日程調整" loading="lazy"></iframe>
-    </div>
-    <p style="margin:0.8rem 0 0;font-size:12px;opacity:0.8;" id="bookingFrameNote" hidden>
-      上のカレンダーが表示されない場合は「日程調整ページを開く ↗」からどうぞ。
-    </p>
-    <div class="thanks-booking-fallback" id="bookingFallback" hidden>
-      このページ内にカレンダーを表示できませんでした。<br>
-      <a id="bookingFallbackLink" href="#" target="_blank" rel="noopener"><strong>日程調整ページを別タブで開く ↗</strong></a><br>
-      うまくいかない場合は <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。
+    <p style="font-size:13.5px;line-height:2;margin:0 0 1.2rem;">資料の内容を貴社の状況にあてはめて、具体的に何から始めるかをお話しします。売り込みではなく、資料の続きとしてお使いください。</p>
+    <!-- Spir は iframe 埋め込み用のURL/コードを提供していないため、埋め込みは行わない。
+         空の枠が出る余地をなくし、別タブで開くボタンを唯一の導線にする。 -->
+    <div class="thanks-booking-card">
+      <p class="lead">空き時間からご都合の良い日時をお選びいただけます。<br>所要30分・オンライン・費用はかかりません。</p>
+      <a class="thanks-booking-btn" id="bookingOpenBtn" href="#" target="_blank" rel="noopener">日程を調整する ↗</a>
+      <p class="thanks-booking-note" id="bookingNote">
+        別タブでカレンダーが開きます。<br>
+        うまく開けない場合は <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。
+      </p>
     </div>
   </section>
 </main>
@@ -202,36 +210,25 @@
     .catch(function () { /* 既定の資料リンクのまま */ });
 
   // Spir 空き時間URLの導線（仕様 4-5 / 6）。
-  // 埋め込みは SPIR_EMBED_URL（未設定なら SPIR_BOOKING_URL）を使い、
-  // 埋め込みがブロックされても「別タブで開く」から必ず予約に到達できるようにする。
+  // Spir は iframe 埋め込み用のURL/コードを提供していないため埋め込みは行わず、
+  // 別タブで開くボタンを唯一の導線にする（空の枠が出る事故を構造的に防ぐ）。
   var cfg = window.BS_LEAD_CONFIG || {};
   var bookingUrl = cfg.SPIR_BOOKING_URL || '';
-  var embedUrl = cfg.SPIR_EMBED_URL || bookingUrl;
-  var frame = document.getElementById('bookingFrame');
-  var fallback = document.getElementById('bookingFallback');
-  var iframe = document.getElementById('bookingIframe');
   var openBtn = document.getElementById('bookingOpenBtn');
-  var frameNote = document.getElementById('bookingFrameNote');
-  var fallbackLink = document.getElementById('bookingFallbackLink');
+  var note = document.getElementById('bookingNote');
 
   if (!bookingUrl) {
-    openBtn.parentElement.hidden = true;
-    fallback.hidden = false;
-    fallbackLink.parentElement && (fallbackLink.style.display = 'none');
-    return;
+    // URL未設定時はメール導線だけを残す
+    openBtn.style.display = 'none';
+    note.innerHTML = '日程調整は <a href="mailto:contact@boatship.jp">contact@boatship.jp</a> に「打ち合わせ希望」とお送りください。候補日をご返信します。';
+  } else {
+    openBtn.setAttribute('href', bookingUrl);
+    openBtn.addEventListener('click', function () {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'booking_open', { asset_id: assetId });
+      }
+    });
   }
-
-  openBtn.setAttribute('href', bookingUrl);
-  fallbackLink.setAttribute('href', bookingUrl);
-
-  frame.hidden = false;
-  frameNote.hidden = false;
-  var loaded = false;
-  iframe.addEventListener('load', function () { loaded = true; });
-  iframe.src = embedUrl;
-  setTimeout(function () {
-    if (!loaded) { frame.hidden = true; frameNote.hidden = true; fallback.hidden = false; }
-  }, 8000);
 })();
 </script>
 <script src="/assets/js/main.js"></script>

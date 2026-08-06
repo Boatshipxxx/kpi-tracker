@@ -73,11 +73,12 @@
 - **「日程確定のキャンセル」イベントを追加登録しないこと**（ハンドラは 200 で無視するが、
   `booked_at` のクリアは未実装。必要になったら実装とセットで登録する）
 - トークン検証を有効にする場合は `SPIR_WEBHOOK_TOKEN` 設定 + Spir 側のURL再登録をセットで行う
-- ⚠️ **サンクスページで空き時間リンクの iframe が表示されない事象が報告されている。**
-  埋め込みが表示されなくても「日程調整ページを開く ↗」ボタン（常時表示）から予約に到達できる。
-  Spir の管理画面に**埋め込み専用のURL/コード**が提供されている場合は
-  `assets/js/lead-config.js` の `SPIR_EMBED_URL` に貼ると iframe がそのURLを使う
-  （通常ページが X-Frame-Options 等でフレーム表示を拒否している場合の差し替え口）
+- **サンクスページに Spir は埋め込まない（2026-08-05 決定）。**
+  当初は iframe 埋め込みで実装したが本番で表示されず、Spir の管理画面にも
+  **埋め込み用のURL/コードが提供されていないことを確認**したため、iframe を撤去した。
+  現在は「日程を調整する ↗」ボタンが別タブで空き時間リンクを開く形。
+  空の枠が出る事故が構造的に起きない。クリックは GA4 `booking_open` で計測する。
+  将来 Spir が埋め込みに対応したら、`thanks/index.html` の予約カードを差し替える
 - ⚠️ 参加者（高坂慎也）に「Zoom未連携」の警告が出ている。受け入れテストで実予約を1件通し、
   Web会議URLが発行されるか確認する。問題があれば Spir 側で Zoom をオフにするか Zoom を連携する
 
@@ -164,7 +165,7 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
 | サンクスページから資料にアクセスできる | 済 |
 | 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | **要・実環境**（Resend認証済み。3宛先へ実送信して確認） |
 | メール内の資料リンク・日程調整リンクが両方開く | **要・実環境** |
-| サンクスページにSpirの空き時間URLが埋め込み表示される | 済（実URL設定済み・読込失敗時の代替表示も検証済み）／表示は**要・実環境** |
+| サンクスページから日程調整に到達できる | 済（Spirが埋め込み非対応のため別タブ方式。ボタン表示・URL・GA4計測を検証） |
 | 予約でWebhookが届きメール突合で booked_at 更新 | 済（公式スキーマ準拠・startDateTime使用をテスト）／**要・実環境** |
 | 直接予約は asset_id='direct_booking' で新規レコード | ロジック済（ユニットテスト）／**要・実環境** |
 | リード導線以外の空き時間URLは leads に混入しない | ロジック済（ユニットテスト）／**要・実環境** |
@@ -188,7 +189,7 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
   ※ DLはすべて `/api/download` リダイレクト経由で `asset_downloads` に記録される（mail=メール内リンク / thanks=サンクスページ / material=資料ページ）。計測がDLを妨げない設計（DB障害でもリダイレクトは成立）
 - メール到達率: `SELECT mail_status, count(*) FROM leads GROUP BY 1;`
 - 日程調整率: `SELECT count(booked_at)::float / count(*) FROM leads WHERE asset_id <> 'direct_booking';`
-- GA4イベント: `form_view` / `form_submit` / `booking_complete` / `asset_download`（既存の `scroll_depth` 等と同様にGA4管理画面でカスタムイベント登録）
+- GA4イベント: `form_view` / `form_submit` / `booking_open` / `booking_complete` / `asset_download`（既存の `scroll_depth` 等と同様にGA4管理画面でカスタムイベント登録）
 
 ## 運用メモ
 
