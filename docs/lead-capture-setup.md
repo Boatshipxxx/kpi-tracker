@@ -1,7 +1,8 @@
 # リード獲得導線 — セットアップと受け入れテスト手順
 
 実装指示書（フォーム → 自動返信 → サンクスページ → 日程調整）v1.2 に対応する。
-コードは実装済み。**このドキュメントの人間タスクを完了すると、セクション8の受け入れテストが全て実施可能になる。**
+**2026-08-05 時点で実装・外部サービス設定・受け入れテストとも完了し、本番稼働中。**
+以下は運用時の参照用（設定値・トラブル時の切り分け・計測クエリ）。
 
 ## 構成
 
@@ -12,7 +13,8 @@
 記事CTA（全JP記事に設置済み）
   → /request/?asset=<資料ID>&from=<記事URL>   フォーム
   → POST /api/lead                            検証→Neon保存→即応答→非同期でResend/Slack
-  → /thanks/?asset=<資料ID>                   資料即時アクセス + Spir空き時間URL埋め込み
+  → /thanks/?asset=<資料ID>                   資料DL + 日程調整ボタン（別タブ）
+  → /api/download                             DL記録（asset_downloads）→ PDFへリダイレクト
   → Spir で予約
   → POST /api/spir-webhook                    メール突合で booked_at 更新 / direct_booking
   → /booking-complete/                        GA4 booking_complete 発火
@@ -22,16 +24,17 @@
 |---|---|
 | `api/lead.js` | フォーム受け口。保存→応答→`waitUntil`でメール/Slack |
 | `api/spir-webhook.js` | Spir日程確定の受け口。URL識別子で振り分け |
+| `api/download.js` | 資料DLの記録 → PDFへリダイレクト（DL率の計測） |
 | `lib/` | db / leads-db / lead-validation / mailer / notify-slack / spir-payload / lead-assets |
 | `request/` `thanks/` `booking-complete/` `privacy/` | 導線ページ（thanks/booking-complete/materials は noindex） |
-| `materials/pr-planning-template/` | 資料本体（n10の企画書テンプレートを資料化・印刷対応） |
+| `materials/pr-planning-template/` | 資料本体 + 配布用PDF（`npm run build:material-pdf` で生成） |
 | `assets/data/lead-assets.json` | 資料カタログ。**資料を増やすときはここに1件追加するだけ** |
 | `assets/js/lead-form.js` | フォーム挙動（サーバーと同一の検証仕様） |
 | `assets/js/main.js` | 初回訪問Cookie `bs_first_touch`（landing_url/referrer/UTM・30日） |
 | `scripts/leads-schema.sql` / `setup-leads-db.js` | leads テーブル作成（冪等） |
 | `tests/` | ユニットテスト（`npm run test:leads`） |
 
-## 🙋 人間タスク（Resend / Spir / Slack は設定済み。残るは 3 の Neon テーブル作成）
+## 外部サービスの設定（すべて完了済み）
 
 ### 1. Resend — 設定完了済み（2026-08-04）
 
@@ -82,25 +85,31 @@
 - ⚠️ 参加者（高坂慎也）に「Zoom未連携」の警告が出ている。受け入れテストで実予約を1件通し、
   Web会議URLが発行されるか確認する。問題があれば Spir 側で Zoom をオフにするか Zoom を連携する
 
-### 3. Neon（Vercel Marketplace）
+### 3. Neon（Vercel Marketplace）— 設定完了済み（2026-08-05）
 
-1. Vercel ダッシュボード → Storage → Neon を接続（`DATABASE_URL` が自動設定される）
-2. **テーブル作成**（冪等。何度実行してもよい）。次のどちらかで行う:
-   - `DATABASE_URL='postgres://...' npm run setup:leads-db`（ローカル or Vercel CLI）
-   - Neon コンソールの SQL Editor に `scripts/leads-schema.sql` の内容を貼り付けて実行
+Vercel の Storage → Neon 統合で接続済み（`DATABASE_URL` は自動設定）。
+テーブルは **`leads` / `webhook_events` / `asset_downloads` の3つ**（＋インデックス3本）。
 
-作成されるのは **`leads` と `webhook_events` の2テーブル**（＋インデックス2本）。
-`webhook_events` は Spir Webhook の重複排除用で、`leads` より後から追加されたため、
-**`leads` だけが存在する環境では再実行が必要**。両方できているかは次で確認する:
+**スキーマを変更・追加したときは必ず再適用すること**（冪等。何度実行してもよい）:
+
+- `DATABASE_URL='postgres://...' npm run setup:leads-db`（ローカル or Vercel CLI）
+- または Neon コンソールの SQL Editor に `scripts/leads-schema.sql` を貼り付けて実行
+
+適用できているかの確認:
 
 ```sql
 SELECT table_name FROM information_schema.tables
 WHERE table_schema = 'public' ORDER BY 1;
--- leads / webhook_events の2行が返れば完了
+-- asset_downloads / leads / webhook_events の3行が返れば完了
 ```
 
-`webhook_events` が無いまま Spir の予約が入ると、Webhook 処理が例外になり
-（応答は 200 のまま）Slack に「⚠️ Spir Webhook の処理に失敗しました」が届く。
+**テーブル不足時の症状**（いずれもユーザー側の体験は壊れないが、記録だけ落ちる）:
+
+| 不足しているテーブル | 症状 |
+|---|---|
+| `leads` | フォーム送信が500。サンクスページに進まない（リードを消さないための設計） |
+| `webhook_events` | Spir予約時に Webhook 処理が例外 → Slackに「⚠️ Spir Webhook の処理に失敗しました」。`booked_at` が更新されない |
+| `asset_downloads` | 資料DLは成立するが記録されず、DL率が計測できない |
 
 ### 4. Slack — 設定完了済み（2026-08-04）
 
@@ -152,29 +161,38 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
 
 そのため**設定順は `SLACK_WEBHOOK_URL` → `RESEND_API_KEY`** を推奨する。
 
-## 受け入れテスト（指示書セクション8）対応表
+## 受け入れテスト（指示書セクション8）— 完了（2026-08-05）
 
-「済（オフライン）」= サンドボックスで検証済み（スタブAPI + 実ハンドラ + Playwright、31項目パス）。
-「要・実環境」= 上記人間タスク完了後に本番で確認する項目。
+実装側の検証はサンドボックスで実施（実ハンドラ + Playwright + ユニット24件）。
+外部サービスに依存する項目は**本番環境で高坂さんが実施し、完了を確認**。
 
-| 受け入れ項目 | 状態 |
+| 受け入れ項目 | 結果 |
 |---|---|
-| 記事のCTAからフォームに到達できる | 済（オフライン） |
-| 必須項目が空だとフィールド単位でエラー | 済（クライアント/サーバー両方） |
-| 送信するとサンクスページに遷移する（3秒以内） | 済（116ms・メール送信を待たない実装） |
-| サンクスページから資料にアクセスできる | 済 |
-| 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | **要・実環境**（Resend認証済み。3宛先へ実送信して確認） |
-| メール内の資料リンク・日程調整リンクが両方開く | **要・実環境** |
-| サンクスページから日程調整に到達できる | 済（Spirが埋め込み非対応のため別タブ方式。ボタン表示・URL・GA4計測を検証） |
-| 予約でWebhookが届きメール突合で booked_at 更新 | 済（公式スキーマ準拠・startDateTime使用をテスト）／**要・実環境** |
-| 直接予約は asset_id='direct_booking' で新規レコード | ロジック済（ユニットテスト）／**要・実環境** |
-| リード導線以外の空き時間URLは leads に混入しない | ロジック済（ユニットテスト）／**要・実環境** |
-| 日程確定後、自社の予約完了ページにリダイレクト | **要・実環境**（Spir側設定） |
-| Slackに通知が届く | コード済／**要・実環境** |
-| landing_url が正しく記録（別記事から流入して送信） | 済（記事A流入→記事B送信で検証） |
-| サンクスページが noindex | 済 |
-| スマートフォンで一連の操作が完了できる | 済（390pxで送信完了・横スクロールなし） |
-| メール送信を意図的に失敗させるとSlackに警告 | 済（失敗パスが `mail_status='failed'`→警告呼び出しに到達することを確認） |
+| 記事のCTAからフォームに到達できる | ✅ |
+| 必須項目が空だとフィールド単位でエラー | ✅ クライアント/サーバー両方 |
+| 送信するとサンクスページに遷移する（3秒以内） | ✅ 実測116ms（メール送信を待たない実装） |
+| サンクスページから資料にアクセスできる | ✅ PDF直接ダウンロード |
+| 自動返信メールが Gmail・Outlook・.ac.jp の受信箱に届く | ✅ 本番確認 |
+| メール内の資料リンク・日程調整リンクが両方開く | ✅ 本番確認 |
+| サンクスページから日程調整に到達できる | ✅ Spirが埋め込み非対応のため別タブ方式 |
+| 予約でWebhookが届きメール突合で booked_at 更新 | ✅ 公式スキーマ準拠・startDateTime使用 |
+| 直接予約は asset_id='direct_booking' で新規レコード | ✅ |
+| リード導線以外の空き時間URLは leads に混入しない | ✅ originalUrl の識別子で振り分け |
+| 日程確定後、自社の予約完了ページにリダイレクト | ✅ |
+| Slackに通知が届く | ✅ |
+| landing_url が正しく記録（別記事から流入して送信） | ✅ 記事A流入→記事B送信で検証 |
+| サンクスページが noindex | ✅ |
+| スマートフォンで一連の操作が完了できる | ✅ 390pxで送信完了・横スクロールなし |
+| メール送信を意図的に失敗させるとSlackに警告 | ✅ `mail_status='failed'` + 警告通知 |
+
+### 仕様策定後に追加した項目
+
+| 項目 | 状態 |
+|---|---|
+| 資料をPDF実体で配布（メールのリンクが直接ダウンロード） | ✅ |
+| PDFの項目がページを跨いで分断されない | ✅ 3ページ・7項目すべて分断なし |
+| 資料ダウンロード率の計測 | ✅ `/api/download` + `asset_downloads` |
+| Spir の Web会議を Google Meet に | ✅ Spir側で設定済み |
 
 ## 計測（指示書セクション5）
 
