@@ -358,4 +358,79 @@ const NOTES = [
 <h2>測定設計のチェックリスト</h2>
 <p>最後に、BOATshipがインナーブランディングの測定を設計するときの問いを共有します。(1) 活動量（研修回数・発行本数）と変化（意識・行動）の指標を分けて持っているか。(2) 事業単位・部署ごとに測って、資源配分の判断に使える粒度になっているか。(3) 組織同一化とエンゲージメントのように、狙いの違う軸を分けているか。(4) 妥当性が検証された既存の尺度を使い、経年で比較できる形にしているか。(5) 匿名性・質問順序・測定タイミングを設計して、聞き方が結果を歪めないようにしているか。(6) 意識の数値を行動指標で裏取りしているか。(7) 結果を次の施策と次の測り方の両方に反映しているか。——この記事も、アクセス実績と読了率を見ながら継続的に更新します。引用した研究は末尾のエビデンス欄にまとめています。エンゲージメントサーベイの設計や、理念浸透の報告フォーマットづくりにそのまま使ってください。</p>`
   }
+  ,{
+    id: "n14",
+    slug: "university-pr-owned-media-strategy",
+    num: "#14",
+    category: "Column",
+    title: "大学広報の次の一手は「編集部」になること — 自前のメディアが戦略の起点になる",
+    date: "2026.08.17",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-01.jpg",
+    evidence: [{"title":"Spin Sucks — PESOモデル（Paid / Earned / Shared / Owned）の提唱","source":"Dietrich, G. (2014). Que Publishing","url":""},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"},{"title":"Edelman Trust Barometer — 「誰の言葉が信頼されるか」の国際調査","source":"Edelman (2025)","url":"https://www.edelman.com/trust/trust-barometer"}],
+    related: ["n06", "n10"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第1回（大学の広報戦略）。Smart Brevityテンプレ準拠（リード1文60字以内→なぜ重要か→本文→実績→さらに詳しく、読了3分）。毎週月曜公開。対象読者: 大学の広報担当者・学長。CTA: 大学広報向け資料（作成中）が完成したら /request/?asset=university-pr-planning-template への直接導線に差し替える。",
+    excerpt: "大学の広報戦略のこれからは、発表を「配信する」仕事ではなく、自前のメディアを「作り育てる」仕事。配信頼みをやめて編集部になるための考え方を、ショート形式でまとめる。",
+    body: `<p>大学広報のこれからは、発表を配る仕事ではなく、自前のメディアを作り育てる仕事になります。</p>
+<h2>なぜ重要か</h2>
+<p>プレスリリースと公式発表だけに頼るかぎり、貴学の物語をいつ・どの文脈で語るかは媒体側に委ねられます。自前のメディアを持てば、語る順番と文脈を大学自身が握れます。<a href="/notes/pr-planning-peso-model/">PESOモデル</a>でいうOwned（自社メディア）が循環の起点になるのは、企業も大学も同じです。</p>
+<h2>「配信」から「編集」へ — 何が変わるか</h2>
+<p>編集部になった広報課は、発表を待ちません。研究室、部活動、卒業生、地域連携——学内に眠るネタを拾い、固有名詞と情景のある物語に編集して、自分たちの媒体から出します。年数回の大きな発表より、週1本の小さな発信。単純接触効果の研究が示すとおり、接触の頻度こそが好意と信頼を育てます。発信を企画書に落とす手順は<a href="/notes/pr-planning-proposal-template/">広報企画の立て方</a>で解説しています。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を、大学自身が語り続けるためのメディアです。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>メディアの設計をどう企画書に落とすかは、<a href="/request/?asset=pr-planning-template">広報企画書テンプレート7項目（無料）</a>をそのまま使えます。大学広報向けに翻案した資料は現在作成中で、完成後は<a href="/request/">資料請求ページ</a>から選択できるようになります。この記事もアクセス実績を見ながら継続的に更新します。</p>`
+  }
+  ,{
+    id: "n15",
+    slug: "university-internal-engagement-media",
+    num: "#15",
+    category: "Column",
+    title: "学内のエンゲージメントは「語る場」で育つ — 学生と教職員が主役になる学内メディア",
+    date: "2026.08.24",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-06.jpg",
+    evidence: [{"title":"Social Identity Theory and the Organization — 組織同一化の基礎理論","source":"Ashforth, B. E., & Mael, F. (1989). Academy of Management Review, 14(1)","url":"https://doi.org/10.5465/amr.1989.4278999"},{"title":"Strategic Internal Communication — 社内コミュニケーションと従業員満足の実証研究","source":"Men, L. R. (2014). Management Communication Quarterly, 28(2)","url":"https://doi.org/10.1177/0893318914524536"},{"title":"Edelman Trust Barometer — 「誰の言葉が信頼されるか」の国際調査","source":"Edelman (2025)","url":"https://www.edelman.com/trust/trust-barometer"}],
+    related: ["n05", "n14"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第2回（学内のエンゲージメント向上）。Smart Brevityテンプレ準拠、毎週月曜公開。対象読者: 大学の広報担当者・学長。インナーブランディング系記事（n05/n07/n09）への内部リンクで回遊を設計。CTA: 大学広報向け資料（作成中）完成後に差し替え。",
+    excerpt: "学内のエンゲージメントを高める近道は、学生と教職員が自分の大学を語れる「場」を作ること。組織同一化の研究と学内メディアの設計ポイントをショート形式でまとめる。",
+    body: `<p>学内のエンゲージメントを高める近道は、学生と教職員が自分の大学を語れるメディアを作ることです。</p>
+<h2>なぜ重要か</h2>
+<p>「この大学の一員であることが誇り」という感覚——<a href="/notes/inner-branding-organizational-identification/">組織同一化</a>——は、掲示や式辞では育ちません。自分や仲間の物語が名前つきで語られる体験が、所属を自己定義の一部に変えます。そして内部コミュニケーションの研究が示すとおり、一方向の告知より双方向の対話を持つ組織ほどエンゲージメントは高い。学内メディアは、その対話の場になります。</p>
+<h2>学内メディアの設計ポイント</h2>
+<p>要点は三つです。(1) 主役は執行部ではなく学生と現場の教職員に置く。(2) 抽象的な「取り組み」ではなく、固有名詞と情景で語る。(3) 単発の特集ではなく、週次・月次で回る編集体制を作る。もう一つ大切なのは、学内向けの物語がそのまま学外への広報資産になることです。Edelman Trust Barometerが毎年示すとおり、公式発表より「自分と似た立場の人」の言葉が信頼されます。学生が語る大学は、入試広報にとっても最強のチャネルです。施策の選び方は<a href="/notes/inner-branding-initiatives/">インナーブランディングの施策10選</a>が参考になります。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>城西大学の公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>は、「大学の全てを共創」をコンセプトに、駅伝をはじめ学生の挑戦を学内外へ伝える場として設計しました。「TEAM JOSAI!」という名前自体が、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印になることを狙った企画です（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>エンゲージメントを測る設計は<a href="/notes/inner-branding-measurement/">インナーブランディングの効果測定</a>で扱っています。企画に落とすなら<a href="/request/?asset=pr-planning-template">広報企画書テンプレート7項目（無料）</a>を。大学広報向けの資料は現在作成中で、完成後は<a href="/request/">資料請求ページ</a>から選択できます。</p>`
+  }
+  ,{
+    id: "n16",
+    slug: "university-admissions-brand-lead-generation",
+    num: "#16",
+    category: "Column",
+    title: "入試広報のこれからは、ブランド力でリードを獲得する — 広告で「集める」から、メディアで「選ばれる」へ",
+    date: "2026.08.31",
+    readTime: 4,
+    theme: "pr-planning",
+    image: "../images/card-02.jpg",
+    evidence: [{"title":"学校基本調査 — 18歳人口・大学進学動向の基礎統計","source":"文部科学省","url":"https://www.mext.go.jp/b_menu/toukei/chousa01/kihon/1267995.htm"},{"title":"An 'effectiveness yardstick' to measure public relations success — アウトプット/アウトテイク/アウトカムの測定モデル","source":"Lindenmann, W. K. (1993). Public Relations Quarterly, 38(1)","url":""},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"}],
+    related: ["n14", "n08"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第3回（入試広報×ブランド×リード獲得）。Smart Brevityテンプレ準拠、毎週月曜公開。対象読者: 大学の広報担当者・学長・入試課。想定検索KW:「入試広報 これから」「大学 オウンドメディア リード獲得」。CTA: 大学広報向け資料（作成中）完成後に /request/?asset=university-pr-planning-template へ差し替え。",
+    excerpt: "18歳人口が減り続けるなか、入試広報は広告で母集団を「集める」から、ブランドで「指名される」段階へ。オウンドメディアを受け皿にしたリード獲得の設計をショート形式でまとめる。",
+    body: `<p>入試広報は、広告で母集団を「集める」段階から、ブランドで「指名される」段階に入りました。</p>
+<h2>なぜ重要か</h2>
+<p>18歳人口は長期的に減少を続けています（文部科学省・学校基本調査）。分母が縮む市場で広告量を競っても、獲得単価が上がるだけです。受験生と保護者は出願の前に必ず検索し、比較します。そのとき貴学の言葉で書かれた読み物が見つからなければ、志望度は広告の一瞬で止まります。オープンキャンパスで高まった熱量も、次の接点がないまま秋を迎えれば冷めていきます。受け皿になるのは、貴学自身のメディアです。</p>
+<h2>ブランドがリードを連れてくる仕組み</h2>
+<p>自前のメディアに物語が蓄積されると、記事は検索と再訪を受け止める資産になります。単純接触効果の研究が示すとおり、繰り返し触れた対象への好意は積み上がる——広告の単発接触との違いはここにあります。そして記事の末尾に資料ダウンロード・オープンキャンパス申込・個別相談への導線を置けば、匿名の閲覧が「名前のわかる接点」＝リードに変わります。追うべき指標は露出数ではなく、認知・態度・行動の変化（アウトカム）です。測定の設計は<a href="/notes/pr-measurement-outputs-to-outcomes/">効果測定の記事</a>で詳しく扱っています。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>城西大学の公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>は、駅伝をはじめとするスポーツを起点に、大学の物語を蓄積し続けるメディアとして企画・制作しました。出稿期間が終われば消える広告と違い、記事は残り、検索され、読み返されます。ブランドを育てながらリード獲得の受け皿になる——これが「メディアを作ってアプローチする」入試広報の形です（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>メディアの設計を企画書に落とすなら<a href="/request/?asset=pr-planning-template">広報企画書テンプレート7項目（無料）</a>を。大学広報・入試広報向けに翻案した資料は現在作成中で、完成後は<a href="/request/">資料請求ページ</a>から選択できるようになります。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];

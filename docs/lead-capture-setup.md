@@ -219,6 +219,8 @@ Incoming Webhook を作成し、`SLACK_WEBHOOK_URL` を Vercel の Production + 
 ## 運用メモ
 
 - 資料の追加: `assets/data/lead-assets.json` に1件追加（`download` にPDFパスを指定）→ `materials/<id>/index.html` を作成（noindex）→ `scripts/build-material-pdf.js` の `TARGETS` に追記して `npm run build:material-pdf` でPDF生成 → 記事CTAの `asset=` を変えたい場合は `scripts/build-articles.js` の `requestHref`
+- 作成中の資料の先出し: カタログのエントリに `"comingSoon": true` を付けると、/request/ の資料選択リストに「作成中・近日公開」として表示されるが選択・請求・ダウンロードはできない（`lib/lead-assets.js` の `getAsset` が null を返すため API 側でも弾かれる）。資料が完成したら `comingSoon` を削除し、`download` にPDFパスを設定して公開する（例: `university-pr-planning-template` = 大学広報向け資料）
+- 資料が2件以上あるとき、/request/ には資料の選択リストが自動表示される（`assets/js/lead-form.js` がカタログから描画。`?asset=` 付きURLはその資料を初期選択にする）
 - 資料ページを編集したら `npm run build:material-pdf` でPDFを再生成してコミット（PDFは静的配信。メール・サンクスページの主リンクはPDF直接ダウンロードで、`/materials/*.pdf` は vercel.json で Content-Disposition: attachment + noindex）
 - 自動返信メールの文面: `lib/mailer.js`（HTML/テキスト両方を更新すること）
 - プライバシーポリシー（/privacy/）は雛形。**公開前に法務観点の確認を推奨**

@@ -48,8 +48,24 @@ jobs:
             1. 【現状把握】notes/notes.js の NOTES 配列を読み、テーマ(inner-branding / pr-planning / culture)の
                本数バランスと、各記事の kpi(views, readRate, reactions, recordedAt)・tuningMemo を確認する。
 
-            2. 【新記事を1本執筆】inner-branding と pr-planning のうち本数が少ない方(同数なら直近と逆)のテーマで
-               新記事を1本書いて NOTES に追加する:
+            2. 【新記事を1本執筆】当面は「大学広報向けショート連載」(n14〜)の続きを最優先で1本書く。
+               この連載の執筆ルール(既存の n14 / n15 / n16 を必ず読んで踏襲すること):
+               - 対象読者は大学の広報担当者・学長・入試課。テーマ例: 大学の広報戦略 / 学内エンゲージメント向上 /
+                 入試広報のリード獲得 / 卒業生・地域・研究広報 など大学広報の実務
+               - どのテーマでも必ず「自前のメディアを作ってアプローチする」という文脈に着地させる
+               - ショート形式(Smart Brevity準拠): リード1文(全角60字以内)で言い切る導入p →
+                 h2「なぜ重要か」(主語は貴学・読者) → 本文 h2 を1〜2個 →
+                 h2「実績 — TEAM JOSAI!(城西大学)」 → h2「さらに詳しく」。readTime は 3〜4、
+                 分量は既存ロング記事の半分以下。断定調で書き、「〜かもしれない」等の弱い語は使わない
+               - 実績には必ず城西大学 TEAM JOSAI! を採用し、公式サイト https://www.josai.ac.jp/tjp/ と
+                 /works/ へのリンクを両方入れる。実績について既存記事に無い数値・成果を捏造しない
+               - theme は 'pr-planning'、category は 'Column'。related には連載の既存記事を優先して設定する
+               - 「さらに詳しく」では資料請求(/request/)へ誘導する。大学広報向け資料
+                 (assets/data/lead-assets.json の university-pr-planning-template)が公開済み
+                 (comingSoon が外れている)なら /request/?asset=university-pr-planning-template へ、
+                 未公開なら既存の広報企画書テンプレートへリンクする
+               大学広報の切り口が尽きた場合のみ、従来どおり inner-branding と pr-planning のうち
+               本数が少ない方(同数なら直近と逆)のテーマで書く。共通ルール:
                - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)
                - slug は記事内容を表す英数字ケバブケース(既存slugと重複しないこと)。
                  related には内容が最も近い既存記事のidを2件設定する

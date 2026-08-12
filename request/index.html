@@ -40,6 +40,14 @@
 }
 .lead-asset-box h2 { font-family: var(--font-dot); font-size: 20px; line-height: 1.5; margin: 0 0 0.6rem; }
 .lead-asset-box p { font-size: 13px; line-height: 1.9; margin: 0; }
+/* 資料が複数あるときの選択リスト（lead-form.js がカタログから描画） */
+.asset-choices { margin-top: 1.1rem; border-top: 1px dashed currentColor; padding-top: 0.9rem; }
+.asset-choices .choices-label { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 0.5rem; }
+.asset-choice { display: flex; gap: 0.6rem; align-items: flex-start; padding: 0.5rem 0.2rem; cursor: pointer; font-size: 13px; line-height: 1.8; }
+.asset-choice input { width: 16px; height: 16px; margin-top: 5px; flex: none; }
+.asset-choice .choice-title { font-weight: 700; }
+.asset-choice.disabled { opacity: 0.55; cursor: not-allowed; }
+.asset-badge { display: inline-block; margin-left: 0.4em; padding: 0.05em 0.5em; border: 1px solid currentColor; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; white-space: nowrap; }
 .lead-form .field { margin-bottom: 1.4rem; }
 .lead-form label {
   display: block;
@@ -152,6 +160,8 @@
     <p class="kicker">お送りする資料</p>
     <h2 id="assetTitle">広報企画書テンプレート7項目（BOATship版・実務ガイド付き）</h2>
     <p id="assetDesc">調査→計画→実行→評価の広報プロセスを、順番に埋めれば企画書になる7項目に落とし込んだテンプレート。各項目の書き方と記入例つき。</p>
+    <!-- 資料が2件以上あるとき lead-form.js がここに選択リストを描画する -->
+    <div id="assetChoices" class="asset-choices" hidden></div>
   </div>
 
   <form class="lead-form" id="leadForm" novalidate>
