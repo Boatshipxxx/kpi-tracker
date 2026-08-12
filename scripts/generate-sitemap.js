@@ -55,6 +55,15 @@ function toLastmod(date) {
   return `${y}-${mo}-${d}`;
 }
 
+/* 予約公開: date が JST の「今日」より未来の記事は sitemap に載せない
+   （scripts/build-articles.js の isPublished と同一ロジック） */
+function isPublished(a) {
+  const iso = toLastmod(a && a.date);
+  if (!iso) return true;
+  const todayJst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return iso <= todayJst;
+}
+
 function xmlEscape(s) {
   return String(s)
     .replace(/&/g, '&amp;')
@@ -75,8 +84,8 @@ function urlEntry(loc, lastmod, changefreq, priority) {
 }
 
 function build() {
-  const notes = loadGlobal('notes/notes.js', 'NOTES');
-  const articles = loadGlobal('magazine/articles.js', 'ARTICLES');
+  let notes = loadGlobal('notes/notes.js', 'NOTES');
+  let articles = loadGlobal('magazine/articles.js', 'ARTICLES');
   let notesEn = [];
   if (fs.existsSync(path.join(ROOT, 'notes', 'notes-en.js'))) {
     try { notesEn = loadGlobal('notes/notes-en.js', 'NOTES_EN'); } catch (e) { notesEn = []; }
@@ -89,6 +98,13 @@ function build() {
   if (fs.existsSync(path.join(ROOT, 'news', 'news-en.js'))) {
     try { newsEn = loadGlobal('news/news-en.js', 'NEWS_EN'); } catch (e) { newsEn = []; }
   }
+
+  // 予約公開: 日付が未来の記事は sitemap から除外
+  notes = notes.filter(isPublished);
+  articles = articles.filter(isPublished);
+  notesEn = notesEn.filter(isPublished);
+  news = news.filter(isPublished);
+  newsEn = newsEn.filter(isPublished);
 
   // 記事一覧の最終更新日（一覧ページの lastmod に使う）
   const latest = (items) =>

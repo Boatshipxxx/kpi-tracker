@@ -5,6 +5,11 @@
 # sitemap.xml / robots.txt を再生成し、差分があれば main にコミットする。
 # ホスティングは Vercel のため、生成物をコミットすればそのまま配信される。
 #
+# 予約公開: 日付(JST)が未来の記事はビルド時に生成されない。毎朝の定期実行が
+# 「日付が来た記事」を検出してページを生成・コミットするため、記事データを
+# 先にマージしておけば、公開日の朝に1本ずつ自動で配信される
+# (大学広報連載のような毎週月曜日付の連載は、月曜朝に自動公開)。
+#
 # 手動実行: Actions タブ → "Build articles & sitemap" → Run workflow
 
 name: Build articles & sitemap
@@ -21,6 +26,8 @@ on:
       - "templates/**"
       - "scripts/build-articles.js"
       - "scripts/generate-sitemap.js"
+  schedule:
+    - cron: "10 22 * * *" # 毎日 22:10 UTC = 07:10 JST（公開日を迎えた記事を自動公開）
   workflow_dispatch: {}
 
 jobs:
