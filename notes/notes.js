@@ -381,7 +381,7 @@ const NOTES = [
 <h2>実績 — TEAM JOSAI!（城西大学）</h2>
 <p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を、大学自身が語り続けるためのメディアです。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
 <h2>さらに詳しく</h2>
-<p>貴学のメディア設計を1枚にまとめるなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・全10ページ）</a>をお使いください。目的・読者・現在地・コンテンツの柱・体制・成果指標の6つを埋めると、タイプ判定と設計シートが完成します。考え方の背景はホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。</p>`
+<p>貴学のメディア設計を1枚にまとめるなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>をお使いください。目的・読者・現在地・コンテンツの柱・体制・成果指標の6つを埋めると、タイプ判定と設計シートが完成します。考え方の背景はホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。</p>`
   }
   ,{
     id: "n15",
@@ -406,7 +406,7 @@ const NOTES = [
 <h2>実績 — TEAM JOSAI!（城西大学）</h2>
 <p>城西大学の公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>は、「大学の全てを共創」をコンセプトに、駅伝をはじめ学生の挑戦を学内外へ伝える場として設計しました。「TEAM JOSAI!」という名前自体が、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印になることを狙った企画です（制作概要は<a href="/works/">Works</a>へ）。</p>
 <h2>さらに詳しく</h2>
-<p>エンゲージメントを測る設計は<a href="/notes/inner-branding-measurement/">インナーブランディングの効果測定</a>で扱っています。学内から始めるメディアを具体的に設計するなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・全10ページ）</a>を。誰が何を担うかの体制表まで埋められます。</p>`
+<p>エンゲージメントを測る設計は<a href="/notes/inner-branding-measurement/">インナーブランディングの効果測定</a>で扱っています。学内から始めるメディアを具体的に設計するなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>を。誰が何を担うかの体制表まで埋められます。</p>`
   }
   ,{
     id: "n16",
@@ -431,6 +431,6 @@ const NOTES = [
 <h2>実績 — TEAM JOSAI!（城西大学）</h2>
 <p>城西大学の公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>は、駅伝をはじめとするスポーツを起点に、大学の物語を蓄積し続けるメディアとして企画・制作しました。出稿期間が終われば消える広告と違い、記事は残り、検索され、読み返されます。ブランドを育てながらリード獲得の受け皿になる——これが「メディアを作ってアプローチする」入試広報の形です（制作概要は<a href="/works/">Works</a>へ）。</p>
 <h2>さらに詳しく</h2>
-<p>ブランドとメディアでリードを獲得する設計は、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・全10ページ）</a>で、成果指標の選び方まで具体的に決められます。考え方の全体像はホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>へ。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+<p>ブランドとメディアでリードを獲得する設計は、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、成果指標の選び方まで具体的に決められます。考え方の全体像はホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>へ。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
 ];

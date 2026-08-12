@@ -171,7 +171,7 @@ function ctaBlock(a, articleUrl) {
   // 大学広報連載（slug: university-*）は記入式のメディア設計ガイド［大学版］を主導線にする
   const isUniversity = String(a.slug || '').startsWith('university-');
   const copy = isUniversity
-    ? { heading: '貴学のメディア設計を、1枚にまとめませんか', body: '空欄を埋めるだけで、目的・読者・体制・成果指標が決まる記入式ガイド（全10ページ）を無料でお配りしています。' }
+    ? { heading: '貴学のメディア設計を、1枚にまとめませんか', body: '空欄を埋めるだけで、目的・読者・体制・成果指標が決まる記入式ガイド（所要45〜60分）を無料でお配りしています。' }
     : (CTA_COPY[a.theme] || CTA_COPY['default']);
   // リード獲得導線: 資料ダウンロードを主導線にする。
   // ?from= に記事URLを渡し、フォーム側が form_url として記録する（仕様 3）。
