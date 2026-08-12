@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>メディア設計ガイド［大学版］（記入式ワークブック） | BOATship</title>
+<!-- 資料請求フォームを迂回されないよう検索結果に出さない -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=IBM+Plex+Mono:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/main.css">
+<!-- Google tag (gtag.js) — GA4. 測定ID G-P4HKHJ91Z5 （設定済み） -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P4HKHJ91Z5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P4HKHJ91Z5');
+</script>
+<style>
+.mat-wrap { max-width: 760px; margin: 0 auto; padding: 3rem 1rem 4rem; font-size: 14px; line-height: 2; }
+.mat-head { border: 2px solid currentColor; box-shadow: 6px 6px 0 currentColor; padding: 1.8rem 1.6rem; margin-bottom: 2.5rem; }
+.mat-head .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; margin: 0 0 0.6rem; }
+.mat-head h1 { font-family: var(--font-dot); font-size: clamp(22px, 4.5vw, 30px); line-height: 1.5; margin: 0 0 0.6rem; }
+.mat-head p { font-size: 13px; line-height: 1.9; margin: 0; }
+.mat-wrap h2 { font-family: var(--font-dot); font-size: 20px; line-height: 1.6; margin: 2.8rem 0 1rem; border-bottom: 2px solid currentColor; padding-bottom: 0.4rem; }
+.mat-spec { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.1rem; }
+.mat-spec span { border: 1px solid currentColor; padding: 0.15em 0.7em; font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.05em; }
+.mat-item { border: 2px solid currentColor; padding: 1.3rem 1.4rem; margin-bottom: 1.2rem; }
+.mat-item .num { font-family: var(--font-pixel); font-size: 13px; display: block; margin-bottom: 0.4rem; }
+.mat-item h3 { font-family: var(--font-dot); font-size: 17px; margin: 0 0 0.5rem; line-height: 1.5; }
+.mat-item p { font-size: 13.5px; line-height: 1.9; margin: 0; }
+.mat-dl-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.6rem;
+  border: 2px solid currentColor;
+  background: var(--text-black);
+  color: var(--bg-yellow);
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+}
+.mat-dl-btn:hover { box-shadow: 4px 4px 0 currentColor; }
+.mat-cta { margin-top: 3rem; padding: 2rem 1.5rem; border: 2px solid currentColor; box-shadow: 6px 6px 0 currentColor; text-align: center; }
+.mat-cta h2 { border: none; margin: 0 0 0.8rem; padding: 0; }
+.mat-cta a.btn { display: inline-block; padding: 0.8rem 2.2rem; border: 2px solid currentColor; font-family: var(--font-mono); font-weight: 700; font-size: 14px; color: inherit; text-decoration: none; }
+.mat-cta a.btn:hover { box-shadow: 4px 4px 0 currentColor; }
+</style>
+</head>
+<body>
+
+<div class="noise-overlay"></div>
+
+<header class="top-nav">
+  <a href="/" class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo">
+    <span>BOATship</span>
+  </a>
+  <nav class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/notes/">Notes</a>
+    <a href="/news/">News</a>
+    <a href="/about/">Company</a>
+    <a href="/contact/">Contact</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/" onclick="closeMenu()">Home</a>
+  <a href="/works/" onclick="closeMenu()">Works</a>
+  <a href="/magazine/" onclick="closeMenu()">Magazines</a>
+  <a href="/notes/" onclick="closeMenu()">Notes</a>
+  <a href="/news/" onclick="closeMenu()">News</a>
+  <a href="/about/" onclick="closeMenu()">Company</a>
+  <a href="/contact/" onclick="closeMenu()">Contact</a>
+</div>
+
+<main class="mat-wrap">
+  <div class="mat-head">
+    <p class="kicker">BOATship — Download Material</p>
+    <h1>メディア設計ガイド［大学版］<br><span style="font-size:0.7em;">— 空欄を埋めると、設計が決まります</span></h1>
+    <p>読む資料ではなく、空欄を埋める資料です。決めることは6つ——目的、読者、現在地、コンテンツの柱、体制、成果の測り方。順に埋めると、自大学のタイプ判定と「メディア設計シート」1枚が手に入ります。空欄が残った箇所は、そのまま「次に確認すべきこと」になります。</p>
+    <div class="mat-spec">
+      <span>全11ページ / PDF</span><span>所要 45〜60分</span><span>広報ご担当者おひとりでも記入可</span>
+    </div>
+    <a class="mat-dl-btn" href="/api/download?asset=university-media-design-guide&amp;src=material" download onclick="if(typeof gtag==='function')gtag('event','asset_download',{asset_id:'university-media-design-guide',source:'material'})">PDFをダウンロード ↓</a>
+  </div>
+
+  <h2>6つのSTEPで決まること</h2>
+
+  <div class="mat-item">
+    <span class="num">STEP 1 — 2</span>
+    <h3>目的と読者を絞る</h3>
+    <p>志願者増、歩留まり、学内の一体感、研究広報——解きたい課題に優先順位を付け、届ける読者を3つまでに絞ります。大学名で検索する人はすでに知っている人。まだ知らない人が何で検索しているかを書き出します。</p>
+  </div>
+
+  <div class="mat-item">
+    <span class="num">STEP 3</span>
+    <h3>現在地の棚卸し — 「ある」と「見つけられる」は別</h3>
+    <p>学科紹介、研究テーマ、教員の専門、卒業生の進路。棚卸し表に印を付けると、学内に情報が一元化されていない箇所が見えます。学内PDFや紙の冊子は、検索エンジンには存在しないのと同じ。多くの場合、作る作業ではなく「出す作業」から始められます。</p>
+  </div>
+
+  <div class="mat-item">
+    <span class="num">STEP 4 — 5</span>
+    <h3>コンテンツの柱と体制 — 空欄が残ることに意味がある</h3>
+    <p>単発の企画ではなく、連載になる型を3つまで決めます。体制表では企画・取材執筆・撮影・掲載・学内調整・外部メディア・解析・決裁の8役割に名前を入れ、<strong>埋まらなかった行がそのまま外注や増員の検討対象</strong>になります。「メディアを作りたい」より「取材と執筆をお願いしたい」のほうが、見積もりも学内説明も進みます。</p>
+  </div>
+
+  <div class="mat-item">
+    <span class="num">STEP 6 — 判定</span>
+    <h3>成果指標の選び方と、タイプ判定</h3>
+    <p>PVやフォロワー数は現状把握に使い、目標には置かない。自然検索流入・指名検索数・資料請求への遷移など、目的につながる指標を3つまで選びます。最後に4つの設問で、A（素材はあるが置き場所がない）／B（続かない）／C（何を出すか決まっていない）／D（学外に届いていない）のタイプを判定し、それぞれの最初の一手が分かります。</p>
+  </div>
+
+  <h2>ガイドに収録している実績データ</h2>
+  <p>本ガイドの判断ヒントには、弊社が運営に関わる私立大学のオウンドメディアの実測値を掲載しています（運用16か月・累計43万セッション／87万PV、うち約69%が自然検索からの流入。最も読まれたページは運動部の選手名簿で累計146,972PV）。クライアント名は非公開とさせていただいております。</p>
+
+  <h2>あわせて読む</h2>
+  <p>設計の考え方をまず知りたい方は、ホワイトペーパー<a href="/materials/university-pr-planning-template/" style="color:inherit;">「大学広報は、なぜ届かないのか。」</a>もご用意しています。広報企画全般のテンプレートは<a href="/materials/pr-planning-template/" style="color:inherit;">広報企画書テンプレート7項目</a>へ。実績は<a href="/works/" style="color:inherit;">Works（TEAM JOSAI! — 城西大学）</a>をご覧ください。</p>
+
+  <div class="mat-cta">
+    <h2>記入したシートを持って、ご相談ください</h2>
+    <p style="font-size:13.5px;line-height:2;margin:0 0 1.2rem;">記入済みのシートがあれば、そのまま打ち合わせを始められます。空欄が残った行は、埋め方から一緒に考えます（30分）。</p>
+    <a class="btn" href="/thanks/?asset=university-media-design-guide#booking">日程を調整する →</a>
+  </div>
+</main>
+
+<footer>
+  <div class="nav-logo-wrapper">
+    <img src="/images/logo.jpg" alt="BOATship" class="company-logo" style="height:30px;width:30px;">
+    <span>© 2026 BOATship — Design Studio</span>
+  </div>
+  <div class="nav-links">
+    <a href="/works/">Works</a>
+    <a href="/magazine/">Magazines</a>
+    <a href="/about/">Company</a>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+</body>
+</html>

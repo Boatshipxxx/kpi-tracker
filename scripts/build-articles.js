@@ -168,16 +168,16 @@ function ctaBlock(a, articleUrl) {
       '</section>'
     );
   }
-  // 大学広報連載（slug: university-*）は大学版ホワイトペーパーを主導線にする
+  // 大学広報連載（slug: university-*）は記入式のメディア設計ガイド［大学版］を主導線にする
   const isUniversity = String(a.slug || '').startsWith('university-');
   const copy = isUniversity
-    ? { heading: '大学広報・入試広報のご相談', body: '大学ブランディングメディアの設計を、まずは無料の資料でご確認ください。' }
+    ? { heading: '貴学のメディア設計を、1枚にまとめませんか', body: '空欄を埋めるだけで、目的・読者・体制・成果指標が決まる記入式ガイド（所要45〜60分）を無料でお配りしています。' }
     : (CTA_COPY[a.theme] || CTA_COPY['default']);
   // リード獲得導線: 資料ダウンロードを主導線にする。
   // ?from= に記事URLを渡し、フォーム側が form_url として記録する（仕様 3）。
-  const assetId = isUniversity ? 'university-pr-planning-template' : 'pr-planning-template';
+  const assetId = isUniversity ? 'university-media-design-guide' : 'pr-planning-template';
   const requestHref = `/request/?asset=${assetId}&from=${encodeURIComponent(articleUrl || '')}`;
-  const btnLabel = isUniversity ? '大学広報ホワイトペーパーを無料ダウンロード →' : '広報企画書テンプレートを無料ダウンロード →';
+  const btnLabel = isUniversity ? 'メディア設計ガイド［大学版］を無料ダウンロード →' : '広報企画書テンプレートを無料ダウンロード →';
   return (
     `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
       `<h2 class="cta-heading">${esc(copy.heading)}</h2>` +
