@@ -168,15 +168,21 @@ function ctaBlock(a, articleUrl) {
       '</section>'
     );
   }
-  const copy = CTA_COPY[a.theme] || CTA_COPY['default'];
+  // 大学広報連載（slug: university-*）は大学版ホワイトペーパーを主導線にする
+  const isUniversity = String(a.slug || '').startsWith('university-');
+  const copy = isUniversity
+    ? { heading: '大学広報・入試広報のご相談', body: '大学ブランディングメディアの設計を、まずは無料の資料でご確認ください。' }
+    : (CTA_COPY[a.theme] || CTA_COPY['default']);
   // リード獲得導線: 資料ダウンロードを主導線にする。
   // ?from= に記事URLを渡し、フォーム側が form_url として記録する（仕様 3）。
-  const requestHref = `/request/?asset=pr-planning-template&from=${encodeURIComponent(articleUrl || '')}`;
+  const assetId = isUniversity ? 'university-pr-planning-template' : 'pr-planning-template';
+  const requestHref = `/request/?asset=${assetId}&from=${encodeURIComponent(articleUrl || '')}`;
+  const btnLabel = isUniversity ? '大学広報ホワイトペーパーを無料ダウンロード →' : '広報企画書テンプレートを無料ダウンロード →';
   return (
     `<section class="cta-block" data-article-id="${esc(a.id)}" data-theme="${esc(theme)}">` +
       `<h2 class="cta-heading">${esc(copy.heading)}</h2>` +
       `<p class="cta-body">${esc(copy.body)}</p>` +
-      `<a class="cta-btn" href="${esc(requestHref)}">広報企画書テンプレートを無料ダウンロード →</a>` +
+      `<a class="cta-btn" href="${esc(requestHref)}">${esc(btnLabel)}</a>` +
       '<p class="cta-sub"><a href="/contact/">相談フォームはこちら</a> ／ <a href="mailto:contact@boatship.jp">contact@boatship.jp に直接メール</a></p>' +
     '</section>'
   );
