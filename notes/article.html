@@ -129,7 +129,16 @@
   var id = params.get('id');
   var note = NOTES.find(function (n) { return n.id === id; });
 
-  if (!note) {
+  // 予約公開: 日付（JST）が未来の記事は旧URLでも表示しない
+  function isPublished(n) {
+    var m = String(n.date || '').match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})/);
+    if (!m) return true;
+    var iso = m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+    var todayJst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    return iso <= todayJst;
+  }
+
+  if (!note || !isPublished(note)) {
     window.location.href = '../notes';
     return;
   }

@@ -154,7 +154,15 @@
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
   }
-  var latest = NOTES_EN.slice().sort(function (a, b) {
+  // Scheduled publishing: hide articles dated in the future (JST)
+  function isPublished(n) {
+    var m = String(n.date || '').match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})/);
+    if (!m) return true;
+    var iso = m[1] + '-' + ('0' + m[2]).slice(-2) + '-' + ('0' + m[3]).slice(-2);
+    var todayJst = new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    return iso <= todayJst;
+  }
+  var latest = NOTES_EN.filter(isPublished).sort(function (a, b) {
     return String(b.date || '').localeCompare(String(a.date || ''));
   }).slice(0, 4);
   document.getElementById('enLatest').innerHTML = latest.map(function (n) {
