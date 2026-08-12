@@ -4,5 +4,11 @@
     "url": "/materials/pr-planning-template/",
     "description": "調査→計画→実行→評価の広報プロセスを、順番に埋めれば企画書になる7項目に落とし込んだテンプレート。各項目の書き方と記入例つき。",
     "download": "/materials/pr-planning-template/boatship-pr-planning-template.pdf"
+  },
+  "university-pr-planning-template": {
+    "title": "大学広報・入試広報向け メディア設計ガイド（大学版）",
+    "url": "/materials/university-pr-planning-template/",
+    "description": "大学の広報戦略・学内エンゲージメント・入試広報のリード獲得を「自前のメディアを作る」視点で整理した大学向け実務資料。城西大学 TEAM JOSAI! の実践にもとづく。",
+    "comingSoon": true
   }
 }

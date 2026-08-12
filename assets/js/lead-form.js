@@ -10,16 +10,80 @@
   var params = new URLSearchParams(location.search);
   var assetId = params.get('asset') || 'pr-planning-template';
 
-  // --- 資料カタログを読み、ヘッダの資料名を差し替える ---
+  // --- 資料カタログを読み、ヘッダの資料名を差し替え、複数あれば選択リストを描画する ---
+  function showAsset(a) {
+    document.getElementById('assetTitle').textContent = a.title;
+    document.getElementById('assetDesc').textContent = a.description || '';
+  }
+
+  function renderChoices(catalog) {
+    var box = document.getElementById('assetChoices');
+    if (!box) return;
+    var ids = Object.keys(catalog);
+    if (ids.length < 2) return; // 1件しかないうちは従来表示のまま
+
+    var label = document.createElement('p');
+    label.className = 'choices-label';
+    label.textContent = 'お送りする資料を選択';
+    box.appendChild(label);
+
+    ids.forEach(function (id) {
+      var a = catalog[id];
+      var coming = !!a.comingSoon;
+      var l = document.createElement('label');
+      l.className = 'asset-choice' + (coming ? ' disabled' : '');
+
+      var input = document.createElement('input');
+      input.type = 'radio';
+      input.name = 'asset_choice';
+      input.value = id;
+      input.disabled = coming;
+      input.checked = id === assetId;
+      input.addEventListener('change', function () {
+        if (!this.checked) return;
+        assetId = this.value;
+        showAsset(catalog[assetId]);
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'asset_select', { asset_id: assetId });
+        }
+      });
+
+      var span = document.createElement('span');
+      var title = document.createElement('span');
+      title.className = 'choice-title';
+      title.textContent = a.title;
+      span.appendChild(title);
+      if (coming) {
+        var badge = document.createElement('span');
+        badge.className = 'asset-badge';
+        badge.textContent = '作成中・近日公開';
+        span.appendChild(badge);
+      }
+      if (a.description) {
+        span.appendChild(document.createElement('br'));
+        var small = document.createElement('small');
+        small.textContent = a.description;
+        span.appendChild(small);
+      }
+
+      l.appendChild(input);
+      l.appendChild(span);
+      box.appendChild(l);
+    });
+    box.hidden = false;
+  }
+
   fetch('/assets/data/lead-assets.json')
     .then(function (r) { return r.json(); })
     .then(function (catalog) {
       var a = catalog[assetId];
-      if (!a) { assetId = 'pr-planning-template'; a = catalog[assetId]; }
-      if (a) {
-        document.getElementById('assetTitle').textContent = a.title;
-        document.getElementById('assetDesc').textContent = a.description || '';
+      // 未知の資料ID・作成中の資料が指定されたときは、請求可能な既定資料へ戻す
+      if (!a || a.comingSoon) {
+        assetId = 'pr-planning-template';
+        a = catalog[assetId];
       }
+      if (a) showAsset(a);
+      renderChoices(catalog);
     })
     .catch(function () { /* 表示は既定のままフォームは使える */ });
 
