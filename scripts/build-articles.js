@@ -60,6 +60,17 @@ function isoDate(date) {
   return `${m[1]}-${String(m[2]).padStart(2, '0')}-${String(m[3]).padStart(2, '0')}`;
 }
 
+/* 予約公開: date が JST の「今日」より未来の記事は未公開として扱う。
+   ページを生成せず、生成済みディレクトリがあれば削除する。
+   日付が来たあとの再ビルド（.github/workflows/sitemap.yml の日次実行）で自動公開される。 */
+function todayJst() {
+  return new Date(Date.now() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+function isPublished(a) {
+  const iso = isoDate(a && a.date);
+  return !iso || iso <= todayJst();
+}
+
 /* 記事データ内の相対パス（../images/…）を ルート絶対（/images/…）へ */
 function rootify(p) {
   return String(p || '').replace(/^(\.\.\/)+/, '/');
@@ -581,9 +592,14 @@ function writePage(kind, a, allNotes, alternates) {
 }
 
 function build() {
-  const notes = loadGlobal('notes/notes.js', 'NOTES');
-  const articles = loadGlobal('magazine/articles.js', 'ARTICLES');
-  const notesEn = loadGlobalOptional('notes/notes-en.js', 'NOTES_EN');
+  const notesAll = loadGlobal('notes/notes.js', 'NOTES');
+  const articlesAll = loadGlobal('magazine/articles.js', 'ARTICLES');
+  const notesEnAll = loadGlobalOptional('notes/notes-en.js', 'NOTES_EN');
+
+  // 予約公開: 日付が未来の記事は生成対象から除外（related の解決先からも外れる）
+  const notes = notesAll.filter(isPublished);
+  const articles = articlesAll.filter(isPublished);
+  const notesEn = notesEnAll.filter(isPublished);
 
   // 日英対応表（sourceId → EN 記事）から hreflang URL を作る
   const altFor = (jaNote, enNote) => ({
@@ -592,8 +608,10 @@ function build() {
   });
   const enBySource = new Map(notesEn.filter((e) => e.sourceId).map((e) => [e.sourceId, e]));
 
-  const news = loadGlobalOptional('news/news.js', 'NEWS');
-  const newsEn = loadGlobalOptional('news/news-en.js', 'NEWS_EN');
+  const newsAll = loadGlobalOptional('news/news.js', 'NEWS');
+  const newsEnAll = loadGlobalOptional('news/news-en.js', 'NEWS_EN');
+  const news = newsAll.filter(isPublished);
+  const newsEn = newsEnAll.filter(isPublished);
   const enNewsBySource = new Map(newsEn.filter((e) => e.sourceId).map((e) => [e.sourceId, e]));
   const altForNews = (jaItem, enItem) => ({
     ja: `${BASE_URL}/news/${jaItem.slug}/`,
@@ -626,6 +644,29 @@ function build() {
   });
   console.log(`generated ${written.length} article pages:`);
   written.forEach((u) => console.log('  ' + u));
+
+  // 予約公開の記事: 生成済みページが残っていれば取り下げる（公開日前にURLが生きないように）
+  const removeScheduled = (items, dirFor) => {
+    items.filter((a) => !isPublished(a) && a.slug).forEach((a) => {
+      const dir = dirFor(a);
+      if (fs.existsSync(path.join(dir, 'index.html'))) {
+        fs.rmSync(dir, { recursive: true, force: true });
+        console.log(`  removed (scheduled): ${dir.slice(ROOT.length)}/`);
+      }
+    });
+  };
+  removeScheduled(notesAll, (a) => path.join(ROOT, 'notes', a.slug));
+  removeScheduled(articlesAll, (a) => path.join(ROOT, 'magazine', a.slug));
+  removeScheduled(notesEnAll, (a) => path.join(ROOT, 'en', 'notes', a.slug));
+  removeScheduled(newsAll, (a) => path.join(ROOT, 'news', a.slug));
+  removeScheduled(newsEnAll, (a) => path.join(ROOT, 'en', 'news', a.slug));
+
+  const scheduled = [...notesAll, ...articlesAll, ...notesEnAll, ...newsAll, ...newsEnAll]
+    .filter((a) => !isPublished(a));
+  if (scheduled.length) {
+    console.log(`scheduled for future publication (today JST = ${todayJst()}):`);
+    scheduled.forEach((a) => console.log(`  ${a.id || a.slug}  ${a.date}  ${a.title}`));
+  }
 }
 
 build();

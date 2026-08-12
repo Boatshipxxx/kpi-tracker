@@ -74,6 +74,7 @@ Notes・Magazine の記事ページに `assets/js/read-tracking.js` を読み込
 - **生成**: `node scripts/build-articles.js` が `notes/notes.js` と `magazine/articles.js` を読み、`templates/article.html` をベースに記事ごとの `index.html` を出力します。生成物には記事固有の `<title>` / meta description / OGP / canonical / JSON-LD（`Article` + `BreadcrumbList`）/ パンくずリストを含みます
 - **旧URL互換**: `article.html?id=XX` は残置し、対応する slug があれば canonical + meta refresh + JS リダイレクトで新URLへ転送します
 - **自動ビルド**: `.github/workflows/sitemap.yml`（Build articles & sitemap）が記事データ・テンプレート変更時に再生成して main にコミットします
+- **予約公開（1本ずつの配信）**: `date` が未来（JST基準）の記事は、一覧・記事ページ・sitemap のすべてに現れません（ビルド時に生成されず、生成済みページは取り下げられます）。同ワークフローが**毎朝 07:10 JST に定期実行**され、日付を迎えた記事を自動で生成・公開します。大学広報連載のように複数記事を先にマージしておいても、各記事はそれぞれの日付（毎週月曜）に1本ずつ配信されます。admin 画面では日付前の記事も従来どおり編集できます
 - **注意**: `/notes/<slug>/index.html` などの生成物と `templates/article.html` 由来の共通部分は**手で編集せず**、テンプレートまたはデータ側を変更して再ビルドしてください。新記事は `slug` フィールドを必ず設定してください（未設定の記事は旧URL形式のまま動作します）
 
 ## 問い合わせページ / Googleフォームのセットアップ（人間の作業）
