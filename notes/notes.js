@@ -489,4 +489,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>卒業生・在学生・受験生を1つのメディアで束ねる考え方は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学の設計を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n19",
+    slug: "university-research-communication-media",
+    num: "#19",
+    category: "Column",
+    title: "研究広報は「配信」では届かない — 研究の価値を社会の言葉に翻訳するメディア",
+    date: "2026.09.14",
+    readTime: 4,
+    theme: "pr-planning",
+    image: "../images/card-04.jpg",
+    related: ["n14", "n16"],
+    evidence: [{"title":"The association between exaggeration in health related science news and academic press releases — 科学報道の誇張は大学のプレスリリース段階で生じている","source":"Sumner, P., et al. (2014). BMJ, 349:g7015","url":"https://doi.org/10.1136/bmj.g7015"},{"title":"Importance of the lay press in the transmission of medical knowledge to the scientific community — 一般報道された研究は学術界でも引用が増える","source":"Phillips, D. P., Kanter, E. J., Bednarczyk, B., & Tastad, P. L. (1991). New England Journal of Medicine, 325(16)","url":"https://doi.org/10.1056/NEJM199110173251620"},{"title":"Routledge Handbook of Public Communication of Science and Technology — 「欠如モデル」から対話・参加モデルへの転換を整理","source":"Bucchi, M., & Trench, B. (Eds.) (2014). Routledge (2nd ed.)","url":""},{"title":"The Role of Transportation in the Persuasiveness of Public Narratives — 物語的移入と説得","source":"Green, M. C., & Brock, T. C. (2000). Journal of Personality and Social Psychology, 79(5)","url":"https://doi.org/10.1037/0022-3514.79.5.701"}],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "2026.08.28 マージ時にID・公開日が既存n18(卒業生)と重複したため n19 / 2026.09.14(次の空き月曜)へ振り直し。大学広報向けショート連載 第4回（研究広報）。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了4分）、毎週月曜公開。対象読者: 大学の広報担当者・学長・研究推進課。連載 n14〜n16 が「戦略・学内・入試」を扱ったのに対し、本稿は研究成果という大学固有の資産に絞って差別化。仮説: 研究広報の担当者はリリースの書き方を探しているが、実際の課題は専門メディア止まりで学外の関係者に届かないことなので、『配信では届かない』と一段手前を提示して流入を取れるか試す。想定検索KW:「研究広報」「大学 プレスリリース 研究成果」「サイエンスコミュニケーション 大学」。読了率40%未満なら本文h2を1本に減らし、Sumnerらの知見を冒頭近くへ前倒しする。PVが中央値未満ならタイトルを「研究成果が学外に届かない大学の共通点」型でA/B。反応率2%未満なら末尾CTAを研究広報の自己診断リスト型に作り替える。CTA: 記入式のメディア設計ガイド［大学版］(/request/?asset=university-media-design-guide)を主導線、ホワイトペーパーを併記。",
+    excerpt: "研究成果のリリースを配っても、専門メディアの外へは広がらない。研究の価値を社会の言葉に翻訳し、大学自身が語り続けるためのメディア設計をショート形式でまとめる。",
+    body: `<p>研究成果を社会に届ける仕事は、リリースを配ることではなく、大学が自ら語り続けることです。</p>
+<h2>なぜ重要か</h2>
+<p>研究成果のプレスリリースは、専門メディアに載って終わるか、載らずに終わるかのどちらかになりがちです。しかし貴学の研究を知ってほしい相手——受験生と保護者、企業、自治体、卒業生、寄付者——は専門紙を読みません。しかも Sumner らが2014年に BMJ で報告したとおり、健康関連の科学報道に見られる誇張の多くは、報道機関ではなく大学のプレスリリースの段階ですでに生じていました。研究広報の精度と品格を決めているのは、記者ではなく貴学の書き手です。書く力は外注ではなく、自前の媒体で鍛えるべき能力です。</p>
+<h2>社会に開くことは、研究者への還元でもある</h2>
+<p>研究広報は「研究者に頼んで協力してもらう仕事」と思われがちですが、順序が逆です。Phillips らが1991年に New England Journal of Medicine で示したのは、一般報道で取り上げられた論文が、同じ雑誌の他の論文より学術界で多く引用されたという事実でした。社会に開くことは、研究者自身の評価にも返ります。そして Bucchi と Trench が整理したように、科学コミュニケーションはすでに「知識を一方的に注ぐ」欠如モデルから、対話と参加のモデルへ移りました。リリースを一斉配信して終わる運用は、その転換に取り残された形です。</p>
+<h2>自前の媒体だから書けること</h2>
+<p>大学が自分のメディアを持つと、リリースの制約がすべて外れます。文字数も、図版の点数も、公開のタイミングも貴学が決められる。何より、研究者本人の動機、行き詰まった時期、見えてきた景色を、固有名詞と情景のある物語として書けます。Green と Brock の研究が示すとおり、人は物語に没入するほどそのメッセージを受け入れます。研究の意義は要約では伝わらず、過程で伝わるということです。そして自前の媒体に置いた記事は、記者が次の取材の下調べで読む一次資料としても働き続けます（<a href="/notes/pr-planning-news-values-media-relations/">記者に選ばれる条件</a>）。専門分野ごとに連載として積み上げれば、検索で見つかる研究資産になります。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を、大学自身の言葉で語り続けるためのメディアです。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。スポーツで成立するこの設計は、研究という別の資産にもそのまま適用できます（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>研究広報を含めたコンテンツの柱と体制を決めるなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>をお使いください。誰がどの分野を担当し、何を成果指標にするかまで1枚に落とせます。考え方の全体像はホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>へ。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];

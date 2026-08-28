@@ -48,6 +48,14 @@ jobs:
             1. 【現状把握】notes/notes.js の NOTES 配列を読み、テーマ(inner-branding / pr-planning / culture)の
                本数バランスと、各記事の kpi(views, readRate, reactions, recordedAt)・tuningMemo を確認する。
 
+               ★重要★ あわせて `gh pr list --state open --json number,title,headRefName` で未マージのPRを確認し、
+               週次更新のPR(claude/notes-weekly-*)が残っていれば
+               `gh pr diff <番号>` でそのPRが使っている id と date を必ず調べる。
+               未マージPRは main に反映されていないため、main だけを見て採番すると
+               id と公開日が衝突してマージ不能になる(過去に2度発生)。
+               採番と日付は「main の最大id」ではなく「main と未マージPRの両方を通じた最大id / 最も遅い公開日」を
+               基準に決めること。
+
             2. 【新記事を1本執筆】当面は「大学広報向けショート連載」(n14〜)の続きを最優先で1本書く。
                この連載の執筆ルール(既存の n14 / n15 / n16 を必ず読んで踏襲すること):
                - 対象読者は大学の広報担当者・学長・入試課。テーマ例: 大学の広報戦略 / 学内エンゲージメント向上 /
@@ -60,13 +68,17 @@ jobs:
                - 実績には必ず城西大学 TEAM JOSAI! を採用し、公式サイト https://www.josai.ac.jp/tjp/ と
                  /works/ へのリンクを両方入れる。実績について既存記事に無い数値・成果を捏造しない
                - theme は 'pr-planning'、category は 'Column'。related には連載の既存記事を優先して設定する
-               - 「さらに詳しく」では資料請求(/request/)へ誘導する。大学広報向け資料
-                 (assets/data/lead-assets.json の university-pr-planning-template)が公開済み
-                 (comingSoon が外れている)なら /request/?asset=university-pr-planning-template へ、
-                 未公開なら既存の広報企画書テンプレートへリンクする
+               - 「さらに詳しく」では資料請求(/request/)へ誘導する。主導線は記入式の
+                 メディア設計ガイド /request/?asset=university-media-design-guide とし、
+                 必要ならホワイトペーパー /request/?asset=university-pr-planning-template を併記する
+                 (資料IDは assets/data/lead-assets.json で確認し、comingSoon が付いた資料には誘導しない)
                大学広報の切り口が尽きた場合のみ、従来どおり inner-branding と pr-planning のうち
                本数が少ない方(同数なら直近と逆)のテーマで書く。共通ルール:
-               - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)
+               - id は既存の連番に続く形式(例: n07)、num は '#07' 形式。
+                 id は main の NOTES と未マージPRの両方を見て、どちらとも重複しない番号にする
+               - date は「連載を毎週月曜に1本ずつ配信する」設計のため、実行日ではなく
+                 **既に予約済みの最も遅い公開日の次の月曜**を設定する(main と未マージPRの両方を確認すること)。
+                 同じ日付の記事が2本にならないようにする
                - slug は記事内容を表す英数字ケバブケース(既存slugと重複しないこと)。
                  related には内容が最も近い既存記事のidを2件設定する
                - 文体・構成は既存記事(特に n05, n06)を踏襲: 導入p + h2見出し4〜6個、日本語。
