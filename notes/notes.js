@@ -464,18 +464,45 @@ const NOTES = [
   }
   ,{
     id: "n18",
-    slug: "university-research-communication-media",
+    slug: "university-alumni-engagement-media",
     num: "#18",
     category: "Column",
-    title: "研究広報は「配信」では届かない — 研究の価値を社会の言葉に翻訳するメディア",
+    title: "卒業生は「一度の卒業生」ではない — 同窓会報からメディアへ、生涯つながる広報",
     date: "2026.09.07",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-04.jpg",
+    evidence: [{"title":"Alumni and their alma mater — 卒業生の母校同一化と支援行動の関係","source":"Mael, F., & Ashforth, B. E. (1992). Journal of Organizational Behavior, 13(2)","url":"https://doi.org/10.1002/job.4030130202"},{"title":"Social Identity Theory and the Organization — 組織同一化の基礎理論","source":"Ashforth, B. E., & Mael, F. (1989). Academy of Management Review, 14(1)","url":"https://doi.org/10.5465/amr.1989.4278999"},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"},{"title":"The Role of Transportation in the Persuasiveness of Public Narratives — 物語的移入と説得","source":"Green, M. C., & Brock, T. C. (2000). Journal of Personality and Social Psychology, 79(5)","url":"https://doi.org/10.1037/0022-3514.79.5.701"}],
+    related: ["n14", "n15"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第4回（卒業生広報）。初稿 2026.08.17 執筆、公開日は連載の週次スロット 2026.09.07（月）。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・同窓会事務局。仮説: 卒業生広報の検索意図は「同窓会 活性化」「大学 寄付 集め方」だが、実務の勝負は依頼状の前段（関係の維持）にあるので、タイトルで『一度の卒業生ではない』と前提をずらして流入を取れるか試す。想定検索KW:「大学 卒業生 エンゲージメント」「同窓会報 デジタル化」「大学 寄付 広報」。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「3部署で使える資産」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「同窓会報をやめて、卒業生メディアを作る」型でA/B。",
+    excerpt: "卒業生との接点が年数回の同窓会報と寄付の依頼状で終わっていないか。母校同一化の研究をもとに、卒業生と生涯つながるメディアの設計をショート形式でまとめる。",
+    body: `<p>卒業生とのつながりは、名簿ではなく自前のメディアで育ちます。</p>
+<h2>なぜ重要か</h2>
+<p>卒業生は、在学生の何倍もの規模を持つ貴学最大の支持基盤です。それでも多くの大学で、接点は年数回の同窓会報の郵送と、寄付の依頼状に絞られています。Mael と Ashforth は1992年、卒業生が母校をどれだけ自分の一部として感じているか——母校への同一化——が、寄付や後輩の紹介といった支援行動と結びつくことを示しました。順番は決まっています。誇りが先で、支援は後です。依頼状の文面を練るより、誇りを維持する接点を設計するほうが効きます。</p>
+<h2>「名簿」ではなく「読み物」でつながる</h2>
+<p>接点を郵送からメディアへ移すと、頻度が変わります。単純接触効果の研究が示すとおり、好意は接触の回数で積み上がります。年2回の会報より、月2本の記事です。そして卒業生が読みたいのは執行部の挨拶や事業報告ではなく、後輩の挑戦と同期の現在です。固有名詞と情景のある物語ほど読み手の態度を動かすことは、物語的移入の研究が実証しています。抽象的な「大学の取り組み」を並べるかぎり、卒業生の手は止まりません。</p>
+<h2>1本の記事が3つの部署で働く</h2>
+<p>卒業生インタビューは、同窓会だけの素材ではありません。在学生のキャリア教育、受験生と保護者の進路イメージ、企業の採用担当への訴求——同じ1本が同時に効きます。組織同一化の理論が示すとおり、所属は自己定義の一部として持ち運ばれます。卒業生が誇りを持って語る母校は、そのまま<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>の最強のチャネルになります。だから卒業生広報は同窓会事務局の仕事ではなく、<a href="/notes/university-internal-engagement-media/">学内メディア</a>と同じ編集体制の中に置くべきです。部署ごとに別々の媒体を作るほど、素材は分散して力を失います。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>卒業生・在学生・受験生を1つのメディアで束ねる考え方は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学の設計を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
+  ,{
+    id: "n19",
+    slug: "university-research-communication-media",
+    num: "#19",
+    category: "Column",
+    title: "研究広報は「配信」では届かない — 研究の価値を社会の言葉に翻訳するメディア",
+    date: "2026.09.14",
     readTime: 4,
     theme: "pr-planning",
     image: "../images/card-04.jpg",
     related: ["n14", "n16"],
     evidence: [{"title":"The association between exaggeration in health related science news and academic press releases — 科学報道の誇張は大学のプレスリリース段階で生じている","source":"Sumner, P., et al. (2014). BMJ, 349:g7015","url":"https://doi.org/10.1136/bmj.g7015"},{"title":"Importance of the lay press in the transmission of medical knowledge to the scientific community — 一般報道された研究は学術界でも引用が増える","source":"Phillips, D. P., Kanter, E. J., Bednarczyk, B., & Tastad, P. L. (1991). New England Journal of Medicine, 325(16)","url":"https://doi.org/10.1056/NEJM199110173251620"},{"title":"Routledge Handbook of Public Communication of Science and Technology — 「欠如モデル」から対話・参加モデルへの転換を整理","source":"Bucchi, M., & Trench, B. (Eds.) (2014). Routledge (2nd ed.)","url":""},{"title":"The Role of Transportation in the Persuasiveness of Public Narratives — 物語的移入と説得","source":"Green, M. C., & Brock, T. C. (2000). Journal of Personality and Social Psychology, 79(5)","url":"https://doi.org/10.1037/0022-3514.79.5.701"}],
     kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
-    tuningMemo: "大学広報向けショート連載 第4回（研究広報）。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了4分）、毎週月曜公開。対象読者: 大学の広報担当者・学長・研究推進課。連載 n14〜n16 が「戦略・学内・入試」を扱ったのに対し、本稿は研究成果という大学固有の資産に絞って差別化。仮説: 研究広報の担当者はリリースの書き方を探しているが、実際の課題は専門メディア止まりで学外の関係者に届かないことなので、『配信では届かない』と一段手前を提示して流入を取れるか試す。想定検索KW:「研究広報」「大学 プレスリリース 研究成果」「サイエンスコミュニケーション 大学」。読了率40%未満なら本文h2を1本に減らし、Sumnerらの知見を冒頭近くへ前倒しする。PVが中央値未満ならタイトルを「研究成果が学外に届かない大学の共通点」型でA/B。反応率2%未満なら末尾CTAを研究広報の自己診断リスト型に作り替える。CTA: 記入式のメディア設計ガイド［大学版］(/request/?asset=university-media-design-guide)を主導線、ホワイトペーパーを併記。",
+    tuningMemo: "2026.08.28 マージ時にID・公開日が既存n18(卒業生)と重複したため n19 / 2026.09.14(次の空き月曜)へ振り直し。大学広報向けショート連載 第4回（研究広報）。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了4分）、毎週月曜公開。対象読者: 大学の広報担当者・学長・研究推進課。連載 n14〜n16 が「戦略・学内・入試」を扱ったのに対し、本稿は研究成果という大学固有の資産に絞って差別化。仮説: 研究広報の担当者はリリースの書き方を探しているが、実際の課題は専門メディア止まりで学外の関係者に届かないことなので、『配信では届かない』と一段手前を提示して流入を取れるか試す。想定検索KW:「研究広報」「大学 プレスリリース 研究成果」「サイエンスコミュニケーション 大学」。読了率40%未満なら本文h2を1本に減らし、Sumnerらの知見を冒頭近くへ前倒しする。PVが中央値未満ならタイトルを「研究成果が学外に届かない大学の共通点」型でA/B。反応率2%未満なら末尾CTAを研究広報の自己診断リスト型に作り替える。CTA: 記入式のメディア設計ガイド［大学版］(/request/?asset=university-media-design-guide)を主導線、ホワイトペーパーを併記。",
     excerpt: "研究成果のリリースを配っても、専門メディアの外へは広がらない。研究の価値を社会の言葉に翻訳し、大学自身が語り続けるためのメディア設計をショート形式でまとめる。",
     body: `<p>研究成果を社会に届ける仕事は、リリースを配ることではなく、大学が自ら語り続けることです。</p>
 <h2>なぜ重要か</h2>
