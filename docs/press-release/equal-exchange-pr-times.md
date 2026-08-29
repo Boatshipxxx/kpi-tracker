@@ -19,7 +19,7 @@
 
 【画像1: 等価交換のイメージ（pine-note-imege.png もしくは交換した野菜の実物写真）】
 
-デザイン・PRスタジオのBOATship（本社: 東京都千代田区神保町）は、制作の対価をお金以外の「価値」で受け取る「等価交換報酬制度」の取り組みと運用実例を公開しました。制度の詳細は自社オウンドメディア（https://www.boatship.jp/notes/equivalent-exchange-compensation/）で公開しています。
+デザイン・PRスタジオのBOATship（本社: 東京都千代田区神保町）は、制作の対価をお金以外の「価値」で受け取る「等価交換報酬制度」の取り組みと運用実例を公開しました。制度の詳細は自社オウンドメディア（https://www.boatship.jp/magazine/equivalent-exchange-compensation/）で公開しています。
 
 ### ■ 等価交換報酬制度とは
 

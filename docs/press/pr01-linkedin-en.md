@@ -59,6 +59,6 @@ Same post as Pattern A, but replace the final link paragraphs with:
 
 ### 注記（日本語・投稿しない）
 
-- 原本 `/news/equal-exchange-compensation-launch/` は日本語のため、英語読者の受け皿としては `/en/notes/equal-exchange-compensation/`（n01英訳・Task 4-2）も有効。リンク先はどちらでもよいが、UTMは必ず `utm_content=en` を付けること
+- 原本 `/news/equal-exchange-compensation-launch/` は日本語のため、英語読者の受け皿としては `/en/magazine/equal-exchange-compensation/`（n01英訳・Task 4-2）も有効。リンク先はどちらでもよいが、UTMは必ず `utm_content=en` を付けること
 - 絵文字（🥬🏢📷）はLinkedInの視認性向上のための提案。トーンに合わなければ削除可
 - ネイティブ水準の最終確認は人間が行うこと

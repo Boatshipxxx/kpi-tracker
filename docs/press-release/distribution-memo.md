@@ -28,6 +28,6 @@
 
 ## 4. 配信後のフォロー
 
-- 配信当日〜3日: 問い合わせフォームの「等価交換でのご依頼」件数と、GA4で `/notes/equivalent-exchange-compensation/` への流入をチェック
+- 配信当日〜3日: 問い合わせフォームの「等価交換でのご依頼」件数と、GA4で `/magazine/equivalent-exchange-compensation/` への流入をチェック
 - 掲載・言及があれば `reviews/2026-07.md`（月次レビュー）の流入元・問い合わせ欄に記録
 - 反応が良ければ、n01/n04 記事の tuningMemo に「リリース経由の流入」の知見を追記して次の企画へ

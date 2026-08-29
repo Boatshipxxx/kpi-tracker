@@ -545,7 +545,6 @@ a { color: inherit; text-decoration: none; }
               <select class="field-select" id="f-theme">
                 <option value="inner-branding">Inner Branding（インナーブランディング）</option>
                 <option value="pr-planning">PR Planning（広報企画）</option>
-                <option value="culture">Culture（組織文化・制度）</option>
               </select>
             </div>
             <div>
@@ -749,7 +748,7 @@ function showForm(a) {
   document.getElementById('editor-form').style.display = 'block';
   document.getElementById('notes-extra').style.display = currentSection === 'notes' ? '' : 'none';
   if (currentSection === 'notes') {
-    document.getElementById('f-theme').value = a.theme || 'culture';
+    document.getElementById('f-theme').value = a.theme || 'inner-branding';
     document.getElementById('f-evidence').value = evidenceToText(a.evidence);
     var kpi = a.kpi || {};
     document.getElementById('f-kpi-views').value = kpi.views != null ? kpi.views : '';
@@ -873,7 +872,7 @@ function serializeData(arr, constName) {
       lines.push('    hero: ' + JSON.stringify(a.hero || '') + ',');
       if (a.og) lines.push('    og: ' + JSON.stringify(a.og) + ',');
     } else {
-      lines.push('    theme: ' + JSON.stringify(a.theme || 'culture') + ',');
+      lines.push('    theme: ' + JSON.stringify(a.theme || 'inner-branding') + ',');
       lines.push('    image: ' + JSON.stringify(a.image || a.thumb || '') + ',');
       lines.push('    evidence: ' + JSON.stringify(a.evidence || []) + ',');
       lines.push('    kpi: ' + JSON.stringify(a.kpi || { views: null, readRate: null, reactions: null, recordedAt: '' }) + ',');

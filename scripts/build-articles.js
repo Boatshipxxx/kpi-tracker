@@ -48,6 +48,24 @@ function loadGlobalOptional(relFile, globalName) {
   try { return loadGlobal(relFile, globalName); } catch (e) { return []; }
 }
 
+/* ARTICLES_EN のようなオブジェクト形式のグローバルを読む（無ければ {}） */
+function loadGlobalObjectOptional(relFile, globalName) {
+  if (!fs.existsSync(path.join(ROOT, relFile))) return {};
+  const code = fs.readFileSync(path.join(ROOT, relFile), 'utf8');
+  const sandbox = {};
+  vm.createContext(sandbox);
+  const marker = '__export_' + globalName;
+  try {
+    vm.runInContext(
+      code + `\n;globalThis[${JSON.stringify(marker)}] = typeof ${globalName} !== 'undefined' ? ${globalName} : undefined;`,
+      sandbox,
+      { filename: relFile }
+    );
+  } catch (e) { return {}; }
+  const value = sandbox[marker];
+  return (value && typeof value === 'object' && !Array.isArray(value)) ? value : {};
+}
+
 function esc(s) {
   return String(s == null ? '' : s)
     .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -412,8 +430,7 @@ const NOTES_EXTRA_STYLE = `
 
 const THEME_LABEL = {
   'inner-branding': 'Inner Branding',
-  'pr-planning': 'PR Planning',
-  'culture': 'Culture'
+  'pr-planning': 'PR Planning'
 };
 
 /* magazine/article.html から Brutalism hero テンプレート(#03専用)を抽出して再利用 */
@@ -452,7 +469,7 @@ function heroBlockFor(a, kind) {
   if (kind === 'magazine' && a.id === '03') {
     return '<div id="bru-slot"></div>';
   }
-  const img = rootify(kind === 'magazine' ? a.hero : a.image);
+  const img = rootify((kind === 'magazine' || kind === 'en-magazine') ? (a.hero || a.image) : a.image);
   return `<div class="article-hero-wrap"><img src="${esc(img)}" alt="${esc(a.title)}" class="article-hero-img"></div>`;
 }
 
@@ -473,19 +490,23 @@ function writePage(kind, a, allNotes, alternates) {
   }
   const isEnNotes = kind === 'en-notes';
   const isEnNews = kind === 'en-news';
-  const isEn = isEnNotes || isEnNews;
+  const isEnMag = kind === 'en-magazine';
+  const isEn = isEnNotes || isEnNews || isEnMag;
   const isNews = kind === 'news' || isEnNews;
   const isNotes = kind === 'notes' || isEnNotes;
+  const isMag = kind === 'magazine' || isEnMag;
   const sectionUrl = isEnNews ? '/en/news/'
     : (isEnNotes ? '/en/notes/'
-    : (kind === 'news' ? '/news/' : (kind === 'notes' ? '/notes/' : '/magazine/')));
+    : (isEnMag ? '/en/magazine/'
+    : (kind === 'news' ? '/news/' : (kind === 'notes' ? '/notes/' : '/magazine/'))));
   const sectionLabel = isEnNews ? 'News' : (isEnNotes ? 'Notes' : (kind === 'news' ? 'News' : (kind === 'notes' ? 'Notes' : 'Magazines')));
   const backUrl = sectionUrl;
   const backLabel = isEnNews ? '← Back to News'
     : (isEnNotes ? '← Back to Notes'
-    : (kind === 'news' ? '← News に戻る' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る')));
+    : (isEnMag ? '← Back to Magazines'
+    : (kind === 'news' ? '← News に戻る' : (kind === 'notes' ? '← Notes に戻る' : '← Magazines に戻る'))));
   const canonical = `${BASE_URL}${sectionUrl}${a.slug}/`;
-  const imageAbs = BASE_URL + rootify(isNews ? (a.ogImage || '/images/og-image.png') : (kind === 'magazine' ? (a.og || a.hero) : a.image));
+  const imageAbs = BASE_URL + rootify(isNews ? (a.ogImage || '/images/og-image.png') : (isMag ? (a.og || a.hero || a.image) : a.image));
   const title = `${a.title} | BOATship`;
 
   const themeChip = (isNotes && a.theme)
@@ -506,7 +527,7 @@ function writePage(kind, a, allNotes, alternates) {
     '</section>' +
     (isNews ? (a.subtitle ? `<p class="news-lead">${esc(a.subtitle)}</p>` : '') : heroBlockFor(a, kind)) +
     `<article class="article-body">${rootifyHtml(a.body)}</article>` +
-    (isNotes ? evidenceBlock(a) : '') +
+    evidenceBlock(a) +
     (isNews ? distributionBlock(a) : '') +
     ctaBlock(a, `${sectionUrl}${a.slug}/`) +
     (isNotes ? relatedBlock(a, allNotes) : '') +
@@ -579,7 +600,7 @@ function writePage(kind, a, allNotes, alternates) {
       : '',
     NEWSLETTER_SUB: isEn ? 'New work and stories from the studio, by email.' : '新着の制作事例やMagazinesをメールでお届け。',
     NEWSLETTER_NOTE: isEn ? '* No spam. Unsubscribe anytime.' : '* スパムは送りません。いつでも解除できます。',
-    EXTRA_STYLE: CTA_STYLE + (isNotes ? NOTES_EXTRA_STYLE : '') + (isNews ? NEWS_EXTRA_STYLE : ''),
+    EXTRA_STYLE: CTA_STYLE + ((isNotes || (a.evidence && a.evidence.length)) ? NOTES_EXTRA_STYLE : '') + (isNews ? NEWS_EXTRA_STYLE : ''),
     ARTICLE_CONTENT: content,
     EXTRA_BODY: extraBody,
     EXTRA_SCRIPTS: extraScripts + CTA_TRACK_SCRIPT
@@ -589,9 +610,11 @@ function writePage(kind, a, allNotes, alternates) {
     ? path.join(ROOT, 'en', 'news', a.slug)
     : (isEnNotes
       ? path.join(ROOT, 'en', 'notes', a.slug)
-      : (kind === 'news'
-        ? path.join(ROOT, 'news', a.slug)
-        : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug)));
+      : (isEnMag
+        ? path.join(ROOT, 'en', 'magazine', a.slug)
+        : (kind === 'news'
+          ? path.join(ROOT, 'news', a.slug)
+          : path.join(ROOT, kind === 'notes' ? 'notes' : 'magazine', a.slug))));
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), html);
   return `${sectionUrl}${a.slug}/`;
@@ -631,7 +654,29 @@ function build() {
     const u = writePage('notes', n, notes, en && n.slug ? altFor(n, en) : null);
     if (u) written.push(u);
   });
-  articles.forEach((a) => { const u = writePage('magazine', a, notes); if (u) written.push(u); });
+  // Magazine 英語版: ARTICLES_EN のうち slug と body を持つエントリはフル英語記事
+  // として /en/magazine/<slug>/ を生成し、日本語記事と hreflang を相互設定する
+  const articlesEn = loadGlobalObjectOptional('magazine/articles-en.js', 'ARTICLES_EN');
+  const enMagFor = (jaId) => {
+    const e = articlesEn[jaId];
+    return (e && e.slug && e.body) ? e : null;
+  };
+  const altForMag = (jaArticle, enEntry) => ({
+    ja: `${BASE_URL}/magazine/${jaArticle.slug}/`,
+    en: `${BASE_URL}/en/magazine/${enEntry.slug}/`
+  });
+  articles.forEach((a) => {
+    const en = enMagFor(a.id);
+    const u = writePage('magazine', a, notes, en && a.slug ? altForMag(a, en) : null);
+    if (u) written.push(u);
+  });
+  articles.forEach((a) => {
+    const en = enMagFor(a.id);
+    if (!en) return;
+    const enArticle = { id: `${a.id}-en`, lang: 'en', ...en };
+    const u = writePage('en-magazine', enArticle, notes, a.slug ? altForMag(a, en) : null);
+    if (u) written.push(u);
+  });
   // EN Notes の related は EN 記事どうしで解決する
   notesEn.forEach((e) => {
     const src = notes.find((n) => n.id === e.sourceId);

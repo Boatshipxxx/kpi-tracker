@@ -18,35 +18,6 @@
  */
 const NOTES_EN = [
   {
-    id: "n01-en",
-    lang: "en",
-    sourceId: "n01",
-    slug: "equal-exchange-compensation",
-    num: "#01E",
-    category: "Essay",
-    title: "Why We Accept Vegetables as Payment: BOATship's Equal Exchange Model",
-    date: "2026.07.13",
-    readTime: 6,
-    theme: "culture",
-    image: "../images/pine-note-imege.png",
-    related: ["n04-en", "n07-en"],
-    evidence: [{"title":"The Gift (Essai sur le don) — how reciprocity binds communities","source":"Mauss, M. (1925)","url":""},{"title":"Influence: The Psychology of Persuasion — the reciprocity principle","source":"Cialdini, R. B. (1984)","url":""}],
-    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
-    tuningMemo: "English edition of n01. Watch inbound queries from overseas; if read rate is low, try a case-study-first structure.",
-    excerpt: "A Tokyo design studio that takes fresh produce, workspace, and skills as payment. Why we built an equal exchange model — and how it actually works.",
-    body: `<p>"We'd love to work with you, but we don't have the budget." Every time we heard this, something felt wasted. The project's potential and the passion behind it were real — the only thing missing was money. That discomfort is where BOATship's <em>equal exchange compensation</em> model began.</p>
-<h2>How the model works</h2>
-<p>Equal exchange compensation means BOATship accepts payment for design, PR, and production work in forms of value other than money. Skills, space, connections, services, goods — anything both sides can agree is a fair trade becomes the fee. (To be clear: we also happily accept yen. This model runs alongside standard billing, not instead of it.)</p>
-<h2>Why we needed it</h2>
-<p><a href="/en/notes/regional-brand-development/">Regional producers</a>, startups, NPOs, independent creators — many of them have something worth telling the world about, but no marketing budget. In Japan, this is especially true outside the big cities: family farms and small manufacturers in regional areas often carry decades of craft with no communications budget at all. What BOATship has is design and PR skills. Exchange the two, and work that matters to both sides becomes possible.</p>
-<h2>What it looks like in practice</h2>
-<p>One farm pays for its website with a monthly box of fresh vegetables. A shared-office brand traded co-working space for its branding work. In both cases, the relationship went deeper than a standard client engagement — because both sides keep asking what the work is really worth to them.</p>
-<h2>How do you decide what's "equal"?</h2>
-<p>The hard part is judging equivalence. Our answer is deliberately simple: both sides confirm, "Am I genuinely satisfied with this trade?" Not market price, but each party's situation and intent. That flatness — no one is the buyer, no one is the vendor — is the heart of the model. If you know the Japanese phrase <em>o-tagai-sama</em> (roughly, "we're in this together"), that's the cultural instinct it draws on.</p>
-<h2>Where this goes next</h2>
-<p>Equal exchange compensation is also <a href="/en/notes/barter-and-resource-sharing/">an experiment in how we want to work</a>. Money is not the only measure of value — we want to prove that one project at a time, including with partners outside Japan. If the model interests you, <a href="/en/contact/">start a conversation</a>. Tell us what you make; we'll tell you what we make. Maybe it's a trade.</p>`
-  },
-  {
     id: "n02-en",
     lang: "en",
     sourceId: "n02",
@@ -58,7 +29,7 @@ const NOTES_EN = [
     readTime: 5,
     theme: "pr-planning",
     image: "../images/pine-note-imege.png",
-    related: ["n06-en", "n03-en"],
+    related: ["n06-en", "n08-en"],
     evidence: [{"title":"Competitive Identity — place brands are edited, not invented","source":"Anholt, S. (2007). Palgrave Macmillan","url":""}],
     kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
     tuningMemo: "English edition of n02. Aimed at overseas readers considering regional Japan. If read rate is low, lead with a concrete client scenario.",
@@ -69,63 +40,9 @@ const NOTES_EN = [
 <h2>Do not treat "local" as a weakness</h2>
 <p>People often say that <a href="/en/notes/pr-planning-peso-model/">getting the word out</a> is harder from a regional base. We find the opposite. Being close to production means the distance between maker and customer is short, and relationships can have faces attached. With a website and social channels, that closeness becomes content in itself — something a Tokyo head office cannot fake.</p>
 <h2>What we hold to</h2>
-<p>When we work with a regional company, we consciously avoid importing "the Tokyo sensibility." We first understand the place and the people the brand lives among; only then do <a href="/en/notes/design-thinking-business-art/">language and design</a> come. An outside perspective combined with material that is already there — that combination is what builds the brand.</p>
+<p>When we work with a regional company, we consciously avoid importing "the Tokyo sensibility." We first understand the place and the people the brand lives among; only then do <a href="/en/magazine/design-thinking-business-art/">language and design</a> come. An outside perspective combined with material that is already there — that combination is what builds the brand.</p>
 <h2>What it takes to actually land</h2>
 <p>The most important variable in regional brand development is the resolution of "who are we reaching." Try to reach everyone and you reach no one. Words written for one person you can picture end up traveling much further.</p>`
-  },
-  {
-    id: "n03-en",
-    lang: "en",
-    sourceId: "n03",
-    slug: "design-thinking-business-art",
-    num: "#03E",
-    category: "Essay",
-    title: "Where Design Thinking Ends and Business Art Begins",
-    date: "2026.07.27",
-    readTime: 6,
-    theme: "culture",
-    image: "../images/pine-note-imege.png",
-    related: ["n01-en", "n02-en"],
-    evidence: [{"title":"Design Thinking — the article that brought design thinking into management","source":"Brown, T. (2008). Harvard Business Review, 86(6)","url":"https://hbr.org/2008/06/design-thinking"}],
-    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
-    tuningMemo: "English edition of n03. Explains the 'Business Art Team' positioning to overseas readers. Consider adding a concrete project example if read rate is low.",
-    excerpt: "Why we call ourselves a Business Art Team rather than a design studio — and why we deliberately blur the line between design and business.",
-    body: `<p>When we started calling ourselves a "Business Art Team," we hesitated. "Design studio" or "creative agency" would communicate faster. But those words were missing something. What BOATship wants to do is deliberately blur the line between design and business.</p>
-<h2>What design thinking actually is</h2>
-<p>Design thinking is a process for solving problems: observe, define, ideate, prototype, test. Run the cycle and you converge on a better answer. It originated in product design, but the same thinking applies to business development and communication design — which is exactly why Tim Brown's 2008 argument for bringing it into management landed so widely.</p>
-<h2>The idea behind "business art"</h2>
-<p>Art is self-expression; business is <a href="/en/notes/equal-exchange-compensation/">an exchange of value</a>. They look like opposites, but the strongest businesses have expression in them. Apple and Nike both carry an artistic intent in their products and their communication. What BOATship aims for is bringing the artist's perspective into the business.</p>
-<h2>Why blur the line on purpose</h2>
-<p>Design alone produces things detached from business context. Business alone produces nothing that moves people. The people who can blur that line are the ones most needed right now. That is the position BOATship works from.</p>
-<h2>"Business Art" as practice</h2>
-<p>Concretely: we interview the client about their business problem, then approach it from <a href="/en/notes/pr-planning-peso-model/">both the design and the PR side</a>. Even when making a single logo, we ask what role it plays in the business. We are not chasing surface beauty — we are chasing beauty that functions.</p>`
-  },
-  {
-    id: "n04-en",
-    lang: "en",
-    sourceId: "n04",
-    slug: "barter-and-resource-sharing",
-    num: "#04E",
-    category: "Column",
-    title: "Six Months of Getting Paid in Vegetables, Studio Space, and Skills",
-    date: "2026.07.27",
-    readTime: 4,
-    theme: "culture",
-    image: "../images/pine-note-imege.png",
-    related: ["n01-en", "n03-en"],
-    evidence: [{"title":"You are what you can access — research on sharing and collaborative consumption","source":"Belk, R. (2014). Journal of Business Research, 67(8)","url":"https://doi.org/10.1016/j.jbusres.2013.10.001"}],
-    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
-    tuningMemo: "English edition of n04. The operational-reality piece that pairs with n01. If read rate is low, move the 'what doesn't work' section higher.",
-    excerpt: "What actually changes when money leaves the transaction — including the parts that are harder than they sound.",
-    body: `<p>It has been six months since we started <a href="/en/notes/equal-exchange-compensation/">equal exchange compensation</a>. Here is an honest look at how the work itself changed when we began accepting value instead of money.</p>
-<h2>Barter in practice is smoother than it sounds</h2>
-<p>"Barter" can sound primitive. In practice it runs surprisingly smoothly. Without the transfer of money, the way both sides approach the project changes. You stop being the party who pays and the party who is paid, and become partners producing value together.</p>
-<h2>The interesting part: sharing resources</h2>
-<p>The most common trade turned out to be skill for skill. With one photographer we exchanged web design for a shoot. With a chef we exchanged restaurant <a href="/en/notes/regional-brand-development/">branding</a> for a monthly staff meal. Because money is not in the middle, the connection between people is direct. Russell Belk's research on access-based consumption makes a related point: what you can access increasingly defines you more than what you own.</p>
-<h2>The problems we ran into</h2>
-<p>There are real difficulties. Agreeing on what counts as "equal" is sometimes hard. And exchanges that span time — we produce first, receive later — rest entirely on trust. Even so, the projects that got through those difficulties are the ones that lasted.</p>
-<h2>What money cannot buy</h2>
-<p>The greatest value from equal exchange is the part money cannot buy: trust, relationship, experience, community. These accumulate through money and time as well, but the equal exchange process concentrates them. We intend to keep running this model.</p>`
   },
   {
     id: "n05-en",
@@ -153,7 +70,7 @@ const NOTES_EN = [
 <h2>Not "broadcasting" — dialogue</h2>
 <p>So what works? Men's 2014 research focused on the channels and quality of internal communication. Organizations that prioritize face-to-face and two-way communication over one-directional announcements show higher employee satisfaction and engagement. The dividing line is whether leadership's words arrive as broadcast or as conversation.</p>
 <h2>How BOATship practices this — systems are the strongest message</h2>
-<p>In our internal branding work, we design systems and experiences before slogans. As with <a href="/en/notes/equal-exchange-compensation/">our equal exchange compensation model</a>, what an organization truly values shows up in its mechanisms, not its language. When system, behavior, and language align, a set of stated values finally becomes a culture.</p>
+<p>In our internal branding work, we design systems and experiences before slogans. As with <a href="/en/magazine/equal-exchange-compensation/">our equal exchange compensation model</a>, what an organization truly values shows up in its mechanisms, not its language. When system, behavior, and language align, a set of stated values finally becomes a culture.</p>
 <h2>How to use this piece</h2>
 <p>This article is updated continuously based on access data and read rate, in line with how we run <a href="/en/notes/pr-planning-peso-model/">our owned media</a>. The studies cited are listed in the evidence section below. Use them directly in internal newsletters, values work, or organizational development proposals.</p>`
   },
@@ -198,7 +115,7 @@ const NOTES_EN = [
     readTime: 8,
     theme: "inner-branding",
     image: "../images/pine-note-imege.png",
-    related: ["n05-en", "n01-en"],
+    related: ["n05-en", "n09-en"],
     evidence: [{"title":"Building brand commitment — a behavioral approach to internal brand management","source":"Burmann, C., & Zeplin, S. (2005). Journal of Brand Management, 12(4)","url":""},{"title":"Building and measuring employee-based brand equity","source":"King, C., & Grace, D. (2010). European Journal of Marketing, 44(7/8)","url":""},{"title":"Crafting a Job — reframing employees as active crafters of their work","source":"Wrzesniewski, A., & Dutton, J. E. (2001). Academy of Management Review, 26(2)","url":""},{"title":"Psychological Safety and Learning Behavior in Work Teams","source":"Edmondson, A. (1999). Administrative Science Quarterly, 44(2)","url":"https://doi.org/10.2307/2666999"}],
     kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
     tuningMemo: "English edition of n07. The 'how' companion to n05's 'why'. Target search intent: 'values into behavior' / 'brand citizenship behavior'.",
@@ -213,7 +130,7 @@ const NOTES_EN = [
 <h2>The ground you need first — psychological safety</h2>
 <p>For ownership-driven behavior to appear, people need to believe that trying and getting it wrong is safe. Edmondson's 1999 research demonstrated that teams with higher psychological safety — the shared belief that interpersonal risk is acceptable — show far more learning behavior: asking questions, requesting help, sharing failures. Trying a new way of working in line with stated values <em>is</em> an interpersonal risk. Ordering people to "take initiative" without psychological safety only produces shrinkage. Design the safe ground before you push for behavior. A surprising number of organizations have this order backwards.</p>
 <h2>How BOATship practices this — systems grow ownership</h2>
-<p>We build internal branding into <a href="/en/notes/inner-branding-organizational-identification/">systems and experiences</a> rather than slogans. <a href="/en/notes/equal-exchange-compensation/">Equal exchange compensation</a> is the clearest example. Because it exchanges value other than money, it asks members and partners every time: "Am I genuinely satisfied with this trade?" The subject of the judgment returns from the organization to the individual, so ownership grows by necessity. When the system embodies the values, behavior aligns without orders. System, behavior, language — when those three agree, values finally become culture.</p>
+<p>We build internal branding into <a href="/en/notes/inner-branding-organizational-identification/">systems and experiences</a> rather than slogans. <a href="/en/magazine/equal-exchange-compensation/">Equal exchange compensation</a> is the clearest example. Because it exchanges value other than money, it asks members and partners every time: "Am I genuinely satisfied with this trade?" The subject of the judgment returns from the organization to the individual, so ownership grows by necessity. When the system embodies the values, behavior aligns without orders. System, behavior, language — when those three agree, values finally become culture.</p>
 <h2>A design checklist</h2>
 <p>The questions we use when designing internal branding. (1) Have the values stopped at awareness, or are they granular enough to guide a difficult decision? (2) Is there a setting where employees connect their own work to the values and give it meaning? (3) Is psychological safety in place so trying new behavior feels survivable? (4) Are the values embedded in systems and experiences rather than wall displays? (5) How will change be measured and fed into the next move? This article is also updated continuously against access data and read rate. Cited studies are in the evidence section below.</p>`
   },
@@ -244,7 +161,7 @@ const NOTES_EN = [
 <h2>Measurement turns one-way into dialogue</h2>
 <p>Of the four models of PR that Grunig and Hunt set out in 1984, the most mature is <em>two-way symmetrical</em> communication. Rather than broadcasting, the organization continuously measures the audience's response and adjusts the relationship accordingly. Measurement is the mechanism that supports that two-way quality. Looking at numbers is not about issuing a report card; it is about listening to the response and redesigning <a href="/en/notes/pr-planning-peso-model/">the media circulation</a>. Framed that way, measurement becomes a far more constructive act.</p>
 <h2>How BOATship practices this — measurement grows the plan</h2>
-<p>As a "Business Art Team," we do not make PR and walk away. As Watson and Noble argue in <em>Evaluating Public Relations</em>, planning, research, and measurement are not separate stages but one continuous design. This owned media is our own testbed. We measure views, read rate, and reaction rate per article, tune headlines and CTAs against decision rules, and measure again. Just as <a href="/en/notes/equal-exchange-compensation/">equal exchange compensation</a> asks "am I satisfied with this trade?" each time, PR planning keeps asking whether these numbers represent a change worth the goal. In <a href="/en/notes/regional-brand-development/">regional brand development</a>, too, what mattered was never placement count but whose behavior changed.</p>
+<p>As a "Business Art Team," we do not make PR and walk away. As Watson and Noble argue in <em>Evaluating Public Relations</em>, planning, research, and measurement are not separate stages but one continuous design. This owned media is our own testbed. We measure views, read rate, and reaction rate per article, tune headlines and CTAs against decision rules, and measure again. Just as <a href="/en/magazine/equal-exchange-compensation/">equal exchange compensation</a> asks "am I satisfied with this trade?" each time, PR planning keeps asking whether these numbers represent a change worth the goal. In <a href="/en/notes/regional-brand-development/">regional brand development</a>, too, what mattered was never placement count but whose behavior changed.</p>
 <h2>A measurement design checklist</h2>
 <p>The questions we use. (1) Are there metrics for outtakes and outcomes, not just outputs? (2) Was the goal — what this plan intends to change — decided before the metrics? (3) Are you relying on apparent value like AVE? (4) Does the result feed back into the next plan as a two-way loop? (5) Are qualitative shifts in attitude and relationship captured alongside the quantitative? This article is updated continuously against access data and read rate.</p>`
   },
@@ -335,7 +252,7 @@ const NOTES_EN = [
 <h2>Leaders who give meaning vs. leaders who paper over</h2>
 <p>So what kind of leadership works? Bass's 1985 concept of transformational leadership raises the level of motivation itself by presenting a clear vision, giving intellectual stimulation, and paying individual attention. You could restate it as a leader who gives values meaning rather than distributing them. The caution is whether the behavior is genuine. Authentic leadership, as organized by Avolio and Gardner in 2005, centers on self-awareness, transparency, and consistency. By the logic of social learning, vision-talk from a leader whose words and actions diverge is worse than nothing — it teaches that the values are not really held.</p>
 <h2>How BOATship practices this — operating the system is the message</h2>
-<p>We embed internal branding into systems and experiences rather than slogans, and <a href="/en/notes/equal-exchange-compensation/">equal exchange compensation</a> is our clearest example. But a system does not function merely by existing. Leaders have to be the first to ask, project by project, "are we genuinely satisfied with this trade?" — and sometimes to demonstrate a decision to walk away from profitable work. Watching that, members learn the values. We wrote that <a href="/en/notes/inner-branding-brand-behavior/">turning values into behavior</a> hinges on system, behavior, and language agreeing; the responsibility to demonstrate that agreement first belongs to leaders. When a leader's conduct embodies the meaning of the system, values propagate through the team without orders.</p>
+<p>We embed internal branding into systems and experiences rather than slogans, and <a href="/en/magazine/equal-exchange-compensation/">equal exchange compensation</a> is our clearest example. But a system does not function merely by existing. Leaders have to be the first to ask, project by project, "are we genuinely satisfied with this trade?" — and sometimes to demonstrate a decision to walk away from profitable work. Watching that, members learn the values. We wrote that <a href="/en/notes/inner-branding-brand-behavior/">turning values into behavior</a> hinges on system, behavior, and language agreeing; the responsibility to demonstrate that agreement first belongs to leaders. When a leader's conduct embodies the meaning of the system, values propagate through the team without orders.</p>
 <h2>A leader's checklist — how to use this piece</h2>
 <p>Self-check questions for leaders responsible for internal branding. (1) Do the posted values and the decisions you actually make agree? (2) Are you aware that what you reward and what you overlook are both signals about values? (3) Are you giving values meaning in the context of each person's work, not just distributing them? (4) Is there transparency and consistency in your own conduct? (5) Have you designed the way you operate the system as a message worth teaching? This article is updated continuously against access data and read rate, in line with how we run <a href="/en/notes/pr-planning-peso-model/">our owned media</a>. Use it directly in values work or management training design.</p>`
   }

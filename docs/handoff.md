@@ -101,8 +101,8 @@
 
 ### Task 4-2 n01 英訳記事 — ✅ 完了（PR: claude/session3-en-article）
 - **設計判断**: 英語記事は `notes/notes-en.js`（`NOTES_EN` 配列）に分離。admin・週次workflowが触る notes.js を汚染せず、`sourceId` で日本語記事と紐付け（保守性優先）。
-- `/en/notes/equal-exchange-compensation/` を静的生成（build-articles.js が NOTES_EN を読み `en-notes` として生成。lang=en / EN CTA（→/en/contact/）/ EN Evidence見出し / EN newsletter文言 / related無し）。
-- hreflang: ja n01（/notes/equivalent-exchange-compensation/）↔ en 記事を相互設定（x-default=ja）。EN版が無い記事には hreflang を付けない。
+- `/en/magazine/equal-exchange-compensation/` を静的生成（build-articles.js が NOTES_EN を読み `en-notes` として生成。lang=en / EN CTA（→/en/contact/）/ EN Evidence見出し / EN newsletter文言 / related無し）。
+- hreflang: ja n01（/magazine/equivalent-exchange-compensation/）↔ en 記事を相互設定（x-default=ja）。EN版が無い記事には hreflang を付けない。
 - タイトルは3案から**案1をドラフト採用**（PRで人間が選択）: ①Why We Accept Vegetables as Payment ②Design Work, Paid in Vegetables ③Beyond Money。
 - 直訳ではなく再構成。海外読者向け補足（地方の生産者の文脈 / お互いさま）を追加。「円でも支払可」を明記。
 - sitemap に EN記事を追加（25 URLs）。workflow paths に notes-en.js 追加。
