@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Magazines — BOATship</title>
-<meta name="description" content="Project stories and production notes from BOATship. Articles are published in Japanese.">
+<meta name="description" content="Project stories and production notes from BOATship. Most articles are published in Japanese; some are available in English.">
 <link rel="canonical" href="https://www.boatship.jp/en/magazine/">
 <meta property="og:title" content="Magazines — BOATship">
-<meta property="og:description" content="Project stories and production notes from BOATship. Articles are published in Japanese.">
+<meta property="og:description" content="Project stories and production notes from BOATship. Most articles are published in Japanese; some are available in English.">
 <meta property="og:url" content="https://www.boatship.jp/en/magazine/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="BOATship">
@@ -78,7 +78,7 @@
   <p>Project stories and production notes from the studio.</p>
 </section>
 
-<p class="jp-notice">These articles are published in Japanese. Titles and summaries below are in English — the linked articles open in Japanese. Our English-language writing lives in <a href="/en/notes/">Notes</a>.</p>
+<p class="jp-notice">Most of these articles are published in Japanese. Titles and summaries below are in English — entries marked “Japanese” open in Japanese, while the rest are available in full English. More English-language writing lives in <a href="/en/notes/">Notes</a>.</p>
 
 <section class="concrete-list" id="mag-list"></section>
 
@@ -118,14 +118,17 @@
   document.getElementById('mag-list').innerHTML = sorted.map(function (a) {
     // 英語メタが無い記事は日本語タイトルを出さず、未翻訳であることを明示する。
     var m = ARTICLES_EN[a.id] || { title: 'Untranslated article', excerpt: 'An English summary for this piece is not available yet.' };
-    return '<a href="/magazine/' + esc(a.slug) + '/" class="concrete-item reveal" hreflang="ja">' +
+    // slug と body を持つエントリはフル英語記事（/en/magazine/<slug>/ に静的生成済み）
+    var fullEn = !!(m.slug && m.body);
+    var href = fullEn ? '/en/magazine/' + esc(m.slug) + '/' : '/magazine/' + esc(a.slug) + '/';
+    return '<a href="' + href + '" class="concrete-item reveal" hreflang="' + (fullEn ? 'en' : 'ja') + '">' +
       '<div class="concrete-image"><img src="' + esc(String(a.thumb).replace(/^\.\.\//, '/')) + '" alt="' + esc(m.title) + '"></div>' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
-          '<span>' + esc(a.date) + '</span>' +
-          '<span>' + esc(a.readTime) + ' min read</span>' +
-          '<span>' + esc(a.category) + '</span>' +
-          '<span class="note-chip">Japanese</span>' +
+          '<span>' + esc(m.date || a.date) + '</span>' +
+          '<span>' + esc(m.readTime || a.readTime) + ' min read</span>' +
+          '<span>' + esc(m.category || a.category) + '</span>' +
+          (fullEn ? '' : '<span class="note-chip">Japanese</span>') +
         '</div>' +
         '<h3 class="concrete-title">' + esc(m.title) + '</h3>' +
         '<p class="concrete-excerpt">' + esc(m.excerpt) + '</p>' +

@@ -139,7 +139,7 @@
 
 ## Task 4-2: n01「等価交換報酬制度」の英訳記事
 **仕様**:
-- notes.jsの `n01` を元に英語記事を作成し、`/en/notes/equal-exchange-compensation/` として静的生成に組み込む
+- notes.jsの `n01` を元に英語記事を作成し、`/en/magazine/equal-exchange-compensation/` として静的生成に組み込む
 - タイトル案: "Why We Accept Vegetables as Payment: BOATship's Equal Exchange Model"(仮。3案出して人間に選ばせる)
 - 直訳禁止。海外読者に馴染みのない文脈(地方企業、日本の商習慣)には1〜2文の補足を入れる
 - 記事データはnotes.jsに `lang: "en"` フィールド付きで追加するか、`notes-en.js` を分けるか、保守性の観点であなたが設計判断して提案する

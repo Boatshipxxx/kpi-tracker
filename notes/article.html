@@ -129,6 +129,17 @@
   var id = params.get('id');
   var note = NOTES.find(function (n) { return n.id === id; });
 
+  // Magazine へ移行した旧 Culture 記事（旧URL ?id= からの流入を新URLへ誘導）
+  var MOVED_TO_MAGAZINE = {
+    n01: '/magazine/equivalent-exchange-compensation/',
+    n03: '/magazine/design-thinking-and-business-art/',
+    n04: '/magazine/barter-and-resource-sharing/'
+  };
+  if (!note && MOVED_TO_MAGAZINE[id]) {
+    window.location.replace(MOVED_TO_MAGAZINE[id]);
+    return;
+  }
+
   // 予約公開: 日付（JST）が未来の記事は旧URLでも表示しない
   function isPublished(n) {
     var m = String(n.date || '').match(/(\d{4})[.\-/](\d{1,2})[.\-/](\d{1,2})/);
@@ -161,8 +172,7 @@
 
   var THEME_LABEL = {
     'inner-branding': 'Inner Branding',
-    'pr-planning': 'PR Planning',
-    'culture': 'Culture'
+    'pr-planning': 'PR Planning'
   };
 
   function esc(s) {

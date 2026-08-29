@@ -12,6 +12,36 @@
       ],
       "destination": "https://www.boatship.jp/$1",
       "permanent": true
+    },
+    {
+      "source": "/notes/equivalent-exchange-compensation/",
+      "destination": "/magazine/equivalent-exchange-compensation/",
+      "permanent": true
+    },
+    {
+      "source": "/notes/design-thinking-and-business-art/",
+      "destination": "/magazine/design-thinking-and-business-art/",
+      "permanent": true
+    },
+    {
+      "source": "/notes/barter-and-resource-sharing/",
+      "destination": "/magazine/barter-and-resource-sharing/",
+      "permanent": true
+    },
+    {
+      "source": "/en/notes/equal-exchange-compensation/",
+      "destination": "/en/magazine/equal-exchange-compensation/",
+      "permanent": true
+    },
+    {
+      "source": "/en/notes/design-thinking-business-art/",
+      "destination": "/en/magazine/design-thinking-business-art/",
+      "permanent": true
+    },
+    {
+      "source": "/en/notes/barter-and-resource-sharing/",
+      "destination": "/en/magazine/barter-and-resource-sharing/",
+      "permanent": true
     }
   ],
   "headers": [

@@ -44,6 +44,24 @@ function loadGlobal(relFile, globalName) {
   return value;
 }
 
+/* ARTICLES_EN のようなオブジェクト形式のグローバルを読む（無ければ {}） */
+function loadGlobalObject(relFile, globalName) {
+  if (!fs.existsSync(path.join(ROOT, relFile))) return {};
+  const code = fs.readFileSync(path.join(ROOT, relFile), 'utf8');
+  const sandbox = {};
+  vm.createContext(sandbox);
+  const marker = '__export_' + globalName;
+  try {
+    vm.runInContext(
+      code + `\n;globalThis[${JSON.stringify(marker)}] = typeof ${globalName} !== 'undefined' ? ${globalName} : undefined;`,
+      sandbox,
+      { filename: relFile }
+    );
+  } catch (e) { return {}; }
+  const value = sandbox[marker];
+  return (value && typeof value === 'object' && !Array.isArray(value)) ? value : {};
+}
+
 /* "2026.07.10" / "2026-07-10" → "2026-07-10"（W3C Datetime）。不正値は null。 */
 function toLastmod(date) {
   if (!date) return null;
@@ -152,6 +170,14 @@ function build() {
   // 英語版 Notes 記事
   notesEn.forEach((e) => {
     if (e.slug) entries.push(urlEntry(`/en/notes/${e.slug}/`, toLastmod(e.date), 'monthly', '0.6'));
+  });
+  // 英語版 Magazine 記事（ARTICLES_EN のうち slug と body を持つフル英語記事のみ）
+  const articlesEn = loadGlobalObject('magazine/articles-en.js', 'ARTICLES_EN');
+  articles.forEach((a) => {
+    const e = articlesEn[a.id];
+    if (e && e.slug && e.body && isPublished(e)) {
+      entries.push(urlEntry(`/en/magazine/${e.slug}/`, toLastmod(e.date), 'monthly', '0.6'));
+    }
   });
   // News（press-release / announcement のみ。media-coverage は外部リンクのため対象外）
   news
