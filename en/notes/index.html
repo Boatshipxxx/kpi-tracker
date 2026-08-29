@@ -30,6 +30,16 @@
   font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
 }
 .note-chip.evidence { opacity: 0.7; }
+/* Same text-tile thumbnails as the News list (Silkscreen, same as News) */
+.note-theme-tile span {
+  font-family: 'Silkscreen', cursive;
+  font-size: clamp(18px, 2.6vw, 30px);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.concrete-item:hover .note-theme-tile { background: var(--text-black); color: var(--bg-yellow); }
 
 </style>
 </head>
@@ -78,7 +88,6 @@
   <button class="filter-tab active" data-filter="all">ALL</button>
   <button class="filter-tab" data-filter="inner-branding">INNER BRANDING</button>
   <button class="filter-tab" data-filter="pr-planning">PR PLANNING</button>
-  <button class="filter-tab" data-filter="culture">CULTURE</button>
 </div>
 
 <section class="concrete-list" id="notes-list"></section>
@@ -108,7 +117,9 @@
 <script src="/notes/notes-en.js"></script>
 <script>
 (function () {
-  var THEME_LABEL = { 'inner-branding': 'Inner Branding', 'pr-planning': 'PR Planning', 'culture': 'Culture' };
+  var THEME_LABEL = { 'inner-branding': 'Inner Branding', 'pr-planning': 'PR Planning' };
+  // Same tile treatment as the News list
+  var THEME_TILE = { 'inner-branding': 'INNER<br>BRANDING', 'pr-planning': 'PR<br>PLANNING' };
   function esc(s) {
     return String(s == null ? '' : s)
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -126,13 +137,13 @@
     return String(b.date || '').localeCompare(String(a.date || ''));
   });
   document.getElementById('notes-list').innerHTML = sorted.map(function (n) {
-    var theme = n.theme || 'culture';
+    var theme = n.theme || 'inner-branding';
     var evCount = (n.evidence || []).length;
     var chips =
       '<span class="note-chip">' + esc(THEME_LABEL[theme] || theme) + '</span>' +
       (evCount ? '<span class="note-chip evidence">Evidence x' + evCount + '</span>' : '');
     return '<a href="/en/notes/' + esc(n.slug) + '/" class="concrete-item reveal" data-theme="' + esc(theme) + '">' +
-      '<div class="concrete-image"><img src="' + esc(String(n.image).replace(/^\.\.\//, '/')) + '" alt="' + esc(n.title) + '"></div>' +
+      '<div class="concrete-image note-theme-tile"><span>' + (THEME_TILE[theme] || esc(String(theme).toUpperCase())) + '</span></div>' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
           '<span>' + esc(n.date) + '</span>' +

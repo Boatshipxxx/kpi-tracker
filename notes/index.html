@@ -19,6 +19,16 @@
   text-transform: uppercase;
 }
 .note-chip.evidence { opacity: 0.7; }
+/* News と同じテキストタイル型サムネイル（フォントも News と同一の Silkscreen） */
+.note-theme-tile span {
+  font-family: 'Silkscreen', cursive;
+  font-size: clamp(18px, 2.6vw, 30px);
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+.concrete-item:hover .note-theme-tile { background: var(--text-black); color: var(--bg-yellow); }
 </style>
 </head>
 <body>
@@ -88,7 +98,6 @@
   <button class="filter-tab active" data-filter="all">ALL</button>
   <button class="filter-tab" data-filter="inner-branding">INNER BRANDING</button>
   <button class="filter-tab" data-filter="pr-planning">PR PLANNING</button>
-  <button class="filter-tab" data-filter="culture">CULTURE</button>
 </div>
 
 <!-- Notes List (notes.js から自動生成 — admin で公開すると自動反映) -->
@@ -122,8 +131,12 @@
 (function () {
   var THEME_LABEL = {
     'inner-branding': 'Inner Branding',
-    'pr-planning': 'PR Planning',
-    'culture': 'Culture'
+    'pr-planning': 'PR Planning'
+  };
+  // News のタイル（news-type-tile）と同じ表記方法。テーマ名をそのまま2行で出す
+  var THEME_TILE = {
+    'inner-branding': 'INNER<br>BRANDING',
+    'pr-planning': 'PR<br>PLANNING'
   };
 
   function esc(s) {
@@ -145,14 +158,14 @@
   });
 
   document.getElementById('notes-list').innerHTML = sorted.map(function (n) {
-    var theme = n.theme || 'culture';
+    var theme = n.theme || 'inner-branding';
     var evCount = (n.evidence || []).length;
     var chips =
       '<span class="note-chip">' + esc(THEME_LABEL[theme] || theme) + '</span>' +
       (evCount ? '<span class="note-chip evidence">Evidence ×' + evCount + '</span>' : '');
     var href = n.slug ? esc(n.slug) + '/' : 'article.html?id=' + esc(n.id);
     return '<a href="' + href + '" class="concrete-item reveal" data-theme="' + esc(theme) + '">' +
-      '<div class="concrete-image"><img src="' + esc(n.image) + '" alt="' + esc(n.title) + '"></div>' +
+      '<div class="concrete-image note-theme-tile"><span>' + (THEME_TILE[theme] || esc(String(theme).toUpperCase())) + '</span></div>' +
       '<div class="concrete-body">' +
         '<div class="concrete-meta">' +
           '<span>' + esc(n.date) + '</span>' +
@@ -168,6 +181,8 @@
 
   document.querySelectorAll('.filter-tab').forEach(function (tab) {
     tab.addEventListener('click', function () {
+      document.querySelectorAll('.filter-tab').forEach(function (t) { t.classList.remove('active'); });
+      tab.classList.add('active');
       var f = tab.getAttribute('data-filter');
       document.querySelectorAll('#notes-list .concrete-item').forEach(function (item) {
         item.style.display = (f === 'all' || item.getAttribute('data-theme') === f) ? '' : 'none';
