@@ -412,4 +412,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>卒業生・在学生・受験生を1つのメディアで束ねる考え方は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学の設計を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n19",
+    slug: "university-research-communication-media",
+    num: "#19",
+    category: "Column",
+    title: "研究広報は「わかりやすく」の先へ — 研究者を主役にした連載が社会とつながる",
+    date: "2026.09.14",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-03.jpg",
+    evidence: [{"title":"Science in Society: Re-Evaluating the Deficit Model of Public Attitudes — 「知識を増やせば支持が増える」欠如モデルの再検証","source":"Sturgis, P., & Allum, N. (2004). Public Understanding of Science, 13(1)","url":"https://doi.org/10.1177/0963662504042690"},{"title":"Using narratives and storytelling to communicate science with nonexpert audiences — 非専門家に科学を伝える物語形式の有効性","source":"Dahlstrom, M. F. (2014). PNAS, 111(Supplement 4)","url":"https://doi.org/10.1073/pnas.1320645111"},{"title":"Gaining trust as well as respect in communicating to motivated audiences about science topics — 科学の伝達では能力だけでなく「信頼・温かさ」の認知が効く","source":"Fiske, S. T., & Dupree, C. (2014). PNAS, 111(Supplement 4)","url":"https://doi.org/10.1073/pnas.1317505111"},{"title":"The Role of Transportation in the Persuasiveness of Public Narratives — 物語的移入と説得","source":"Green, M. C., & Brock, T. C. (2000). Journal of Personality and Social Psychology, 79(5)","url":"https://doi.org/10.1037/0022-3514.79.5.701"}],
+    related: ["n14", "n16"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第5回（研究広報）。初稿 2026.08.31 執筆、公開日は連載の週次スロット 2026.09.14（月）＝n18(09.07)の次週。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・研究推進部・URA。仮説: 研究広報の相談は「プレスリリースの書き方」「わかりやすい表現」に集まるが、研究が支持されない原因は表現ではなく欠如モデル前提の設計にあるので、タイトルで『わかりやすくの先へ』と一段ずらして流入を取れるか試す。想定検索KW:「研究広報」「大学 研究成果 発信」「サイエンスコミュニケーション 大学」「URA 広報」。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「研究者を主役に」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「研究成果を眠らせない — 大学の研究広報の設計」型でA/B。反応率2%未満なら末尾を研究広報の自己診断リスト型CTAに作り替える。",
+    excerpt: "研究成果がプレスリリース頼みで眠っていないか。欠如モデルの限界と物語研究をもとに、研究者を主役にした自前メディアで研究を社会につなぐ設計をショート形式でまとめる。",
+    body: `<p>研究成果は、プレスリリースではなく貴学のメディアで社会に届きます。</p>
+<h2>なぜ重要か</h2>
+<p>貴学には毎年、報道されないまま眠る研究成果が積み上がっています。リリースを配信しても、載せるかどうかを決めるのは記者です（<a href="/notes/pr-planning-news-values-media-relations/">ニュースバリューとゲートキーピング</a>）。自前のメディアを持てば、その判断を他者に委ねずに済みます。研究広報が届く相手は一般読者だけではありません。共同研究先の企業、外部資金の審査に関わる人、そして「ここで学びたい」と考える受験生が、同じ記事を読みます。研究広報は広報課の副業ではなく、経営課題です。</p>
+<h2>「わかりやすく」だけでは届かない</h2>
+<p>研究広報の改善案は「専門用語を減らす」に偏ります。しかし Sturgis と Allum が2004年に示したとおり、知識を注入すれば理解と支持が増えるという「欠如モデル」は実証的に支持されていません。知識量と科学への態度の関係は、そこまで単純ではないのです。Fiske と Dupree が2014年に整理したのは、科学的なメッセージの受け止めが、話し手の能力の認知だけでなく、信頼できる・こちらの側に立っているという温かさの認知に強く左右されるという点です。読者は「何を知っているか」と同じくらい「誰のために研究しているか」を見ています。語るべきは成果の要約ではなく、その研究者が抱えている問いと動機です。</p>
+<h2>研究者を主役に、連載として積む</h2>
+<p>Dahlstrom は2014年、非専門家に科学を伝える場面で物語形式が理解と関与を高めることを整理しました。Green と Brock の物語的移入の研究も、固有名詞と情景のある語りが読み手の態度を動かすことを実証しています。実務への翻訳は明快です。成果発表を単発で出すのをやめ、研究者を主役にした連載として積む。研究室の日常、失敗した実験、この問いに取り組む理由——ここに読者がつきます。そして1本の記事は<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>・産学連携・<a href="/notes/university-alumni-engagement-media/">卒業生広報</a>の3方向で同時に働きます。研究推進部と広報課が別々の媒体を持つほど、素材は分散して力を失います。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。人を主役に据えて連載として積むというこの編集の型は、扱う題材がスポーツでも研究でも変わりません（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>研究・入試・卒業生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学のコンテンツの柱と体制を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>をお使いください。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
