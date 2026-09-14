@@ -439,4 +439,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>研究・入試・卒業生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学のコンテンツの柱と体制を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>をお使いください。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n20",
+    slug: "university-community-engagement-media",
+    num: "#20",
+    category: "Column",
+    title: "地域連携は「やりっぱなし」で終わる — 記録し続けるメディアが地域の信頼をつくる",
+    date: "2026.09.21",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-05.jpg",
+    evidence: [{"title":"The Scholarship of Engagement — 大学の知を地域社会の課題と結び直す「engagement」の提唱","source":"Boyer, E. L. (1996). Journal of Public Service & Outreach, 1(1)","url":""},{"title":"From city marketing to city branding — 場所のブランドは発信ではなく関係者の体験から立ち上がる","source":"Kavaratzis, M. (2004). Place Branding, 1(1)","url":""},{"title":"Bowling Alone — 社会関係資本（つながりの蓄積）が地域の力を左右する","source":"Putnam, R. D. (2000). Simon & Schuster","url":""},{"title":"The Role of Transportation in the Persuasiveness of Public Narratives — 物語的移入と説得","source":"Green, M. C., & Brock, T. C. (2000). Journal of Personality and Social Psychology, 79(5)","url":"https://doi.org/10.1037/0022-3514.79.5.701"}],
+    related: ["n14", "n18"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第6回（地域連携・地域貢献の広報）。初稿 2026.09.14 執筆、公開日は連載の週次スロット 2026.09.21（月）＝n19(09.14)の次週。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・地域連携センター・社会貢献推進部。仮説: 地域連携の相談は「連携協定の締結」「イベントの集客」に集まるが、実務の損失は実施後に記録が残らないこと（協定書と写真フォルダで終わる）なので、タイトルで『やりっぱなし』と痛点を先出しして流入を取れるか試す。想定検索KW:「大学 地域連携 広報」「地域貢献 発信 大学」「連携協定 効果」「大学 地域 ブランディング」。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「記録が資産になる」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「連携協定を結んだ後、何を発信するか — 大学の地域連携広報」型でA/B。反応率2%未満なら末尾を地域連携広報の自己診断リスト型CTAに作り替える。",
+    excerpt: "地域連携が協定書と写真フォルダで終わっていないか。engagement研究と場所のブランド論をもとに、連携の記録を積み上げる自前メディアの設計をショート形式でまとめる。",
+    body: `<p>地域連携の成果は、協定書ではなく貴学のメディアに残ります。</p>
+<h2>なぜ重要か</h2>
+<p>貴学は今年も、自治体との連携協定、商店街との共同企画、小中学校への出前授業を重ねているはずです。しかし実施後に残るのは、協定書のファイルと共有フォルダの写真だけ——これが地域連携広報の最大の損失です。Boyer は1996年、大学の知を地域の課題と結び直す「engagement」を提唱しました。地域連携は社会貢献の付録ではなく、貴学の存在理由そのものです。記録が残らなければ、存在理由が毎年リセットされます。</p>
+<h2>「イベント」ではなく「連載」で積む</h2>
+<p>年1回の周年イベントより、月2本の記録です。Kavaratzis が2004年に整理したとおり、場所のブランドは行政の発信ではなく、そこに関わる人の体験の積み重ねから立ち上がります。大学も同じで、地域からの評価は広報予算ではなく、関わった人の数と語られた回数で決まります。語るべきは連携協定の締結式ではありません。その協定で誰の何が変わったのか、現場の学生と地域の方の名前で書く。Green と Brock の物語的移入の研究が示すとおり、固有名詞と情景のある語りが読み手の態度を動かします。締結の報告は1回で消費されますが、連載は資産として積み上がります。</p>
+<h2>記録は交渉のテーブルで効く</h2>
+<p>積み上げた記録は、次の連携を呼びます。Putnam が示したように、つながりの蓄積（社会関係資本）はそれ自体が地域の資源です。自治体の担当者が異動しても、企業が新しく声をかけるときも、判断材料になるのは口頭の実績ではなく検索して読める記事です。補助金や外部資金の申請でも、地域からの支持を語る一次資料になります。そして地域の物語は、<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>で「この地域で学ぶ意味」を語る素材にそのまま転用できます。地域連携センターが独自のブログを持ち、広報課が別のサイトを持つほど、素材は分散して力を失います。<a href="/notes/university-internal-engagement-media/">学内メディア</a>と同じ編集体制の中に置いてください。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>地域・受験生・卒業生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学のコンテンツの柱と体制を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>をお使いください。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
