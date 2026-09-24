@@ -80,12 +80,13 @@
   .card .meta{display:flex;justify-content:space-between;font-family:'DotGothic16',sans-serif;font-size:0.9rem;margin-bottom:1rem;}
   .card .meta .num{font-family:'Silkscreen',cursive;color:#C8391D;transition:color .3s;}
   .card .imgwrap{flex:1;display:flex;justify-content:center;align-items:center;}
-  .card .imgwrap img{width:170px;height:170px;object-fit:cover;-webkit-clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);filter:grayscale(100%) contrast(1.4);mix-blend-mode:multiply;transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;}
+  /* 製作実績のサムネイルは元画像のカラーをそのまま出す（モノクロ加工・背景との乗算合成なし） */
+  .card .imgwrap img{width:170px;height:170px;object-fit:cover;-webkit-clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);clip-path:polygon(10% 0,100% 10%,90% 100%,0 90%);transition:transform .4s cubic-bezier(.34,1.56,.64,1),filter .3s;}
   .card .title{text-align:center;font-family:'DotGothic16',sans-serif;font-size:1.1rem;margin-top:1.5rem;line-height:1.3;}
   .card .cap{position:absolute;left:0;right:0;bottom:0;background:#C8391D;color:#F5E100;font-family:'Silkscreen',cursive;font-size:10px;letter-spacing:0.1em;padding:10px 14px;transform:translateY(101%);transition:transform .4s cubic-bezier(.16,1,.3,1);}
   .card .arrow{position:absolute;bottom:1rem;right:1.5rem;font-size:1.4rem;color:#C8391D;transition:transform .3s,color .3s;}
   .card:hover{background:#111;color:#F5E100;}
-  .card:hover .imgwrap img{transform:scale(1.1) rotate(-8deg);filter:grayscale(100%) contrast(2) invert(100%);mix-blend-mode:screen;}
+  .card:hover .imgwrap img{transform:scale(1.1) rotate(-8deg);filter:contrast(1.05) saturate(1.1);}
   .card:hover .meta .num{color:#F5E100;}
   .card:hover .arrow{color:#F5E100;transform:translate(3px,3px);}
   .card:hover .cap{transform:translateY(0);}
