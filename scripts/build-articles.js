@@ -461,6 +461,12 @@ const BRU_SCALE_SCRIPT = `
 })();
 </script>`;
 
+// テキスト型ヘッダーの表示語。一覧のサムネイルタイルと同じ表記に揃える。
+const HERO_WORD = {
+  'inner-branding': 'INNER<br>BRANDING',
+  'pr-planning': 'PR<br>PLANNING'
+};
+
 function heroBlockFor(a, kind) {
   const isTech = a.category && String(a.category).toLowerCase() === 'tech';
   if (isTech) {
@@ -469,6 +475,20 @@ function heroBlockFor(a, kind) {
   if (kind === 'magazine' && a.id === '03') {
     return '<div id="bru-slot"></div>';
   }
+
+  // Notes 記事と、Notes から移行した Culture 記事は汎用の差し替え画像しか持たず、
+  // どの記事も同じ絵が出て情報量がない。一覧のタイルと同じテキスト表記に置き換える。
+  const isNotesKind = kind === 'notes' || kind === 'en-notes';
+  const isMigratedCulture = String(a.category || '').toLowerCase() === 'culture';
+  if (isNotesKind || isMigratedCulture) {
+    const word = HERO_WORD[a.theme] || String(a.category || a.theme || '').toUpperCase();
+    const label = kind === 'en-notes' || a.lang === 'en' ? 'BOATship Notes' : 'BOATship';
+    return '<div class="article-text-hero-block">'
+      + `<div class="article-text-hero-inner" data-label="${esc(label)}">`
+      + `<span class="article-text-hero-word">${word}</span>`
+      + '</div></div>';
+  }
+
   const img = rootify((kind === 'magazine' || kind === 'en-magazine') ? (a.hero || a.image) : a.image);
   return `<div class="article-hero-wrap"><img src="${esc(img)}" alt="${esc(a.title)}" class="article-hero-img"></div>`;
 }
