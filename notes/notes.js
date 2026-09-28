@@ -493,4 +493,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>高校・受験生・保護者を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。訪問と訪問のあいだを埋める発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n22",
+    slug: "university-parent-communication-media",
+    num: "#22",
+    category: "Column",
+    title: "保護者は「説得する相手」ではなく「一緒に選ぶ人」 — 家庭の会話に届く大学のメディア",
+    date: "2026.10.05",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-06.jpg",
+    evidence: [{"title":"A Model of Student College Choice — 大学選択は本人の特性と、保護者・友人・高校教員など重要な他者の影響の組み合わせで決まる","source":"Chapman, D. W. (1981). The Journal of Higher Education, 52(5)","url":""},{"title":"Studying Student College Choice: A Three-Phase Model — 進学の素地づくり・探索・選択の3段階モデル。素地づくりの段階で保護者の働きかけが大きい","source":"Hossler, D., & Gallagher, K. S. (1987). College and University, 62(3)","url":""},{"title":"Edelman Trust Barometer — 「誰の言葉が信頼されるか」の国際調査","source":"Edelman (2025)","url":"https://www.edelman.com/trust/trust-barometer"},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"}],
+    related: ["n16", "n21"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第8回（保護者向け広報）。初稿 2026.09.28 執筆、公開日は連載の週次スロット 2026.10.05（月）＝n21(09.28)の次週。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・入試課・学生支援課。仮説: 保護者向け施策の検索意図は「保護者説明会 内容」「保護者会 案内」だが、実務の詰まりは説明会の一回性と、家庭で進路が話される場面に大学の言葉が不在なこと（＝継続接点の不在）なので、タイトルで『説得する相手ではなく一緒に選ぶ人』と関係の捉え方をずらして流入を取れるか試す。想定検索KW:「大学 保護者 広報」「入試広報 保護者 向け」「保護者 説明会 大学 情報発信」。連載の入試広報回 n16・高校教員回 n21 へ内部リンクして回遊を設計（受験生・先生・保護者の3者を同じメディアで束ねる流れ）。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「保護者が知りたいのは4年後の姿」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「保護者説明会を年1回で終わらせない — 家庭に届く大学広報」型でA/B。反応率2%未満なら末尾を保護者向け発信の自己診断リスト型CTAに作り替える。",
+    excerpt: "保護者との接点が年1回の説明会と郵送物で途切れていないか。大学選択モデルの研究をもとに、家庭の進路の会話に届き続ける自前メディアの設計をショート形式でまとめる。",
+    body: `<p>保護者の納得は、説明会ではなく貴学のメディアで積み上がります。</p>
+<h2>なぜ重要か</h2>
+<p>進路は、食卓で決まります。Chapman は1981年の大学選択モデルで、進学先の選択が本人の特性だけでなく、保護者・友人・高校教員といった重要な他者の影響と組み合わさって決まることを示しました。Hossler と Gallagher の1987年の3段階モデルも、進学を考え始める素地づくりの段階で保護者の働きかけが大きいことを整理しています。それでも貴学から保護者への接点は、オープンキャンパスの保護者説明会と、入学後の郵送物に絞られています。家庭で進路が話されるその場面に、貴学の言葉は届いていません。</p>
+<h2>保護者が知りたいのは、4年後の姿</h2>
+<p>保護者が判断の材料にしたいのは、学費と就職率の数字だけではありません。「うちの子がこの大学でどう過ごし、どう変わるか」を具体的に思い描ける材料です。1年生の時間割、ゼミの空気、困ったときに頼れる窓口、卒業生の現在——パンフレットの要約では伝わらない部分です。Edelman Trust Barometer が毎年示すとおり、信頼されるのは公式発表より「自分と似た立場の人」の言葉です。在学生の保護者が語る記事は、これから選ぶ保護者に最も届きます。</p>
+<h2>「説得」ではなく「一緒に選ぶ」材料を渡す</h2>
+<p>保護者を説得の対象と見るかぎり、発信は説明会の一回で終わります。一緒に選ぶ人と見れば、必要なのは受験生と同じ記事を、同じタイミングで読める場です。親子が同じ記事を読めば、家庭の会話に共通の話題が生まれます。単純接触効果の研究が示すとおり、好意は接触の回数で積み上がります。年1回の説明会より、月2本の記事です。そして保護者向けに書いた記事は、そのまま<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>で受験生に読まれ、<a href="/notes/university-high-school-teacher-relations-media/">高校の先生</a>が生徒に勧める材料にもなります。受験生・先生・保護者で媒体を分けるほど、素材は分散して力を失います。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>受験生・保護者・高校の先生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。家庭に届く発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
