@@ -520,4 +520,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>受験生・保護者・高校の先生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。家庭に届く発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n23",
+    slug: "university-first-year-retention-media",
+    num: "#23",
+    category: "Column",
+    title: "入学はゴールではない — 1年生の「居場所」をつくる、定着のための大学メディア",
+    date: "2026.10.12",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-02.jpg",
+    evidence: [{"title":"Dropout from Higher Education: A Theoretical Synthesis of Recent Research — 学業面・社会面での大学への統合が退学を左右するモデル","source":"Tinto, V. (1975). Review of Educational Research, 45(1)","url":"https://doi.org/10.3102/00346543045001089"},{"title":"Student Involvement: A Developmental Theory for Higher Education — 学生が大学生活に注ぐ時間とエネルギーが成長と定着を決める","source":"Astin, A. W. (1984). Journal of College Student Personnel, 25(4)","url":""},{"title":"A Brief Social-Belonging Intervention Improves Academic and Health Outcomes of Minority Students — 上級生の体験談で「居場所の不安は誰にでもあり、やがて薄れる」と伝える短い介入の効果","source":"Walton, G. M., & Cohen, G. L. (2011). Science, 331(6023)","url":"https://doi.org/10.1126/science.1198364"}],
+    related: ["n15", "n14"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第9回（新入生の定着・中退防止）。初稿 2026.10.05 執筆、公開日は連載の週次スロット 2026.10.12（月）＝n22(10.05)の次週。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・学生支援課・教務課。仮説: 定着施策の検索意図は「中退防止 取り組み」「初年次教育」に集まり、広報課の仕事と見なされていないが、居場所の不安を和らげるのは上級生の体験談という“記事そのもの”なので、タイトルで『入学はゴールではない』と入試広報の延長線に置き直して流入を取れるか試す。想定検索KW:「大学 中退防止 取り組み」「大学 1年生 定着」「初年次 居場所づくり」「学生支援 広報」。連載の学内エンゲージメント回 n15・入試広報回 n16・保護者回 n22 へ内部リンクして回遊を設計（入学前→入学後をつなぐ流れ）。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「不安なのは自分だけではない」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「大学の中退防止は広報の仕事 — 先輩の言葉が1年生を支える」型でA/B。反応率2%未満なら末尾を新入生向け発信の自己診断リスト型CTAに作り替える。",
+    excerpt: "入試広報の成果が、1年目のつまずきで失われていないか。大学への統合と所属感の研究をもとに、先輩の言葉で新入生の居場所をつくる自前メディアの設計をショート形式でまとめる。",
+    body: `<p>新入生の定着は、オリエンテーションではなく貴学のメディアで支えられます。</p>
+<h2>なぜ重要か</h2>
+<p>学生募集の努力は、入学式で終わりません。入学した学生が1年目でつまずいて離れれば、入試広報で積み上げた信頼も、学びの機会も失われます。Tinto は1975年、学生が大学を去るかどうかは、学業面と社会面の両方で大学に統合されているかに左右されると整理しました。Astin の1984年の関与理論も、学生が大学生活に注ぐ時間とエネルギーの量が、成長と定着を決めると示しています。それでも貴学から新入生への発信は、4月のオリエンテーションと履修案内に集中しています。不安が本格化する5月以降に、届く言葉がありません。</p>
+<h2>「不安なのは自分だけではない」と伝える</h2>
+<p>Walton と Cohen が2011年に Science 誌で報告した研究は、大学1年生に上級生の体験談を読ませ、「入学当初に居場所がないと感じるのは誰にでもあることで、時間とともに薄れる」と伝える短い介入を行いました。その結果、とくに少数派の立場にある学生で、その後の成績が向上しています。実務への翻訳は明快です。新入生に必要なのは規則の説明ではなく、先輩が名前つきで語る「最初は自分もそうだった」という物語です。サークルに入りそびれた話、最初の試験で失敗した話、相談窓口に救われた話——これは学内メディアの記事そのものです。</p>
+<h2>1本の記事が、入学前から入学後まで働く</h2>
+<p>先輩の体験談は、新入生だけの素材ではありません。受験生と<a href="/notes/university-parent-communication-media/">保護者</a>には「入ってからの姿」として読まれ、<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>の受け皿になります。語る側の上級生にとっても、自分の物語が名前つきで語られる体験は、所属を自己定義の一部に変えます（<a href="/notes/university-internal-engagement-media/">学内のエンゲージメント</a>）。入学前の約束と入学後の実感が同じメディアの上でつながるとき、広報は募集の仕事から、定着まで含めた大学経営の仕事になります。学生支援課と広報課が別々に発信するほど、素材は分散して力を失います。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>受験生・新入生・在学生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。入学後の1年間に届ける発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
