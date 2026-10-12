@@ -520,4 +520,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>受験生・保護者・高校の先生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。家庭に届く発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n23",
+    slug: "university-sports-communication-media",
+    num: "#23",
+    category: "Column",
+    title: "大学スポーツは「勝った日」だけの広報ではない — 勝敗に左右されない物語を貴学のメディアに積む",
+    date: "2026.10.12",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-02.jpg",
+    evidence: [{"title":"Basking in reflected glory: Three (football) field studies — 所属チームが勝つと、学生は大学との結びつきを積極的に示す","source":"Cialdini, R. B., Borden, R. J., Thorne, A., Walker, M. R., Freeman, S., & Sloan, L. R. (1976). Journal of Personality and Social Psychology, 34(3)","url":"https://doi.org/10.1037/0022-3514.34.3.366"},{"title":"The Dynamic Advertising Effect of Collegiate Athletics — 大学スポーツの成功が出願に与える広告的効果（いわゆるフルーティー効果）の実証","source":"Chung, D. J. (2013). Marketing Science, 32(5)","url":"https://doi.org/10.1287/mksc.2013.0795"},{"title":"The Impact of College Sports Success on the Quantity and Quality of Student Applications — スポーツの好成績と出願数・出願者の質の関係","source":"Pope, D. G., & Pope, J. C. (2009). Southern Economic Journal, 75(3)","url":""}],
+    related: ["n16", "n14"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第9回（大学スポーツ広報）。初稿 2026.10.12 執筆、公開日は連載の週次スロット 2026.10.12（月）＝n22(10.05)の次週。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・入試課・スポーツ局/強化部。実績TEAM JOSAI!（大学スポーツマガジン）と題材が最も直結する回。仮説: スポーツ広報の担当者の検索意図は「大学 スポーツ 広報」「箱根駅伝 広報効果」で、関心は勝った日の露出に集まるが、研究上も効果は勝敗に連動して揺れる（BIRG/フルーティー効果）ので、タイトルで『勝った日だけの広報ではない』と一段ずらし、勝敗に左右されない人の物語を自前メディアに積む設計で流入を取れるか試す。想定検索KW:「大学スポーツ 広報」「大学 スポーツ ブランディング」「駅伝 大学 広報 効果」「大学スポーツ 受験生 志願者」。連載の入試広報回 n16・卒業生回 n18・学内回 n15 へ内部リンクして回遊を設計。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「勝敗の外側にある物語」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「大学スポーツを入試広報に生かす — 中継の熱を一年中の資産に変える」型でA/B。反応率2%未満なら末尾をスポーツ広報の自己診断リスト型CTAに作り替える。",
+    excerpt: "大学スポーツの広報が、勝った日のリリースと中継の露出で終わっていないか。BIRGとフルーティー効果の研究をもとに、勝敗に左右されない物語を自前メディアに積む設計をショート形式でまとめる。",
+    body: `<p>大学スポーツの物語は、勝敗ではなく貴学のメディアで積み上がります。</p>
+<h2>なぜ重要か</h2>
+<p>大学スポーツは、貴学の名前が最も多くの人の目に触れる場面です。Chung は2013年の研究で、大学スポーツの成功が翌年以降の出願を押し上げる広告のような効果を持つことを実証しました。Pope と Pope の2009年の研究も、スポーツの好成績と出願数の増加の関係を示しています。ただし、どちらも効いているのは「勝った」という結果です。結果は毎年選べません。中継で高まった関心を受け止める場が貴学になければ、その熱は大会が終わった翌週に消えます。</p>
+<h2>勝った日だけ「私たち」になる</h2>
+<p>Cialdini らが1976年に行った古典的な研究は、自校のフットボールチームが勝った翌週、学生が大学のロゴ入りの服を着る割合が高まり、試合を語るときに「私たちが勝った」と言いやすくなることを示しました。所属先の栄光に自分を重ねる「BIRG（Basking in Reflected Glory）」です。裏を返せば、負けた週には「彼らが負けた」になります。結果の速報だけに頼るスポーツ広報は、この揺れをそのまま貴学のブランドに持ち込みます。勝ったときにリリースを出し、負けたときに沈黙する——その繰り返しでは、<a href="/notes/university-internal-engagement-media/">学内の誇り</a>も勝敗と一緒に上下します。</p>
+<h2>勝敗の外側にある物語を、自前のメディアに積む</h2>
+<p>勝敗に左右されないのは、人の物語です。選手が競技と学業をどう両立しているか、マネージャーやトレーナーが何を支えているか、怪我から戻るまでの時間、卒業後にどこで何をしているか。これらは負けた年にも書けて、記事として残り、検索され、読み返されます。試合の速報は報道とSNSに任せ、貴学のメディアには結果の手前と向こう側を積む。そうすれば1本の記事が、<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>では「この大学で4年間を過ごす姿」として受験生に、<a href="/notes/university-alumni-engagement-media/">卒業生広報</a>では母校を応援し続ける理由として卒業生に届きます。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。大会の結果を伝える媒体ではなく、スポーツを入り口に大学そのものを語る媒体——それがこの連載で繰り返してきた「メディアを作ってアプローチする」形です（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>スポーツ・入試・卒業生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。中継の熱を一年中の資産に変える発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
