@@ -520,4 +520,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>受験生・保護者・高校の先生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。家庭に届く発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n24",
+    slug: "university-social-media-owned-media-hub",
+    num: "#24",
+    category: "Column",
+    title: "大学のSNSは「入口」、物語を積むのは貴学のメディア — フォロワー数で終わらせない運用設計",
+    date: "2026.10.19",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-04.jpg",
+    evidence: [{"title":"Social media: The new hybrid element of the promotion mix — SNSは「組織→顧客」と「顧客どうし」の会話が混ざる場。後者は統制できず、組織にできるのは会話の形を整えること","source":"Mangold, W. G., & Faulds, D. J. (2009). Business Horizons, 52(4)","url":"https://doi.org/10.1016/j.bushor.2009.03.002"},{"title":"Users of the world, unite! The challenges and opportunities of Social Media — ソーシャルメディアをユーザー生成コンテンツの場として定義し、組織の関わり方を整理","source":"Kaplan, A. M., & Haenlein, M. (2010). Business Horizons, 53(1)","url":"https://doi.org/10.1016/j.bushor.2009.09.003"},{"title":"Spin Sucks — PESOモデル（Paid / Earned / Shared / Owned）の提唱","source":"Dietrich, G. (2014). Que Publishing","url":""},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"}],
+    related: ["n14", "n16"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載（SNS運用回）。初稿・公開日 2026.10.19（月）。id は未マージのドラフトPR #79・#80 がどちらも n23 を使っているため、衝突を避けて n24 とした（マージ時に連番を詰める場合は num も併せて修正）。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・入試課・SNS運用担当。仮説: SNS担当者の検索意図は「大学 SNS 運用 コツ」「フォロワー 増やし方」だが、実務の詰まりは投稿が数日で流れて資産にならないこと（＝受け皿の不在）なので、タイトルで『SNSは入口、物語を積むのは貴学のメディア』と役割分担を提示して流入を取れるか試す。想定検索KW:「大学 SNS 運用」「大学広報 SNS」「入試広報 SNS 活用」「大学 Instagram 広報」。連載の第1回 n14（PESO/Owned起点）・入試広報回 n16（リード獲得）・学内メディア回 n15 へ内部リンクして回遊を設計。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「投稿を記事に、記事を投稿に」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「大学のSNS運用、フォロワー数より大事なこと」型でA/B。反応率2%未満なら末尾をSNS運用の自己診断リスト型CTAに作り替える。",
+    excerpt: "大学のSNS投稿が数日で流れて、何も残っていないのではないか。SNSを入口、自前のメディアを物語の置き場として役割分担する運用設計をショート形式でまとめる。",
+    body: `<p>大学のSNSは入口であり、物語を積む場所は貴学のメディアです。</p>
+<h2>なぜ重要か</h2>
+<p>多くの大学が、SNSの運用に人と時間を割いています。それでも投稿はタイムラインを数日で流れ、半年後には誰にも見つけられません。表示の仕組みも利用規約も、決めるのはプラットフォームの運営会社です。<a href="/notes/pr-planning-peso-model/">PESOモデル</a>でいえばSNSはShared、つまり借りた土地です。借りた土地にだけ積んだ発信は、貴学の資産になりません。SNSで生まれた関心を受け止めて蓄積する場所——自前のメディアがあって初めて、SNS運用は投資に変わります。</p>
+<h2>SNSは「統制できない会話」の場</h2>
+<p>Mangold と Faulds は2009年、SNSを、組織が受け手に語りかける従来の広報と、受け手どうしのクチコミが混ざり合う場として整理しました。後者を組織は統制できません。できるのは、語りたくなる素材と場を用意して、会話の形を整えることです。Kaplan と Haenlein も2010年、ソーシャルメディアをユーザーが生成し交換するコンテンツの場として定義し、組織には継続して関わり、受け手が関心を持てる発信を続けることを求めました。大学に置き換えると明快です。在学生・卒業生・受験生が貴学について語るとき、手渡せる物語があるかどうか。告知を流すだけのアカウントは、この会話に入れません。</p>
+<h2>投稿を記事に、記事を投稿に</h2>
+<p>実務の型は一つです。SNSの投稿には、必ず戻ってこられる記事を用意する。1本の記事からは、写真・ひとことの引用・短い動画と、何本もの投稿が切り出せます。SNSは週に何度も、記事は週1本。単純接触効果の研究が示すとおり、好意は接触の回数で積み上がります。SNSが接触の頻度を担い、記事が物語の厚みを担う。この役割分担です。追う指標もフォロワー数ではありません。SNSから記事に来た人が、資料請求やオープンキャンパスの申込に進んだか——<a href="/notes/university-admissions-brand-lead-generation/">入試広報のリード獲得</a>の回で書いたとおり、見るべきは行動の変化です。語り手には、<a href="/notes/university-internal-engagement-media/">学内メディア</a>の回と同じく、学生と現場の教職員を据えます。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。タイムラインで一瞬流れていく話題を、大学自身の読み物として残し、何度でも差し出せる場所。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>SNSと自前のメディアを一本の導線として設計する考え方は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。貴学の発信の柱と体制を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、成果指標の選び方まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
