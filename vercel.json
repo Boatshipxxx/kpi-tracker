@@ -1,6 +1,10 @@
 {
   "trailingSlash": true,
   "cleanUrls": false,
+  "proxy": {
+    "entrypoint": "proxy.mjs",
+    "matcher": ["/admin", "/admin/:path*"]
+  },
   "redirects": [
     {
       "source": "/(.*)",
