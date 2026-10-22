@@ -9,14 +9,15 @@
 //     エラーメールが飛ぶ → 業務例外はすべて 200 で返し、内容は Slack で追う。
 //   - リトライがあるため webhookEventId で重複排除する。
 //   - タイムアウト30秒 → 重い処理（Slack通知）は応答後に waitUntil で行う。
-//   - 送信元IPは固定されないため IP allowlist は不可。検証を足すなら
-//     Webhook 登録URLに ?token= を付け SPIR_WEBHOOK_TOKEN を設定する（要・再登録）。
+//   - 送信元IPは固定されないため IP allowlist は不可。代わりに Webhook 登録URLの
+//     ?token= と環境変数 SPIR_WEBHOOK_TOKEN を突き合わせる（下の検証を参照）。
 //
 // 紐付けはメールアドレス（payload.invitee.email）で行う:
 //   - leads に一致 → 最新レコードの booked_at を payload.startDateTime で更新
 //   - 一致なし     → asset_id='direct_booking' で新規レコード作成（破棄しない）
 'use strict';
 
+const crypto = require('node:crypto');
 const { waitUntil } = require('@vercel/functions');
 const { getDb } = require('../lib/db');
 const { markBookedByEmail, insertDirectBooking, claimWebhookEvent } = require('../lib/leads-db');
@@ -27,6 +28,20 @@ const { sendBookingConfirmation } = require('../lib/mailer');
 // 資料請求フォロー個別相談（Webサイト経由）の空き時間リンク識別子。
 // 環境変数 SPIR_LEAD_URL_IDS（カンマ区切り）で上書き・追加できる。
 const DEFAULT_LEAD_URL_IDS = ['qKLPfOuw3wj6welMiVqd5'];
+
+// トークン照合用の定数時間比較。長さが違う場合も早期 return しないことで、
+// 応答時間から正解の手掛かりを与えない。
+function safeEqual(a, b) {
+  const x = Buffer.from(String(a), 'utf8');
+  const y = Buffer.from(String(b), 'utf8');
+  // timingSafeEqual は長さが違うと例外になるため、同じ長さに畳んでから比べる。
+  const len = Math.max(x.length, y.length);
+  const px = Buffer.alloc(len);
+  const py = Buffer.alloc(len);
+  x.copy(px);
+  y.copy(py);
+  return crypto.timingSafeEqual(px, py) && x.length === y.length;
+}
 
 function readBody(req) {
   if (req.body && typeof req.body === 'object') return Promise.resolve(req.body);
@@ -90,15 +105,30 @@ module.exports = async (req, res) => {
     return;
   }
 
-  // 任意のトークン検証。現在の登録URLはトークン無しのため、
-  // SPIR_WEBHOOK_TOKEN を設定する場合は Spir 側のURL再登録もセットで行うこと。
+  // トークン検証（必須）。
+  //
+  // 以前は「SPIR_WEBHOOK_TOKEN が設定されているときだけ検証する」実装だった。
+  // 本番では未設定だったため実質的に無認証で、誰でも event.confirmed を装った
+  // JSON を投げられる状態だった。それができると
+  //   - 任意のアドレスへ BOATship 名義の予約確定メールを送れる
+  //   - markBookedByEmail により実在リードの商談状況を書き換えられる
+  //   - Slack 通知を好きなだけ発火できる
+  // ため、未設定時は通さない（フェイルクローズ）。
+  //
+  // 設定手順: Vercel に SPIR_WEBHOOK_TOKEN を登録し、Spir 側の Webhook URL を
+  //   https://www.boatship.jp/api/spir-webhook?token=<値>
+  // に再登録する。順序を逆にすると正規の予約通知が 401 で弾かれるため、
+  // 必ず「Spir 側の再登録 → Vercel に環境変数を登録」の順で行うこと。
   const expected = process.env.SPIR_WEBHOOK_TOKEN;
-  if (expected) {
-    const url = new URL(req.url, 'http://localhost');
-    if (url.searchParams.get('token') !== expected) {
-      res.status(401).json({ error: 'unauthorized' });
-      return;
-    }
+  if (!expected) {
+    console.error('[spir-webhook] SPIR_WEBHOOK_TOKEN が未設定のため拒否しました');
+    res.status(503).json({ error: 'webhook not configured' });
+    return;
+  }
+  const url = new URL(req.url, 'http://localhost');
+  if (!safeEqual(String(url.searchParams.get('token') || ''), expected)) {
+    res.status(401).json({ error: 'unauthorized' });
+    return;
   }
 
   let body;
