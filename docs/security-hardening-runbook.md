@@ -88,16 +88,19 @@ curl -i -X POST -H 'Content-Type: application/json' -d '{}' \
 ### 設計
 
 パスワードを静的HTMLに置く限り、どう書いても閲覧者側で読める／回避できる。
-そのため判定を Vercel のエッジ（Routing Middleware = `proxy.mjs`）に移し、
+そのため判定を Vercel のエッジ（Routing Middleware = `proxy.ts`）に移し、
 正解値は環境変数にだけ置く。HTMLにはパスワードを一切含めない。
 
-- `proxy.mjs` … `/admin` 配下のみ Basic 認証。環境変数が無ければ 503（フェイルクローズ）
+- `proxy.ts` … `/admin` 配下のみ Basic 認証。環境変数が無ければ 503（フェイルクローズ）
 - `vercel.json` の `proxy.matcher` で `/admin`, `/admin/:path*` に限定
 - `admin/index.html` から平文パスワードと JS 認証画面を削除
 
-> フレームワーク未使用プロジェクトのため、ミドルウェアは **`.mjs`（ESM）必須**。
-> `package.json` に `"type": "module"` を足すと既存の CommonJS な
-> `api/*.js`・`lib/*.js` が壊れるので、そちらの手は使わない。
+> ミドルウェアを **TypeScript (`proxy.ts`)** にしている理由:
+> `vercel.json` の `proxy.entrypoint` は `.js` / `.ts` / `.py` しか受け付けず
+> （`.mjs` はスキーマ検証で落ちる）、一方でミドルウェアは default export（ESM）
+> 必須。このプロジェクトは `api/*.js`・`lib/*.js` が CommonJS なので
+> `package.json` に `"type": "module"` を足す手は使えない。`.ts` なら常に
+> ESM として扱われ、`package.json` の type に影響されない。
 
 ### 手順
 

@@ -13,9 +13,14 @@
 // 適用範囲は vercel.json の proxy.matcher で /admin 配下のみに限定している。
 // サイト全体に掛けるとリード獲得導線や記事まで塞いでしまうため広げないこと。
 //
-// ※ ESM(.mjs) である必要がある。このプロジェクトはフレームワーク未使用で
-//    api/*.js・lib/*.js が CommonJS のため、package.json に "type": "module"
-//    を足すとそれらが壊れる。拡張子を .mjs にすることで共存させている。
+// ※ 拡張子が .ts である理由:
+//    - vercel.json の proxy.entrypoint は .js / .ts / .py しか受け付けない
+//      （.mjs はスキーマ検証で落ちる）
+//    - ミドルウェアは default export（ESM）必須だが、このプロジェクトは
+//      フレームワーク未使用で api/*.js・lib/*.js が CommonJS。package.json に
+//      "type": "module" を足すとそれらが壊れるので .js も使えない
+//    → .ts なら常に ESM として扱われ、package.json の type に影響されない。
+//    型注釈は最小限にとどめ、tsconfig 無しでもビルドが通るようにしている。
 
 import { next } from '@vercel/functions';
 
@@ -36,7 +41,7 @@ function unauthorized() {
 
 // 一致/不一致で処理時間が変わらない比較（総当たりの手掛かりを与えない）。
 // 長さが違う場合も最後まで走査する。
-function safeEqual(a, b) {
+function safeEqual(a: string, b: string): boolean {
   const enc = new TextEncoder();
   const x = enc.encode(a);
   const y = enc.encode(b);
@@ -49,7 +54,7 @@ function safeEqual(a, b) {
 }
 
 // "Basic dXNlcjpwYXNz" → { user, pass }。壊れていれば null。
-function parseBasicAuth(header) {
+function parseBasicAuth(header: string | null) {
   if (typeof header !== 'string') return null;
   const m = /^Basic\s+(.+)$/i.exec(header.trim());
   if (!m) return null;
@@ -64,7 +69,7 @@ function parseBasicAuth(header) {
   return { user: decoded.slice(0, i), pass: decoded.slice(i + 1) };
 }
 
-export default function proxy(request) {
+export default function proxy(request: Request) {
   const expectedPass = process.env.ADMIN_PASSWORD;
   const expectedUser = process.env.ADMIN_USER || 'admin';
 
