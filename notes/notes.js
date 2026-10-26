@@ -547,4 +547,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>受験生・新入生・在学生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。入学後の1年間に届ける発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n24",
+    slug: "university-crisis-communication-media",
+    num: "#24",
+    category: "Column",
+    title: "大学の危機対応は、平時のメディアで決まる — 炎上の前に「一次情報の置き場所」を持つ",
+    date: "2026.10.26",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-03.jpg",
+    evidence: [{"title":"Stealing thunder: Analysis of the effects of proactive disclosure of crisis information — 自ら先に開示することの効果","source":"Arpan, L. M., & Roskos-Ewoldsen, D. R. (2005). Public Relations Review, 31(3)","url":""},{"title":"Protecting Organization Reputations During a Crisis — 状況即応型危機コミュニケーション理論（SCCT）の提示","source":"Coombs, W. T. (2007). Corporate Reputation Review, 10(3)","url":"https://doi.org/10.1057/palgrave.crr.1550049"},{"title":"Unpacking the halo effect: reputation and crisis management — 平時の評判は危機時の緩衝材になるか","source":"Coombs, W. T., & Holladay, S. J. (2006). Journal of Communication Management, 10(2)","url":""},{"title":"Edelman Trust Barometer — 「誰の言葉が信頼されるか」の国際調査","source":"Edelman (2025)","url":"https://www.edelman.com/trust/trust-barometer"}],
+    related: ["n14", "n17"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第10回（大学の危機管理広報）。初稿 2026.10.26 執筆・同日付。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・総務課。企業向けロング記事 n17（クライシス・コミュニケーション）の大学版として、論点を「平時の自前メディアが有事の一次情報の置き場所になる」に絞って差別化。仮説: 大学の危機対応の検索意図は「大学 不祥事 対応」「謝罪文」だが、実務の詰まりは文面ではなく、一次情報をまとめて置ける場所と平時の信頼残高の不在なので、タイトルで『平時のメディアで決まる』と時間軸を前にずらして流入を取れるか試す。想定検索KW:「大学 危機管理広報」「大学 炎上 対応」「大学 不祥事 広報」「大学 リスクコミュニケーション」。n17 と連載の入試広報回 n16・保護者回 n22 へ内部リンクして回遊を設計。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「一次情報の置き場所」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「大学の炎上対応は最初の24時間で決まる — 危機管理広報の準備」型でA/B。反応率2%未満なら末尾を危機対応準備の自己診断リスト型CTAに作り替える。",
+    excerpt: "不祥事や炎上が起きてから発信の場所を探していないか。先に開示する効果と評判研究をもとに、平時の自前メディアを有事の一次情報の置き場所にする設計をショート形式でまとめる。",
+    body: `<p>大学の危機対応の速さは、平時から育てた貴学のメディアで決まります。</p>
+<h2>なぜ重要か</h2>
+<p>部活動の事故、研究不正、学生や教職員の不祥事、SNSでの炎上——大学の危機は、出願期であっても待ってくれません。そのとき受験生・保護者・在学生が検索して最初に目にするのが、断片的な投稿と他者の報道だけなら、貴学の説明は届く前に解釈されてしまいます。Arpan と Roskos-Ewoldsen が2005年に示したとおり、危機の情報は報道より先に組織自身が開示したほうが、組織の信頼性が高く評価されます。先に言うには、正確な一次情報をまとめて置ける自前の場所が要ります。</p>
+<h2>危機の重さは、危機の前に決まっている</h2>
+<p>Coombs が2007年に体系化した状況即応型危機コミュニケーション理論（SCCT）は、同じ出来事でも、過去に似た危機を繰り返した組織や平時の評判が芳しくない組織ほど、重く責任を帰属されると整理しました。Coombs と Holladay は2006年、平時の評判が危機時の緩衝材になる「ハロー効果」を実証的に検討しています。つまり危機対応は、謝罪文を書く日ではなく、その前の日々から始まっています。学生と教職員が名前つきで語られ、判断の理由が日常的に開示されている大学は、有事に「この大学はそういう判断をする大学だ」という文脈を借りられます。平時の発信は、信頼の残高を積む仕事です。</p>
+<h2>一次情報の置き場所を、いま決めておく</h2>
+<p>有事に必要なのは名文ではなく、決められる状態です。誰が事実確認の責任を持ち、誰が公表を決裁し、どこに最初に出すのか。出し先は、普段は誰も見ない「お知らせ」欄より、受験生も<a href="/notes/university-parent-communication-media/">保護者</a>も卒業生もすでに訪れている貴学のメディアが強い。経過と再発防止策を同じ場所で続報として積めば、収束後の<a href="/notes/university-admissions-brand-lead-generation/">入試広報</a>にも説明の筋が残ります。Edelman Trust Barometer が示すとおり、信頼されるのは公式発表より現場の人の言葉です。学長声明だけでなく、当事者に近い教職員が語れる体制を平時から作っておきます。危機対応の型そのものは<a href="/notes/pr-planning-crisis-communication/">クライシス・コミュニケーションの記事</a>で詳しく扱っています。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。大学自身が語り続ける場を平時から持つこと——危機対応の土台は、この積み重ねです（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>平時の発信と有事の説明を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。発信体制と責任者を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、体制表まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
