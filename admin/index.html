@@ -23,59 +23,9 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
-/* --- Auth Screen --- */
-#auth-screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  gap: 1.5rem;
-  padding: 2rem;
-}
-#auth-screen h1 {
-  font-family: var(--dot);
-  font-size: 2rem;
-  color: var(--yellow);
-  letter-spacing: 0.05em;
-}
-#auth-screen .pw-row {
-  display: flex;
-  border: 2px solid var(--yellow);
-  max-width: 360px;
-  width: 100%;
-}
-#auth-screen input[type="password"] {
-  flex: 1;
-  padding: 12px 14px;
-  background: transparent;
-  color: var(--yellow);
-  border: none;
-  outline: none;
-  font-family: var(--mono);
-  font-size: 13px;
-}
-#auth-screen input::placeholder { color: rgba(245,225,0,0.3); }
-#auth-screen button {
-  padding: 12px 20px;
-  background: var(--red);
-  color: var(--yellow);
-  border: none;
-  font-family: var(--mono);
-  font-size: 12px;
-  cursor: pointer;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-}
-#auth-screen button:hover { background: #d94020; }
-#auth-error {
-  color: var(--red);
-  font-size: 12px;
-  display: none;
-}
-
-/* --- Main UI --- */
-#main-ui { display: none; }
+/* 認証画面(#auth-screen)は廃止。Basic認証は Vercel の Routing Middleware
+   (proxy.mjs) が担当するため、このページは常に本体を表示する。 */
+#main-ui { display: block; }
 
 .admin-header {
   display: flex;
@@ -412,17 +362,12 @@ a { color: inherit; text-decoration: none; }
 </head>
 <body>
 
-<!-- Auth Screen -->
-<div id="auth-screen">
-  <h1>BOATship Admin</h1>
-  <p style="color:rgba(245,225,0,0.4);font-size:11px;text-transform:uppercase;letter-spacing:0.1em;">Magazines & Notes — Owned Media Management</p>
-  <div class="pw-row">
-    <input type="password" id="pw-input" placeholder="パスワードを入力" onkeydown="if(event.key==='Enter')login()">
-    <button onclick="login()">LOGIN →</button>
-  </div>
-  <p id="auth-error">パスワードが違います</p>
-  <p style="color:rgba(245,225,0,0.2);font-size:10px;margin-top:2rem;">デフォルトパスワード: boatship2026</p>
-</div>
+<!--
+  認証画面はここには無い。/admin/ へのアクセスは Vercel の Routing Middleware
+  (proxy.mjs) が Basic 認証で止めており、このHTMLが配信される時点で認証済み。
+  以前あったJS判定はパスワードを平文で持つ必要があり、ページのソースを見れば
+  誰でも読めてしまうため廃止した。パスワードをこのファイルに書かないこと。
+-->
 
 <!-- Main UI -->
 <div id="main-ui">
@@ -646,7 +591,6 @@ a { color: inherit; text-decoration: none; }
 <script src="../notes/notes.js"></script>
 <script src="../notes/analytics.js"></script>
 <script>
-var ADMIN_PW = 'boatship2026';
 var currentSection = 'magazine'; // 'magazine' | 'notes'
 var magazineData = JSON.parse(JSON.stringify(ARTICLES));
 var notesData = JSON.parse(JSON.stringify(NOTES));
@@ -656,19 +600,10 @@ var isNew = false;
 function currentData() { return currentSection === 'magazine' ? magazineData : notesData; }
 function setCurrentData(d) { if (currentSection === 'magazine') magazineData = d; else notesData = d; }
 
-// --- Auth ---
-function login() {
-  var pw = document.getElementById('pw-input').value;
-  if (pw === ADMIN_PW) {
-    document.getElementById('auth-screen').style.display = 'none';
-    document.getElementById('main-ui').style.display = 'block';
-    renderList();
-  } else {
-    document.getElementById('auth-error').style.display = 'block';
-    document.getElementById('pw-input').value = '';
-    document.getElementById('pw-input').focus();
-  }
-}
+// --- 初期描画 ---
+// 認証は Vercel の Routing Middleware (proxy.mjs) が /admin/ の手前で
+// 済ませている。ここに到達した時点で認証済みなので、そのまま一覧を出す。
+document.addEventListener('DOMContentLoaded', function () { renderList(); });
 
 // --- Section Switch ---
 function switchSection(section) {
