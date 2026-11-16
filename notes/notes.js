@@ -574,4 +574,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>平時の発信と有事の説明を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。発信体制と責任者を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、体制表まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n25",
+    slug: "university-international-student-recruitment-media",
+    num: "#25",
+    category: "Column",
+    title: "留学生は、先輩の言葉で大学を選ぶ — 多言語パンフレットの先にある留学生広報",
+    date: "2026.11.16",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-04.jpg",
+    evidence: [{"title":"\"Push-pull\" factors influencing international student destination choice — 留学先選択を左右するプッシュ・プル要因","source":"Mazzarol, T., & Soutar, G. N. (2002). International Journal of Educational Management, 16(2)","url":""},{"title":"Universities in a competitive global marketplace: A systematic review of the literature on higher education marketing — 高等教育マーケティング研究の体系的レビュー","source":"Hemsley-Brown, J., & Oplatka, I. (2006). International Journal of Public Sector Management, 19(4)","url":""},{"title":"Edelman Trust Barometer — 「誰の言葉が信頼されるか」の国際調査","source":"Edelman (2025)","url":"https://www.edelman.com/trust/trust-barometer"}],
+    related: ["n16", "n14"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第11回（留学生広報）。初稿 2026.11.16 執筆・同日付。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・国際交流課・入試課。未マージのドラフトPR（SNS・スポーツ・学長のトップ広報・企業向けキャリア広報）と切り口が重ならない留学生広報を選定。仮説: 留学生募集の検索意図は「留学生 募集 方法」「多言語 パンフレット」「海外 リクルート」に集まるが、留学先を決める決め手は知人の推薦と大学の認知度（Mazzarol & Soutar 2002）なので、タイトルで『先輩の言葉で選ぶ』と決め手の側から入って流入を取れるか試す。想定検索KW:「大学 留学生 募集 広報」「留学生 リクルート 方法」「大学 多言語 発信」「国際交流課 広報」。連載の入試広報回 n16・保護者回 n22・定着回 n23 へ内部リンクして回遊を設計。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「翻訳ではなく、語り手を増やす」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「大学の留学生募集は口コミで決まる — 在学留学生が語るメディアの作り方」型でA/B。反応率2%未満なら末尾を留学生向け発信の自己診断リスト型CTAに作り替える。",
+    excerpt: "留学生の大学選びを動かすのは、多言語のパンフレットより、先に来た先輩の言葉。留学先選択の研究をもとに、在学留学生が語る自前のメディアで募集につなげる設計をショート形式でまとめる。",
+    body: `<p>留学生広報は、多言語のパンフレットではなく、先輩留学生が語る自前のメディアで決まります。</p>
+<h2>なぜ重要か</h2>
+<p>海外の学生にとって、日本の一大学は検索しなければ存在しない選択肢です。Mazzarol と Soutar が2002年に整理したプッシュ・プル要因の研究は、留学先の大学を選ぶ決め手として、受け入れ国と大学の認知度に加え、家族や友人からの推薦——つまり口コミ——を挙げました。貴学について知人が語れる材料と、検索したときに見つかる読み物がなければ、候補にすら入りません。Hemsley-Brown と Oplatka が2006年のレビューで示したとおり、大学の学生募集はすでに国境を越えた競争市場です。</p>
+<h2>翻訳ではなく、語り手を増やす</h2>
+<p>日本語の大学案内を翻訳しても、留学生が知りたいことには答えられません。知りたいのは、住まいの探し方、アルバイトと学業の両立、日本語に不安があっても授業についていけるか、卒業後の進路——制度の説明より、同じ立場で来た人の実際です。Edelman Trust Barometer が毎年示すとおり、信頼されるのは公式発表より「自分と似た立場の人」の言葉です。在学中の留学生を主役に、母語でも日本語でも語ってもらい、固有名詞と情景のある記事として貴学のメディアに積み上げます。その記事は本人のSNSや母国の友人へそのまま共有され、口コミの素材になります。</p>
+<h2>入学前から卒業後まで、同じ場所で語る</h2>
+<p>留学生広報を国際交流課のパンフレット制作で閉じないことです。出願前の検索、来日前の不安、<a href="/notes/university-first-year-retention-media/">入学後の定着</a>、卒業後の活躍——すべてを1つのメディアで続けて語れば、記事は次の世代の留学生を呼ぶ資産になります。母国で進学を後押しする家族に向けた発信は、<a href="/notes/university-parent-communication-media/">保護者向け広報</a>の設計がそのまま使えます。記事の末尾に資料請求や個別相談への導線を置く設計は、<a href="/notes/university-admissions-brand-lead-generation/">入試広報の回</a>と同じです。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。学生を主役に、大学自身が語り続ける場を持つこと——留学生広報の土台も同じです（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>受験生・在学生・卒業生、そして留学生を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。留学生に届ける発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、読者とコンテンツの柱、体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
