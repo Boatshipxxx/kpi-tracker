@@ -574,4 +574,31 @@ const NOTES = [
 <h2>さらに詳しく</h2>
 <p>平時の発信と有事の説明を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。発信体制と責任者を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、体制表まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
   }
+  ,{
+    id: "n25",
+    slug: "university-open-campus-follow-up-media",
+    num: "#25",
+    category: "Column",
+    title: "オープンキャンパスを1日で終わらせない — 来場の熱量を出願まで運ぶ、大学のメディア",
+    date: "2026.11.23",
+    readTime: 3,
+    theme: "pr-planning",
+    image: "../images/card-04.jpg",
+    evidence: [{"title":"Replication and Analysis of Ebbinghaus' Forgetting Curve — 忘却曲線の再現研究","source":"Murre, J. M. J., & Dros, J. (2015). PLoS ONE, 10(7), e0120644","url":"https://doi.org/10.1371/journal.pone.0120644"},{"title":"When More Pain Is Preferred to Less: Adding a Better End — ピーク・エンドの法則","source":"Kahneman, D., Fredrickson, B. L., Schreiber, C. A., & Redelmeier, D. A. (1993). Psychological Science, 4(6)","url":"https://doi.org/10.1111/j.1467-9280.1993.tb00589.x"},{"title":"Attitudinal Effects of Mere Exposure — 単純接触効果","source":"Zajonc, R. B. (1968). Journal of Personality and Social Psychology, 9(2, Pt.2)","url":"https://doi.org/10.1037/h0025848"}],
+    related: ["n16", "n22"],
+    kpi: {"views":null,"readRate":null,"reactions":null,"recordedAt":""},
+    tuningMemo: "大学広報向けショート連載 第11回（オープンキャンパス後の接点設計）。初稿 2026.11.23 執筆・同日付。Smart Brevityテンプレ準拠（リード1文→なぜ重要か→本文2本→実績→さらに詳しく、読了3分）。対象読者: 大学の広報担当者・学長・入試課。仮説: オープンキャンパス担当者の検索意図は「オープンキャンパス 集客」「来場者数 増やす」に集まるが、実務の詰まりは来場後から出願までの数か月が空白になること（＝継続接点の不在）なので、タイトルで『1日で終わらせない』と時間軸を当日の後ろへずらして流入を取れるか試す。想定検索KW:「オープンキャンパス 事後フォロー」「オープンキャンパス 参加者 出願」「オープンキャンパス 企画」「入試広報 オウンドメディア」。連載の入試広報回 n16・高校教員回 n21・保護者回 n22 へ内部リンクして回遊を設計。CTA: ホワイトペーパー(/request/?asset=university-pr-planning-template)を主導線、記入式ガイドを併記。読了率40%未満なら本文h2を1本に削り「当日を記事にする」を冒頭近くへ前倒し。PVが中央値未満ならタイトルを「オープンキャンパスのあとに何を届けるか — 来場者を出願につなぐ入試広報」型でA/B。反応率2%未満なら末尾をオープンキャンパス事後フォローの自己診断リスト型CTAに作り替える。",
+    excerpt: "来場者数を追うほど、当日で燃え尽きていないか。忘却曲線とピーク・エンドの法則をもとに、オープンキャンパスを記事にして翌日から出願まで届け続ける設計をショート形式でまとめる。",
+    body: `<p>オープンキャンパスの熱量は、当日ではなく翌日からの貴学のメディアで決まります。</p>
+<h2>なぜ重要か</h2>
+<p>貴学はオープンキャンパスに、準備の数か月と教職員・在学生スタッフの1日を注いでいます。それでも来場者が出願を決めるのは、多くの場合その数か月後です。あいだに届くものが資料の封筒と広告だけなら、模擬授業で動いた心は他大学の情報に上書きされます。来場者数は入口の指標にすぎません。勝負は、当日から出願までの空白をどう埋めるかです。</p>
+<h2>記憶は薄れ、「最後の印象」が残る</h2>
+<p>Murre と Dros は2015年、エビングハウスの忘却曲線を再現し、覚えた内容の多くが最初の1日のうちに急速に失われることを確かめました。一方、Kahneman らが1993年に示したピーク・エンドの法則は、人は体験全体ではなく「最も印象的な瞬間」と「終わり方」で体験を評価することを明らかにしています。つまり来場者の記憶に残すには、当日のピークを再び思い出させる接点と、体験の「終わり」を校門ではなく翌日以降に置き直す設計が要ります。繰り返し触れた対象への好意が積み上がる単純接触効果（Zajonc, 1968）が働くのも、この接点が続くあいだだけです。</p>
+<h2>当日を記事にし、翌日から届ける</h2>
+<p>やることは明快です。模擬授業の先生、案内してくれた在学生スタッフ、研究室の展示——来場者が「会った人」と「見たもの」を、名前と顔のある記事として貴学のメディアに残します。参加の御礼メールには資料ではなく、その記事を載せます。来場者は自分が会った先輩の続きを読み、同行した<a href="/notes/university-parent-communication-media/">保護者</a>も家庭で同じ記事を開けます。記事の末尾に個別相談や次回イベントへの導線を置けば、読み返しがそのまま出願前の接点になります。リード獲得の全体設計は<a href="/notes/university-admissions-brand-lead-generation/">入試広報の回</a>で扱っています。</p>
+<h2>実績 — TEAM JOSAI!（城西大学）</h2>
+<p>BOATshipは城西大学とともに、大学公式Webマガジン<a href="https://www.josai.ac.jp/tjp/">TEAM JOSAI!</a>を企画・制作しました。「大学の全てを共創」をコンセプトに、駅伝をはじめとするスポーツの物語を大学自身が語り続けるメディアです。「TEAM JOSAI!」という名前は、学生・教職員・卒業生・地域をひとつのチームとして束ねる旗印として設計しました。企画からコンサルティング・編集・コンテンツ配信のデザインと開発まで伴走しています。一度きりの体験を、何度でも読み返せる物語に変える場を持つこと——来場の熱量を出願まで運ぶ土台は、ここにあります（制作概要は<a href="/works/">Works</a>へ）。</p>
+<h2>さらに詳しく</h2>
+<p>イベントと日常の発信を1つのメディアで束ねる設計思想は、ホワイトペーパー<a href="/request/?asset=university-pr-planning-template">「大学広報は、なぜ届かないのか。」（無料）</a>にまとめています。オープンキャンパス後に届ける発信計画を今日1枚に落とすなら、記入式の<a href="/request/?asset=university-media-design-guide">メディア設計ガイド［大学版］（無料・記入式）</a>で、コンテンツの柱と体制まで決められます。連載の第1回は<a href="/notes/university-pr-owned-media-strategy/">大学広報の次の一手は「編集部」になること</a>です。</p>`
+  }
 ];
