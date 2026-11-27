@@ -47,6 +47,11 @@ jobs:
 
             1. 【現状把握】notes/notes.js の NOTES 配列を読み、テーマ(inner-branding / pr-planning / culture)の
                本数バランスと、各記事の kpi(views, readRate, reactions, recordedAt)・tuningMemo を確認する。
+               あわせて**未マージのドラフトPRが使っている記事IDを必ず洗い出す**。
+               このワークフローは毎週走るが公開(マージ)は人間が行うため、main だけを見て採番すると
+               未マージPRと id / num / slug が衝突し、notes/notes.js がコンフリクトして溜まる。
+                 gh pr list --state open --json number,headRefName,title
+                 gh pr diff <番号> -- notes/notes.js   # 各PRについて実行し、追加された id / num / slug を拾う
 
             2. 【新記事を1本執筆】当面は「大学広報向けショート連載」(n14〜)の続きを最優先で1本書く。
                この連載の執筆ルール(既存の n14 / n15 / n16 を必ず読んで踏襲すること):
@@ -66,8 +71,10 @@ jobs:
                  未公開なら既存の広報企画書テンプレートへリンクする
                大学広報の切り口が尽きた場合のみ、従来どおり inner-branding と pr-planning のうち
                本数が少ない方(同数なら直近と逆)のテーマで書く。共通ルール:
-               - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)
-               - slug は記事内容を表す英数字ケバブケース(既存slugと重複しないこと)。
+               - id は既存の連番に続く形式(例: n07)、num は '#07' 形式、date は実行日(YYYY.MM.DD)。
+                 **採番は main の最新 id ではなく、手順1で洗い出した未マージPRの id も含めた最大値の次**にする
+                 (例: main が n21 までで未マージPRが n22〜n25 を使っているなら、新記事は n26)
+               - slug は記事内容を表す英数字ケバブケース。**既存記事および未マージPRの slug と重複させない**。
                  related には内容が最も近い既存記事のidを2件設定する
                - 文体・構成は既存記事(特に n05, n06)を踏襲: 導入p + h2見出し4〜6個、日本語。
                  BOATshipは「Business Art Team」を名乗るデザイン/PRスタジオで、等価交換報酬制度などの実践を持つ
